@@ -1,0 +1,6 @@
+
+npm install express jsonwebtoken dotenv bcrypt cookie-parser cors
+npm install --save-dev @types/express @types/node nodemon ts-node typescript @types/bcrypt @types/cors @types/jsonwebtoken  
+npx tsc --init
+
+

@@ -1,0 +1,11 @@
+products
+
+{
+
+      productId:"Data",
+      productName:"Data",
+      status:"Data",
+      mrp:20,
+      lsp:30,
+    }
+

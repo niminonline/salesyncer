@@ -1,0 +1,19 @@
+# Ignore typical Node.js files and directories
+node_modules
+npm-debug.log
+
+
+# Ignore build and temporary files
+build
+tmp
+.DS_Store
+
+# Ignore development and editor-specific files
+.vscode
+.idea
+*.suo
+*.ntvs*
+
+# Ignore test and documentation files
+test
+docs

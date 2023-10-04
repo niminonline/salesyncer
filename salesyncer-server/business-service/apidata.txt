@@ -1,0 +1,76 @@
+Contact
+
+{
+      contactId:"Data",
+      contactName:"Data",
+      email:"Data", 
+      phone:"Data", 
+      alternatePhone:"Data", 
+      company:"Data", 
+      profession:"Data", 
+      language:"Data", 
+      address:{
+        addressLine1:"Data",
+        addressLine2:"Data",
+        place:"Data",
+        landmark:"Data",
+        district:"Data",
+        state:"Data",
+        pincode:560015,
+      }
+      
+    }
+
+====================================================
+
+activity
+
+{
+      date:Date.now(),
+      link:"Data",
+      empId:"Data",
+      employeeName:"Data",
+      status:"Data",
+      scheduledActivity:"Data",
+      feedback:"Data",
+}
+==================================================
+
+leads
+
+{
+      leadId:"Data",
+      employeeName:"Data",
+      empId:"Data", 
+      type:"Data", 
+      createdBy:"Data", 
+      createdDate:Date.now(), 
+      status:"Data", 
+      lastActivity:"Data", 
+      documentsSent:["Data1","Data2"], 
+      notes:"Data", 
+      products:[{
+        productId:"Data",
+        productName:"Data",
+        Quantity:10,
+        QuotedPrice:20
+      },{
+        productId:"Data2",
+        productName:"Data2",
+        Quantity:18,
+        QuotedPrice:28
+      }],
+      log:[{
+        date: Date.now(),
+        activityDetails:"Data",
+        employeeName:"Data",
+      },{
+        date: Date.now(),
+        activityDetails:"Data2",
+        employeeName:"Data2",
+      }],
+    }
+
+==============================================================================
+
+

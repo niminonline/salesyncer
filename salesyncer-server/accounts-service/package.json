@@ -1,0 +1,31 @@
+{
+  "name": "accounts-service",
+  "version": "1.0.0",
+  "description": "Accounts management microservice of Salesyncer CRM application. It consists of Sales and expense modules.",
+  "main": "./dist/app.js",
+  "module": "esnext",
+  "scripts": {
+    "start": "node ./dist/app.js",
+    "dev": "nodemon ./src/app.ts",
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "nimin",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "moment": "^2.29.4",
+    "mongodb": "^6.1.0",
+    "mongoose": "^7.5.3",
+    "winston": "^3.10.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.18",
+    "@types/node": "^20.8.2",
+    "nodemon": "^3.0.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
+  }
+}

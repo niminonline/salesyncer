@@ -1,0 +1,47 @@
+Sales
+
+{
+      date: Date.now(),
+      invoiceNumber: "Data",
+      leadId: "Data",
+      contactId: "Data",
+      branchCode: "Data",
+      branchName: "Data",
+      contactName: "Data",
+      empId: "Data",
+      employeeName: "Data",
+      subTotal: 1234,
+      discount: 5678,
+      totalAmount: 9101112,
+      products: [
+        {
+          productId: "Data",
+          productName: "Data",
+          ProductCategory: "Data",
+          ProductSubCategory: "Data",
+          quantity: 20,
+          price: 50,
+        },
+        {
+          productId: "Data2",
+          productName: "Data2",
+          ProductCategory: "Data2",
+          ProductSubCategory: "Data2",
+          quantity: 220,
+          price: 502,
+        },
+      ],
+    }
+    
+=============================
+Expense
+
+{
+      empId:"Data",
+      employeeName:"Data",
+      date:Date.now(),
+      amount:123,
+      description:"Data",
+      branchCode:"Data",
+      branchName:"Data",
+    }

@@ -1,0 +1,28 @@
+npm init
+npx tsc --init
+npm install express cors mongodb mongoose cookie-parser jsonwebtoken multer moment
+npm install --save-dev @types/express @types/mongodb @types/mongoose @types/node nodemon ts-node typescript
+
+
+Update node and npm
+
+npm install -g npm@latest
+npm install -g node@latest
+
+npm init
+npx tsc --init
+npm install express cors mongodb mongoose moment dotenv winston
+npm install --save-dev @types/express @types/mongodb @types/mongoose @types/node nodemon ts-node typescript
+
+
+
+Ports
+API INetgration 3000
+Athentication - 3001
+Office-3002,
+Business-3003
+Account-3004
+Product-3005
+
+
+
