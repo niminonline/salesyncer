@@ -20,17 +20,17 @@ export const adminLogin = async (data:any) => {
     const { email, password,requestId,action } = data;
     console.log("email",email);
 
-    const adminData:any= await getAdminToken(email, password);
+    const response:any= await getAdminToken(email, password);
 
-    if(adminData){
+    if(response){
 
-      adminData.requestId=requestId;
-      adminData.action=action;
+      response.requestId=requestId;
+      response.action=action;
     }
   
-      console.log("myresponse",adminData);
+      console.log("myresponse",response);
       // Publish the response
-       publishToChannel('auth-response',adminData);
+       publishToChannel('auth-response',response);
   
   } catch (error) {
     console.error(error);
@@ -38,12 +38,17 @@ export const adminLogin = async (data:any) => {
 };
 
 
-export const employeeLogin = async (req: Request, res: Response): Promise<void> => {
+export const employeeLogin = async (data:any): Promise<void> => {
     try {
       // console.log("login-",req.body)
-      const { email, password } = req.body;
-      const response = await verifyEmployeeLogin(email, password);
-      res.json(response);
+      const { email, password ,requestId,action } = data;
+      const response:any = await verifyEmployeeLogin(email, password);
+      if(response){
+
+        response.requestId=requestId;
+        response.action=action;
+      }
+      publishToChannel('auth-response',response);
     } catch (err) {
       console.error(err);
     }
