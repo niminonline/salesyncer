@@ -1,6 +1,6 @@
 
-npm install express http-proxy-middleware
-npm install --save-dev @types/express nodemon ts-node typescript @types/node
+npm install express npm install kafkajs
+npm install --save-dev @types/express nodemon ts-node typescript @types/node 
 npx tsc --init
 
 

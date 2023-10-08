@@ -25,4 +25,22 @@ Account-3004
 Product-3005
 
 
+====
+Install Kafka & zookeeper
+sudo apt install openjdk-8-jdk
+Download and extract kafka and zoo keeper
+
+cp apache-zookeeper-3.7.0-bin/conf/zoo_sample.cfg apache-zookeeper-3.7.0-bin/conf/zoo.cfg
+nano apache-zookeeper-3.7.0-bin/conf/zoo.cfg
+cd apache-zookeeper-3.7.0-bin
+./bin/zkServer.sh start
+
+
+cd kafka_2.13-2.8.1
+./bin/kafka-server-start.sh config/server.properties
+
+
+
+
+
 

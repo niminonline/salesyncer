@@ -12,7 +12,7 @@ const connectDB = async (): Promise<void> => {
       await mongoose.connect(dbUrl);
       console.log("Products database connected successfully");
     } else {
-      console.error("Error in connecting Office database");
+      console.error("Error in connecting products database");
     }
   } catch (error) {
     console.error("Error while connecting db", error);

@@ -1,15 +1,19 @@
-import express, { Request, Response } from "express";
+import express from "express";
 import { config } from "dotenv";
+import { subscribeToChannel } from "./interfaces/routes/interface";
+import connectDB from "./config/mongodb";
 
 const app = express();
 config();
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+connectDB();
+const port = process.env.PORT || 3001;
 
-const port = process.env.PORT ? process.env.PORT : 3001;
 
-app.get("/", async (req: Request, res: Response) => {
+subscribeToChannel("auth-service");
 
-  res.send("Welcome to Auth service");
-});
+
 
 app.listen(port, () => {
   console.log(`Authentication server listening at port# ${port}`);
