@@ -29,7 +29,6 @@ export const adminLogin = async (data:any) => {
     }
   
       console.log("myresponse",response);
-      // Publish the response
        publishToChannel('auth-response',response);
   
   } catch (error) {
@@ -40,7 +39,6 @@ export const adminLogin = async (data:any) => {
 
 export const employeeLogin = async (data:any): Promise<void> => {
     try {
-      // console.log("login-",req.body)
       const { email, password ,requestId,action } = data;
       const response:any = await verifyEmployeeLogin(email, password);
       if(response){
@@ -53,14 +51,4 @@ export const employeeLogin = async (data:any): Promise<void> => {
       console.error(err);
     }
   };
-// export const saveEmpCredentials = async (req: Request, res: Response): Promise<void> => {
-//     try {
-//       // console.log("login-",req.body)
-//       const { empId, email, password } = req.body;
-//       const response = await saveEmpCredentialData(empId,email, password);
-//       res.json(response);
-//     } catch (err) {
-//       console.error(err);
-//     }
-//   };
 

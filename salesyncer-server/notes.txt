@@ -39,6 +39,47 @@ cd apache-zookeeper-3.7.0-bin
 cd kafka_2.13-2.8.1
 ./bin/kafka-server-start.sh config/server.properties
 
+==========================
+
+Docker 
+
+
+build
+docker build -t my_docker_image_name . 
+(. -buid context-current directory(where docker file is located), -t-tag name(display name))
+
+run 
+
+docker run -d -p 8080:80 --name my_custom_container_name docker_image
+(8080-inner port, 80 outside world,-d -background)
+
+stop
+docker stop <container_id_or_name>
+
+
+restart
+docker restart <container_id_or_name>
+
+process
+docker ps -a
+
+start a created container 
+docker start <container_id_or_name>
+
+inspect
+docer inspect  <container_id_or_name>
+
+==================================
+
+Run containers
+
+docker run -d -p 6379:6379 --name redis-server redis
+start
+docker start redis-server
+
+========================================
+
+
 
 
 
