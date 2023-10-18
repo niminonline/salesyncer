@@ -11,27 +11,14 @@ import Role from "./database/entities/role";
 import Leave from "./database/entities/leave";
 import LeaveCategory from "./database/entities/leaveCategory";
 import Documents from "./database/entities/documents";
+import { subscribeToChannel } from "./interfaces/routes/interface";
 
 const app = express();
 config();
 connectDB();
 const port = process.env.PORT ? process.env.PORT : 3002;
 
-app.get("/", async (req: Request, res: Response) => {
-  const createFun = async () => {
-    const result = new Documents({
-      title:"Data",
-      type:"Data",
-      author:"Data", 
-      filepath:"Data",
-    });
-    result.save();
-  };
-
-  createFun();
-  res.send("Welcome to office service");
-});
-
+subscribeToChannel("office-service");
 app.listen(port, () => {
   console.log(`Office management server listening at port# ${port}`);
 });

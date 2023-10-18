@@ -14,7 +14,7 @@ export const getAdminToken = async (
         return {
           adminData,
           adminToken,
-          message: "Admin verified successfully",
+          message: "Admin credentials verified successfully",
           status: "OK",
         };
       } else {

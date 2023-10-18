@@ -3,15 +3,12 @@ import { Redis } from "ioredis";
 
 
 
-export const publishToChannel=(channelName:string,data: any,action?:string) =>{
-  const redisPublisher = new Redis(); 
-  if(action){
-    data.action= action;
-  }
-  console.log("Data from Auth publish channel ",data)
+export const publishToChannel=(channelName:string,response: any) =>{
+    const redisPublisher = new Redis(); 
+  
     redisPublisher.publish(
         channelName,
-      JSON.stringify(data),
+      JSON.stringify(response),
       (error, result) => {
         if (error) {
           console.error("Error publishing data:", error);

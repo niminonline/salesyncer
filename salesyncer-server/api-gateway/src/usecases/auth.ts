@@ -1,12 +1,21 @@
 import { publishAndResponse } from "../services/RedisOps";
 
-export const verifyAdminLogin = async(data:object)=>{
+export const publishAdminLogin = async(data:object)=>{
 
-    return await publishAndResponse('auth-service', data, 'adminLogin', 'auth-response');
+    return await publishAndResponse('auth-service', data, 'adminLogin', 'ApiRes-adminLogin');
 }
-export const verifyEmployeeLogin = async(data:object)=>{
+export const publishEmployeeLogin = async(data:object)=>{
 
-    return await publishAndResponse('auth-service', data, 'employeeLogin', 'auth-response');
+                                //publishChannel, publishData, publishAction, subscribeChannel
+    return await publishAndResponse('auth-service', data, 'employeeLogin', 'ApiRes-employeeLogin');
 }
+export const verifyToken = async(headers:object)=>{
+
+                                //publishChannel, publishData, publishAction, subscribeChannel
+    return await publishAndResponse('auth-service', headers, 'verifyToken', 'ApiRes-verifyToken');
+}
+
+
+
 
 

@@ -12,7 +12,7 @@ const verifyEmployeeLogin = async (email: string, password: string) => {
       const token = generateEmployeeToken(empData);
       if(token){
 
-        return { empData, token,message: "User verified successfully", status: "OK" };
+        return {token,message: "User credentials verified successfully", status: "OK" };
       }
       else{
         return { message: "Token generation failed", status: "FAILED" };

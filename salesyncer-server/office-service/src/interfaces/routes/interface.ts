@@ -1,5 +1,5 @@
 import { Redis } from "ioredis";
-import { adminLogin,employeeLogin,verifyToken } from "../controllers/controller";
+import { getEmployeeDetails } from "../controllers/controller";
 
 const redisSubscriber = new Redis();
 
@@ -15,21 +15,17 @@ export const subscribeToChannel = (channelName: string) => {
 
 // Listen for messages
 redisSubscriber.on("message", (channel: string, message: any) => {
-  if (channel === "auth-service") {
+  if (channel === "office-service") {
     const data = JSON.parse(message);
     //console.log("Data from api", data);
 
     switch (data.action) {
-      case "adminLogin":
-        adminLogin(data);
+      case "getEmployeeData":
+        getEmployeeDetails(data);
         break;
-      case "employeeLogin":
-        employeeLogin(data);
-        break;
-        case "verifyToken":
-          verifyToken(data);
-          break;
-       
+      // case "employeeLogin":
+      //   employeeLogin(data);
+      //   break;
+    }
   }
-}
 });
