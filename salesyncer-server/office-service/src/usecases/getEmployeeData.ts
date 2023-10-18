@@ -1,4 +1,4 @@
-import { qEmployeeDataByEmail } from "../database/repositories/qEmployeeDataByEmail";
+import { qEmployeeDataByEmail } from "../database/repositories/employeeRepo";
 
 const getEmployeeData = async (
   email: string,

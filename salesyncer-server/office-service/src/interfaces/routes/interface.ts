@@ -1,5 +1,5 @@
 import { Redis } from "ioredis";
-import { getEmployeeDetails } from "../controllers/controller";
+import { getEmployeeDetails,addEmployeeDetails } from "../controllers/controller";
 
 const redisSubscriber = new Redis();
 
@@ -23,9 +23,9 @@ redisSubscriber.on("message", (channel: string, message: any) => {
       case "getEmployeeData":
         getEmployeeDetails(data);
         break;
-      // case "employeeLogin":
-      //   employeeLogin(data);
-      //   break;
+      case "addEmployeeData":
+        addEmployeeDetails(data);
+        break;
     }
   }
 });
