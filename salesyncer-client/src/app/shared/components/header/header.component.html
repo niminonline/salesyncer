@@ -1,0 +1,33 @@
+<div class="component-body">
+    <mat-toolbar class="main-toolbar">
+        <img src="assets/ss-text-md.png" class="logo-text" alt="salesyncer-logo">
+        <span class="spacer"></span>
+    
+        <div class="header-right-menu">
+    
+            <h2 class="user-name">{{userName}}</h2>
+            <mat-card class="avatar-block">
+            </mat-card>
+            <div mat-card-avatar class="avatar"></div>
+            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="drop down men">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item>
+                  <mat-icon>key</mat-icon>
+                  <span>Change Password</span>
+                </button>
+                <button mat-menu-item >
+                  <mat-icon>settings_suggest</mat-icon>
+                  <span>Profile</span>
+                </button>
+                <button mat-menu-item>
+                  <mat-icon>power_settings_new</mat-icon>
+                  <span>Logout</span>
+                </button>
+              </mat-menu>
+    
+        </div>
+      </mat-toolbar>
+</div>
+  

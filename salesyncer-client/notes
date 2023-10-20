@@ -1,0 +1,41 @@
+install angular CLI 
+npm install -g @angular/cli
+============================================================================
+my-angular-app/
+├── src/
+|   ├── app/
+|   |   ├── core/
+|   |   |   ├── guards/               // Route guards
+|   |   |   ├── interceptors/         // HTTP interceptors
+|   |   |   ├── services/             // App-wide services
+|   |   |   ├── models/               // Shared data models/interfaces
+|   |   |
+|   |   ├── shared/
+|   |   |   ├── components/           // Reusable components
+|   |   |   ├── directives/            // Reusable directives
+|   |   |   ├── pipes/                 // Reusable pipes
+|   |   |
+|   |   ├── user/                     // User module
+|   |   |   ├── components/           // User-specific components
+|   |   |   ├── services/             // User-specific services
+|   |   |   ├── store/                // User-specific NgRx store
+|   |   |
+|   |   ├── admin/                    // Admin module
+|   |   |   ├── components/           // Admin-specific components
+|   |   |   ├── services/             // Admin-specific services
+|   |   |   ├── store/                // Admin-specific NgRx store
+|   |   |
+|   |   ├── app-routing.module.ts     // App-level routing
+|   |   ├── app.component.html
+|   |   ├── app.component.scss
+|   |   ├── app.component.ts
+|   |
+|   ├── assets/                       // Static assets (images, fonts, etc.)
+|
+===============================================================================
+
+Add theme in css
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+===============================================================================
+

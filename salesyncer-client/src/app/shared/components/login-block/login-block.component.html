@@ -1,0 +1,52 @@
+<div class="login-container">
+  <mat-card class="loginCard">
+    <div class="title">
+      <h1>Title</h1>
+    </div>
+
+    <div class="login-form">
+      <form>
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" />
+          <mat-error *ngIf="AllControls?.email?.errors?.['pattern']&&submitted">
+            Invalid email
+          </mat-error>
+          <mat-error
+            *ngIf="AllControls?.email?.errors?.['required']&&submitted"
+          >
+            Email is required
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            [type]="hide ? 'password' : 'text'"
+            formControlName="password"
+          />
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="togglePasswordVisibility($event)"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide"
+          >
+            <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+          </button>
+          <mat-error
+            *ngIf="AllControls?.password?.errors?.['required']&&submitted"
+          >
+            Password is required
+          </mat-error>
+        </mat-form-field>
+        <div class="button-block">
+          <button mat-raised-button color="primary" type="submit">Login</button>
+          <button mat-raised-button color="warn" routerLink="/home">
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+  </mat-card>
+</div>

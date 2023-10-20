@@ -16,3 +16,13 @@ export const qFindEmpByEmail = async (
     const userData = await EmployeeCredentials.findOne({ email: email });
     return userData;
   };
+export const qAddEmployeeCredentials = async (
+  empId: string,
+  email: string,
+  password: string
+  ) => {
+    const data={empId,email,password};
+    const newEmpCredentials= new EmployeeCredentials(data);
+    const response= newEmpCredentials.save();
+    return response;
+  };

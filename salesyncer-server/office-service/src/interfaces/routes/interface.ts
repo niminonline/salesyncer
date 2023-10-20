@@ -1,5 +1,8 @@
 import { Redis } from "ioredis";
-import { getEmployeeDetails,addEmployeeDetails } from "../controllers/controller";
+import {
+  getEmployeeDetails,
+  addEmployeeDetails,
+} from "../controllers/controller";
 
 const redisSubscriber = new Redis();
 

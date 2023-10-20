@@ -1,0 +1,34 @@
+@import 'src/styles.scss';
+
+
+.component-body{
+  box-shadow: $card-shadow;
+}
+
+.main-toolbar{
+    background-color:$white;
+}
+.spacer {
+  flex: 1 1 auto;
+}
+
+.logo-text{
+    width: 200px;
+}
+.header-right-menu {
+  display: flex;
+  align-items: center;
+}
+
+.avatar-block {
+  display: none;
+}
+
+.avatar {
+  background-image: url("https://material.angular.io/assets/img/examples/shiba1.jpg");
+  background-size: cover;
+  margin: 0px;
+}
+.user-name{
+    margin-right: 10px;
+}

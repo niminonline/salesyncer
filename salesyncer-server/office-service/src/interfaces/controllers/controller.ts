@@ -35,7 +35,7 @@ export const addEmployeeDetails = async (data: any) => {
     const { requestId, action } = data;
     console.log("Request id, action from office controller", requestId, action);
     const response: any = await addEmployeeData(data);
-    if (response) {
+    if (response.status == "OK") {
       const data = {
         requestId,
         action,
