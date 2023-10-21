@@ -10,8 +10,8 @@ export class AdminHomeComponent {
 
   userName: string = 'Admin';
   adminMenu:any = [
-    { icon: 'dashboard', text: 'Dashboard', link: '/admin/home' },
-    { icon: 'person', text: 'Employees', link: '/admin/home/employees' },
+    { icon: 'dashboard', text: 'Dashboard', link: '/admin' },
+    { icon: 'person', text: 'Employees', link: '/admin/employees' },
     { icon: 'contact_phone', text: 'Contact', link: '/' },
     { icon: 'business_center', text: 'Leads', link: '/' },
     { icon: 'task', text: 'Activity', link: '/' },

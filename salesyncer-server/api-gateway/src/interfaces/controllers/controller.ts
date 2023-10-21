@@ -9,13 +9,11 @@ import { getEmployeeData, addEmployeeData } from "../../usecases/office";
 export const adminLogin = async (req: Request, res: Response) => {
   try {
     const data = req.body;
-    const response:any = await publishAdminLogin(data);
-    const responseData:any={status:response.status,message:response.message};
-    if(response.status=="OK"){
-      responseData.adminToken= response.adminToken;
-      responseData.adminEmail=response.adminData.email;
-    }
-    res.json(responseData);
+    const response: any = await publishAdminLogin(data);
+
+    delete response.requestId;
+    delete response.action;
+    res.json(response);
   } catch (error) {
     console.error("Error in /auth:", error);
     res.status(500).json({ error: "Internal Server Error" });
@@ -55,7 +53,7 @@ export const getEmployeeDetails = async (req: Request, res: Response) => {
 export const addEmployee = async (req: Request, res: Response) => {
   try {
     const headers = req.headers;
-    const employeeData  = req.body;
+    const employeeData = req.body;
     console.log("email & Headers in api", employeeData, headers);
     const response: any = await verifyToken(headers);
     if (response.status == "OK") {

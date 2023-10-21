@@ -19,8 +19,8 @@ export class AdminLoginComponent {
       if (response.status !== 'OK' && response.message) {
         Swal.fire('Error', response.message, 'error');
       } else {
-        if (response.adminToken && response.adminEmail) {
-          localStorage.setItem('adminToken', response.adminToken);
+        if (response.token && response.adminEmail) {
+          localStorage.setItem('token', response.token);
           localStorage.setItem('admin_email', response.adminEmail);
         }
         // console.log(response);
@@ -41,7 +41,7 @@ export class AdminLoginComponent {
           title: 'Signed in successfully',
         });
 
-        this.route.navigate(['/admin/home']);
+        this.route.navigate(['/admin']);
       }
     });
   }

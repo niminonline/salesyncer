@@ -2,6 +2,6 @@
 export interface AdminLoginResponse{
     status:string,
     message:string,
-    adminToken?:string,
+    token?:string,
     adminEmail?:string
 }

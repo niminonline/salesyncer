@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AdminLoginResponse } from '../interfaces/interfaces';
-import { baseUrl } from 'src/app/core/config/constants';
+
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ export class AdminAPIService {
 
 
   login(data: object): Observable<AdminLoginResponse> {
-    return this.http.post<AdminLoginResponse>(`${baseUrl}/admin-login`, data);
+    return this.http.post<AdminLoginResponse>(`/admin-login`, data);
   }
 
   // loadUsers(headers: HttpHeaders): Observable<UsersApiResponse> {

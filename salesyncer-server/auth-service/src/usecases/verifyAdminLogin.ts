@@ -12,8 +12,8 @@ export const getAdminToken = async (
       if (adminData?.password === password) {
         const adminToken = generateAdminToken(adminData);
         return {
-          adminData,
-          adminToken,
+          adminEmail:adminData.email,
+          token:adminToken,
           message: "Admin credentials verified successfully",
           status: "OK",
         };
