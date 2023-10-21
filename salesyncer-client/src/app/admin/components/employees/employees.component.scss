@@ -1,0 +1,18 @@
+@import '/src/styles.scss';
+
+.component-body {
+    width: 95%;
+    padding: 10px;
+    min-height: 600px;
+    margin: 10px;
+}
+.header{
+    margin-top: 20px;
+    display: flex;
+    width: 100vw;
+    justify-content: center;
+    gap:20px;
+   align-items: baseline;
+}
+.add-user-btn{
+}

@@ -12,6 +12,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
+import {MatSelectModule} from '@angular/material/select';
 
 
 
@@ -29,6 +30,7 @@ const MaterialComponents = [
   MatMenuModule,
   MatPaginatorModule,
   MatSortModule,
+  MatSelectModule
 
 ];
 

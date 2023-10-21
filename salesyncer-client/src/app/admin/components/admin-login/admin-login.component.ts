@@ -41,7 +41,7 @@ export class AdminLoginComponent {
           title: 'Signed in successfully',
         });
 
-        this.route.navigate(['/admin/dashboard']);
+        this.route.navigate(['/admin/home']);
       }
     });
   }
