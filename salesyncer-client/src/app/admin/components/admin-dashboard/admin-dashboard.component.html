@@ -1,0 +1,18 @@
+<app-header [userName]="userName"></app-header>
+
+
+<mat-drawer-container class="sidebar-container" autosize>
+    <mat-drawer #drawer class="sidebar-drawer" mode="side">
+        <app-side-navbar-menu [menuItems]="adminMenu"></app-side-navbar-menu>
+    </mat-drawer>
+  
+    <div class="body">
+      <div class="toggle-button-container">
+        <button type="button" mat-button (click)="drawer.toggle()" title="Menu">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </div>
+      
+    </div>
+  </mat-drawer-container>
+  

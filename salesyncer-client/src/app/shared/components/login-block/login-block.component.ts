@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,Input,Output, EventEmitter } from '@angular/core';
 import Swal from 'sweetalert2';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -9,9 +9,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./login-block.component.scss'],
 })
 export class LoginBlockComponent {
+
+  @Input() title!:string;
+  @Output() sendCredentials: EventEmitter<any> = new EventEmitter<any>();
+
   constructor(
     private fb: FormBuilder,
-   // private userApi: UserAPIService,
     private router: Router
   ) {}
   submitted: boolean = false;
@@ -30,46 +33,19 @@ export class LoginBlockComponent {
     return this.loginForm.controls;
   }
 
-  // onSubmit(data: any) {
-  //   this.submitted = true;
-  //   if (data.status === 'VALID') {
-  //     const { email, password } = data.value;
-  //     const credentials = { email, password };
-  //     this.userApi.login(credentials).subscribe((response) => {
-  //       if (response.status !== 'OK' && response.message) {
-  //         Swal.fire('Error', response.message, 'error');
-  //       } else {
-  //         if (response.token && response.userData?._id) {
-  //           localStorage.setItem('userToken', response.token);
-  //           localStorage.setItem('_id', response.userData._id);
-  //           // this.store.dispatch(retrieveUserData());
-  //         }
+  onSubmit(data: any) {
+    this.submitted = true;
+    if (data.status === 'VALID') {
+      const { email, password } = data.value;
+      const credentials = { email, password };
+    //  console.log(credentials);
+    this.sendCredentials.emit(credentials);
+    } else {
+      Swal.fire('Error', 'Please fill the fields without errors', 'error');
+    }
+  }
 
-  //         const Toast = Swal.mixin({
-  //           toast: true,
-  //           position: 'bottom',
-  //           showConfirmButton: false,
-  //           timer: 3000,
-  //           timerProgressBar: true,
-  //           didOpen: (toast) => {
-  //             toast.addEventListener('mouseenter', Swal.stopTimer);
-  //             toast.addEventListener('mouseleave', Swal.resumeTimer);
-  //           },
-  //         });
-
-  //         Toast.fire({
-  //           icon: 'success',
-  //           title: 'Signed in successfully',
-  //         });
-  //         // console.log(response);
-
-  //         this.router.navigate(['/user-home']);
-  //       }
-  //     });
-  //   } else {
-  //     Swal.fire('Error', 'Please fill the fields without errors', 'error');
-  //   }
-  // }
+  
   togglePasswordVisibility(event: Event): void {
     event.preventDefault();
     this.hide = !this.hide;

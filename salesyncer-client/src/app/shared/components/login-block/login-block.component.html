@@ -1,11 +1,11 @@
 <div class="login-container">
   <mat-card class="loginCard">
     <div class="title">
-      <h1>Title</h1>
+      <h1>{{ title }}</h1>
     </div>
 
     <div class="login-form">
-      <form>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm)">
         <mat-form-field appearance="outline">
           <mat-label>Email</mat-label>
           <input matInput formControlName="email" />

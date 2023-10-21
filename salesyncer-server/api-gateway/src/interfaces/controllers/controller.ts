@@ -9,9 +9,13 @@ import { getEmployeeData, addEmployeeData } from "../../usecases/office";
 export const adminLogin = async (req: Request, res: Response) => {
   try {
     const data = req.body;
-    const response = await publishAdminLogin(data);
-
-    res.json(response);
+    const response:any = await publishAdminLogin(data);
+    const responseData:any={status:response.status,message:response.message};
+    if(response.status=="OK"){
+      responseData.adminToken= response.adminToken;
+      responseData.adminEmail=response.adminData.email;
+    }
+    res.json(responseData);
   } catch (error) {
     console.error("Error in /auth:", error);
     res.status(500).json({ error: "Internal Server Error" });

@@ -11,3 +11,8 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
   background-color:$light-grey;
 }
+
+.component-body {
+  box-shadow: $card-shadow;
+  background-color: $white;
+}

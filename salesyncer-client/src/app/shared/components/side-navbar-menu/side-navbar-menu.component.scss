@@ -1,0 +1,26 @@
+@import "src/styles.scss";
+
+.component-body {
+  width:250px;
+}
+.menu{
+   margin: 10px 0px;
+}
+
+
+.menu-button{
+  width: 100%;
+  display: flex;
+  justify-content: flex-start; 
+  align-items: center; 
+  color: $primary-blue;
+}
+
+.menu-button:hover{
+  color: $white;
+  background-color:$primary-blue;
+}
+.material-icons{
+    margin: 0px 5px 0px;
+    
+}
