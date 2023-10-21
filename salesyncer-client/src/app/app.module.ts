@@ -6,10 +6,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminModule } from './admin/admin.module';
 import { EmployeeModule } from './employee/employee.module';
 import { SharedModule } from './shared/shared.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 
 import { AppComponent } from './app.component';
+import { MainInterceptor } from './core/interceptors/main.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,7 +26,9 @@ import { AppComponent } from './app.component';
   ],
   exports: [],
 
-  providers: [],
+  providers: [
+    {provide:HTTP_INTERCEPTORS,useClass:MainInterceptor,multi:true}
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
