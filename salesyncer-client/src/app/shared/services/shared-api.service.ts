@@ -15,4 +15,8 @@ export class SharedApiService {
   getBranches(): Observable<Branch> {
     return this.http.get<Branch>(`/get-branches`);
   }
+
+  getEmployeesData():Observable<any>{
+    return this.http.get('/get-employees-data');
+  }
 }

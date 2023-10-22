@@ -20,41 +20,9 @@ export class AdminAPIService {
   addBranch(data: object): Observable<AdminLoginResponse> {
     return this.http.post<AdminLoginResponse>(`/add-branch`, data);
   }
-
-  // loadUsers(headers: HttpHeaders): Observable<UsersApiResponse> {
-  //   const options = { headers: headers };
-
-  //   return this.http.get<UsersApiResponse>(`${baseUrlAdmin}/load-users`, options);
-  // }
-
-  // deleteUser = (id: string, headers: HttpHeaders): Observable<ApiResponse> => {
-  //   const options = { headers: headers };
-  //   return this.http.delete<ApiResponse>(
-  //     `${baseUrlAdmin}/delete-user/${id}`,
-  //     options
-  //   );
-  // };
-  // getEditUserData = (
-  //   id: string, 
-  //   headers: HttpHeaders
-  // ): Observable<ApiResponse> => {
-  //   const options = { headers: headers };
-  //   return this.http.get<ApiResponse>(
-  //     `${baseUrlAdmin}/get-user-data/${id}`,
-  //     options
-  //   );
-  // };
-  // updateUser = (
-  //   data: object,
-  //   headers: HttpHeaders
-  // ): Observable<ApiResponse> => {
-  //   const options = { headers: headers };
-  //   return this.http.put<ApiResponse>(
-  //     `${baseUrlAdmin}/update-user`,
-  //     data,
-  //     options
-  //   );
-  // };
+  addEmployee(data: object): Observable<any> {
+    return this.http.post<any>(`/add-employee`, data);
+  }
 
 
 

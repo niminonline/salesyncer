@@ -4,7 +4,13 @@ import {
   publishEmployeeLogin,
   verifyToken,
 } from "../../usecases/auth";
-import { getEmployeeData, addEmployeeData,getBranchDetails,addBranchDetails } from "../../usecases/office";
+import {
+  getEmployeeData,
+  addEmployeeData,
+  getBranchDetails,
+  addBranchDetails,
+  getEmployeesDetails,
+} from "../../usecases/office";
 
 export const adminLogin = async (req: Request, res: Response) => {
   try {
@@ -39,7 +45,10 @@ export const getEmployeeDetails = async (req: Request, res: Response) => {
     // const data ={headers,email}
     const response: any = await verifyToken(headers);
     if (response.status == "OK") {
-      const response = await getEmployeeData({ email });
+      const response: any = await getEmployeeData({ email });
+
+      delete response.requestId;
+      delete response.action;
       res.json(response);
     } else {
       res.json(response);
@@ -52,12 +61,16 @@ export const getEmployeeDetails = async (req: Request, res: Response) => {
 
 export const addEmployee = async (req: Request, res: Response) => {
   try {
+   
     const headers = req.headers;
     const employeeData = req.body;
-    console.log("email & Headers in api", employeeData, headers);
+    // console.log("email & Headers in api", employeeData, headers);
     const response: any = await verifyToken(headers);
     if (response.status == "OK") {
-      const response = await addEmployeeData(employeeData);
+      const response: any = await addEmployeeData(employeeData);
+
+      delete response.requestId;
+      delete response.action;
       res.json(response);
     } else {
       res.json(response);
@@ -69,13 +82,11 @@ export const addEmployee = async (req: Request, res: Response) => {
 };
 export const getBranches = async (req: Request, res: Response) => {
   try {
-   
     const response: any = await getBranchDetails();
 
     delete response.requestId;
     delete response.action;
     res.json(response);
-   
   } catch (error) {
     console.error("Error in /auth:", error);
     res.status(500).json({ error: "Internal Server Error" });
@@ -83,13 +94,31 @@ export const getBranches = async (req: Request, res: Response) => {
 };
 export const addBranch = async (req: Request, res: Response) => {
   try {
-    const data= req.body;
+    const data = req.body;
     const response: any = await addBranchDetails(data);
 
     delete response.requestId;
     delete response.action;
     res.json(response);
-   
+  } catch (error) {
+    console.error("Error in /auth:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+export const getEmployeesData = async (req: Request, res: Response) => {
+  try {
+    const headers = req.headers;
+    const response: any = await verifyToken(headers);
+    if (response.status == "OK") {
+      const response: any = await getEmployeesDetails();
+
+      delete response.requestId;
+      delete response.action;
+      res.json(response);
+    } else {
+      res.json(response);
+    }
   } catch (error) {
     console.error("Error in /auth:", error);
     res.status(500).json({ error: "Internal Server Error" });

@@ -4,48 +4,40 @@ import mongoose from "mongoose";
 const employeeSchema = new mongoose.Schema({
     empId: {
       type: String,
+      required:true
     },
     name: {
       type: String,
       required: true,
     },
     branch: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Branch",
-    },
-    branchCode: {
       type: String,
+      required: true,
     },
-    dob: {
-      type: Date,
-    },
+    
     email: {
       type: String,
       required: true,
     },
-    password: {
-      type: String,
-    },
+  
     phone: {
       type: String,
       required: true,
     },
-    profileImage: {
+   
+    role: {
       type: String,
     },
-    role: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Role",
-    },
     designation: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Designation",
+      type: String,
     },
     isRemoved: {
       type: Boolean,
+      default:false
     },
     isBlocked: {
       type: Boolean,
+      default:false
     },
     leave: [{ 
     type: mongoose.Schema.Types.ObjectId,

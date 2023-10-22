@@ -1,4 +1,5 @@
 import { qAddEmployeeCredentials } from "../database/repositories/authRepo";
+import { securePassword } from "../services/bcrypt";
 
 const addEmployeeToDb = async (
   empId: string,
@@ -6,8 +7,12 @@ const addEmployeeToDb = async (
   password: string
 ): Promise<object | undefined> => {
   try {
+
+    const sPassword:any= await securePassword(password);
+
+
     if (empId && email && password) {
-      const response = await qAddEmployeeCredentials(empId, email, password);
+      const response = await qAddEmployeeCredentials(empId, email, sPassword);
       return response;
     } else {
       return { message: "Missing credentials", status: "FAILED" };

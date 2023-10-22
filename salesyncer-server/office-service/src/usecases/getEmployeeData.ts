@@ -7,7 +7,7 @@ const getEmployeeData = async (
   try {
     if (email) {
       const employeeData = await qEmployeeDataByEmail(email);
-      console.log("Employee data from Q", employeeData);
+      // console.log("Employee data from Q", employeeData);
       if (employeeData) {
       
         return {

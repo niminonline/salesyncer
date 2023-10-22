@@ -3,6 +3,7 @@ import addEmployeeData from "../../usecases/addEmployeeData";
 import { publishToChannel } from "../../services/redisOps";
 import getBranchData from "../../usecases/getBranchData";
 import addBranchData from "../../usecases/addBranchData";
+import getEmployeesData from "../../usecases/getEmployeesData";
 
 interface AdminData {
   email: string;
@@ -13,9 +14,9 @@ interface AdminData {
 
 export const getEmployeeDetails = async (data: any) => {
   try {
-    console.log("Req body of getEmployeeDetails Controller", data);
+    // console.log("Req body of getEmployeeDetails Controller", data);
     const { email, requestId, action } = data;
-    console.log("email of getEmployeeDetails Controller", email);
+    // console.log("email of getEmployeeDetails Controller", email);
 
     const response: any = await getEmployeeData(email);
 
@@ -24,7 +25,7 @@ export const getEmployeeDetails = async (data: any) => {
       response.action = action;
     }
 
-    console.log("myresponse", response);
+    // console.log("myresponse", response);
     publishToChannel("ApiRes-getEmployeeData", response);
   } catch (error) {
     console.error(error);
@@ -32,9 +33,9 @@ export const getEmployeeDetails = async (data: any) => {
 };
 export const addEmployeeDetails = async (data: any) => {
   try {
-    console.log("Req body of addEmployeeData Controller", data);
+    // console.log("Req body of addEmployeeData Controller", data);
     const { requestId, action } = data;
-    console.log("Request id, action from office controller", requestId, action);
+    // console.log("Request id, action from office controller", requestId, action);
     const response: any = await addEmployeeData(data);
     if (response.status == "OK") {
       const data = {
@@ -43,14 +44,14 @@ export const addEmployeeDetails = async (data: any) => {
         status: "OK",
         message: "Employee added successfully",
       };
-      console.log("myresponse", data);
+      // console.log("myresponse", data);
       publishToChannel("ApiRes-addEmployeeData", data);
     } else {
       publishToChannel("ApiRes-addEmployeeData", {
         requestId,
         action,
         status: "FAILED",
-        message: "No response ",
+        message: response.message,
       });
     }
   } catch (error) {
@@ -70,7 +71,7 @@ export const getBranchDetails = async (data:any) => {
         status: "OK",
         message: "Branches fetched successfully",
       };
-      console.log("myresponse", data);
+      // console.log("myresponse", data);
       publishToChannel("ApiRes-getBranchDetails", data);
     } else {
       publishToChannel("ApiRes-getBranchDetails", {
@@ -87,11 +88,11 @@ export const getBranchDetails = async (data:any) => {
 
 export const addBranchDetails = async (data: any) => {
   try {
-    console.log("Req body of addBranchDetails Controller", data);
+    // console.log("Req body of addBranchDetails Controller", data);
     const { requestId, action} = data;
     const response: any = await addBranchData(data);
-    console.log("All branch data",response);
-
+    // console.log("All branch data",response);
+    
     if (response.status == "OK") {
       const data = {
         requestId,
@@ -100,10 +101,37 @@ export const addBranchDetails = async (data: any) => {
         message: "Branch added successfully",
         branchData:response
       };
-      console.log("myresponse", data);
+      // console.log("myresponse", data);
       publishToChannel("ApiRes-addBranchDetails", data);
     } else {
       publishToChannel("ApiRes-addEmployeeData", {
+        requestId,
+        action,
+        status: "FAILED",
+        message: "No response ",
+      });
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+export const getEmployeesDetails = async (data: any) => {
+  try {
+    const { requestId, action } = data;
+    // console.log("Request id, action from office controller", requestId, action);
+    const response: any = await getEmployeesData();
+    if (response.status == "OK") {
+      const data = {
+        employeesData:response.employeesData,
+        requestId,
+        action,
+        status: "OK",
+        message: "Employees data fetched successfully",
+      };
+      // console.log("fetched employees data", data);
+      publishToChannel("ApiRes-getEmployeesDetails", data);
+    } else {
+      publishToChannel("ApiRes-getEmployeesDetails", {
         requestId,
         action,
         status: "FAILED",

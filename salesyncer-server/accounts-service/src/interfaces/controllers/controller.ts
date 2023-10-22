@@ -16,9 +16,9 @@ interface AdminData {
 
 export const adminLogin = async (data:any) => {
   try {
-    console.log("Req body",data);
+    // console.log("Req body",data);
     const { email, password,requestId,action } = data;
-    console.log("email",email);
+    // console.log("email",email);
 
     const response:any= await getAdminToken(email, password);
 
@@ -28,7 +28,7 @@ export const adminLogin = async (data:any) => {
       response.action=action;
     }
   
-      console.log("myresponse",response);
+      // console.log("myresponse",response);
        publishToChannel('adminLogin-res',response);
   
   } catch (error) {

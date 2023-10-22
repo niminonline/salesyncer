@@ -6,6 +6,7 @@ import { AdminHomeComponent } from './admin/components/admin-home/admin-home.com
 import { EmployeesComponent } from './admin/components/employees/employees.component';
 import { childAuthCACGuard } from './core/guards/child-auth-cac.guard';
 import { ManageComponent } from './admin/components/manage/manage.component';
+import { AddUserComponent } from './admin/components/add-user/add-user.component';
 
 const routes: Routes = [
 
@@ -16,6 +17,7 @@ const routes: Routes = [
     { path: '', component: AdminDashboardComponent,title:'Salesyncer | Admin Panel' },
     { path: 'employees', component: EmployeesComponent,title:'Salesyncer | Employees'},
     { path: 'manage', component: ManageComponent,title:'Salesyncer | Manage'},
+    { path: 'add-user', component: AddUserComponent,title:'Salesyncer | Add user'},
   ]
 },
   

@@ -16,7 +16,7 @@ const branchSchema = new mongoose.Schema({
   },
   empCount: {
     type: Number,
-    default:0
+    default:1
   },
   // region: {
   //   type: mongoose.Schema.Types.ObjectId,

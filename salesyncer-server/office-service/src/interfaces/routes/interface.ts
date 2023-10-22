@@ -3,7 +3,10 @@ import {
   getEmployeeDetails,
   addEmployeeDetails,
   getBranchDetails,
-  addBranchDetails
+  addBranchDetails,
+  getEmployeesDetails,
+  
+
 } from "../controllers/controller";
 
 const redisSubscriber = new Redis();
@@ -36,6 +39,9 @@ redisSubscriber.on("message", (channel: string, message: any) => {
         break;
       case "addBranchDetails":
         addBranchDetails(data);
+        break;
+      case "getEmployeesDetails":
+        getEmployeesDetails(data);
         break;
     }
   }

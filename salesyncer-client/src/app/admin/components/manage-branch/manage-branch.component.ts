@@ -5,12 +5,6 @@ import { AdminAPIService } from '../../services/admin-api.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
 
 @Component({
   selector: 'app-manage-branch',
@@ -37,7 +31,7 @@ export class ManageBranchComponent implements OnInit {
       //   item.actions = this.actions;
       // });
 
-      console.log('dataaa', this.branchData);
+      // console.log('dataaa', this.branchData);
       this.tableData = this.branchData.branchData;
 
       this.displayedColumns = [

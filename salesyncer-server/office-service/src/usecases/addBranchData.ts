@@ -12,13 +12,13 @@ const addBranchData = async (branchData: any) => {
       };
 
       const response = await qaddBranchData(newBranch);
-      console.log("Response from qaddBranchData Q", response);
+      // console.log("Response from qaddBranchData Q", response);
 
       if (response) {
        const allBranchData:any= await qGetBranchData();
        allBranchData.status="OK";
-       allBranchData.message="Branch added successfully";
-       console.log("All branch data from addbranch data",allBranchData)
+       allBranchData.message="Branch added successfully";95
+      //  console.log("All branch data from addbranch data",allBranchData)
         return allBranchData;
      }
      else{

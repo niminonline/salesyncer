@@ -1,15 +1,26 @@
 <div class="component-body ">
 
-<div class="header">
+<div class="header-block">
 
     <mat-form-field>
         <mat-label>Select branch</mat-label>
-        <mat-select>
-          <mat-option value="option">Option</mat-option>
+        <mat-select name="selectedBranch"> 
+          <mat-option *ngFor="let branch of branchData" [value]="branch.branchCode">
+            {{ branch.branchName }}
+          </mat-option>
         </mat-select>
       </mat-form-field>
 
-      <button mat-raised-button color="primary" class="add-user-btn">Add user</button>
+      <button mat-raised-button color="primary" class="add-user-btn" (click)="addUser()">Add user</button>
+
+</div>
+
+<div class="body-block">
+
+  <app-table
+  [tableData]="tableData"
+  [displayedColumns]="displayedColumns"
+></app-table>
 
 </div>
 
