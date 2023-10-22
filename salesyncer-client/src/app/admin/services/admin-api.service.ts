@@ -17,6 +17,9 @@ export class AdminAPIService {
   login(data: object): Observable<AdminLoginResponse> {
     return this.http.post<AdminLoginResponse>(`/admin-login`, data);
   }
+  addBranch(data: object): Observable<AdminLoginResponse> {
+    return this.http.post<AdminLoginResponse>(`/add-branch`, data);
+  }
 
   // loadUsers(headers: HttpHeaders): Observable<UsersApiResponse> {
   //   const options = { headers: headers };

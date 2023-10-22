@@ -14,6 +14,10 @@ const branchSchema = new mongoose.Schema({
   location: {
     type: String,
   },
+  empCount: {
+    type: Number,
+    default:0
+  },
   // region: {
   //   type: mongoose.Schema.Types.ObjectId,
   //   ref: "Region",

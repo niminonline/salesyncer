@@ -13,3 +13,6 @@ export const getBranchDetails = async()=>{
     const data={};
     return await publishAndResponse('office-service', data, 'getBranchDetails', 'ApiRes-getBranchDetails');
 }
+export const addBranchDetails = async(data:object)=>{
+    return await publishAndResponse('office-service', data, 'addBranchDetails', 'ApiRes-addBranchDetails');
+}

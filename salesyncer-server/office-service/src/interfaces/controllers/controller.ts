@@ -1,8 +1,8 @@
-import { Request, Response } from "express";
 import getEmployeeData from "../../usecases/getEmployeeData";
 import addEmployeeData from "../../usecases/addEmployeeData";
 import { publishToChannel } from "../../services/redisOps";
 import getBranchData from "../../usecases/getBranchData";
+import addBranchData from "../../usecases/addBranchData";
 
 interface AdminData {
   email: string;
@@ -74,6 +74,36 @@ export const getBranchDetails = async (data:any) => {
       publishToChannel("ApiRes-getBranchDetails", data);
     } else {
       publishToChannel("ApiRes-getBranchDetails", {
+        requestId,
+        action,
+        status: "FAILED",
+        message: "No response ",
+      });
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const addBranchDetails = async (data: any) => {
+  try {
+    console.log("Req body of addBranchDetails Controller", data);
+    const { requestId, action} = data;
+    const response: any = await addBranchData(data);
+    console.log("All branch data",response);
+
+    if (response.status == "OK") {
+      const data = {
+        requestId,
+        action,
+        status: "OK",
+        message: "Branch added successfully",
+        branchData:response
+      };
+      console.log("myresponse", data);
+      publishToChannel("ApiRes-addBranchDetails", data);
+    } else {
+      publishToChannel("ApiRes-addEmployeeData", {
         requestId,
         action,
         status: "FAILED",

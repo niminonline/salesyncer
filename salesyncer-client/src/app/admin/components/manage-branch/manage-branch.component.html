@@ -1,3 +1,7 @@
+
+<div class="component-body">
+
+
 <mat-accordion class="branch-accordion accordion-card" multi>
   <mat-expansion-panel>
     <mat-expansion-panel-header>
@@ -6,7 +10,7 @@
 
     <div class="mat-body">
       <div class="add-button-block">
-        <button mat-button color="primary" aria-label="Add branch Buttom">
+        <button mat-button color="primary" aria-label="Add branch Buttom" (click)="addBranch()">
           <mat-icon>add</mat-icon> Add Branch
         </button>
       </div>
@@ -18,3 +22,6 @@
     </div>
   </mat-expansion-panel>
 </mat-accordion>
+
+
+</div>
