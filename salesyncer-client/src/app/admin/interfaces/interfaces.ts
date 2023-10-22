@@ -5,3 +5,10 @@ export interface AdminLoginResponse{
     token?:string,
     adminEmail?:string
 }
+
+export interface Branch{
+    branchName:string,
+    branchCode:string,
+    location:string,
+    
+}

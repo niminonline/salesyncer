@@ -9,3 +9,7 @@ export const addEmployeeData = async(data:object)=>{
 
     return await publishAndResponse('office-service', data, 'addEmployeeData', 'ApiRes-addEmployeeData');
 }
+export const getBranchDetails = async()=>{
+    const data={};
+    return await publishAndResponse('office-service', data, 'getBranchDetails', 'ApiRes-getBranchDetails');
+}

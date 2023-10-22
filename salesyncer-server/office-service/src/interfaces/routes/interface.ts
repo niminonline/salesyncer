@@ -2,6 +2,7 @@ import { Redis } from "ioredis";
 import {
   getEmployeeDetails,
   addEmployeeDetails,
+  getBranchDetails,
 } from "../controllers/controller";
 
 const redisSubscriber = new Redis();
@@ -28,6 +29,9 @@ redisSubscriber.on("message", (channel: string, message: any) => {
         break;
       case "addEmployeeData":
         addEmployeeDetails(data);
+        break;
+      case "getBranchDetails":
+        getBranchDetails(data);
         break;
     }
   }

@@ -4,7 +4,7 @@ import {
   publishEmployeeLogin,
   verifyToken,
 } from "../../usecases/auth";
-import { getEmployeeData, addEmployeeData } from "../../usecases/office";
+import { getEmployeeData, addEmployeeData,getBranchDetails } from "../../usecases/office";
 
 export const adminLogin = async (req: Request, res: Response) => {
   try {
@@ -62,6 +62,20 @@ export const addEmployee = async (req: Request, res: Response) => {
     } else {
       res.json(response);
     }
+  } catch (error) {
+    console.error("Error in /auth:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+export const getBranches = async (req: Request, res: Response) => {
+  try {
+   
+    const response: any = await getBranchDetails();
+
+    delete response.requestId;
+    delete response.action;
+    res.json(response);
+   
   } catch (error) {
     console.error("Error in /auth:", error);
     res.status(500).json({ error: "Internal Server Error" });

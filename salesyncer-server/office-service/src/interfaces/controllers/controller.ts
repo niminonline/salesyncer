@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import getEmployeeData from "../../usecases/getEmployeeData";
 import addEmployeeData from "../../usecases/addEmployeeData";
 import { publishToChannel } from "../../services/redisOps";
+import getBranchData from "../../usecases/getBranchData";
 
 interface AdminData {
   email: string;
@@ -46,6 +47,33 @@ export const addEmployeeDetails = async (data: any) => {
       publishToChannel("ApiRes-addEmployeeData", data);
     } else {
       publishToChannel("ApiRes-addEmployeeData", {
+        requestId,
+        action,
+        status: "FAILED",
+        message: "No response ",
+      });
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getBranchDetails = async (data:any) => {
+  try {
+    const{requestId,action}= data;
+    const response: any = await getBranchData();
+    if (response.status == "OK") {
+      const data = {
+        branchData:response.branchData,
+        requestId,
+        action,
+        status: "OK",
+        message: "Branches fetched successfully",
+      };
+      console.log("myresponse", data);
+      publishToChannel("ApiRes-getBranchDetails", data);
+    } else {
+      publishToChannel("ApiRes-getBranchDetails", {
         requestId,
         action,
         status: "FAILED",

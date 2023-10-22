@@ -7,6 +7,8 @@ import { SharedModule } from '../shared/shared.module';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { AdminHomeComponent } from './components/admin-home/admin-home.component';
 import { EmployeesComponent } from './components/employees/employees.component';
+import { ManageComponent } from './components/manage/manage.component';
+import { ManageBranchComponent } from './components/manage-branch/manage-branch.component';
 
 
 @NgModule({
@@ -15,6 +17,8 @@ import { EmployeesComponent } from './components/employees/employees.component';
     AdminDashboardComponent,
     AdminHomeComponent,
     EmployeesComponent,
+    ManageComponent,
+    ManageBranchComponent,
   ],
   imports: [
     CommonModule,
