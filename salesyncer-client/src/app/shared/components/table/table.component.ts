@@ -1,4 +1,11 @@
-import { AfterViewInit, Component, ViewChild, Input, OnChanges, SimpleChanges } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ViewChild,
+  Input,
+  OnChanges,
+  SimpleChanges,
+} from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -12,7 +19,7 @@ export class TableComponent implements OnChanges {
   @Input() displayedColumns: any;
   @Input() tableData!: any;
 
-  dataSource= new MatTableDataSource(this.tableData);
+  dataSource = new MatTableDataSource(this.tableData);
   filterValue: string = '';
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -20,10 +27,10 @@ export class TableComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['displayedColumns']) {
-     this.displayedColumns=  changes['displayedColumns'].currentValue; ;
+      this.displayedColumns = changes['displayedColumns'].currentValue;
     }
     if (changes['tableData']) {
-      this.dataSource.data = this.tableData; 
+      this.dataSource.data = this.tableData;
     }
   }
   getHeaderRowDef(): string[] {
