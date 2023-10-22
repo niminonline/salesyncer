@@ -8,7 +8,7 @@ export const publishToChannel=(channelName:string,data: any,action?:string) =>{
   if(action){
     data.action= action;
   }
-  console.log("Data from Auth publish channel ",data)
+  // console.log("Data from Auth publish channel ",data)
     redisPublisher.publish(
         channelName,
       JSON.stringify(data),
