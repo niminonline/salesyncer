@@ -14,7 +14,6 @@ export class AdminLoginComponent {
   constructor(private route: Router, private api: AdminAPIService) {}
 
   handleCredentials(credentials: any) {
-    console.log('Received credentials in parent:', credentials);
     this.api.login(credentials).subscribe((response) => {
       if (response.status !== 'OK' && response.message) {
         Swal.fire('Error', response.message, 'error');

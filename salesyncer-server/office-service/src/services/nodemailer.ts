@@ -16,7 +16,9 @@ import nodemailer from 'nodemailer';
       subject: "Salesyncer user created",
       text: `Hello,
         Greetings from Salesyncer.
-        Your password to access salesyncer account is ${randomPassword}. This is a system generated e-mail and please do not reply.
+        Your password to access salesyncer account is ${randomPassword} 
+        Login URL: http://localhost:4200/login 
+        This is a system generated e-mail and please do not reply.
         Regards,
         Team Salesyncer`,
     };

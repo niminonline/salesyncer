@@ -29,7 +29,10 @@ export const adminLogin = async (req: Request, res: Response) => {
 export const employeeLogin = async (req: Request, res: Response) => {
   try {
     const data = req.body;
-    const response = await publishEmployeeLogin(data);
+    const response:any = await publishEmployeeLogin(data);
+
+    delete response.requestId;
+    delete response.action;
 
     res.json(response);
   } catch (error) {

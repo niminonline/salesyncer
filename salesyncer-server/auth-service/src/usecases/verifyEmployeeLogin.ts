@@ -4,10 +4,12 @@ import { generateEmployeeToken } from "../middlewares/jwt";
 
 
 const verifyEmployeeLogin = async (email: string, password: string) => {
+  console.log("Check password",password)
   const empData = await qFindEmpByEmail(email);
   if (empData) {
-    // const validatePassword = await matchPassword(password, empData.password);
-    const validatePassword = password=== empData.password;
+
+
+    const validatePassword = await matchPassword(password, empData.password);
     if (validatePassword) {
       const token = generateEmployeeToken(empData);
       if(token){

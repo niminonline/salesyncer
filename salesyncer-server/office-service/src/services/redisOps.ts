@@ -48,7 +48,7 @@ export const publishToChannel=(channelName:string,response: any) =>{
           if (channel === subscribeChannel && data.requestId === requestId) {
             const response = JSON.parse(message);
             redisSubscriber.quit();
-            // console.log("Received message:", response);
+            console.log("Received message:", response);
   
             resolve(response);
           } else {

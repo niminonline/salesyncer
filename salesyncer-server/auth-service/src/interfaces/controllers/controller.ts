@@ -34,9 +34,9 @@ export const adminLogin = async (data: any) => {
 export const employeeLogin = async (reqData: any): Promise<void> => {
   try {
     const { email, password, requestId, action } = reqData;
-    // console.log("INPut data from auth service ", reqData);
+    console.log("INPut data from auth service ", reqData);
     const response: any = await verifyEmployeeLogin(email, password);
-    // console.log("Output data from auth ", response);
+    console.log("Output data from auth ", response);
     if (response) {
       if (response.status == "OK") {
         const resData: any = {

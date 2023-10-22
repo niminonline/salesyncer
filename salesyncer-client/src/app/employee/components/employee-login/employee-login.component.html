@@ -1,1 +1,6 @@
-<p>employee-login works!</p>
+<div class="component-main-body">
+    <div class="login-block-container">
+      <app-login-block [title]="title"  (sendCredentials)="handleCredentials($event)" ></app-login-block>
+    </div>
+  </div>
+  
