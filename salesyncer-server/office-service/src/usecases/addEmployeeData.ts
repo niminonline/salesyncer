@@ -37,10 +37,12 @@ const addEmployeeData = async (employeeData: any) => {
         name: employeeData.name,
         email: employeeData.email,
         phone: phone,
-        addressLine1:employeeData.addressLine1,
-        addressLine2:employeeData.addressLine2,
-        place:employeeData.place,
-        pincode:employeeData.pincode,
+        address:{
+          addressLine1:employeeData.addressLine1,
+          addressLine2:employeeData.addressLine2,
+          place:employeeData.place,
+         pincode:employeeData.pincode,
+        },
         role:employeeData.role,
         designation:employeeData.designation
         

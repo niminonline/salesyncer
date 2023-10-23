@@ -6,6 +6,7 @@ import { SideNavbarMenuComponent } from './components/side-navbar-menu/side-navb
 import { TableComponent } from './components/table/table.component';
 import { MaterialModule } from './modules/material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TwoDecimalDigitsPipe } from './pipes/two-decimal-digits.pipe';
 
 const components = [
   LoginBlockComponent,
@@ -15,8 +16,8 @@ const components = [
 ];
 
 @NgModule({
-  declarations: [components],
+  declarations: [components, TwoDecimalDigitsPipe],
   imports: [CommonModule, MaterialModule, ReactiveFormsModule],
-  exports: [components],
+  exports: [components,TwoDecimalDigitsPipe],
 })
 export class SharedModule {}

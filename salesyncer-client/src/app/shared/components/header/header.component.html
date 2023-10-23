@@ -17,11 +17,8 @@
                   <mat-icon>key</mat-icon>
                   <span>Change Password</span>
                 </button>
-                <button mat-menu-item >
-                  <mat-icon>settings_suggest</mat-icon>
-                  <span>Profile</span>
-                </button>
-                <button mat-menu-item>
+              
+                <button mat-menu-item (click)="emitLogoutEvent()">
                   <mat-icon>power_settings_new</mat-icon>
                   <span>Logout</span>
                 </button>

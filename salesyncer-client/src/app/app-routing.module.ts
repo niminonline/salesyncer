@@ -5,6 +5,7 @@ import { AdminDashboardComponent } from './admin/components/admin-dashboard/admi
 import { AdminHomeComponent } from './admin/components/admin-home/admin-home.component';
 import { EmployeesComponent } from './admin/components/employees/employees.component';
 import { childAuthCACGuard } from './core/guards/child-auth-cac.guard';
+import { childAuthCACEmpGuard } from './core/guards/child-auth-cac-emp.guard';
 import { ManageComponent } from './admin/components/manage/manage.component';
 import { AddUserComponent } from './admin/components/add-user/add-user.component';
 
@@ -29,9 +30,9 @@ const routes: Routes = [
 
 {path:'login',component:EmployeeLoginComponent,title:"Salesyncer Login"},
   {path:'',component:EmployeeHomeComponent, title:"Salesyncer Home",
-  canActivateChild:[childAuthCACGuard],
+  canActivateChild:[childAuthCACEmpGuard],
    children: [
-    { path: '', component: AdminDashboardComponent,title:'Salesyncer ' },
+    { path: '', component: EmployeeDashboardComponent,title:'Salesyncer ' },
     { path: 'profile', component: EmployeeProfileComponent,title:'Salesyncer | Profile'},
   ]
 },
