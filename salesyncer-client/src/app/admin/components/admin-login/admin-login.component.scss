@@ -2,15 +2,30 @@
 
 .component-main-body{
     height: 100vh;
+    display: flex;
+    justify-content: space-evenly;
+    background-color: $white;
     
 }
-
+.logo-text{
+    width: 600px;
+}
+.left-block{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+    align-items: center;
+    padding-left: 50px;
+}
 
 .login-block-container{
     margin: auto;
-    background-color: aqua;
+  
     display: flex;
     justify-content: center;
+    width: 50%;
     align-items: center;
+     padding-right: 50px;
     height: 100%;
 }

@@ -1,6 +1,17 @@
 <div class="component-main-body">
-    <div class="login-block-container">
-      <app-login-block [title]="title"  (sendCredentials)="handleCredentials($event)" ></app-login-block>
-    </div>
+  <div class="left-block">
+
+    <img src="assets/images/ss-text-md.png" class="logo-text" alt="salesyncer-logo">
+    <img src="assets/images/user-login-page.svg" class="logo-text" alt="salesyncer-logo">
+
+    
   </div>
-  
+
+  <div class="right-block">
+
+  </div>
+
+  <div class="login-block-container">
+    <app-login-block [title]="title"  (sendCredentials)="handleCredentials($event)" ></app-login-block>
+  </div>
+</div>
