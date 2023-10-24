@@ -1,12 +1,12 @@
-import { qEmployeeDataByEmail } from "../database/repositories/employeeRepo";
+import { qEmployeeDataById } from "../database/repositories/employeeRepo";
 
 const getEmployeeData = async (
-  email: string,
+  _id: string,
  
 ): Promise<object | undefined> => {
   try {
-    if (email) {
-      const employeeData = await qEmployeeDataByEmail(email);
+    if (_id) {
+      const employeeData = await qEmployeeDataById(_id);
       // console.log("Employee data from Q", employeeData);
       if (employeeData) {
       
@@ -19,7 +19,7 @@ const getEmployeeData = async (
         return { message: "Employee details fetching failed", status: "FAILED" };
       }
     } else {
-      return { message: "Missing Email", status: "FAILED" };
+      return { message: "Missing _id", status: "FAILED" };
     }
   } catch (err) {
     console.error(err);

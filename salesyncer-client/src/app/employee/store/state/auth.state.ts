@@ -1,11 +1,11 @@
 
 
 export interface AuthState{
-    email:string|null,
+    _id:string|null,
     token:string|null
 }
 export const initialAuthState:AuthState={
-    email: null,
+    _id: null,
     token:null
 }
 

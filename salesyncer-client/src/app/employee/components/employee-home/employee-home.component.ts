@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
 import * as AuthActions from '../../store/actions/auth.actions'
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { select } from '@ngrx/store';
 import { selectUserId } from '../../store/selectors/auth.selectors';
 import { selectuserToken } from '../../store/selectors/auth.selectors';
+import { Store } from '@ngrx/store';
+import { selectemployeeData } from '../../store/selectors/user.selectors'
+import * as UserActions from '../../store/actions/user.actions';
 
 @Component({
   selector: 'app-employee-home',
@@ -15,7 +17,7 @@ import { selectuserToken } from '../../store/selectors/auth.selectors';
 export class EmployeeHomeComponent implements OnInit{
 
 
-  userName: string = 'User';
+  userName!: string;
   userMenu:any = [
     { icon: 'dashboard', text: 'Dashboard', link: '/' },
     { icon: 'person', text: 'Profile', link: '/profile' },
@@ -36,26 +38,43 @@ export class EmployeeHomeComponent implements OnInit{
 
   ngOnInit(){
 
-    const email: string | null = localStorage.getItem('email');
-    const token: string | null = localStorage.getItem('token');
-    if (email&& token) {
-      this.store.dispatch(AuthActions.setUserId({ email }));
-      this.store.dispatch(AuthActions.setUserToken({ token }));
+    this.getemployeeData();
     }
 
+  async getemployeeData() {
 
-    // this.store.pipe(select(selectUserId)).subscribe((userId) => {
-    //  console.log("user id",userId)
-    // });
-    // this.store.pipe(select(selectuserToken)).subscribe((userToken) => {
-    //  console.log("user token",userToken)
-    // });
+
+    const _id: string | null = localStorage.getItem('_id');
+    const token: string | null = localStorage.getItem('token');
+    if (_id&& token) {
+      this.store.dispatch(AuthActions.setUserId({ _id }));
+      this.store.dispatch(AuthActions.setUserToken({ token }));
+
+      this.store.dispatch(UserActions.retrieveEmployeeData());
+
+      this.store.select(selectemployeeData).subscribe((employeeData) => {
+        if (employeeData) {
+          this.userName = employeeData.name;
+          
+         
+        }
+        // else{
+
+        //   Swal.fire('Error', 'Unauthorized Accesspppp', 'error');
+        // this.route.navigate(['/login']);
+        // }
+      });
+    } else {
+      Swal.fire('Error', 'Unauthorized Access', 'error');
+      this.route.navigate(['/login']);
+    }
   }
 
 
   logout() {
-    localStorage.removeItem('email');
+    localStorage.removeItem('id');
     localStorage.removeItem('token');
+    this.store.dispatch(UserActions.clearEmployeeData());
     this.store.dispatch(AuthActions.clearAuthState());
     this.route.navigate(['/login']);
     const Toast = Swal.mixin({

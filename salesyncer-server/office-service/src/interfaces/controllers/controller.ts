@@ -4,6 +4,7 @@ import { publishToChannel } from "../../services/redisOps";
 import getBranchData from "../../usecases/getBranchData";
 import addBranchData from "../../usecases/addBranchData";
 import getEmployeesData from "../../usecases/getEmployeesData";
+import { qEmployeeDataByEmail,qEmployeeDataById } from "../../database/repositories/employeeRepo";
 
 interface AdminData {
   email: string;
@@ -15,10 +16,10 @@ interface AdminData {
 export const getEmployeeDetails = async (data: any) => {
   try {
     // console.log("Req body of getEmployeeDetails Controller", data);
-    const { email, requestId, action } = data;
+    const { _id, requestId, action } = data;
     // console.log("email of getEmployeeDetails Controller", email);
 
-    const response: any = await getEmployeeData(email);
+    const response: any = await getEmployeeData(_id);
 
     if (response) {
       response.requestId = requestId;
@@ -132,6 +133,33 @@ export const getEmployeesDetails = async (data: any) => {
       publishToChannel("ApiRes-getEmployeesDetails", data);
     } else {
       publishToChannel("ApiRes-getEmployeesDetails", {
+        requestId,
+        action,
+        status: "FAILED",
+        message: "No response ",
+      });
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+export const getEmployeeDataWithEmail = async (data: any) => {
+  try {
+    const { requestId, action,email } = data;
+    // console.log("Request id, action from office controller", requestId, action,email);
+    const response: any = await qEmployeeDataByEmail(email);
+    if (response) {
+      const data = {
+        _id:response._id,
+        requestId,
+        action,
+        status: "OK",
+        message: "Employees data fetched successfully",
+      };
+      // console.log("fetched employees data", data);
+      publishToChannel("Res-getEmployeeDataWithEmail", data);
+    } else {
+      publishToChannel("Res-getEmployeeDataWithEmail", {
         requestId,
         action,
         status: "FAILED",

@@ -43,12 +43,12 @@ export const employeeLogin = async (req: Request, res: Response) => {
 export const getEmployeeDetails = async (req: Request, res: Response) => {
   try {
     const headers = req.headers;
-    const { email } = req.query;
-    console.log("email & Headers in api", email, headers);
+    const { _id } = req.query;
+    console.log("id & Headers in api", _id, headers);
     // const data ={headers,email}
     const response: any = await verifyToken(headers);
     if (response.status == "OK") {
-      const response: any = await getEmployeeData({ email });
+      const response: any = await getEmployeeData({ _id });
 
       delete response.requestId;
       delete response.action;

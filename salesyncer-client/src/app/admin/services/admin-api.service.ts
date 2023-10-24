@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { AdminLoginResponse } from '../interfaces/interfaces';
+import { AdminLoginResponse } from '../../shared/interfaces/interfaces';
 
 
 @Injectable({

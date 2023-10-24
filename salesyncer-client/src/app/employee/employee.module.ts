@@ -11,6 +11,8 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { authReducer } from './store/reducers/auth.reducer';
+import { userReducer } from './store/reducers/user.reducer';
+import { UserEffects } from './store/effects/user.effects';
 
 
 
@@ -26,7 +28,8 @@ import { authReducer } from './store/reducers/auth.reducer';
     MaterialModule,
     SharedModule,
     AppRoutingModule,
-    StoreModule.forRoot({auth: authReducer}, {}),
+    StoreModule.forRoot({ user: userReducer ,auth: authReducer}, {}),
+    EffectsModule.forRoot([UserEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
     
   ]

@@ -3,6 +3,9 @@ import Employee from "../entities/employee";
 export const qEmployeeDataByEmail = async (email: string) => {
   return await Employee.findOne({email});
 };
+export const qEmployeeDataById = async (_id: string) => {
+  return await Employee.findById(_id);
+};
 export const qEmployeeDataByPhone = async (phone: string) => {
   return await Employee.findOne({phone });
 };

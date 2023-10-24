@@ -20,9 +20,9 @@ export class AdminLoginComponent {
         if (response.status !== 'OK' && response.message) {
           Swal.fire('Error', response.message, 'error');
         } else {
-          if (response.token && response.adminEmail) {
+          if (response.token ) {
             localStorage.setItem('token', response.token);
-            localStorage.setItem('admin_email', response.adminEmail);
+            localStorage.setItem('id', "admin");
           }
           // console.log(response);
           const Toast = Swal.mixin({

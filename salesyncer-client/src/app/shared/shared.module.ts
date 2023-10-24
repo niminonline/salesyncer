@@ -14,10 +14,11 @@ const components = [
   HeaderComponent,
   SideNavbarMenuComponent,
   TableComponent,
+  UpdateEmployeeComponent
 ];
 
 @NgModule({
-  declarations: [components, TwoDecimalDigitsPipe, UpdateEmployeeComponent],
+  declarations: [components, TwoDecimalDigitsPipe],
   imports: [CommonModule, MaterialModule, ReactiveFormsModule],
   exports: [components,TwoDecimalDigitsPipe],
 })

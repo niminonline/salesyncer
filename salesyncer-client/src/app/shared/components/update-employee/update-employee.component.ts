@@ -18,13 +18,13 @@ export class UpdateEmployeeComponent {
 
   constructor(
     private fb: FormBuilder,
-    public dialogRef: MatDialogRef<UpdateEmployeeComponent>,
+    // public dialogRef: MatDialogRef<UpdateEmployeeComponent>,
     private store: Store,
     private sharedApi:SharedApiService
   ) {}
 
 
-  id!: string | null;
+  _id!: string | null;
   token!: string | null;
   updateEmployeeGroup!: FormGroup;
   username!: string | undefined;
@@ -34,10 +34,10 @@ export class UpdateEmployeeComponent {
 
 
   ngOnInit() {
-    this.getUserData();
+    this.getemployeeData();
   }
 
-  getUserData() {
+  getemployeeData() {
 
      this.store.pipe(select(selectUserId)).subscribe((userId) => {
       if(userId)
@@ -48,15 +48,31 @@ export class UpdateEmployeeComponent {
 
    
 
-    this.updateEmployeeGroup = this.fb.group({
-      username: [
-        this.username,
+  this.updateEmployeeGroup = this.fb.group({
+      name: [
+        '',
         [Validators.required, Validators.pattern('^[A-Za-z \\.]+')],
       ],
-    
-          mobile: [
-        this.mobile,
-        [Validators.required, Validators.pattern('^\\d{10}$')],
+      selectedBranch: ['',[
+        Validators.required,       
+      ],],
+
+      email: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern('^[^ ][a-z.\\-_0-9]+@[a-z0-9]+\\.[a-z]{2,10}'),
+        ],
+      ],
+      mobile: ['', [Validators.required, Validators.pattern('^\\d{10}$')]],
+      addressLine1: ['', [Validators.required]],
+      addressLine2: ['', [Validators.required]],
+      place: ['', [Validators.required]],
+      pincode: ['', [Validators.required, Validators.pattern('^[0-9]{6}$')]],
+      role: ['', [Validators.required, Validators.pattern('^[A-Za-z \\.]+')]],
+      designation: [
+        '',
+        [Validators.required, Validators.pattern('^[A-Za-z \\.]+')],
       ],
     });
   }
@@ -68,41 +84,41 @@ export class UpdateEmployeeComponent {
       console.log("Data",data);
 
       this.store.select(selectUserId).subscribe((_id) => {
-        this.id = _id;
+        this._id = _id;
       });
      
-        // this.sharedApi.updateEmployee(data).subscribe((response)=>{
+        this.sharedApi.updateEmployee(data).subscribe((response)=>{
           
 
-          // if(response.status=='OK'){
+          if(response.status=='OK'){
            
-          //   Swal.fire({
-          //     position: 'center',
-          //     icon: 'success',
-          //     title: 'User updated successfully',
-          //     showConfirmButton: false,
-          //     timer: 1500,
-          //   });
-          //   // console.log("RESPonse from update profile=",response)
-          // }
-          // else{
-          //   Swal.fire(response.status, response.message, 'error');
-          // }
-        // })
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'User updated successfully',
+              showConfirmButton: false,
+              timer: 1500,
+            });
+            // console.log("RESPonse from update profile=",response)
+          }
+          else{
+            Swal.fire(response.status, response.message, 'error');
+          }
+        })
       
 
 
-      this.dialogRef.close();
+      // this.dialogRef.close();
     }
     else{
       console.error("invalid")
     }
   }
 
-  closeDialog(event: Event) {
-    event.preventDefault();
-    this.dialogRef.close();
-  }
+  // closeDialog(event: Event) {
+  //   event.preventDefault();
+  //   this.dialogRef.close();
+  // }
 
 
 }

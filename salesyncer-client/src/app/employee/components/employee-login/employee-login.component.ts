@@ -18,9 +18,9 @@ export class EmployeeLoginComponent {
       if (response.status !== 'OK' && response.message) {
         Swal.fire('Error', response.message, 'error');
       } else {
-        if (response.token && response.email) {
+        if (response.token && response._id) {
           localStorage.setItem('token', response.token);
-          localStorage.setItem('email', response.email);
+          localStorage.setItem('_id', response._id);
         }
         // console.log(response);
         const Toast = Swal.mixin({

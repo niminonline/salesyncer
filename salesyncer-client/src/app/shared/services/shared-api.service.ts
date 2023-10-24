@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Branch } from 'src/app/admin/interfaces/interfaces';
+import { Branch } from 'src/app/shared/interfaces/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -19,8 +19,8 @@ export class SharedApiService {
   getEmployeesData():Observable<any>{
     return this.http.get('/get-employees-data');
   }
-  getEmployeeData(email:string|null):Observable<any>{
-    return this.http.get<any>(`/get-employee-data?email=${email}`);
+  getEmployeeData(_id:string|null):Observable<any>{
+    return this.http.get<any>(`/get-employee-data?_id=${_id}`);
   }
 
   updateEmployee(data:object|null):Observable<any>{

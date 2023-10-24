@@ -1,9 +1,9 @@
-import { UserType } from "../../interface/interfaces";
+import { EmployeeType } from "src/app/shared/interfaces/interfaces";
 
 export interface UserState {
-    userData: UserType | null;
+    employeeData: EmployeeType | null;
   }
 
   export const initialState: UserState = {
-    userData: null,
+    employeeData: null,
   };

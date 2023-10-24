@@ -42,6 +42,7 @@ export const employeeLogin = async (reqData: any): Promise<void> => {
         const resData: any = {
           email,
           requestId,
+          _id:response._id,
           token: response.token,
           status: response.status,
           message: response.message,

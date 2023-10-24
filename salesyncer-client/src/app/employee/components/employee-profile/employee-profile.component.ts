@@ -13,8 +13,8 @@ employeeData!:any;
 
   ngOnInit(): void {
 
-    const email= localStorage.getItem('email');
-    this.sharedApi.getEmployeeData(email).subscribe((response)=>{
+    const _id= localStorage.getItem('_id');
+    this.sharedApi.getEmployeeData(_id).subscribe((response)=>{
       console.log(response);
       this.employeeData= response.employeeData;
 

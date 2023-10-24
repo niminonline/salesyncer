@@ -5,6 +5,7 @@ import {
   getBranchDetails,
   addBranchDetails,
   getEmployeesDetails,
+  getEmployeeDataWithEmail
   
 
 } from "../controllers/controller";
@@ -42,6 +43,9 @@ redisSubscriber.on("message", (channel: string, message: any) => {
         break;
       case "getEmployeesDetails":
         getEmployeesDetails(data);
+        break;
+      case "getEmployeeDataWithEmail":
+        getEmployeeDataWithEmail(data);
         break;
     }
   }
