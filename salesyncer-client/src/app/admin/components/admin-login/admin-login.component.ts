@@ -15,32 +15,38 @@ export class AdminLoginComponent {
 
   handleCredentials(credentials: any) {
     this.api.login(credentials).subscribe((response) => {
-      if (response.status !== 'OK' && response.message) {
-        Swal.fire('Error', response.message, 'error');
-      } else {
-        if (response.token && response.adminEmail) {
-          localStorage.setItem('token', response.token);
-          localStorage.setItem('admin_email', response.adminEmail);
+      try{
+
+        if (response.status !== 'OK' && response.message) {
+          Swal.fire('Error', response.message, 'error');
+        } else {
+          if (response.token && response.adminEmail) {
+            localStorage.setItem('token', response.token);
+            localStorage.setItem('admin_email', response.adminEmail);
+          }
+          // console.log(response);
+          const Toast = Swal.mixin({
+            toast: true,
+            position: 'bottom',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer);
+              toast.addEventListener('mouseleave', Swal.resumeTimer);
+            },
+          });
+  
+          Toast.fire({
+            icon: 'success',
+            title: 'Signed in successfully',
+          });
+  
+          this.route.navigate(['/admin']);
         }
-        // console.log(response);
-        const Toast = Swal.mixin({
-          toast: true,
-          position: 'bottom',
-          showConfirmButton: false,
-          timer: 3000,
-          timerProgressBar: true,
-          didOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer);
-            toast.addEventListener('mouseleave', Swal.resumeTimer);
-          },
-        });
-
-        Toast.fire({
-          icon: 'success',
-          title: 'Signed in successfully',
-        });
-
-        this.route.navigate(['/admin']);
+      }
+      catch(error){
+        Swal.fire('Error', "Something went wrong. please contact your application vendor", 'error');
       }
     });
   }
