@@ -3,10 +3,10 @@ import * as AuthActions from '../../store/actions/auth.actions'
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { select } from '@ngrx/store';
-import { selectUserId } from '../../store/selectors/auth.selectors';
-import { selectuserToken } from '../../store/selectors/auth.selectors';
+import { selectEmployeeId } from '../../store/selectors/auth.selectors';
+import { selectEmployeeToken } from '../../store/selectors/auth.selectors';
 import { Store } from '@ngrx/store';
-import { selectemployeeData } from '../../store/selectors/user.selectors'
+import { selectEmployeeData } from '../../store/selectors/user.selectors'
 import * as UserActions from '../../store/actions/user.actions';
 
 @Component({
@@ -52,17 +52,11 @@ export class EmployeeHomeComponent implements OnInit{
 
       this.store.dispatch(UserActions.retrieveEmployeeData());
 
-      this.store.select(selectemployeeData).subscribe((employeeData) => {
+      this.store.select(selectEmployeeData).subscribe((employeeData) => {
         if (employeeData) {
           this.userName = employeeData.name;
-          
-         
+                   
         }
-        // else{
-
-        //   Swal.fire('Error', 'Unauthorized Accesspppp', 'error');
-        // this.route.navigate(['/login']);
-        // }
       });
     } else {
       Swal.fire('Error', 'Unauthorized Access', 'error');

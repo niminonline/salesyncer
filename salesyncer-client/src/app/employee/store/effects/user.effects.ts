@@ -6,7 +6,7 @@ import * as UserActions from '../actions/user.actions';
 import { SharedApiService } from 'src/app/shared/services/shared-api.service';
 import { EmployeeType } from 'src/app/shared/interfaces/interfaces';
 import { Store } from '@ngrx/store';
-import { selectUserId, selectuserToken } from '../selectors/auth.selectors';
+import { selectEmployeeId, selectEmployeeToken } from '../selectors/auth.selectors';
 
 @Injectable()
 export class UserEffects {
@@ -47,11 +47,11 @@ export class UserEffects {
       ofType(UserActions.retrieveEmployeeData),
       switchMap(() => {
 
-        this.store.select(selectUserId).subscribe((_id) => {
+        this.store.select(selectEmployeeId).subscribe((_id) => {
           this._id = _id;
           console.log("Got id o effect",this._id)
         });
-        this.store.select(selectuserToken).subscribe((token) => {
+        this.store.select(selectEmployeeToken).subscribe((token) => {
           this.token = token;
           
         });

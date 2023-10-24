@@ -4,7 +4,7 @@ import Swal from 'sweetalert2';
 import { HttpHeaders } from '@angular/common/http';
 import { MatDialogRef } from '@angular/material/dialog';
 import { select } from '@ngrx/store';
-import { selectUserId } from 'src/app/employee/store/selectors/auth.selectors';
+import { selectEmployeeId } from 'src/app/employee/store/selectors/auth.selectors';
 import { Store } from '@ngrx/store';
 import { SharedApiService } from '../../services/shared-api.service';
 
@@ -39,7 +39,7 @@ export class UpdateEmployeeComponent {
 
   getemployeeData() {
 
-     this.store.pipe(select(selectUserId)).subscribe((userId) => {
+     this.store.pipe(select(selectEmployeeId)).subscribe((userId) => {
       if(userId)
       this.email= userId;
      console.log("user id",this.email)
@@ -83,7 +83,7 @@ export class UpdateEmployeeComponent {
       const data= this.updateEmployeeGroup.value;
       console.log("Data",data);
 
-      this.store.select(selectUserId).subscribe((_id) => {
+      this.store.select(selectEmployeeId).subscribe((_id) => {
         this._id = _id;
       });
      
