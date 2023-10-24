@@ -11,16 +11,18 @@ import { baseUrl } from '../config/constants';
 @Injectable()
 export class MainInterceptor implements HttpInterceptor {
   constructor() {}
-  token = localStorage.getItem('token');
+  
   intercept(
     request: HttpRequest<unknown>,
     next: HttpHandler
-  ): Observable<HttpEvent<unknown>> {
-    if (this.token) {
+    ): Observable<HttpEvent<unknown>> {
+      // console.log("INteceptor token",this.token);
+      const token = localStorage.getItem('token');
+    if (token) {
       const newRequest = request.clone({
         url: baseUrl + request.url,
         setHeaders: {
-          Authorization: `Bearer ${this.token}`,
+          Authorization: `Bearer ${token}`,
         },
       });
       

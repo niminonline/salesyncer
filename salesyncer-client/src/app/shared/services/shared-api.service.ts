@@ -22,4 +22,8 @@ export class SharedApiService {
   getEmployeeData(email:string|null):Observable<any>{
     return this.http.get<any>(`/get-employee-data?email=${email}`);
   }
+
+  updateEmployee(data:object|null):Observable<any>{
+    return this.http.post<any>(`/update-employee`,data);
+  }
 }
