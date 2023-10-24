@@ -10,6 +10,7 @@ import {
   getBranchDetails,
   addBranchDetails,
   getEmployeesDetails,
+  updateEmployeeDetails
 } from "../../usecases/office";
 
 export const adminLogin = async (req: Request, res: Response) => {
@@ -115,6 +116,27 @@ export const getEmployeesData = async (req: Request, res: Response) => {
     const response: any = await verifyToken(headers);
     if (response.status == "OK") {
       const response: any = await getEmployeesDetails();
+
+      delete response.requestId;
+      delete response.action;
+      res.json(response);
+    } else {
+      res.json(response);
+    }
+  } catch (error) {
+    console.error("Error in /auth:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+export const updateEmployee = async (req: Request, res: Response) => {
+  try {
+    const headers = req.headers;
+    const response: any = await verifyToken(headers);
+    if (response.status == "OK") {
+
+      const data:any={};
+      data.newEmpData=req.body;
+      const response: any = await updateEmployeeDetails(data);
 
       delete response.requestId;
       delete response.action;

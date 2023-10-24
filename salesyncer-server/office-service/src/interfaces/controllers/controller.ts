@@ -4,6 +4,7 @@ import { publishToChannel } from "../../services/redisOps";
 import getBranchData from "../../usecases/getBranchData";
 import addBranchData from "../../usecases/addBranchData";
 import getEmployeesData from "../../usecases/getEmployeesData";
+import updateEmployeeData from "../../usecases/updateEmployeeData";
 import { qEmployeeDataByEmail,qEmployeeDataById } from "../../database/repositories/employeeRepo";
 
 interface AdminData {
@@ -164,6 +165,37 @@ export const getEmployeeDataWithEmail = async (data: any) => {
         action,
         status: "FAILED",
         message: "No response ",
+      });
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+export const updateEmployeeDetails = async (data: any) => {
+  try {
+
+    console.log("Data got from auth to update employee",data)
+    const { requestId, action,newEmpData } = data;
+    const _id= newEmpData._id;
+    // console.log("Request id, action from office controller", requestId, action,newEmpData);
+    
+    const response: any = await updateEmployeeData(newEmpData);
+    if (response.status == "OK") {
+      const data = {
+        employeesData:response.employeesData,
+        requestId,
+        action,
+        status: "OK",
+        message: "Employees data updated successfully",
+      };
+      // console.log("fetched employees data", data);
+      publishToChannel("ApiRes-updateEmployeeDetails", data);
+    } else {
+      publishToChannel("ApiRes-updateEmployeeDetails", {
+        requestId,
+        action,
+        status: "FAILED",
+        message: response.message,
       });
     }
   } catch (error) {

@@ -25,3 +25,13 @@ export const qAddEmployeeCredentials = async (
     const response= newEmpCredentials.save();
     return response;
   };
+export const qUpdateAuthEmail = async (
+  empId: string,
+  email: string,
+  ) => {
+    const response= EmployeeCredentials.findOneAndUpdate({empId},{$set:{email}});
+    return response;
+  };
+
+
+

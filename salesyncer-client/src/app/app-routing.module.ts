@@ -16,9 +16,9 @@ import { EmployeeDashboardComponent } from './employee/components/employee-dashb
 import { EmployeeHomeComponent } from './employee/components/employee-home/employee-home.component';
 import { EmployeeProfileComponent } from './employee/components/employee-profile/employee-profile.component';
 
-
-import { UpdateEmployeeComponent } from './shared/components/update-employee/update-employee.component';
+import { UpdateEmployeeComponent } from './admin/components/update-employee/update-employee.component';
 import { HeaderComponent } from './shared/components/header/header.component';
+import { UpdateProfileComponent } from './employee/components/update-profile/update-profile.component';
 
 
 const routes: Routes = [
@@ -41,6 +41,8 @@ const routes: Routes = [
    children: [
     { path: '', component: EmployeeDashboardComponent,title:'Salesyncer ' },
     { path: 'profile', component: EmployeeProfileComponent,title:'Salesyncer | Profile'},
+    { path: 'update-profile', component: UpdateProfileComponent,title:'Salesyncer | Update employee'},
+
   ]
 },
   

@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
 import {  FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
-import { HttpHeaders } from '@angular/common/http';
-import { MatDialogRef } from '@angular/material/dialog';
 import { select } from '@ngrx/store';
 import { selectEmployeeId } from 'src/app/employee/store/selectors/auth.selectors';
 import { Store } from '@ngrx/store';
-import { SharedApiService } from '../../services/shared-api.service';
+import { SharedApiService } from 'src/app/shared/services/shared-api.service';
 
 
 @Component({
@@ -77,7 +75,7 @@ export class UpdateEmployeeComponent {
     });
   }
 
-  updateUser(group: FormGroup) {
+  updateEmployee(group: FormGroup) {
     this.submitted=true;
     if(group.valid){
       const data= this.updateEmployeeGroup.value;

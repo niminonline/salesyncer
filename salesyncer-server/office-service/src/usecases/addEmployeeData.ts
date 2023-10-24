@@ -29,7 +29,7 @@ const addEmployeeData = async (employeeData: any) => {
       const branch= employeeData.selectedBranch;
 
       if(getBranchDetails && employeeId){
-        // console.log("Branch details----",getBranchDetails);
+        console.log("Branch details----",getBranchDetails);
 
       const newEmployee = {
         empId: employeeId,

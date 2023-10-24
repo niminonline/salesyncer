@@ -9,6 +9,7 @@ import {
   getBranches,
   addBranch,
   getEmployeesData,
+  updateEmployee
 } from "../controllers/controller";
 
 const router = Router();
@@ -23,6 +24,6 @@ router.get("/get-employees-data", getEmployeesData);
 router.post("/add-employee", addEmployee);
 router.get("/get-branches", getBranches);
 router.post("/add-branch", addBranch);
-// router.post("/update-employee", updateEmployee);
+router.post("/update-employee", updateEmployee);
 
 export default router;

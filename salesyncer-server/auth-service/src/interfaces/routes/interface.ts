@@ -1,5 +1,5 @@
 import { Redis } from "ioredis";
-import { adminLogin,employeeLogin,verifyToken,addEmployeeToAuthDb } from "../controllers/controller";
+import { adminLogin,employeeLogin,verifyToken,addEmployeeToAuthDb,updateAuthEmail } from "../controllers/controller";
 
 const redisSubscriber = new Redis();
 
@@ -31,6 +31,9 @@ redisSubscriber.on("message", (channel: string, message: any) => {
           break;
       case "addEmployeeToAuthDb":
         addEmployeeToAuthDb(data);
+          break;
+      case "updateAuthEmail":
+        updateAuthEmail(data);
           break;
 
        

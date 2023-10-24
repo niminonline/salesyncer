@@ -13,6 +13,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { authReducer } from './store/reducers/auth.reducer';
 import { userReducer } from './store/reducers/user.reducer';
 import { UserEffects } from './store/effects/user.effects';
+import { UpdateProfileComponent } from './components/update-profile/update-profile.component';
 
 
 
@@ -22,6 +23,7 @@ import { UserEffects } from './store/effects/user.effects';
     EmployeeDashboardComponent,
     EmployeeProfileComponent,
     EmployeeHomeComponent,
+    UpdateProfileComponent,
   ],
   imports: [
     CommonModule,

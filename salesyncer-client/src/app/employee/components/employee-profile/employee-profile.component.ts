@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { Router } from '@angular/router';
 
 import { selectEmployeeData } from '../../store/selectors/user.selectors';
 
@@ -9,7 +10,7 @@ import { selectEmployeeData } from '../../store/selectors/user.selectors';
   styleUrls: ['./employee-profile.component.scss'],
 })
 export class EmployeeProfileComponent implements OnInit {
-  constructor(private store: Store) {}
+  constructor(private store: Store,private router:Router) {}
   employeeData!: any;
 
   ngOnInit(): void {
@@ -24,5 +25,10 @@ export class EmployeeProfileComponent implements OnInit {
         console.log('Employee fetching from state failed');
       }
     });
+  }
+
+
+  navEditProfile(){
+    this.router.navigate(['update-profile']);
   }
 }

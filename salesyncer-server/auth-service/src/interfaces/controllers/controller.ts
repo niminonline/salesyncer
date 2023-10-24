@@ -3,6 +3,7 @@ import verifyEmployeeLogin from "../../usecases/verifyEmployeeLogin";
 import { publishToChannel } from "../../services/redisOps";
 import tokenVerification from "../../usecases/verifyJwtToken";
 import addEmployeeToDb from "../../usecases/addEmployeeToDb";
+import updateAuthEmailID from "../../usecases/updateAuthEmailID";
 
 interface AdminData {
   email: string;
@@ -85,6 +86,8 @@ export const verifyToken = async (data: any): Promise<void> => {
     console.error(err);
   }
 };
+
+
 export const addEmployeeToAuthDb = async (data: any): Promise<void> => {
   try {
     // console.log("Input from addEmployeeToAuthDb Auth", data);
@@ -100,6 +103,27 @@ export const addEmployeeToAuthDb = async (data: any): Promise<void> => {
     } else {
       const response: any = { status: "FAILED", message: "Cannot verify user" };
       publishToChannel("Res-addEmployeeToAuthDb", response);
+    }
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const updateAuthEmail = async (data: any): Promise<void> => {
+  try {
+    // console.log("Input from addEmployeeToAuthDb Auth", data);
+    const { requestId, action,empId,email } = data;
+   
+    const response: any = await updateAuthEmailID(empId,email);
+
+    if (response) {
+      const data= {status:"OK", message:"Employee email updated in auth DB",requestId,action}
+     
+
+      publishToChannel("Res-updateAuthEmail", data);
+    } else {
+      const response: any = { status: "FAILED", message: "Employee email updation failed" };
+      publishToChannel("Res-updateAuthEmail", response);
     }
   } catch (err) {
     console.error(err);

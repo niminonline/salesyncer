@@ -1,0 +1,98 @@
+<div class="component-body">
+  <h1 class="heading">Update Profile</h1>
+  <mat-card class="updateCard">
+    <form
+      [formGroup]="updateEmployeeGroup"
+      (ngSubmit)="updateEmployee(updateEmployeeGroup)"
+    >
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Enter name</mat-label>
+          <input matInput required formControlName="name" />
+          <mat-error
+            *ngIf="updateEmployeeGroup.get('name')?.errors?.['required']"
+            >Name is required</mat-error
+          >
+          <mat-error
+            *ngIf="updateEmployeeGroup.get('name')?.errors?.['pattern']"
+            >Name must contains only alphabets</mat-error
+          >
+        </mat-form-field>
+     
+
+        <mat-form-field appearance="outline">
+          <mat-label>Enter mobile number</mat-label>
+          <input matInput formControlName="mobile" />
+          <mat-error
+            *ngIf="updateEmployeeGroup.get('mobile')?.errors?.['required']"
+            >Mobile number is required</mat-error
+          >
+          <mat-error
+            *ngIf="updateEmployeeGroup.get('mobile')?.errors?.['pattern']"
+            >Enter a valid mobile number</mat-error
+          >
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Address line 1</mat-label>
+          <input matInput required formControlName="addressLine1" />
+          <mat-error
+            *ngIf="updateEmployeeGroup.get('addressLine1')?.errors?.['required']"
+            >Address line 1 is required</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Address line 2</mat-label>
+          <input matInput required formControlName="addressLine2" />
+          <mat-error
+            *ngIf="updateEmployeeGroup.get('addressLine2')?.errors?.['required']"
+            >Address line 2 is required</mat-error
+          >
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Place</mat-label>
+          <input matInput required formControlName="place" />
+          <mat-error
+            *ngIf="updateEmployeeGroup.get('place')?.errors?.['required']"
+            >Place is required</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Pin code</mat-label>
+          <input matInput required formControlName="pincode" />
+          <mat-error
+            *ngIf="updateEmployeeGroup.get('pincode')?.errors?.['required']"
+            >Pin code is required</mat-error
+          >
+          <mat-error
+            *ngIf="updateEmployeeGroup.get('pincode')?.errors?.['pattern']"
+            >Enter a valid pincode</mat-error
+          >
+        </mat-form-field>
+      </div>
+    
+
+
+      <div class="button-row">
+        <button
+          class="saveButton"
+          mat-raised-button
+          color="primary"
+          type="submit"
+        >
+          Update
+        </button>
+        <button class="cancelButton" mat-raised-button color="warn" (click)="navProfile()">
+          Cancel
+        </button>
+      </div>
+    </form>
+  </mat-card>
+</div>

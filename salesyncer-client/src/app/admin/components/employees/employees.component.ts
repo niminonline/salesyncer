@@ -33,6 +33,14 @@ ngOnInit(){
 
       this.tableData=response.employeesData;
       console.log(this.tableData);
+
+      this.tableData.forEach((row: any) => {
+        row.actions = `<button mat-button (click)="onActionButtonClick(${row.empId})">Click me</button>`;
+      });
+    
+
+
+      //this.tableData.actions= `<button mat-button >Click me</button>`
     }
     else{
       console.log(response.message);
@@ -74,6 +82,9 @@ ngOnInit(){
         name: 'Branch',
         property: 'branch',
         sortable: 'branchSortable',
+      },{
+        name: 'Actions',
+        property: 'actions',
       }]
 
  

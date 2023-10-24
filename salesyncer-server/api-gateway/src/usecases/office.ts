@@ -21,3 +21,7 @@ export const getEmployeesDetails = async()=>{
 
     return await publishAndResponse('office-service', data, 'getEmployeesDetails', 'ApiRes-getEmployeesDetails');
 }
+export const updateEmployeeDetails = async(data:object)=>{
+   
+    return await publishAndResponse('office-service', data, 'updateEmployeeDetails', 'ApiRes-updateEmployeeDetails');
+}
