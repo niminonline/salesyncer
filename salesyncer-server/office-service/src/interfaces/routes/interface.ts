@@ -7,6 +7,10 @@ import {
   getEmployeesDetails,
   getEmployeeDataWithEmail,
   updateEmployeeDetails,
+  getLeaveCategoryDetails,
+  applyLeaveDetails,
+  
+
   
 
 } from "../controllers/controller";
@@ -50,6 +54,12 @@ redisSubscriber.on("message", (channel: string, message: any) => {
         break;
       case "updateEmployeeDetails":
         updateEmployeeDetails(data);
+        break;
+      case "getLeaveCategoryDetails":
+        getLeaveCategoryDetails(data);
+        break;
+      case "applyLeaveDetails":
+        applyLeaveDetails(data);
         break;
     }
   }

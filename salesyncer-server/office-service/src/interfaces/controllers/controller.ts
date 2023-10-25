@@ -6,6 +6,8 @@ import addBranchData from "../../usecases/addBranchData";
 import getEmployeesData from "../../usecases/getEmployeesData";
 import updateEmployeeData from "../../usecases/updateEmployeeData";
 import { qEmployeeDataByEmail,qEmployeeDataById } from "../../database/repositories/employeeRepo";
+import getLeaveCategoryData from "../../usecases/getLeaveCategoryData";
+import applyLeaveData from "../../usecases/applyLeaveData";
 
 interface AdminData {
   email: string;
@@ -173,7 +175,7 @@ export const getEmployeeDataWithEmail = async (data: any) => {
 };
 export const updateEmployeeDetails = async (data: any) => {
   try {
-
+    
     console.log("Data got from auth to update employee",data)
     const { requestId, action,newEmpData } = data;
     const _id= newEmpData._id;
@@ -192,6 +194,62 @@ export const updateEmployeeDetails = async (data: any) => {
       publishToChannel("ApiRes-updateEmployeeDetails", data);
     } else {
       publishToChannel("ApiRes-updateEmployeeDetails", {
+        requestId,
+        action,
+        status: "FAILED",
+        message: response.message,
+      });
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+
+
+export const getLeaveCategoryDetails = async (data:any) => {
+  try {
+    const{requestId,action}= data;
+    const response: any = await getLeaveCategoryData();
+    if (response.status == "OK") {
+      const data = {
+        leaveCategory:response.categoryData,
+        requestId,
+        action,
+        status: "OK",
+        message: "Leave categories fetched successfully",
+      };
+      // console.log("myresponse", data);
+      publishToChannel("ApiRes-getLeaveCategoryDetails", data);
+    } else {
+      publishToChannel("ApiRes-getLeaveCategoryDetails", {
+        requestId,
+        action,
+        status: "FAILED",
+        message: "No response ",
+      });
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+export const applyLeaveDetails = async (data: any) => {
+  try {
+    console.log("Req body of addEmployeeData Controller", data);
+    const { requestId, action } = data;
+    const response: any = await applyLeaveData(data);
+    console.log("Request id, action from office controller",response);
+    if (response.status == "OK") {
+      const data = {
+        requestId,
+        action,
+        status: "OK",
+        message: "Leave added successfully",
+      };
+      // console.log("myresponse", data);
+      publishToChannel("ApiRes-applyLeaveDetails", data);
+    } else {
+      publishToChannel("ApiRes-applyLeaveDetails", {
         requestId,
         action,
         status: "FAILED",

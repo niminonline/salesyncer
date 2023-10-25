@@ -1,4 +1,6 @@
 import Employee from "../entities/employee";
+import LeaveCategory from "../entities/leaveCategory";
+import Leave from "../entities/leave";
 
 export const qEmployeeDataByEmail = async (email: string) => {
   return await Employee.findOne({email});
@@ -38,4 +40,15 @@ export const qUpdateEmployeeDataById = async (_id:string,newEmpData: object) => 
 
   }
 
+};
+
+export const qGetLeaveCategoryData = async () => {
+  return await LeaveCategory.find({});
+};
+
+
+export const qAddLeaveData = async (leaveData: object) => {
+  const newLeaveData = new Leave(leaveData);
+  const response = await newLeaveData.save();
+  return response;
 };

@@ -14,6 +14,8 @@ import { authReducer } from './store/reducers/auth.reducer';
 import { userReducer } from './store/reducers/user.reducer';
 import { UserEffects } from './store/effects/user.effects';
 import { UpdateProfileComponent } from './components/update-profile/update-profile.component';
+import { ApplyLeaveComponent } from './components/apply-leave/apply-leave.component';
+import { LeaveComponent } from './components/leave/leave.component';
 
 
 
@@ -24,6 +26,8 @@ import { UpdateProfileComponent } from './components/update-profile/update-profi
     EmployeeProfileComponent,
     EmployeeHomeComponent,
     UpdateProfileComponent,
+    ApplyLeaveComponent,
+    LeaveComponent,
   ],
   imports: [
     CommonModule,

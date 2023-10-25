@@ -37,6 +37,7 @@ my-angular-app/
 Add theme in css
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 import common css
+@import "/src/styles.scss";
 
 
 ===============================================================================

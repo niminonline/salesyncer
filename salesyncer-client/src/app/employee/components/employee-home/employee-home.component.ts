@@ -21,14 +21,15 @@ export class EmployeeHomeComponent implements OnInit{
   userMenu:any = [
     { icon: 'dashboard', text: 'Dashboard', link: '/' },
     { icon: 'person', text: 'Profile', link: '/profile' },
+    { icon: 'person', text: 'Leave', link: '/leave' },
     { icon: 'contact_phone', text: 'Contact', link: '/' },
     { icon: 'business_center', text: 'Leads', link: '/' },
     { icon: 'task', text: 'Activity', link: '/' },
     { icon: 'shopping_cart', text: 'Products', link: '/' },
     { icon: 'trending_up', text: 'Sales', link: '/' },
     { icon: 'filter_center_focus', text: 'Target', link: '/' },
-    { icon: 'monetization_on', text: 'Expense', link: '/' },
-    { icon: 'insert_drive_file', text: 'Documents', link: '/' },
+    // { icon: 'monetization_on', text: 'Expense', link: '/' },
+    // { icon: 'insert_drive_file', text: 'Documents', link: '/' },
   ];
 
   constructor(

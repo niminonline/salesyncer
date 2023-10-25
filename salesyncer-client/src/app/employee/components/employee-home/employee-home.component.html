@@ -5,13 +5,12 @@
     <app-side-navbar-menu [menuItems]="userMenu"></app-side-navbar-menu>
   </mat-drawer>
 
-  <div class="body">
-    <div class="toggle-button-container">
-      <button type="button" mat-button (click)="drawer.toggle()" title="Menu">
-        <mat-icon>menu</mat-icon>
-      </button>
+  <div class="toggle-button-container">
+    <button type="button" mat-button (click)="drawer.toggle()" title="Menu">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <div class="router-body">
+      <router-outlet></router-outlet>
     </div>
-
-    <router-outlet></router-outlet>
   </div>
 </mat-drawer-container>

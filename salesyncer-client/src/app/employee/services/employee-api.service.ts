@@ -12,6 +12,9 @@ export class EmployeeApiService {
   login(data: object): Observable<any> {
     return this.http.post<any>(`/employee-login`, data);
   }
+  applyLeave(data: object): Observable<any> {
+    return this.http.post<any>(`/apply-leave`, data);
+  }
 
 
 }

@@ -1,29 +1,39 @@
+import { ObjectId } from "mongodb";
 import mongoose from "mongoose";
 
 const leaveSchema = new mongoose.Schema({
-  empId: {
-    type: String,
+  employeeObj_id: {
+    type: ObjectId,
     required: true,
+    ref:"Employee"
   },
-  date: [{ type: Date, required: true }],
+  startDate: {
+    type: Date,
+  },
+  endDate: {
+    type: Date,
+  },
   reason: {
     type: String,
     required: true,
   },
   leaveCategory: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "LeaveCategory",
+    type: String,
   },
   type: {
     type: String,
-    required: true,
   },
   documents: [{ type: String }],
   status: {
     type: String,
+    default:"Pending"
   },
+  appliedDate:{
+    type:Date,
+    default: Date.now()
+  }
 });
 
-const Leave = mongoose.model("Leave",leaveSchema);
+const Leave = mongoose.model("Leave", leaveSchema);
 
 export default Leave;

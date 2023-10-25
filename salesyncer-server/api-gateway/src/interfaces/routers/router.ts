@@ -9,7 +9,10 @@ import {
   getBranches,
   addBranch,
   getEmployeesData,
-  updateEmployee
+  updateEmployee,
+  getLeaveCategory,
+  applyLeave,
+  
 } from "../controllers/controller";
 
 const router = Router();
@@ -25,5 +28,7 @@ router.post("/add-employee", addEmployee);
 router.get("/get-branches", getBranches);
 router.post("/add-branch", addBranch);
 router.post("/update-employee", updateEmployee);
+router.get("/get-leave-category", getLeaveCategory);
+router.post("/apply-leave", applyLeave);
 
 export default router;

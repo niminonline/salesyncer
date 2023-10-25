@@ -1,53 +1,45 @@
-<div class="component-body">
-
-<h1 class="heading">Profile</h1>
+<div class="container-main-body">
 
 
-<mat-list>
-    <mat-label> Name</mat-label>
-    <mat-list-item><h2>{{employeeData.name}}</h2> </mat-list-item>
-    <mat-divider></mat-divider>
-
-    <mat-label> Email</mat-label>
-    <mat-list-item><h2> {{employeeData.email}}</h2></mat-list-item>
-    <mat-divider></mat-divider>
-
-    <mat-label> Employee ID</mat-label>
-    <mat-list-item> <h2>{{employeeData.empId}}</h2></mat-list-item>
-    <mat-divider></mat-divider>
-
-    <mat-label> Phone</mat-label>
-    <mat-list-item> <h2>{{employeeData.phone}}</h2></mat-list-item>
-    <mat-divider></mat-divider>
-
-    <mat-label> Branch</mat-label>
-    <mat-list-item> <h2>{{employeeData.branch}}</h2></mat-list-item>
-    <mat-divider></mat-divider>
-
-    <mat-label> Address</mat-label>
-    <mat-list-item> <h2>{{employeeData.address.addressLine1}}, {{employeeData.address.addressLine2}}, {{employeeData.address.place}}, {{employeeData.address.pincode}}  </h2></mat-list-item>
-    <mat-divider></mat-divider>
-
-    <mat-label> Role</mat-label>
-    <mat-list-item> <h2>{{employeeData.role}}</h2></mat-list-item>
-    <mat-divider></mat-divider>
-
-    <mat-label> Designation</mat-label>
-    <mat-list-item> <h2>{{employeeData.designation}}</h2></mat-list-item>
-    <mat-divider></mat-divider>
-
-    
-
-   
-  </mat-list>
-
-  <div class="button-block">
-    <button mat-raised-button color="primary" class="edit-button" (click)="navEditProfile()">Edit Profile</button>
-</div>
-
-  
+  <h1 class="title">Profile</h1>
+ 
+  <div class="user-container">
+      <table class="user-table">
+        <tr>
+          <th>Name</th>
+          <td>{{employeeData.name}}</td>
+        </tr>
+        <tr>
+          <th>Employee ID</th>
+          <td>{{employeeData.empId}}</td>
+        </tr>
+        <tr>
+          <th>Email</th>
+          <td>{{employeeData.email}}</td>
+        </tr>
+        <tr>
+          <th>Mobile</th>
+          <td>{{employeeData.phone}}</td>
+        </tr>
+        <tr>
+          <th>Role</th>
+          <td>{{employeeData.role}}</td>
+        </tr>
+        <tr>
+          <th>Designation</th>
+          <td>{{employeeData.designation}}</td>
+        </tr>
+        <tr>
+          <th>Address</th>
+          <td>{{employeeData.address.addressLine1}}, {{employeeData.address.addressLine2}}, {{employeeData.address.place}}, {{employeeData.address.pincode}}</td>
+        </tr>  
+        
+      </table>
 
 
 
+      <button mat-stroked-button color="primary" (click)="navEditProfile()">Edit</button>
 
 </div>
+
+

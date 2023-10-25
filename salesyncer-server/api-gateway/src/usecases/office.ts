@@ -18,10 +18,20 @@ export const addBranchDetails = async(data:object)=>{
 }
 export const getEmployeesDetails = async()=>{
     const data={};
-
+    
     return await publishAndResponse('office-service', data, 'getEmployeesDetails', 'ApiRes-getEmployeesDetails');
 }
 export const updateEmployeeDetails = async(data:object)=>{
-   
+    
     return await publishAndResponse('office-service', data, 'updateEmployeeDetails', 'ApiRes-updateEmployeeDetails');
+}
+export const getLeaveCategoryDetails = async()=>{
+    const data={};
+    return await publishAndResponse('office-service', data, 'getLeaveCategoryDetails', 'ApiRes-getLeaveCategoryDetails');
+}
+
+
+export const applyLeaveDetails = async(data:object)=>{
+    
+    return await publishAndResponse('office-service', data, 'applyLeaveDetails', 'ApiRes-applyLeaveDetails');
 }

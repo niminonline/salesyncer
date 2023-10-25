@@ -1,0 +1,37 @@
+<div class="component-body ">
+
+<h1 class="title"> Leave</h1>
+
+<div class="header-elements">
+
+    <mat-form-field class="date-picker">
+        <mat-label>Date Range</mat-label>
+        <mat-date-range-input
+          [formGroup]="datePicker"
+          [rangePicker]="dateRange" >
+          <input matStartDate placeholder="Start date" formControlName="start">
+          <input matEndDate placeholder="End date" formControlName="end">
+        </mat-date-range-input>
+        <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="dateRange"></mat-datepicker-toggle>
+        <mat-date-range-picker #dateRange></mat-date-range-picker>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary">Search</button>
+
+      <button mat-raised-button color="primary" (click)="navAppyLeave()">Apply leave</button>
+      
+</div>
+
+<div class="table-component">
+
+    <app-table></app-table>
+
+
+</div>
+
+
+
+
+
+</div>

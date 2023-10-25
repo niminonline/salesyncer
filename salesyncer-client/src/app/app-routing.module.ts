@@ -20,6 +20,8 @@ import { UpdateEmployeeComponent } from './admin/components/update-employee/upda
 import { HeaderComponent } from './shared/components/header/header.component';
 import { UpdateProfileComponent } from './employee/components/update-profile/update-profile.component';
 import { ViewEmployeeComponent } from './admin/components/view-employee/view-employee.component';
+import { LeaveComponent } from './employee/components/leave/leave.component';
+import { ApplyLeaveComponent } from './employee/components/apply-leave/apply-leave.component';
 
 
 const routes: Routes = [
@@ -43,7 +45,9 @@ const routes: Routes = [
    children: [
     { path: '', component: EmployeeDashboardComponent,title:'Salesyncer ' },
     { path: 'profile', component: EmployeeProfileComponent,title:'Salesyncer | Profile'},
-    { path: 'update-profile', component: UpdateProfileComponent,title:'Salesyncer | Update employee'},
+    { path: 'update-profile', component: UpdateProfileComponent,title:'Salesyncer | Update Profle'},
+    { path: 'leave', component: LeaveComponent,title:'Salesyncer | Leave'},
+    { path: 'apply-leave', component: ApplyLeaveComponent,title:'Salesyncer | Apply Leave'},
 
   ]
 },

@@ -10,8 +10,18 @@ export interface Branch{
     branchName:string,
     branchCode:string,
     location:string,
-    
 }
+
+export interface LeaveCategoryResponse {
+    leaveCategory: LeaveCategory[];
+    status: string;
+    message: string;
+  }
+  
+  export interface LeaveCategory {
+    _id: string;
+    category: string;
+  }
 
 export interface EmployeeType
     {

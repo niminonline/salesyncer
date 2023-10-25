@@ -49,7 +49,6 @@ export class UserEffects {
 
         this.store.select(selectEmployeeId).subscribe((_id) => {
           this._id = _id;
-          console.log("Got id o effect",this._id)
         });
         this.store.select(selectEmployeeToken).subscribe((token) => {
           this.token = token;

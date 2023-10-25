@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Branch } from 'src/app/shared/interfaces/interfaces';
+import { Branch,LeaveCategoryResponse,LeaveCategory } from 'src/app/shared/interfaces/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -26,4 +26,13 @@ export class SharedApiService {
   updateEmployee(data:object|null):Observable<any>{
     return this.http.post<any>(`/update-employee`,data);
   }
+
+
+  getLeaveCategory(): Observable<LeaveCategoryResponse> {
+    return this.http.get<LeaveCategoryResponse>(`/get-leave-category`);
+  }
+
+
+
+
 }

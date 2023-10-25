@@ -56,7 +56,7 @@ export class UpdateEmployeeComponent {
   getemployeeData() {
 
     this.selectedEmpData = this.adminDataRepo.getSelectedEmpData();
-    console.log('Selected user from service', this.selectedEmpData);
+    // console.log('Selected user from service', this.selectedEmpData);
     this._id = this.selectedEmpData._id;
     this.name = this.selectedEmpData.name;
     this.branch = this.selectedEmpData.branch;

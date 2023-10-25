@@ -1,0 +1,49 @@
+<div class="component-body">
+  <h1 class="title">Apply Leave</h1>
+
+  <form [formGroup]="leaveForm" (ngSubmit)="onSubmit()">
+    <div class="form-contents">
+
+      <mat-form-field appearance="outline">
+        <mat-label>Date Range</mat-label>
+        <mat-date-range-input [rangePicker]="picker">
+          <input
+          matStartDate
+          formControlName="startDate"
+          placeholder="Start date"
+          />
+          <input matEndDate formControlName="endDate" placeholder="End date" />
+        </mat-date-range-input>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+    </mat-form-field>
+    
+    
+       
+      <mat-form-field appearance="outline">
+        <mat-label>Leave Category</mat-label>
+        <mat-select formControlName="category">
+          <mat-option  *ngFor="let item of leaveCategory" value={{item.category}}>{{item.category}}</mat-option>
+          
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Reason</mat-label>
+        <textarea
+          matInput
+          formControlName="reason"
+          rows="5"
+          placeholder="Reason for leave"
+        ></textarea>
+      </mat-form-field>
+
+
+      <button mat-raised-button class="action-button" color="primary" type="submit">Submit</button>
+      <button mat-raised-button class="action-button" color="warn" (click)="navLeave()">Cancel</button>
+    </div>
+  </form>
+
+
+  <div class="table-component"></div>
+</div>
