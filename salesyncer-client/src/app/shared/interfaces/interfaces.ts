@@ -46,3 +46,23 @@ export interface EmployeeType
         "attendance"?: [],
         "__v": 0
     }
+
+
+    export interface LeaveData {
+      leaveData: LeaveItem[];
+      status: string;
+      message: string;
+    }
+    
+   export interface LeaveItem {
+      appliedDate: Date;
+      _id: string;
+      employeeObj_id: string;
+      startDate: Date;
+      endDate: Date;
+      reason: string;
+      leaveCategory: string;
+      documents?: any[]; 
+      status: string;
+     
+    }

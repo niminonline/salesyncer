@@ -9,7 +9,8 @@ import {
   updateEmployeeDetails,
   getLeaveCategoryDetails,
   applyLeaveDetails,
-  
+  fetchLeaveDetails
+
 
   
 
@@ -60,6 +61,9 @@ redisSubscriber.on("message", (channel: string, message: any) => {
         break;
       case "applyLeaveDetails":
         applyLeaveDetails(data);
+        break;
+      case "fetchLeaveDetails":
+        fetchLeaveDetails(data);
         break;
     }
   }

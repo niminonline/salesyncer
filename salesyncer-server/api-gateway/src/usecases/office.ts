@@ -35,3 +35,6 @@ export const applyLeaveDetails = async(data:object)=>{
     
     return await publishAndResponse('office-service', data, 'applyLeaveDetails', 'ApiRes-applyLeaveDetails');
 }
+export const fetchLeaveDetails = async(data:object)=>{
+    return await publishAndResponse('office-service', data, 'fetchLeaveDetails', 'ApiRes-fetchLeaveDetails');
+}

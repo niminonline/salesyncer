@@ -12,7 +12,8 @@ import {
   getEmployeesDetails,
   updateEmployeeDetails,
   getLeaveCategoryDetails,
-  applyLeaveDetails
+  applyLeaveDetails,
+  fetchLeaveDetails
 } from "../../usecases/office";
 
 export const adminLogin = async (req: Request, res: Response) => {
@@ -185,14 +186,14 @@ export const getLeaveCategory = async (req: Request, res: Response) => {
 
 export const applyLeave = async (req: Request, res: Response) => {
   try {
-   
+    
     const headers = req.headers;
     const leaveData = req.body;
     // console.log("email & Headers in api", employeeData, headers);
     const response: any = await verifyToken(headers);
     if (response.status == "OK") {
       const response: any = await applyLeaveDetails(leaveData);
-
+      
       delete response.requestId;
       delete response.action;
       res.json(response);
@@ -204,3 +205,24 @@ export const applyLeave = async (req: Request, res: Response) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
+  
+  export const fetchLeaveData = async (req: Request, res: Response) => {
+    
+    try{
+      const headers = req.headers;
+      const data = req.body;
+      const response: any = await verifyToken(headers);
+      if (response.status == "OK") {
+        const response: any = await fetchLeaveDetails(data);
+        
+        delete response.requestId;
+        delete response.action;
+        res.json(response);
+      } else {
+        res.json(response);
+      } 
+    }catch (error) {
+      console.error("Error in /auth:", error);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  };

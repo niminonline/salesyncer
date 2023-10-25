@@ -8,6 +8,7 @@ import updateEmployeeData from "../../usecases/updateEmployeeData";
 import { qEmployeeDataByEmail,qEmployeeDataById } from "../../database/repositories/employeeRepo";
 import getLeaveCategoryData from "../../usecases/getLeaveCategoryData";
 import applyLeaveData from "../../usecases/applyLeaveData";
+import fetchLeaveData from "../../usecases/fetchLeaveData";
 
 interface AdminData {
   email: string;
@@ -260,3 +261,30 @@ export const applyLeaveDetails = async (data: any) => {
     console.error(error);
   }
 };
+  
+  export const fetchLeaveDetails = async (data:any) => {
+    try {
+      const{requestId,action}= data;
+      const response: any = await fetchLeaveData(data);
+      if (response.status == "OK") {
+        const data = {
+          leaveData:response.leaveData,
+          requestId,
+          action,
+          status: "OK",
+          message: "Leave Data fetched successfully",
+        };
+        // console.log("myresponse", data);
+        publishToChannel("ApiRes-fetchLeaveDetails", data);
+      } else {
+        publishToChannel("ApiRes-fetchLeaveDetails", {
+          requestId,
+          action,
+          status: "FAILED",
+          message: "No response ",
+        });
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };

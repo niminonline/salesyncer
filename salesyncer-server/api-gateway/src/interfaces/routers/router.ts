@@ -12,7 +12,9 @@ import {
   updateEmployee,
   getLeaveCategory,
   applyLeave,
-  
+  fetchLeaveData,
+
+
 } from "../controllers/controller";
 
 const router = Router();
@@ -30,5 +32,6 @@ router.post("/add-branch", addBranch);
 router.post("/update-employee", updateEmployee);
 router.get("/get-leave-category", getLeaveCategory);
 router.post("/apply-leave", applyLeave);
+router.post("/fetch-leave-data", fetchLeaveData);
 
 export default router;

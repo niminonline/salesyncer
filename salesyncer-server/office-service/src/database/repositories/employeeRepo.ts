@@ -26,13 +26,13 @@ export const qEmployeesData = async () => {
 export const qUpdateEmployeeDataById = async (_id:string,newEmpData: object) => {
 
   try{
-    console.log("Emp id and data from update repo",_id,newEmpData);
+    // console.log("Emp id and data from update repo",_id,newEmpData);
     const updateOperation = {
       $set: newEmpData
     }
     // console.log("Update ops", updateOperation)
     const response = await Employee.findByIdAndUpdate(_id,updateOperation)
-    console.log("Update ops response", response)
+    // console.log("Update ops response", response)
     return response;
     
   
@@ -51,4 +51,12 @@ export const qAddLeaveData = async (leaveData: object) => {
   const newLeaveData = new Leave(leaveData);
   const response = await newLeaveData.save();
   return response;
+};
+export const qfetchLeaveData = async (_id:string,startDate:Date,endDate:Date) => {
+
+  const response= Leave.find({employeeObj_id:_id,startDate:{$gte: startDate, $lte: endDate  }});
+// console.log("Final data==",response.)
+  return response;
+
+  // return await LeaveCategory.find({});
 };

@@ -1,37 +1,45 @@
-<div class="component-body ">
+<div class="component-body">
+  <h1 class="title">Leave</h1>
 
-<h1 class="title"> Leave</h1>
+  <div class="header-elements">
+    <form [formGroup]="leaveFilterForm" (ngSubmit)="onSubmit()">
+      <div class="form-contents">
+        <mat-form-field appearance="outline">
+          <mat-label>Date Range</mat-label>
+          <mat-date-range-input [rangePicker]="picker">
+            <input
+              matStartDate
+              formControlName="startDate"
+              placeholder="Start date"
+            />
+            <input
+              matEndDate
+              formControlName="endDate"
+              placeholder="End date"
+            />
+          </mat-date-range-input>
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-date-range-picker #picker></mat-date-range-picker>
+        </mat-form-field>
+      </div>
+    </form>
 
-<div class="header-elements">
+    <button mat-raised-button color="primary" (click)="onSubmit()">
+      Search
+    </button>
 
-    <mat-form-field class="date-picker">
-        <mat-label>Date Range</mat-label>
-        <mat-date-range-input
-          [formGroup]="datePicker"
-          [rangePicker]="dateRange" >
-          <input matStartDate placeholder="Start date" formControlName="start">
-          <input matEndDate placeholder="End date" formControlName="end">
-        </mat-date-range-input>
-        <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
-        <mat-datepicker-toggle matIconSuffix [for]="dateRange"></mat-datepicker-toggle>
-        <mat-date-range-picker #dateRange></mat-date-range-picker>
-      </mat-form-field>
+    <button mat-raised-button color="primary" (click)="navAppyLeave()">
+      Apply leave
+    </button>
+  </div>
 
-      <button mat-raised-button color="primary">Search</button>
-
-      <button mat-raised-button color="primary" (click)="navAppyLeave()">Apply leave</button>
-      
-</div>
-
-<div class="table-component">
-
-    <app-table></app-table>
-
-
-</div>
-
-
-
-
-
+  <div class="table-component">
+    <app-table
+      [tableData]="tableData"
+      [displayedColumns]="displayedColumns"
+    ></app-table>
+  </div>
 </div>
