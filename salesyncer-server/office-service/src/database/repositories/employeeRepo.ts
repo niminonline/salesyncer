@@ -16,13 +16,15 @@ export const qAddEmployeeData = async (employeeData: object) => {
 };
 
 export const qEmployeesData = async () => {
-  return await Employee.find({}).select('-password').populate('branch');
+//  return await  Employee.find().select('empId name branch email phone role designation isRemoved isBlocked leave target attendance address');
+  return await Employee.find().select('-password');
 };
 
 
 export const qUpdateEmployeeDataById = async (_id:string,newEmpData: object) => {
 
   try{
+    console.log("Emp id and data from update repo",_id,newEmpData);
     const updateOperation = {
       $set: newEmpData
     }

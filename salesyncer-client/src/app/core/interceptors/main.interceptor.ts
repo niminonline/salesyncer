@@ -26,13 +26,13 @@ export class MainInterceptor implements HttpInterceptor {
         },
       });
       
-      console.log(newRequest)
+      // console.log(newRequest)
       return next.handle(newRequest);
     } else {
       const newRequest = request.clone({
         url: baseUrl + request.url,
       });
-      console.log(newRequest)
+      // console.log(newRequest)
       return next.handle(newRequest);
     }
   }

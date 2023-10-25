@@ -3,7 +3,7 @@ import { qEmployeesData } from "../database/repositories/employeeRepo";
 const getEmployeesData = async (): Promise<object | undefined> => {
   try {
          const employeesData = await qEmployeesData();
-      // console.log("Employee data from Q", employeesData);
+      console.log("Employee data from Q", employeesData);
       if (employeesData) {
       
         return {

@@ -10,6 +10,7 @@ import { EmployeesComponent } from './components/employees/employees.component';
 import { ManageComponent } from './components/manage/manage.component';
 import { ManageBranchComponent } from './components/manage-branch/manage-branch.component';
 import { AddUserComponent } from './components/add-user/add-user.component';
+import { ViewEmployeeComponent } from './components/view-employee/view-employee.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { AddUserComponent } from './components/add-user/add-user.component';
     ManageComponent,
     ManageBranchComponent,
     AddUserComponent,
+    ViewEmployeeComponent,
   ],
   imports: [
     CommonModule,

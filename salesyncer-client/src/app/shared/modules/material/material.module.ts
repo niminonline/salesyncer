@@ -19,7 +19,8 @@ import {MatNativeDateModule} from '@angular/material/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatListModule} from '@angular/material/list';
-
+import { MatTooltipModule } from '@angular/material/tooltip';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 const MaterialComponents = [
   MatButtonModule,
@@ -41,7 +42,9 @@ const MaterialComponents = [
   MatNativeDateModule,
   ReactiveFormsModule,
   MatDividerModule,
-  MatListModule
+  MatListModule,
+  MatTooltipModule,
+  MatProgressSpinnerModule
 
 ];
 

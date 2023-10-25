@@ -19,6 +19,7 @@ import { EmployeeProfileComponent } from './employee/components/employee-profile
 import { UpdateEmployeeComponent } from './admin/components/update-employee/update-employee.component';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { UpdateProfileComponent } from './employee/components/update-profile/update-profile.component';
+import { ViewEmployeeComponent } from './admin/components/view-employee/view-employee.component';
 
 
 const routes: Routes = [
@@ -32,6 +33,7 @@ const routes: Routes = [
     { path: 'manage', component: ManageComponent,title:'Salesyncer | Manage'},
     { path: 'add-user', component: AddUserComponent,title:'Salesyncer | Add user'},
     { path: 'update-employee', component: UpdateEmployeeComponent,title:'Salesyncer | Update employee'},
+    { path: 'view-employee', component: ViewEmployeeComponent,title:'Salesyncer | View employee'},
   ]
 },
 

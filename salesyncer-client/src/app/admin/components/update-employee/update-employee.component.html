@@ -1,4 +1,13 @@
  <div class="component-body">
+
+  <div class="spinner-container" *ngIf="showSpinner">
+    <mat-spinner class="spinner"></mat-spinner>
+  </div>
+
+  
+  <button mat-icon-button color="primary" aria-label="back arrow" (click)="navEmployees()">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
     <h1 class="heading">Update Employee Profile</h1>
     <mat-card class="updateCard">
       <form
@@ -27,10 +36,10 @@
   
         <mat-form-field>
           <mat-label>Select branch</mat-label>
-          <mat-select name="selectedBranch" formControlName="selectedBranch"> 
-            <!-- <mat-option *ngFor="let branch of branchData" [value]="branch.branchName">
+          <mat-select name="branch" formControlName="branch"> 
+            <mat-option *ngFor="let branch of branchData" [value]="branch.branchName">
               {{ branch.branchName }}
-            </mat-option> -->
+            </mat-option>
           </mat-select>
         </mat-form-field>
   
@@ -51,11 +60,11 @@
           
           <mat-form-field appearance="outline">
           <mat-label>Enter mobile number</mat-label>
-          <input matInput formControlName="mobile" />
-          <mat-error *ngIf="updateEmployeeGroup.get('mobile')?.errors?.['required']"
+          <input matInput formControlName="phone" />
+          <mat-error *ngIf="updateEmployeeGroup.get('phone')?.errors?.['required']"
             >Mobile number is required</mat-error
           >
-          <mat-error *ngIf="updateEmployeeGroup.get('mobile')?.errors?.['pattern']"
+          <mat-error *ngIf="updateEmployeeGroup.get('phone')?.errors?.['pattern']"
             >Enter a valid mobile number</mat-error
           >
         </mat-form-field>
@@ -166,7 +175,7 @@
             class="cancelButton"
             mat-raised-button
             color="warn"
-        
+            (click)="navEmployees()"
           >
             Cancel
           </button>
