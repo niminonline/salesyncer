@@ -39,15 +39,17 @@ const employeeSchema = new mongoose.Schema({
       type: Boolean,
       default:false
     },
-    leave: [{ 
+    leave: { 
     type: mongoose.Schema.Types.ObjectId,
       ref: "Leave",
-     }],
+     },
     casualLeaveBalance: {
       type: Number,
+      default:12
     },
     sickLeaveBalance: {
       type: Number,
+      default:8
     },
     joinedDate: {
       type: Date,

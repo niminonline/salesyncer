@@ -21,7 +21,7 @@ export class EmployeeHomeComponent implements OnInit{
   userMenu:any = [
     { icon: 'dashboard', text: 'Dashboard', link: '/' },
     { icon: 'person', text: 'Profile', link: '/profile' },
-    { icon: 'person', text: 'Leave', link: '/leave' },
+    { icon: 'event', text: 'Leave', link: '/leave' },
     { icon: 'contact_phone', text: 'Contact', link: '/' },
     { icon: 'business_center', text: 'Leads', link: '/' },
     { icon: 'task', text: 'Activity', link: '/' },

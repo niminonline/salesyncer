@@ -34,6 +34,9 @@ export class SharedApiService {
   fetchLeaveData(data:object|null): Observable<LeaveData> {
     return this.http.post<LeaveData>(`/fetch-leave-data`,data);
   }
+  leaveRequests(): Observable<any> {
+    return this.http.get<any>(`/leave-requests`);
+  }
 
 
 

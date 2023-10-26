@@ -38,3 +38,11 @@ export const applyLeaveDetails = async(data:object)=>{
 export const fetchLeaveDetails = async(data:object)=>{
     return await publishAndResponse('office-service', data, 'fetchLeaveDetails', 'ApiRes-fetchLeaveDetails');
 }
+export const getLeaveRequests = async()=>{
+    const data={};
+    return await publishAndResponse('office-service', data, 'getLeaveRequests', 'ApiRes-getLeaveRequests');
+}
+export const doLeaveAction = async(data:object)=>{
+    
+    return await publishAndResponse('office-service', data, 'doLeaveAction', 'ApiRes-doLeaveAction');
+}

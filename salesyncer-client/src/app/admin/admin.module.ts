@@ -11,6 +11,7 @@ import { ManageComponent } from './components/manage/manage.component';
 import { ManageBranchComponent } from './components/manage-branch/manage-branch.component';
 import { AddUserComponent } from './components/add-user/add-user.component';
 import { ViewEmployeeComponent } from './components/view-employee/view-employee.component';
+import { LeaveRequestComponent } from './components/leave-request/leave-request.component';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { ViewEmployeeComponent } from './components/view-employee/view-employee.
     ManageBranchComponent,
     AddUserComponent,
     ViewEmployeeComponent,
+    LeaveRequestComponent,
   ],
   imports: [
     CommonModule,

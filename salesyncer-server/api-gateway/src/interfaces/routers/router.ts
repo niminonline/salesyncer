@@ -13,6 +13,8 @@ import {
   getLeaveCategory,
   applyLeave,
   fetchLeaveData,
+  leaveRequests,
+  leaveAction
 
 
 } from "../controllers/controller";
@@ -33,5 +35,7 @@ router.post("/update-employee", updateEmployee);
 router.get("/get-leave-category", getLeaveCategory);
 router.post("/apply-leave", applyLeave);
 router.post("/fetch-leave-data", fetchLeaveData);
+router.get("/leave-requests", leaveRequests);
+router.post("/leave-action", leaveAction);
 
 export default router;

@@ -13,7 +13,10 @@ import {
   updateEmployeeDetails,
   getLeaveCategoryDetails,
   applyLeaveDetails,
-  fetchLeaveDetails
+  fetchLeaveDetails,
+  getLeaveRequests,
+  doLeaveAction
+
 } from "../../usecases/office";
 
 export const adminLogin = async (req: Request, res: Response) => {
@@ -205,9 +208,9 @@ export const applyLeave = async (req: Request, res: Response) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
+
+export const fetchLeaveData = async (req: Request, res: Response) => {
   
-  export const fetchLeaveData = async (req: Request, res: Response) => {
-    
     try{
       const headers = req.headers;
       const data = req.body;
@@ -222,6 +225,46 @@ export const applyLeave = async (req: Request, res: Response) => {
         res.json(response);
       } 
     }catch (error) {
+      console.error("Error in /auth:", error);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  };
+  export const leaveRequests = async (req: Request, res: Response) => {
+    
+    try{
+      const headers = req.headers;
+      const response: any = await verifyToken(headers);
+      if (response.status == "OK") {
+        const response: any = await getLeaveRequests();
+        
+        delete response.requestId;
+        delete response.action;
+        res.json(response);
+      } else {
+        res.json(response);
+      } 
+    }catch (error) {
+      console.error("Error in /auth:", error);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  };
+  export const leaveAction = async (req: Request, res: Response) => {
+    try {
+      
+      const headers = req.headers;
+      const data = req.body;
+      console.log("email & Headers in api", data, headers);
+      const response: any = await verifyToken(headers);
+      if (response.status == "OK") {
+        const response: any = await doLeaveAction(data);
+        
+        delete response.requestId;
+        delete response.action;
+        res.json(response);
+      } else {
+        res.json(response);
+      }
+    } catch (error) {
       console.error("Error in /auth:", error);
       res.status(500).json({ error: "Internal Server Error" });
     }

@@ -42,3 +42,48 @@ import common css
 
 ===============================================================================
 
+Swal alert after response
+
+  if (response.status == 'OK') {
+
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'User updated successfully',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          this.router.navigate(['profile'])
+        } else {
+          Swal.fire(response.status, response.message, 'error');
+        }
+
+===============================================================================
+
+Refresh current route
+
+const currentUrl = this.router.url;
+            this.router
+              .navigateByUrl('admin', { skipLocationChange: true })
+              .then(() => {
+                this.router.navigateByUrl(currentUrl);
+              });
+
+===============================================================================
+Spinner
+
+  showSpinner: boolean = false;
+
+this.showSpinner = true;
+this.showSpinner = false;
+
+<div class="spinner-container" *ngIf="showSpinner">
+    <img src="assets/images/loading1.gif" alt="">
+    <!-- <mat-spinner class="spinner"></mat-spinner> -->
+  </div>
+
+===============================================================================
+
+
+
+

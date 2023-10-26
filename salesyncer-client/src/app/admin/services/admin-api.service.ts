@@ -24,6 +24,10 @@ export class AdminAPIService {
     return this.http.post<any>(`/add-employee`, data);
   }
 
+  leaveAction(data:object|null):Observable<any>{
+    return this.http.post<any>(`/leave-action`,data);
+  }
+ 
 
 
 }

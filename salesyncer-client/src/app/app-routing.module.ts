@@ -22,6 +22,7 @@ import { UpdateProfileComponent } from './employee/components/update-profile/upd
 import { ViewEmployeeComponent } from './admin/components/view-employee/view-employee.component';
 import { LeaveComponent } from './employee/components/leave/leave.component';
 import { ApplyLeaveComponent } from './employee/components/apply-leave/apply-leave.component';
+import { LeaveRequestComponent } from './admin/components/leave-request/leave-request.component';
 
 
 const routes: Routes = [
@@ -36,6 +37,7 @@ const routes: Routes = [
     { path: 'add-user', component: AddUserComponent,title:'Salesyncer | Add user'},
     { path: 'update-employee', component: UpdateEmployeeComponent,title:'Salesyncer | Update employee'},
     { path: 'view-employee', component: ViewEmployeeComponent,title:'Salesyncer | View employee'},
+    { path: 'leave-request', component: LeaveRequestComponent,title:'Salesyncer | Leave Request'},
   ]
 },
 

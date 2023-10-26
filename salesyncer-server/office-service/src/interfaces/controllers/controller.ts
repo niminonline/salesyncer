@@ -9,7 +9,8 @@ import { qEmployeeDataByEmail,qEmployeeDataById } from "../../database/repositor
 import getLeaveCategoryData from "../../usecases/getLeaveCategoryData";
 import applyLeaveData from "../../usecases/applyLeaveData";
 import fetchLeaveData from "../../usecases/fetchLeaveData";
-
+import getLeaveRequestsData from "../../usecases/getLeaveRequestsData";
+import leaveAction from "../../usecases/leaveAction";
 interface AdminData {
   email: string;
   password: string;
@@ -261,8 +262,8 @@ export const applyLeaveDetails = async (data: any) => {
     console.error(error);
   }
 };
-  
-  export const fetchLeaveDetails = async (data:any) => {
+
+export const fetchLeaveDetails = async (data:any) => {
     try {
       const{requestId,action}= data;
       const response: any = await fetchLeaveData(data);
@@ -288,3 +289,55 @@ export const applyLeaveDetails = async (data: any) => {
       console.error(error);
     }
   };
+  export const getLeaveRequests = async (data:any) => {
+    try {
+      const{requestId,action}= data;
+      const response: any = await getLeaveRequestsData();
+      if (response.status == "OK") {
+        const data = {
+          leaveRequests:response.leaveRequestsData,
+          requestId,
+          action,
+          status: "OK",
+          message: "Leave requests fetched successfully",
+        };
+        // console.log("myresponse", data);
+        publishToChannel("ApiRes-getLeaveRequests", data);
+      } else {
+        publishToChannel("ApiRes-getLeaveRequests", {
+          requestId,
+          action,
+          status: "FAILED",
+          message: "No response ",
+        });
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+    export const doLeaveAction = async (data: any) => {
+      try {
+        console.log("Req body of leave action", data);
+        const { requestId, action } = data;
+        const response: any = await leaveAction(data);
+        console.log("Request id, action from leave action controller",response);
+        if (response.status == "OK") {
+          const data = {
+            requestId,
+            action,
+            ...response
+          };
+          // console.log("myresponse", data);
+          publishToChannel("ApiRes-doLeaveAction", data);
+        } else {
+          publishToChannel("ApiRes-doLeaveAction", {
+            requestId,
+            action,
+            status: "FAILED",
+            message: response.message,
+          });
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };

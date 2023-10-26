@@ -57,7 +57,6 @@ export class LeaveComponent implements OnInit {
         property: 'appliedDate',
         sortable: 'appliedDateSortable',
       },
-      // { name: 'Actions', property: 'actions' },
     ];
 
 
@@ -78,8 +77,20 @@ export class LeaveComponent implements OnInit {
       const formData = this.leaveFilterForm.value;
       formData._id= this._id;
       this.sharedApi.fetchLeaveData(formData).subscribe((response)=>{
-        this.tableData=response.leaveData;
-        console.log("RESp",this.tableData)
+        // this.tableData=response.leaveData;
+        console.log("RESp",this.tableData);
+
+
+        this.tableData = response.leaveData.map((item: any) => ({
+          ...item,
+          startDate: new Date(item.startDate).toLocaleDateString('en-IN',{day:'2-digit',month:'numeric',year:'numeric',weekday: 'short'}),
+          endDate: new Date(item.endDate).toLocaleDateString('en-IN',{day:'2-digit',month:'numeric',year:'numeric',weekday: 'short'}),
+          appliedDate:  new Date(item.appliedDate).toLocaleDateString('en-IN',{day:'2-digit',month:'numeric',year:'numeric'})
+        }));
+        console.log("New date", this.tableData)
+
+
+
       })
 
     }
