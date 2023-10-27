@@ -2,7 +2,7 @@ import { qUpdateContactsDataById } from "../database/repositories/contacts-repo"
 
 const editContactData = async (newContactData: any) => {
   try {
-    console.log("New contact data from business service", newContactData);
+    // console.log("New contact data from business service", newContactData);
 
     if (newContactData) {
       const { _id } = newContactData;

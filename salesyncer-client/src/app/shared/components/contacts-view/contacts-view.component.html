@@ -1,1 +1,63 @@
-<p>contacts-view works!</p>
+<div class="container-main-body">
+
+
+    <h1 class="title">Profile</h1>
+   
+    <div class="contact-container">
+        <table class="contact-table">
+          <tr>
+            <th>Name</th>
+            <td>{{selectedContactData.name}}</td>
+          </tr>
+          <tr>
+            <th>Contact ID</th>
+            <td>{{selectedContactData.contactId}}</td>
+          </tr>
+          <tr>
+            <th>Email</th>
+            <td>{{selectedContactData.email}}</td>
+          </tr>
+          <tr>
+            <th>Mobile</th>
+            <td>{{selectedContactData.phone}}</td>
+          </tr>
+          <tr>
+            <th>Associated Branch</th>
+            <td>{{selectedContactData.branch}}</td>
+          </tr>
+          <tr>
+            <th>Profession</th>
+            <td>{{selectedContactData.profession}}</td>
+          </tr>
+          <tr>
+            <th>Contact Type</th>
+            <td>{{selectedContactData.type}}</td>
+          </tr>
+          <tr>
+              <th>Address</th>
+              <td>{{selectedContactData.address}}</td>
+            </tr>  
+            <tr>
+              <th>Place</th>
+              <td>{{selectedContactData.place}}</td>
+            </tr>
+            <tr>
+              <th>Pincode</th>
+              <td>{{selectedContactData.pincode}}</td>
+            </tr>
+            <tr>
+              <th>Language</th>
+              <td>{{selectedContactData.language}}</td>
+            </tr>
+            
+        </table>
+  
+  
+        <div class="button-block">
+        <button mat-raised-button color="accent" (click)="navEditContact('selectedContactData._id')">Edit</button>
+        <button mat-raised-button color="primary" (click)="navContacts()">Back</button>
+        </div>
+  </div>
+  
+  
+  

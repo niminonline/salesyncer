@@ -1,133 +1,135 @@
 <div class="component-body">
-    <h1 class="heading">Create Contact</h1>
-  
-    <div class="spinner-container" *ngIf="showSpinner">
-      <img src="assets/images/loading1.gif" alt="" />
-      <!-- <mat-spinner class="spinner"></mat-spinner> -->
-    </div>
-  
-    <mat-card class="editContactCard">
-      <!-- <mat-card-content> -->
-  
-      <form [formGroup]="contactGroup" (ngSubmit)="submitContact(contactGroup)">
-        <div class="row">
-          <mat-form-field appearance="outline">
-            <mat-label>Enter contact name</mat-label>
-            <input matInput required formControlName="name" />
-            <mat-error *ngIf="contactGroup.get('name')?.errors?.['required']"
-              >Name is required</mat-error
+  <h1 class="heading">Edit Contact</h1>
+
+  <div class="spinner-container" *ngIf="showSpinner">
+    <img src="assets/images/loading1.gif" alt="" />
+    <!-- <mat-spinner class="spinner"></mat-spinner> -->
+  </div>
+
+  <mat-card class="editContactCard">
+    <!-- <mat-card-content> -->
+
+    <form [formGroup]="contactGroup" (ngSubmit)="submitContact(contactGroup)">
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Enter contact name</mat-label>
+          <input matInput required formControlName="name" />
+          <mat-error *ngIf="contactGroup.get('name')?.errors?.['required']"
+            >Name is required</mat-error
+          >
+          <mat-error *ngIf="contactGroup.get('name')?.errors?.['pattern']"
+            >Name must contains only alphabets</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Select branch</mat-label>
+          <mat-select name="branch" formControlName="branch">
+            <mat-option
+              *ngFor="let branch of branchData"
+              [value]="branch.branchName"
             >
-            <mat-error *ngIf="contactGroup.get('name')?.errors?.['pattern']"
-              >Name must contains only alphabets</mat-error
-            >
-          </mat-form-field>
-  
-          <mat-form-field>
-            <mat-label>Select branch</mat-label>
-            <mat-select name="branch" formControlName="branch">
-              <mat-option
-                *ngFor="let branch of branchData"
-                [value]="branch.branchName"
-              >
-                {{ branch.branchName }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-  
-        <div class="row">
-          <mat-form-field appearance="outline">
-            <mat-label>Email address</mat-label>
-            <input matInput required formControlName="email" />
-            <mat-error *ngIf="contactGroup.get('email')?.errors?.['required']"
-              >Email is required</mat-error
-            >
-            <mat-error *ngIf="contactGroup.get('email')?.errors?.['pattern']"
-              >Enter a valid email address</mat-error
-            >
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Phone number</mat-label>
-            <input matInput formControlName="phone" />
-            <mat-error *ngIf="contactGroup.get('phone')?.errors?.['required']"
-              >Phone number is required</mat-error
-            >
-            <mat-error *ngIf="contactGroup.get('phone')?.errors?.['pattern']"
-              >Enter a valid mobile number</mat-error
-            >
-          </mat-form-field>
-        </div>
-  
-        <div class="row">
-          <mat-form-field appearance="outline">
-            <mat-label>Profession</mat-label>
-            <input matInput required formControlName="profession" />
-          </mat-form-field>
-  
-          <mat-form-field appearance="outline">
-            <mat-label>Address</mat-label>
-            <input matInput required formControlName="address" />
-            <mat-error *ngIf="contactGroup.get('address')?.errors?.['required']"
-              >Address is required</mat-error
-            >
-          </mat-form-field>
-        </div>
-  
-        <div class="row">
-          <mat-form-field appearance="outline">
-            <mat-label>Place</mat-label>
-            <input matInput required formControlName="place" />
-            <mat-error *ngIf="contactGroup.get('place')?.errors?.['required']"
-              >Place is required</mat-error
-            >
-          </mat-form-field>
-  
-          <mat-form-field appearance="outline">
-            <mat-label>Pin code</mat-label>
-            <input matInput required formControlName="pincode" />
-            <mat-error *ngIf="contactGroup.get('pincode')?.errors?.['required']"
-              >Pin code is required</mat-error
-            >
-            <mat-error *ngIf="contactGroup.get('pincode')?.errors?.['pattern']"
-              >Enter a valid pincode</mat-error
-            >
-          </mat-form-field>
-        </div>
-        <div class="row">
-          <mat-form-field appearance="outline">
-            <mat-label>Contact link type</mat-label>
-            <input matInput required formControlName="type" />
-            <mat-error *ngIf="contactGroup.get('type')?.errors?.['required']"
-              >Contact link type is required</mat-error
-            >
-            <mat-error *ngIf="contactGroup.get('type')?.errors?.['pattern']"
-              >Enter a valid link type</mat-error
-            >
-          </mat-form-field>
-  
-          <mat-form-field appearance="outline">
-            <mat-label>Language</mat-label>
-            <input matInput required formControlName="language" />
-            <mat-error *ngIf="contactGroup.get('language')?.errors?.['required']"
-              >Language is required</mat-error
-            >
-            <mat-error *ngIf="contactGroup.get('language')?.errors?.['pattern']"
-              >Enter a valid language</mat-error
-            >
-          </mat-form-field>
-        </div>
-  
+              {{ branch.branchName }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Email address</mat-label>
+          <input matInput required formControlName="email" />
+          <mat-error *ngIf="contactGroup.get('email')?.errors?.['required']"
+            >Email is required</mat-error
+          >
+          <mat-error *ngIf="contactGroup.get('email')?.errors?.['pattern']"
+            >Enter a valid email address</mat-error
+          >
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Phone number</mat-label>
+          <input matInput formControlName="phone" />
+          <mat-error *ngIf="contactGroup.get('phone')?.errors?.['required']"
+            >Phone number is required</mat-error
+          >
+          <mat-error *ngIf="contactGroup.get('phone')?.errors?.['pattern']"
+            >Enter a valid mobile number</mat-error
+          >
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Profession</mat-label>
+          <input matInput required formControlName="profession" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Address</mat-label>
+          <input matInput required formControlName="address" />
+          <mat-error *ngIf="contactGroup.get('address')?.errors?.['required']"
+            >Address is required</mat-error
+          >
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Place</mat-label>
+          <input matInput required formControlName="place" />
+          <mat-error *ngIf="contactGroup.get('place')?.errors?.['required']"
+            >Place is required</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Pin code</mat-label>
+          <input matInput required formControlName="pincode" />
+          <mat-error *ngIf="contactGroup.get('pincode')?.errors?.['required']"
+            >Pin code is required</mat-error
+          >
+          <mat-error *ngIf="contactGroup.get('pincode')?.errors?.['pattern']"
+            >Enter a valid pincode</mat-error
+          >
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Contact link type</mat-label>
+          <input matInput required formControlName="type" />
+          <mat-error *ngIf="contactGroup.get('type')?.errors?.['required']"
+            >Contact link type is required</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Language</mat-label>
+          <input matInput required formControlName="language" />
+          <mat-error *ngIf="contactGroup.get('language')?.errors?.['required']"
+            >Language is required</mat-error
+          >
+        </mat-form-field>
+      </div>
+      <div class="button-block">
         <button
           class="editButton"
           mat-raised-button
           color="primary"
           type="submit"
         >
-          Add User
+          Save
         </button>
-      </form>
-  
-      <!-- </mat-card-content> -->
-    </mat-card>
-  </div>
-  
+        <button
+          class="editButton"
+          mat-raised-button
+          color="warn"
+          (click)="navContacts()"
+        >
+          Cancel
+        </button>
+      </div>
+    </form>
+
+    <!-- </mat-card-content> -->
+  </mat-card>
+</div>

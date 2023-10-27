@@ -22,7 +22,7 @@ export class EmployeeHomeComponent implements OnInit{
     { icon: 'dashboard', text: 'Dashboard', link: '/' },
     { icon: 'person', text: 'Profile', link: '/profile' },
     { icon: 'event', text: 'Leave', link: '/leave' },
-    { icon: 'contact_phone', text: 'Contact', link: '/' },
+    { icon: 'contact_phone', text: 'Contact', link: '/contacts' },
     { icon: 'business_center', text: 'Leads', link: '/' },
     { icon: 'task', text: 'Activity', link: '/' },
     { icon: 'shopping_cart', text: 'Products', link: '/' },

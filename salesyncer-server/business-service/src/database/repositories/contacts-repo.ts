@@ -40,7 +40,7 @@ export const qUpdateContactsDataById = async (
   newContactData: object
 ) => {
   try {
-    // console.log("Emp id and data from update repo",_id,newEmpData);
+    console.log("Emp id and data from update repo",_id,newContactData);
     const updateOperation = {
       $set: newContactData,
     };

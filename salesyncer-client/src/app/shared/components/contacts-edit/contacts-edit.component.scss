@@ -26,8 +26,10 @@
     background-color: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(10px);
   }
-  .editButton {
-    margin: 20px 0px 20px 0px;
+  .button-block{
+    display: flex;
+    gap:20px;
+    justify-content: center;
   }
   
   .row {

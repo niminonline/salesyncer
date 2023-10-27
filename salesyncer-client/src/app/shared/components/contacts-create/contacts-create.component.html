@@ -100,9 +100,7 @@
           <mat-error *ngIf="contactGroup.get('type')?.errors?.['required']"
             >Contact link type is required</mat-error
           >
-          <mat-error *ngIf="contactGroup.get('type')?.errors?.['pattern']"
-            >Enter a valid link type</mat-error
-          >
+        
         </mat-form-field>
 
         <mat-form-field appearance="outline">
@@ -111,9 +109,7 @@
           <mat-error *ngIf="contactGroup.get('language')?.errors?.['required']"
             >Language is required</mat-error
           >
-          <mat-error *ngIf="contactGroup.get('language')?.errors?.['pattern']"
-            >Enter a valid language</mat-error
-          >
+        
         </mat-form-field>
       </div>
 

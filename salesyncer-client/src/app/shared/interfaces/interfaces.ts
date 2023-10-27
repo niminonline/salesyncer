@@ -66,3 +66,24 @@ export interface EmployeeType
       status: string;
      
     }
+
+export interface ContactType {
+  _id: string;
+  contactId: string;
+  name: string;
+  branch:string;
+  email: string;
+  phone: string;
+  company: string;
+  profession: string;
+  type: string;
+  address:string
+  place:string
+  pincode:string
+  language: string;
+}
+
+
+export interface ContactsType {
+  contactsData: ContactType[];
+}

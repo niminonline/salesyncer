@@ -1,5 +1,4 @@
 import { Component,OnInit,AfterViewInit, ViewChild } from '@angular/core';
-import { AdminAPIService } from '../../services/admin-api.service';
 import { SharedApiService } from 'src/app/shared/services/shared-api.service';
 import { Router } from '@angular/router';
 import { AdminDataRepoService } from '../../services/admin-data-repo.service';
@@ -37,11 +36,7 @@ position = new FormControl(this.positionOptions[0]);
 
 
 
-constructor(private sharedAPI:SharedApiService, private router:Router,private adminDataRepo:AdminDataRepoService){
-
- 
-
-}
+constructor(private sharedAPI:SharedApiService, private router:Router,private adminDataRepo:AdminDataRepoService){}
 
 
 ngOnInit(){

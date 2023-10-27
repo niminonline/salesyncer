@@ -37,12 +37,12 @@ export class ContactsCreateComponent implements OnInit {
       phone: ['', [Validators.required, Validators.pattern('^\\d{10}$')]],
       address: ['', [Validators.required]],
       profession: [''],
-      type: ['', [Validators.required, Validators.pattern('^[A-Za-z \\.]+')]],
+      type: ['', [Validators.required]],
       place: ['', [Validators.required]],
       pincode: ['', [Validators.required, Validators.pattern('^[0-9]{6}$')]],
       language: [
         '',
-        [Validators.required, Validators.pattern('^[A-Za-z \\.]+')],
+        [Validators.required],
       ],
     });
   }
@@ -97,9 +97,13 @@ export class ContactsCreateComponent implements OnInit {
 
       this.sharedAPI.createContact(body).subscribe((response) => {
         // console.log(response);
+
+        this.showSpinner=true;
         if (response && response.status !== 'OK') {
+          this.showSpinner=false;
           Swal.fire('Error', response.message, 'error');
         } else {
+          this.showSpinner=false;
           Swal.fire({
             position: 'center',
             icon: 'success',
@@ -109,7 +113,7 @@ export class ContactsCreateComponent implements OnInit {
           });
 
           const currentUrl = this.router.url;
-          this.router.navigate(['admin/employees'])
+          this.router.navigate(['contacts'])
 
         }
       });
