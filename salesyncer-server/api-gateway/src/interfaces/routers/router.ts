@@ -14,7 +14,11 @@ import {
   applyLeave,
   fetchLeaveData,
   leaveRequests,
-  leaveAction
+  leaveAction,
+  createContact,
+  editContact,
+  getContact,
+  getContacts,
 
 
 } from "../controllers/controller";
@@ -37,5 +41,9 @@ router.post("/apply-leave", applyLeave);
 router.post("/fetch-leave-data", fetchLeaveData);
 router.get("/leave-requests", leaveRequests);
 router.post("/leave-action", leaveAction);
+router.post("/create-contact", createContact);
+router.post("/edit-contact", editContact);
+router.get("/get-contact", getContact);
+router.get("/get-contacts", getContacts);
 
 export default router;

@@ -23,6 +23,10 @@ import { ViewEmployeeComponent } from './admin/components/view-employee/view-emp
 import { LeaveComponent } from './employee/components/leave/leave.component';
 import { ApplyLeaveComponent } from './employee/components/apply-leave/apply-leave.component';
 import { LeaveRequestComponent } from './admin/components/leave-request/leave-request.component';
+import { ContactsComponent } from './shared/components/contacts/contacts.component';
+import { ContactsCreateComponent } from './shared/components/contacts-create/contacts-create.component';
+import { ContactsViewComponent } from './shared/components/contacts-view/contacts-view.component';
+import { ContactsEditComponent } from './shared/components/contacts-edit/contacts-edit.component';
 
 
 const routes: Routes = [
@@ -31,13 +35,17 @@ const routes: Routes = [
   {path:'admin',component:AdminHomeComponent, title:"Salesyncer Admin",
   canActivateChild:[childAuthCACGuard] ,
    children: [
-    { path: '', component: AdminDashboardComponent,title:'Salesyncer | Admin Panel' },
-    { path: 'employees', component: EmployeesComponent,title:'Salesyncer | Employees'},
-    { path: 'manage', component: ManageComponent,title:'Salesyncer | Manage'},
-    { path: 'add-user', component: AddUserComponent,title:'Salesyncer | Add user'},
-    { path: 'update-employee', component: UpdateEmployeeComponent,title:'Salesyncer | Update employee'},
-    { path: 'view-employee', component: ViewEmployeeComponent,title:'Salesyncer | View employee'},
-    { path: 'leave-request', component: LeaveRequestComponent,title:'Salesyncer | Leave Request'},
+    { path: '', component: AdminDashboardComponent,title:'Salesyncer' },
+    { path: 'employees', component: EmployeesComponent,title:'Salesyncer'},
+    { path: 'manage', component: ManageComponent,title:'Salesyncer'},
+    { path: 'add-user', component: AddUserComponent,title:'Salesyncer'},
+    { path: 'update-employee', component: UpdateEmployeeComponent,title:'Salesyncer'},
+    { path: 'view-employee', component: ViewEmployeeComponent,title:'Salesyncer'},
+    { path: 'leave-request', component: LeaveRequestComponent,title:'Salesyncer'},
+    { path: 'contacts', component: ContactsComponent,title:'Salesyncer'},
+    { path: 'contacts-create', component: ContactsCreateComponent,title:'Salesyncer'},
+    { path: 'contacts-view', component: ContactsViewComponent,title:'Salesyncer'},
+    { path: 'contacts-edit', component: ContactsEditComponent,title:'Salesyncer'},
   ]
 },
 
@@ -45,11 +53,15 @@ const routes: Routes = [
   {path:'',component:EmployeeHomeComponent, title:"Salesyncer Home",
   canActivateChild:[childAuthCACEmpGuard],
    children: [
-    { path: '', component: EmployeeDashboardComponent,title:'Salesyncer ' },
-    { path: 'profile', component: EmployeeProfileComponent,title:'Salesyncer | Profile'},
-    { path: 'update-profile', component: UpdateProfileComponent,title:'Salesyncer | Update Profle'},
-    { path: 'leave', component: LeaveComponent,title:'Salesyncer | Leave'},
-    { path: 'apply-leave', component: ApplyLeaveComponent,title:'Salesyncer | Apply Leave'},
+    { path: '', component: EmployeeDashboardComponent,title:'Salesyncer' },
+    { path: 'profile', component: EmployeeProfileComponent,title:'Salesyncer'},
+    { path: 'update-profile', component: UpdateProfileComponent,title:'Salesyncer'},
+    { path: 'leave', component: LeaveComponent,title:'Salesyncer'},
+    { path: 'apply-leave', component: ApplyLeaveComponent,title:'Salesyncer'},
+    { path: 'contacts', component: ContactsComponent,title:'Salesyncer'},
+    { path: 'contacts-create', component: ContactsCreateComponent,title:'Salesyncer'},
+    { path: 'contacts-view', component: ContactsViewComponent,title:'Salesyncer'},
+    { path: 'contacts-edit', component: ContactsEditComponent,title:'Salesyncer'},
 
   ]
 },

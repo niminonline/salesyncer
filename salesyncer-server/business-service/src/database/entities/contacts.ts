@@ -5,7 +5,7 @@ const contactsSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  contactName: {
+  name: {
     type: String,
     required: true,
   },
@@ -16,44 +16,23 @@ const contactsSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  alternatePhone: {
-    type: String,
-  },
-  company: {
-    type: String,
-  },
   profession: {
     type: String,
   },
-  language: {
+  type: {
     type: String,
   },
-  linkType: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "LinkType",
-  },
   address: {
-    addressLine1: {
-      type: String,
-    },
-    addressLine2: {
-      type: String,
-    },
-    place: {
-      type: String,
-    },
-    landmark: {
-      type: String,
-    },
-    district: {
-      type: String,
-    },
-    state: {
-      type: String,
-    },
-    pincode: {
-      type: Number,
-    },
+    type: String,
+  },
+  place: {
+    type: String,
+  },
+  pincode: {
+    type: Number,
+  },
+  language: {
+    type: String,
   },
 });
 

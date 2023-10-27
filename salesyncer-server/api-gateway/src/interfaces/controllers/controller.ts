@@ -15,9 +15,12 @@ import {
   applyLeaveDetails,
   fetchLeaveDetails,
   getLeaveRequests,
-  doLeaveAction
+  doLeaveAction,
 
 } from "../../usecases/office";
+import { createContactDetails, editContactDetails, getContactDetails, getContactsDetails } from "../../usecases/business";
+
+
 
 export const adminLogin = async (req: Request, res: Response) => {
   try {
@@ -265,6 +268,88 @@ export const fetchLeaveData = async (req: Request, res: Response) => {
         res.json(response);
       }
     } catch (error) {
+      console.error("Error in /auth:", error);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  };
+  export const createContact = async (req: Request, res: Response) => {
+    try {
+      
+      const headers = req.headers;
+      const data = req.body;
+      console.log("create Contact data,header", data, headers);
+      const response: any = await verifyToken(headers);
+      if (response.status == "OK") {
+        const response: any = await createContactDetails(data);
+        
+        delete response.requestId;
+        delete response.action;
+        res.json(response);
+      } else {
+        res.json(response);
+      }
+    } catch (error) {
+      console.error("Error in /auth:", error);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  };
+  export const editContact = async (req: Request, res: Response) => {
+    try {
+      
+      const headers = req.headers;
+      const data = req.body;
+      console.log("create Contact data,header", data, headers);
+      const response: any = await verifyToken(headers);
+      if (response.status == "OK") {
+        const response: any = await editContactDetails(data);
+        
+        delete response.requestId;
+        delete response.action;
+        res.json(response);
+      } else {
+        res.json(response);
+      }
+    } catch (error) {
+      console.error("Error in /auth:", error);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  };
+  export const getContact = async (req: Request, res: Response) => {
+    
+    try{
+      const headers = req.headers;
+      const {_id}= req.query;
+      const data ={_id};
+      const response: any = await verifyToken(headers);
+      if (response.status == "OK") {
+        const response: any = await getContactDetails(data);
+        
+        delete response.requestId;
+        delete response.action;
+        res.json(response);
+      } else {
+        res.json(response);
+      } 
+    }catch (error) {
+      console.error("Error in /auth:", error);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  };
+  export const getContacts = async (req: Request, res: Response) => {
+    
+    try{
+      const headers = req.headers;
+      const response: any = await verifyToken(headers);
+      if (response.status == "OK") {
+        const response: any = await getContactsDetails();
+        
+        delete response.requestId;
+        delete response.action;
+        res.json(response);
+      } else {
+        res.json(response);
+      } 
+    }catch (error) {
       console.error("Error in /auth:", error);
       res.status(500).json({ error: "Internal Server Error" });
     }

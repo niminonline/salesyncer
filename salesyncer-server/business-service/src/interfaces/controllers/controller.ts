@@ -1,54 +1,100 @@
-import { Request, Response } from "express";
-import { verifyToken } from "../../middlewares/jwt";
-import { getAdminToken } from "../../usecases/verifyAdminLogin";
-import verifyEmployeeLogin from "../../usecases/verifyEmployeeLogin";
 import { publishToChannel } from "../../services/redisOps";
-import { Admin } from "mongodb";
+import createContactData from "../../usecases/createContactData";
+import editContactData from "../../usecases/editContactData";
+import getContactData from "../../usecases/getContactData";
+import getContactsData from "../../usecases/getContactsData";
 
-interface AdminData {
-  email:string,
-  password:string
-  requestId: string;
-  action: string;
-  
-}
-
-
-export const adminLogin = async (data:any) => {
+export const createContactDetails = async (data: any) => {
   try {
-    console.log("Req body",data);
-    const { email, password,requestId,action } = data;
-    console.log("email",email);
+    // console.log("Req body of getEmployeeDetails Controller", data);
+    const { requestId, action } = data;
+    // console.log("email of getEmployeeDetails Controller", email);
 
-    const response:any= await getAdminToken(email, password);
+    const response: any = await createContactData(data);
 
-    if(response){
-
-      response.requestId=requestId;
-      response.action=action;
+    if (response) {
+      response.requestId = requestId;
+      response.action = action;
     }
-  
-      console.log("myresponse",response);
-       publishToChannel('adminLogin-res',response);
-  
+
+    console.log("myresponse", response);
+    publishToChannel("ApiRes-createContactDetails", response);
+  } catch (error) {
+    console.error(error);
+  }
+};
+export const editContactDetails = async (data: any) => {
+  try {
+    // console.log("Req body of getEmployeeDetails Controller", data);
+    const { requestId, action } = data;
+    // console.log("email of getEmployeeDetails Controller", email);
+
+    const response: any = await editContactData(data);
+
+    if (response) {
+      response.requestId = requestId;
+      response.action = action;
+    }
+
+    // console.log("myresponse", response);
+    publishToChannel("ApiRes-editContactDetails", response);
   } catch (error) {
     console.error(error);
   }
 };
 
-
-export const employeeLogin = async (data:any): Promise<void> => {
-    try {
-      const { email, password ,requestId,action } = data;
-      const response:any = await verifyEmployeeLogin(email, password);
-      if(response){
-
-        response.requestId=requestId;
-        response.action=action;
-      }
-      publishToChannel('employeeLogin-res',response);
-    } catch (err) {
-      console.error(err);
+export const getContactDetails = async (data: any) => {
+  try {
+    const { _id, requestId, action } = data;
+    // console.log("Request id, action from office controller", requestId, action);
+    const response: any = await getContactData(_id);
+    if (response.status == "OK") {
+      const data = {
+        contactData: response.contactData,
+        requestId,
+        action,
+        status: "OK",
+        message: "Contact data fetched successfully",
+      };
+      // console.log("fetched employees data", data);
+      publishToChannel("ApiRes-getContactDetails", data);
+    } else {
+      publishToChannel("ApiRes-getContactDetails", {
+        requestId,
+        action,
+        status: "FAILED",
+        message: "No response ",
+      });
     }
-  };
+  } catch (error) {
+    console.error(error);
+  }
+};
 
+export const getContactsDetails = async (data: any) => {
+  try {
+    const { requestId, action } = data;
+    // console.log("Request id, action from office controller", requestId, action);
+    const response: any = await getContactsData();
+    if (response.status == "OK") {
+      const data = {
+        contactsData: response.contactsData,
+        requestId,
+        action,
+        status: "OK",
+        message: "Contacts data fetched successfully",
+      };
+      // console.log("fetched employees data", data);
+      publishToChannel("ApiRes-getContactsDetails", data);
+    } else {
+      publishToChannel("ApiRes-getContactsDetails", {
+        requestId,
+        action,
+        status: "FAILED",
+        message: "No response ",
+      });
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};

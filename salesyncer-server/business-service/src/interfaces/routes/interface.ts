@@ -1,5 +1,6 @@
 import { Redis } from "ioredis";
-import { adminLogin,employeeLogin } from "../controllers/controller";
+import { createContactDetails, editContactDetails, getContactDetails, getContactsDetails } from "../controllers/controller";
+// import { adminLogin,employeeLogin } from "../controllers/controller";
 
 const redisSubscriber = new Redis();
 
@@ -15,16 +16,25 @@ export const subscribeToChannel = (channelName: string) => {
 
 // Listen for messages
 redisSubscriber.on("message", (channel: string, message: any) => {
-  if (channel === "auth-service") {
+  if (channel === "business-service") {
     const data = JSON.parse(message);
-    //console.log("Data from api", data);
+    console.log("Data from api", data);
 
     switch (data.action) {
-      case "adminLogin":
-        adminLogin(data);
+      case "createContactDetails":
+        createContactDetails(data);
         break;
-      case "employeeLogin":
-        employeeLogin(data);
+    
+      case "editContactDetails":
+        editContactDetails(data);
+        break;
+    
+      case "getContactDetails":
+        getContactDetails(data);
+        break;
+    
+      case "getContactsDetails":
+        getContactsDetails(data);
         break;
     }
   }
