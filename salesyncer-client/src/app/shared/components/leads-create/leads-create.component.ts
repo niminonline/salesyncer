@@ -10,6 +10,9 @@ import { SharedApiService } from 'src/app/shared/services/shared-api.service';
   styleUrls: ['./leads-create.component.scss'],
 })
 export class LeadsCreateComponent implements OnInit {
+  leadSourceData: any;
+  productCategoryData: any;
+  productsData: any;
   constructor(
     private sharedAPI: SharedApiService,
     private fb: FormBuilder,
@@ -23,13 +26,16 @@ export class LeadsCreateComponent implements OnInit {
 
   ngOnInit() {
     this.getBranchData();
+    this.getLeadSource();
+    this.getProductCategory();
+    this.getProducts();
     this.leadsGroup = this.fb.group({
       branch: ['', [Validators.required]],
       type: ['', [Validators.required]],
       client: ['', [Validators.required]],
       source: ['', [Validators.required]],
       productCategory: ['', [Validators.required]],
-      product: ['', [Validators.required]],
+      products: ['', [Validators.required]],
       quotedPrice: ['', [Validators.pattern(/^\d+(\.\d+)?$/)]],
       owner: ['', [Validators.required]],
       notes: ['', [Validators.required]],
@@ -52,12 +58,40 @@ export class LeadsCreateComponent implements OnInit {
     }
   }
 
-  getLeadSourceData() {
+  getLeadSource() {
     try {
-      this.sharedAPI.getBranches().subscribe((response: any) => {
+      this.sharedAPI.getLeadSource().subscribe((response: any) => {
         if (response.status == 'OK') {
-          this.branchData = response.branchData;
-          console.log(this.branchData);
+          this.leadSourceData = response.leadSourceData;
+          console.log(this.leadSourceData);
+        } else {
+          console.log(response.message);
+        }
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  getProductCategory() {
+    try {
+      this.sharedAPI.getProductCategory().subscribe((response: any) => {
+        if (response.status == 'OK') {
+          this.productCategoryData = response.productCategoryData;
+          console.log(this.productCategoryData);
+        } else {
+          console.log(response.message);
+        }
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  getProducts() {
+    try {
+      this.sharedAPI.getProducts().subscribe((response: any) => {
+        if (response.status == 'OK') {
+          this.productsData = response.productsData;
+          console.log(this.productsData);
         } else {
           console.log(response.message);
         }
