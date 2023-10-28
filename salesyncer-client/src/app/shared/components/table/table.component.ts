@@ -31,6 +31,8 @@ export class TableComponent implements OnChanges {
     }
     if (changes['tableData']) {
       this.dataSource.data = this.tableData;
+      this.dataSource.paginator=this.paginator;
+      this.dataSource.sort = this.sort;
     }
   }
   getHeaderRowDef(): string[] {

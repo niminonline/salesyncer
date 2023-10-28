@@ -47,9 +47,12 @@ export class SharedApiService {
     return this.http.get<any>(`/get-contacts`);
   }
   getContact(_id:string): Observable<any> {
-    return this.http.get<any>(`/get-contact?_id=${_id}`);
+    return this.http.get<any>(`/get-contact-data?_id=${_id}`);
   }
-  editContat(data: object | null): Observable<any> {
+  editContact(data: object | null): Observable<any> {
     return this.http.post<any>(`/edit-contact`, data);
+  }
+  deleteContact(_id:string|null): Observable<any> {
+    return this.http.delete<any>(`/delete-contact?_id=${_id}`);
   }
 }

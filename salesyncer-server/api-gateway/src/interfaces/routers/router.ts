@@ -19,6 +19,7 @@ import {
   editContact,
   getContact,
   getContacts,
+  deleteContact
 
 
 } from "../controllers/controller";
@@ -45,5 +46,6 @@ router.post("/create-contact", createContact);
 router.post("/edit-contact", editContact);
 router.get("/get-contact", getContact);
 router.get("/get-contacts", getContacts);
+router.delete("/delete-contact", deleteContact);
 
 export default router;

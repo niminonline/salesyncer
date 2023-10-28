@@ -31,8 +31,8 @@ export class LeaveRequestComponent implements OnInit {
     'actions',
   ];
 
-  // @ViewChild(MatPaginator) paginator!: MatPaginator;
-  //   @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+    @ViewChild(MatSort) sort!: MatSort;
 
   constructor(
     private sharedAPI: SharedApiService,
@@ -49,6 +49,9 @@ export class LeaveRequestComponent implements OnInit {
       this.tableData = response.leaveRequests;
       console.log(this.tableData);
       this.dataSource = new MatTableDataSource(this.tableData);
+      this.dataSource.paginator=this.paginator;
+      this.dataSource.sort = this.sort;
+
     });
   }
 

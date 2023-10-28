@@ -120,10 +120,18 @@
           Save
         </button>
         <button
-          class="editButton"
+          class="deleteButton"
           mat-raised-button
           color="warn"
-          (click)="navContacts()"
+          (click)="deleteContact($event)"
+        >
+          Delete
+        </button>
+        <button
+          class="editButton"
+          mat-raised-button
+          color="accent"
+          (click)="navContacts($event)"
         >
           Cancel
         </button>

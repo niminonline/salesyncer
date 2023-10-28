@@ -1,5 +1,5 @@
 import { Redis } from "ioredis";
-import { createContactDetails, editContactDetails, getContactDetails, getContactsDetails } from "../controllers/controller";
+import { createContactDetails, editContactDetails, getContactDetails, getContactsDetails,deleteContactDetails } from "../controllers/controller";
 // import { adminLogin,employeeLogin } from "../controllers/controller";
 
 const redisSubscriber = new Redis();
@@ -35,6 +35,9 @@ redisSubscriber.on("message", (channel: string, message: any) => {
     
       case "getContactsDetails":
         getContactsDetails(data);
+        break;
+      case "deleteContactDetails":
+        deleteContactDetails(data);
         break;
     }
   }

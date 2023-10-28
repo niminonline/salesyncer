@@ -33,14 +33,14 @@ const leadsSchema = new mongoose.Schema({
   leadSource: {
     type: String,
   },
-  leadSubsource: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "LeadSubSource",
-  },
-  documentsSent: [{ type: String }],
-  expectedSales: {
-    type: Number,
-  },
+  // leadSubsource: {
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   ref: "LeadSubSource",
+  // },
+  // documentsSent: [{ type: String }],
+  // expectedSales: {
+  //   type: Number,
+  // },
   notes: {
     type: String,
   },

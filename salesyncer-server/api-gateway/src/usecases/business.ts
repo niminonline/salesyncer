@@ -18,5 +18,10 @@ return await publishAndResponse('business-service', data, 'getContactDetails', '
 export const getContactsDetails = async()=>{
     const data={};
     //publishChannel, publishData, publishAction, subscribeChannel
-return await publishAndResponse('business-service', data, 'getContactsDetails', 'ApiRes-getContactsDetails');
+    return await publishAndResponse('business-service', data, 'getContactsDetails', 'ApiRes-getContactsDetails');
+}
+export const deleteContactDetails = async(data:object)=>{
+   
+    //publishChannel, publishData, publishAction, subscribeChannel
+return await publishAndResponse('business-service', data, 'deleteContactDetails', 'ApiRes-deleteContactDetails');
 }

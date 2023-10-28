@@ -18,7 +18,7 @@ import {
   doLeaveAction,
 
 } from "../../usecases/office";
-import { createContactDetails, editContactDetails, getContactDetails, getContactsDetails } from "../../usecases/business";
+import { createContactDetails, deleteContactDetails, editContactDetails, getContactDetails, getContactsDetails } from "../../usecases/business";
 
 
 
@@ -342,6 +342,29 @@ export const fetchLeaveData = async (req: Request, res: Response) => {
       const response: any = await verifyToken(headers);
       if (response.status == "OK") {
         const response: any = await getContactsDetails();
+        
+        delete response.requestId;
+        delete response.action;
+        res.json(response);
+      } else {
+        res.json(response);
+      } 
+    }catch (error) {
+      console.error("Error in /auth:", error);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  };
+
+
+  export const deleteContact = async (req: Request, res: Response) => {
+    
+    try{
+      const headers = req.headers;
+      const {_id}= req.query;
+      const data ={_id};
+      const response: any = await verifyToken(headers);
+      if (response.status == "OK") {
+        const response: any = await deleteContactDetails(data);
         
         delete response.requestId;
         delete response.action;

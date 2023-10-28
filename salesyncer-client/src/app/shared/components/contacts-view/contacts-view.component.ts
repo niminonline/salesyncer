@@ -39,12 +39,36 @@ export class ContactsViewComponent  implements OnInit {
   }
 
 
-  navContacts(){
-    this.router.navigate(['contacts']);
-  }
-  navEditContact(_id:string){
+    navEditContact(){
 
+      const currentroute= this.router.url;
+      if(currentroute.toString().includes('admin'))
+      {
+        this.router.navigate(['admin/contacts-edit'],{ queryParams: {_id:this.selectedContactData._id} });
+      }
+      else{
+        this.router.navigate(['contacts-edit'],{ queryParams: {_id:this.selectedContactData._id} });   
+         }
+      console.log(currentroute);
+    }
+
+
+   
+
+
+  navContacts(){
+    const currentroute= this.router.url;
+    if(currentroute.toString().includes('admin'))
+    {
+     this.router.navigate(['admin/contacts']);
+    }
+    else{
+      this.router.navigate(['contacts']);
+    }
+    console.log(currentroute);
   }
+
+  
 }
 
 

@@ -27,9 +27,11 @@
     backdrop-filter: blur(10px);
   }
   .button-block{
-    display: flex;
-    gap:20px;
-    justify-content: center;
+    margin:20px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+  
   }
   
   .row {

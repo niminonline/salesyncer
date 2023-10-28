@@ -59,6 +59,8 @@ ngOnInit(){
       this.employeesData=response.employeesData;
 
       this.dataSource = new MatTableDataSource(this.employeesData);
+      this.dataSource.paginator=this.paginator;
+      this.dataSource.sort = this.sort;
 
      
 

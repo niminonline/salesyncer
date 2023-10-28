@@ -48,7 +48,6 @@ export class ContactsCreateComponent implements OnInit {
   }
 
   getBranchData() {
-    console.log('Entered branch');
 
     try {
       this.sharedAPI.getBranches().subscribe((response: any) => {
