@@ -18,6 +18,15 @@ export class SharedApiService {
   getBranches(): Observable<Branch> {
     return this.http.get<Branch>(`/get-branches`);
   }
+  getLeadSource(): Observable<any> {
+    return this.http.get<any>(`/get-lead-source`);
+  }
+  getProductCategory(): Observable<any> {
+    return this.http.get<any>(`/get-product-category`);
+  }
+  getProducts(): Observable<any> {
+    return this.http.get<any>(`/get-products`);
+  }
 
   getEmployeesData(): Observable<any> {
     return this.http.get('/get-employees-data');

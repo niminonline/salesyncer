@@ -10,8 +10,7 @@ const activitySchema = new mongoose.Schema({
     ref: "Contact",
   },
   activityType: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "ActivityType",
+    type: String
   },
   date: {
     type: Date,
@@ -19,7 +18,7 @@ const activitySchema = new mongoose.Schema({
   empId: {
     type: String,
   },
-  employeeName: {
+  owner: {
     type: String,
   },
   status: {

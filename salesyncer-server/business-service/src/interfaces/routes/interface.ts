@@ -1,5 +1,5 @@
 import { Redis } from "ioredis";
-import { createContactDetails, editContactDetails, getContactDetails, getContactsDetails,deleteContactDetails } from "../controllers/controller";
+import { createContactDetails, editContactDetails, getContactDetails, getContactsDetails,deleteContactDetails, createLeadDetails, editLeadDetails, getLeadDetails, getLeadsDetails, deleteLeadDetails, getLeadSourceDetails, getProductCategoryDetails, getProductsDetails } from "../controllers/controller";
 // import { adminLogin,employeeLogin } from "../controllers/controller";
 
 const redisSubscriber = new Redis();
@@ -21,6 +21,16 @@ redisSubscriber.on("message", (channel: string, message: any) => {
     console.log("Data from api", data);
 
     switch (data.action) {
+
+      case "getLeadSourceDetails":
+        getLeadSourceDetails(data);
+        break;
+      case "getProductCategoryDetails":
+        getProductCategoryDetails(data);
+        break;
+      case "getProductsDetails":
+        getProductsDetails(data);
+        break;
       case "createContactDetails":
         createContactDetails(data);
         break;
@@ -38,6 +48,24 @@ redisSubscriber.on("message", (channel: string, message: any) => {
         break;
       case "deleteContactDetails":
         deleteContactDetails(data);
+        break;
+      case "createLeadDetails":
+        createLeadDetails(data);
+        break;
+    
+      case "editLeadDetails":
+        editLeadDetails(data);
+        break;
+    
+      case "getLeadDetails":
+        getLeadDetails(data);
+        break;
+    
+      case "getLeadsDetails":
+        getLeadsDetails(data);
+        break;
+      case "deleteLeadDetails":
+        deleteLeadDetails(data);
         break;
     }
   }

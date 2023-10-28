@@ -27,6 +27,10 @@ import { ContactsComponent } from './shared/components/contacts/contacts.compone
 import { ContactsCreateComponent } from './shared/components/contacts-create/contacts-create.component';
 import { ContactsViewComponent } from './shared/components/contacts-view/contacts-view.component';
 import { ContactsEditComponent } from './shared/components/contacts-edit/contacts-edit.component';
+import { LeadsComponent } from './shared/components/leads/leads.component';
+import { LeadsCreateComponent } from './shared/components/leads-create/leads-create.component';
+import { LeadsViewComponent } from './shared/components/leads-view/leads-view.component';
+import { LeadsEditComponent } from './shared/components/leads-edit/leads-edit.component';
 
 
 const routes: Routes = [
@@ -46,6 +50,10 @@ const routes: Routes = [
     { path: 'contacts-create', component: ContactsCreateComponent,title:'Salesyncer'},
     { path: 'contacts-view', component: ContactsViewComponent,title:'Salesyncer'},
     { path: 'contacts-edit', component: ContactsEditComponent,title:'Salesyncer'},
+    { path: 'leads', component: LeadsComponent,title:'Salesyncer'},
+    { path: 'leads-create', component: LeadsCreateComponent,title:'Salesyncer'},
+    { path: 'leads-view', component: LeadsViewComponent,title:'Salesyncer'},
+    { path: 'leads-edit', component: LeadsEditComponent,title:'Salesyncer'},
   ]
 },
 
@@ -62,6 +70,10 @@ const routes: Routes = [
     { path: 'contacts-create', component: ContactsCreateComponent,title:'Salesyncer'},
     { path: 'contacts-view', component: ContactsViewComponent,title:'Salesyncer'},
     { path: 'contacts-edit', component: ContactsEditComponent,title:'Salesyncer'},
+    { path: 'leads', component: LeadsComponent,title:'Salesyncer'},
+    { path: 'leads-create', component: LeadsCreateComponent,title:'Salesyncer'},
+    { path: 'leads-view', component: LeadsViewComponent,title:'Salesyncer'},
+    { path: 'leads-edit', component: LeadsEditComponent,title:'Salesyncer'},
 
   ]
 },

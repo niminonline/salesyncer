@@ -12,6 +12,10 @@ import { ContactsComponent } from './components/contacts/contacts.component';
 import { ContactsViewComponent } from './components/contacts-view/contacts-view.component';
 import { ContactsEditComponent } from './components/contacts-edit/contacts-edit.component';
 import { ContactsCreateComponent } from './components/contacts-create/contacts-create.component';
+import { LeadsComponent } from './components/leads/leads.component';
+import { LeadsViewComponent } from './components/leads-view/leads-view.component';
+import { LeadsEditComponent } from './components/leads-edit/leads-edit.component';
+import { LeadsCreateComponent } from './components/leads-create/leads-create.component';
 
 const components = [
   LoginBlockComponent,
@@ -22,7 +26,7 @@ const components = [
 ];
 
 @NgModule({
-  declarations: [components, TwoDecimalDigitsPipe, ContactsComponent, ContactsViewComponent, ContactsEditComponent, ContactsCreateComponent],
+  declarations: [components, TwoDecimalDigitsPipe, ContactsComponent, ContactsViewComponent, ContactsEditComponent, ContactsCreateComponent, LeadsComponent, LeadsViewComponent, LeadsEditComponent, LeadsCreateComponent],
   imports: [CommonModule, MaterialModule, ReactiveFormsModule],
   exports: [components,TwoDecimalDigitsPipe],
 })
