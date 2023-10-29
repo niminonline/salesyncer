@@ -2,9 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import * as AuthActions from '../../store/actions/auth.actions'
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { select } from '@ngrx/store';
-import { selectEmployeeId } from '../../store/selectors/auth.selectors';
-import { selectEmployeeToken } from '../../store/selectors/auth.selectors';
 import { Store } from '@ngrx/store';
 import { selectEmployeeData } from '../../store/selectors/user.selectors'
 import * as UserActions from '../../store/actions/user.actions';

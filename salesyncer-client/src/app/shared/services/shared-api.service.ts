@@ -64,4 +64,19 @@ export class SharedApiService {
   deleteContact(_id:string|null): Observable<any> {
     return this.http.delete<any>(`/delete-contact?_id=${_id}`);
   }
+  createLead(data: object | null): Observable<any> {
+    return this.http.post<any>(`/create-lead`, data);
+  }
+  getLeads(): Observable<any> {
+    return this.http.get<any>(`/get-leads`);
+  }
+  getLead(_id:string): Observable<any> {
+    return this.http.get<any>(`/get-lead?_id=${_id}`);
+  }
+  editLead(data: object | null): Observable<any> {
+    return this.http.post<any>(`/edit-lead`, data);
+  }
+  deleteLead(_id:string|null): Observable<any> {
+    return this.http.delete<any>(`/delete-lead?_id=${_id}`);
+  }
 }
