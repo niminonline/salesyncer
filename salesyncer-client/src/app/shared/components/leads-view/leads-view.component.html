@@ -3,77 +3,106 @@
 
   <div class="display-container">
     <table class="display-table">
-      <tr>
-        <th>Lead ID</th>
-        <td>{{ leadData.leadId }}</td>
-      </tr>
-      <tr>
-        <th>Lead Type</th>
-        <td>{{ leadData.type }}</td>
-      </tr>
-      <tr>
-        <th>Created At</th>
-        <td>{{ leadData.createdAt|date: 'dd/MM/yyyy h:mm a' }}</td>
-      </tr>
-      <tr>
-        <th>Last Updated</th>
-        <td>{{ leadData.updatedAt|date: 'dd/MM/yyyy h:mm a' }}</td>
-      </tr>
-      <tr>
-        <th>Lead Type</th>
-        <td>{{ leadData.type }}</td>
-      </tr>
-     
-      <tr>
-        <th>Status</th>
-        <td>{{ leadData.status }}</td>
-      </tr>
-      <tr>
-        <th>Lead Source</th>
-        <td>{{ leadData.source }}</td>
-      </tr>
-      <tr>
-        <th>Lead Owner</th>
-        <td>{{ leadData.owner }}</td>
-      </tr>
-      <tr>
-        <th>Product Category</th>
-        <td>{{ leadData.productCategory }}</td>
-      </tr>
-      <tr>
-        <th>Product</th>
-        <td>{{ leadData.product }}</td>
-      </tr>
-      <tr>
-        <th>Quoted Price</th>
-        <td>{{ leadData.quotedPrice }}</td>
-      </tr>
-      <tr>
-        <th>Client Email</th>
-        <td>{{ leadData.client.email }}</td>
-      </tr>
-      <tr>
-        <th>Client Contact</th>
-        <td>{{ leadData.client.phone }}</td>
-      </tr>
-      <tr>
-        <th>Associated Branch</th>
-        <td>{{ leadData.branch }}</td>
-      </tr>
+      <div class="table-row-1">
+        <div class="table-block-1">
+          <tr>
+            <th>Lead ID</th>
+            <td>{{ leadData.leadId }}</td>
+          </tr>
+          <tr>
+            <th>Lead Type</th>
+            <td>{{ leadData.type }}</td>
+          </tr>
+          <tr>
+            <th>Created At</th>
+            <td>{{ leadData.createdAt|date: 'dd/MM/yyyy h:mm a' }}</td>
+          </tr>
+          <tr>
+            <th>Last Updated</th>
+            <td>{{ leadData.updatedAt|date: 'dd/MM/yyyy h:mm a' }}</td>
+          </tr>
+          <tr>
+            <th>Lead Type</th>
+            <td>{{ leadData.type }}</td>
+          </tr>
+        
+          <tr>
+            <th>Status</th>
+            <td>{{ leadData.status }}</td>
+          </tr>
+          <tr>
+            <th>Associated Branch</th>
+            <td>{{ leadData.branch }}</td>
+          </tr>
+          <tr>
+            <th>Lead Source</th>
+            <td>{{ leadData.source }}</td>
+          </tr>
+          <tr>
+            <th>Lead Owner</th>
+            <td>{{ leadData.owner }}</td>
+          </tr>
+        </div>
+             
+             
+             
+             <div class="table-block-2">
+        
+          <tr>
+            <th>Product Category</th>
+            <td>{{ leadData.productCategory }}</td>
+          </tr>
+          <tr>
+            <th>Product</th>
+            <td>{{ leadData.product }}</td>
+          </tr>
+          <tr>
+            <th>Quoted Price</th>
+            <td>{{ leadData.quotedPrice }}</td>
+          </tr>
+          <tr>
+            <th>Client Email</th>
+            <td>{{ leadData.client.email }}</td>
+          </tr>
+          <tr>
+            <th>Client ID</th>
+            <td>{{ leadData.client.contactId }}</td>
+          </tr>
+          <tr>
+            <th>Client Contact</th>
+            <td>{{ leadData.client.phone }}</td>
+          </tr>
+          <tr>
+            <th>Address</th>
+            <td>{{ leadData.client.address }}</td>
+          </tr>
+          <tr>
+            <th>Place</th>
+            <td>{{ leadData.client.place }}</td>
+          </tr>
+          <tr>
+            <th>Notes</th>
+            <td>{{ leadData.notes }}</td>
+          </tr>
+             </div>
+      </div>
 
-      <tr>
-        <th>Address</th>
-        <td>{{ leadData.client.address }}</td>
-      </tr>
-      <tr>
-        <th>Place</th>
-        <td>{{ leadData.client.place }}</td>
-      </tr>
-      <tr>
-        <th>Notes</th>
-        <td>{{ leadData.notes }}</td>
-      </tr>
     </table>
+
+    <div class="log-container">
+      
+      <h2 class="log-title">Log</h2>
+      <table class="log-table" >
+
+        <tr *ngFor="let entry of leadData.log">
+          <th>🕒</th>
+          <td>{{ entry }}</td>
+        </tr>
+
+      </table>
+
+
+    </div>
 
     <div class="button-block">
       <button mat-raised-button color="accent" (click)="navEditContact()">

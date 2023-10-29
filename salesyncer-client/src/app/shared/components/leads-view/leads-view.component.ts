@@ -30,6 +30,7 @@ export class LeadsViewComponent implements OnInit {
     this.sharedApi.getLead(this._id).subscribe((response) => {
       if (response) {
         this.leadData = response.LeadData;
+        this.leadData.log = this.leadData.log.reverse();
         console.log('Response', this.leadData);
       } else {
         console.log('Employee fetching from state failed');
