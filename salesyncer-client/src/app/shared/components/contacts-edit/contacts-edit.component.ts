@@ -25,7 +25,7 @@ export class ContactsEditComponent implements OnInit {
   contactGroup!: FormGroup;
   branchData!: any;
   showSpinner: boolean = false;
-  _id!: string|null;
+  _id!: string | null;
   contactsData!: any;
   selectedContactData!: ContactType;
 
@@ -177,44 +177,32 @@ export class ContactsEditComponent implements OnInit {
       confirmButtonText: 'Yes',
     }).then((result) => {
       if (result.isConfirmed) {
-    
-    this.showSpinner = true;
-    this.sharedAPI.deleteContact(this._id).subscribe((response)=>{
-      if (response.status == 'OK') {
-        this.showSpinner = false;
-        // this.store.dispatch(ContactsActions.retrieveContactsData());
+        this.showSpinner = true;
+        this.sharedAPI.deleteContact(this._id).subscribe((response) => {
+          if (response.status == 'OK') {
+            this.showSpinner = false;
+            // this.store.dispatch(ContactsActions.retrieveContactsData());
 
-        Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: 'Contact updated successfully',
-          showConfirmButton: false,
-          timer: 1500,
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'Contact updated successfully',
+              showConfirmButton: false,
+              timer: 1500,
+            });
+
+            const currentroute = this.router.url;
+            if (currentroute.toString().includes('admin')) {
+              this.router.navigate(['admin/contacts']);
+            } else {
+              this.router.navigate(['contacts']);
+            }
+          } else {
+            this.showSpinner = false;
+            Swal.fire(response.status, response.message, 'error');
+          }
         });
-        
-        
-        const currentroute= this.router.url;
-        if(currentroute.toString().includes('admin'))
-        {
-         this.router.navigate(['admin/contacts']);
-        }
-        else{
-          this.router.navigate(['contacts']);
-        }
-      } else {
-        this.showSpinner = false;
-        Swal.fire(response.status, response.message, 'error');
       }
-
-    })
+    });
   }
-
-  })
-
-  }
-
-
-
-
-
 }

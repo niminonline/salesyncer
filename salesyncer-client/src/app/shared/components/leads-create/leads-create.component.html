@@ -6,7 +6,7 @@
     <!-- <mat-spinner class="spinner"></mat-spinner> -->
   </div>
 
-  <mat-card class="createCard">
+  <mat-card class="formCard">
     <!-- <mat-card-content> -->
 
     <form [formGroup]="leadsGroup" (ngSubmit)="submitLeads(leadsGroup)">
@@ -22,7 +22,7 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
-        
+
         <mat-form-field appearance="outline">
           <mat-label>Select lead type</mat-label>
           <mat-select name="type" formControlName="type">
@@ -32,9 +32,8 @@
           </mat-select>
         </mat-form-field>
       </div>
-      
-      <div class="row">
 
+      <div class="row">
         <mat-form-field appearance="outline">
           <mat-label>Select Client</mat-label>
           <mat-select name="client" formControlName="client">
@@ -47,7 +46,6 @@
           </mat-select>
         </mat-form-field>
 
-
         <mat-form-field appearance="outline">
           <mat-label>Select Source</mat-label>
           <mat-select name="source" formControlName="source">
@@ -59,13 +57,9 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
-        
-        
       </div>
 
-
       <div class="row">
-
         <mat-form-field appearance="outline">
           <mat-label>Select Product category</mat-label>
           <mat-select name="productCategory" formControlName="productCategory">
@@ -78,10 +72,9 @@
           </mat-select>
         </mat-form-field>
 
-
         <mat-form-field appearance="outline">
           <mat-label>Select Product</mat-label>
-          <mat-select name="products" formControlName="products">
+          <mat-select name="product" formControlName="product">
             <mat-option
               *ngFor="let product of productsData"
               [value]="product.productName"
@@ -90,60 +83,60 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
-
-
-    
-        
-        
-        
       </div>
-      
-      
-    
 
       <div class="row">
-       
         <mat-form-field appearance="outline">
           <mat-label>Quoted Price</mat-label>
           <input matInput required formControlName="quotedPrice" />
-          
+
           <mat-error *ngIf="leadsGroup.get('quotedPrice')?.errors?.['pattern']"
             >Enter a valid price</mat-error
           >
         </mat-form-field>
-      
 
-
-      <mat-form-field appearance="outline">
-        <mat-label>Select lead owner</mat-label>
-        <mat-select name="owner" formControlName="owner">
-          <mat-option
-            *ngFor="let employee of employeesData"
-            [value]="employee.name"
-          >
-            {{ employee.name }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
+        <mat-form-field appearance="outline">
+          <mat-label>Select lead owner</mat-label>
+          <mat-select name="owner" formControlName="owner">
+            <mat-option
+              *ngFor="let employee of employeesData"
+              [value]="employee.name"
+            >
+              {{ employee.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
       <div class="row">
-        
-
         <mat-form-field appearance="outline" class="notes-input">
           <mat-label>Notes</mat-label>
-          <textarea matInput placeholder="Add notes..." name="notes" formControlName="notes"></textarea>
-          
+          <textarea
+            matInput
+            placeholder="Add notes..."
+            name="notes"
+            formControlName="notes"
+          ></textarea>
         </mat-form-field>
       </div>
 
-      <button
-        class="signupButton"
-        mat-raised-button
-        color="primary"
-        type="submit"
-      >
-       Create Lead
-      </button>
+      <div class="button-block">
+        <button
+          class="submitButton"
+          mat-raised-button
+          color="primary"
+          type="submit"
+        >
+          Create Lead
+        </button>
+        <button
+          class="cancelButton"
+          mat-raised-button
+          color="accent"
+          (click)="navLeads($event)"
+        >
+          Cancel
+        </button>
+      </div>
     </form>
 
     <!-- </mat-card-content> -->

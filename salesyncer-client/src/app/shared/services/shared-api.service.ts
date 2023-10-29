@@ -70,7 +70,7 @@ export class SharedApiService {
   getLeads(): Observable<any> {
     return this.http.get<any>(`/get-leads`);
   }
-  getLead(_id:string): Observable<any> {
+  getLead(_id:string|null): Observable<any> {
     return this.http.get<any>(`/get-lead?_id=${_id}`);
   }
   editLead(data: object | null): Observable<any> {

@@ -1,1 +1,87 @@
-<p>leads-view works!</p>
+<div class="container-main-body">
+  <h1 class="title">Leads Details</h1>
+
+  <div class="display-container">
+    <table class="display-table">
+      <tr>
+        <th>Lead ID</th>
+        <td>{{ leadData.leadId }}</td>
+      </tr>
+      <tr>
+        <th>Lead Type</th>
+        <td>{{ leadData.type }}</td>
+      </tr>
+      <tr>
+        <th>Created At</th>
+        <td>{{ leadData.createdAt|date: 'dd/MM/yyyy h:mm a' }}</td>
+      </tr>
+      <tr>
+        <th>Last Updated</th>
+        <td>{{ leadData.updatedAt|date: 'dd/MM/yyyy h:mm a' }}</td>
+      </tr>
+      <tr>
+        <th>Lead Type</th>
+        <td>{{ leadData.type }}</td>
+      </tr>
+     
+      <tr>
+        <th>Status</th>
+        <td>{{ leadData.status }}</td>
+      </tr>
+      <tr>
+        <th>Lead Source</th>
+        <td>{{ leadData.source }}</td>
+      </tr>
+      <tr>
+        <th>Lead Owner</th>
+        <td>{{ leadData.owner }}</td>
+      </tr>
+      <tr>
+        <th>Product Category</th>
+        <td>{{ leadData.productCategory }}</td>
+      </tr>
+      <tr>
+        <th>Product</th>
+        <td>{{ leadData.product }}</td>
+      </tr>
+      <tr>
+        <th>Quoted Price</th>
+        <td>{{ leadData.quotedPrice }}</td>
+      </tr>
+      <tr>
+        <th>Client Email</th>
+        <td>{{ leadData.client.email }}</td>
+      </tr>
+      <tr>
+        <th>Client Contact</th>
+        <td>{{ leadData.client.phone }}</td>
+      </tr>
+      <tr>
+        <th>Associated Branch</th>
+        <td>{{ leadData.branch }}</td>
+      </tr>
+
+      <tr>
+        <th>Address</th>
+        <td>{{ leadData.client.address }}</td>
+      </tr>
+      <tr>
+        <th>Place</th>
+        <td>{{ leadData.client.place }}</td>
+      </tr>
+      <tr>
+        <th>Notes</th>
+        <td>{{ leadData.notes }}</td>
+      </tr>
+    </table>
+
+    <div class="button-block">
+      <button mat-raised-button color="accent" (click)="navEditContact()">
+        Edit
+      </button>
+      <button mat-raised-button color="primary" (click)="navContacts()">
+        Back
+      </button>
+    </div>
+  </div>
+</div>

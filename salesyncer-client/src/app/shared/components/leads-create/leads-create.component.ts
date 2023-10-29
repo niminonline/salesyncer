@@ -140,7 +140,7 @@ export class LeadsCreateComponent implements OnInit {
       client: ['', [Validators.required]],
       source: ['', [Validators.required]],
       productCategory: ['', [Validators.required]],
-      products: ['', [Validators.required]],
+      product: ['', [Validators.required]],
       quotedPrice: ['', [Validators.pattern(/^\d+(\.\d+)?$/)]],
       owner: [this.currentOwner, [Validators.required]],
       notes: [''],
@@ -208,6 +208,17 @@ export class LeadsCreateComponent implements OnInit {
       });
     } else {
       Swal.fire('Error', 'Please fill the fields without errors', 'error');
+    }
+  }
+
+  navLeads(event: Event) {
+    event.preventDefault();
+
+    const currentroute = this.router.url;
+    if (currentroute.toString().includes('admin')) {
+      this.router.navigate(['admin/leads']);
+    } else {
+      this.router.navigate(['leads']);
     }
   }
 }

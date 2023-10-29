@@ -22,12 +22,23 @@ const components = [
   HeaderComponent,
   SideNavbarMenuComponent,
   TableComponent,
-  UpdateEmployeeComponent
+  UpdateEmployeeComponent,
 ];
 
 @NgModule({
-  declarations: [components, TwoDecimalDigitsPipe, ContactsComponent, ContactsViewComponent, ContactsEditComponent, ContactsCreateComponent, LeadsComponent, LeadsViewComponent, LeadsEditComponent, LeadsCreateComponent],
+  declarations: [
+    components,
+    TwoDecimalDigitsPipe,
+    ContactsComponent,
+    ContactsViewComponent,
+    ContactsEditComponent,
+    ContactsCreateComponent,
+    LeadsComponent,
+    LeadsViewComponent,
+    LeadsEditComponent,
+    LeadsCreateComponent,
+  ],
   imports: [CommonModule, MaterialModule, ReactiveFormsModule],
-  exports: [components,TwoDecimalDigitsPipe],
+  exports: [components, TwoDecimalDigitsPipe],
 })
 export class SharedModule {}

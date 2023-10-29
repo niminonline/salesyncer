@@ -3,6 +3,8 @@ import LeadSource from "../entities/leadSource";
 import ProductCategory from "../entities/productCategory";
 import Products from "../entities/products";
 import BusinessCounter from "../entities/BusinessCounter";
+import Contacts from "../entities/contacts";
+import moment from 'moment';
 
 ////==============================================
 export const qGetLeadsSourceData = async () => {
@@ -37,7 +39,7 @@ export const qGetProductsData = async () => {
 ////==============================================
 export const qGetLeadsData = async () => {
   try {
-    return await Leads.find({});
+    return await Leads.find({}).populate('client').sort({_id:-1});
   } catch (error) {
     console.log(error);
   }
@@ -60,7 +62,7 @@ export const qCreateLeadsData = async (newLeadData: object) => {
 
 export const qGetLeadDataById = async (_id: string) => {
   try {
-    return await Leads.findById(_id);
+    return await Leads.findById(_id).populate('client');
   } catch (error) {
     console.log(error);
   }
@@ -70,7 +72,7 @@ export const qGetLeadDataById = async (_id: string) => {
 
 export const qUpdateLeadDataById = async (
   _id: string,
-  newLeadData: object
+  newLeadData: any
   ) => {
     try {
       console.log("Emp id and data from leads repo",_id,newLeadData);
@@ -79,7 +81,11 @@ export const qUpdateLeadDataById = async (
       };
       // console.log("Update ops", updateOperation)
       const response = await Leads.findByIdAndUpdate(_id, updateOperation);
-      // console.log("Update ops response", response)
+      if(response){
+        const currentDate = moment().format('DD/MM/YYYY hh:mm a');
+
+        await Leads.findByIdAndUpdate(_id,{$push:{log:`${currentDate}: Lead updated by ${newLeadData.owner}`}})
+      }
       return response;
     } catch (error) {}
   };

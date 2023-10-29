@@ -7,7 +7,7 @@ const leadsSchema = new mongoose.Schema(
     },
     client: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Contact",
+      ref: "Contacts",
     },
     leadId: {
       type: String,

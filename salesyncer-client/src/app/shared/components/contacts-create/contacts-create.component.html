@@ -113,14 +113,24 @@
         </mat-form-field>
       </div>
 
-      <button
-        class="signupButton"
+      <div class="button-block">
+        <button
+          class="signupButton"
+          mat-raised-button
+          color="primary"
+          type="submit"
+        >
+          Add User
+        </button>
+        <button
+        class="editButton"
         mat-raised-button
-        color="primary"
-        type="submit"
-      >
-        Add User
-      </button>
+        color="accent"
+        (click)="navContacts($event)"
+        >
+        Cancel
+            </button>
+      </div>
     </form>
 
     <!-- </mat-card-content> -->

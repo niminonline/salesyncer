@@ -9,13 +9,13 @@ const editLeadData = async (newLeadData: any) => {
       const dataToUpdate = {
         branch:newLeadData.branch,
         type:newLeadData.type,
-        client:newLeadData.type,
+        status:newLeadData.status,
         source:newLeadData.source,
         productCategory:newLeadData.productCategory,
         product:newLeadData.product,
         quotedPrice:newLeadData.quotedPrice,
         owner:newLeadData.owner,
-        notes:newLeadData.owner,
+        notes:newLeadData.notes,
       };
 
       const updateResponse = await qUpdateLeadDataById(_id, dataToUpdate);

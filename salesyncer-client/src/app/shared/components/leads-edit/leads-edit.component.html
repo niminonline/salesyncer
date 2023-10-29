@@ -1,1 +1,141 @@
-<p>leads-edit works!</p>
+<div class="component-body">
+    <h1 class="heading">Edit Lead</h1>
+  
+    <div class="spinner-container" *ngIf="showSpinner">
+      <img src="assets/images/loading1.gif" alt="" />
+      <!-- <mat-spinner class="spinner"></mat-spinner> -->
+    </div>
+  
+    <mat-card class="formCard">
+      <!-- <mat-card-content> -->
+  
+      <form [formGroup]="leadsGroup" (ngSubmit)="submitLeads(leadsGroup)">
+        <div class="row">
+          <mat-form-field appearance="outline">
+            <mat-label>Select branch</mat-label>
+            <mat-select name="branch" formControlName="branch">
+              <mat-option
+                *ngFor="let branch of branchData"
+                [value]="branch.branchName"
+              >
+                {{ branch.branchName }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+  
+          <mat-form-field appearance="outline">
+            <mat-label>Select lead type</mat-label>
+            <mat-select name="type" formControlName="type">
+              <mat-option value="Cold">Cold</mat-option>
+              <mat-option value="Warm">Warm</mat-option>
+              <mat-option value="Hot">Hot</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+  
+        <div class="row">
+          <mat-form-field appearance="outline">
+            <mat-label>Select Status</mat-label>
+            <mat-select name="status" formControlName="status">
+                <mat-option value="In Progress">In Progess</mat-option>
+                <mat-option value="Closed">Closed</mat-option>
+            </mat-select>
+          </mat-form-field>
+  
+          <mat-form-field appearance="outline">
+            <mat-label>Select Source</mat-label>
+            <mat-select name="source" formControlName="source">
+              <mat-option
+                *ngFor="let leadSource of leadSourceData"
+                [value]="leadSource.leadSource"
+              >
+                {{ leadSource.leadSource }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+  
+        <div class="row">
+          <mat-form-field appearance="outline">
+            <mat-label>Select Product category</mat-label>
+            <mat-select name="productCategory" formControlName="productCategory">
+              <mat-option
+                *ngFor="let productCategory of productCategoryData"
+                [value]="productCategory.productCategory"
+              >
+                {{ productCategory.productCategory }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+  
+          <mat-form-field appearance="outline">
+            <mat-label>Select Product</mat-label>
+            <mat-select name="product" formControlName="product">
+              <mat-option
+                *ngFor="let product of productsData"
+                [value]="product.productName"
+              >
+                {{ product.productName }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+  
+        <div class="row">
+          <mat-form-field appearance="outline">
+            <mat-label>Quoted Price</mat-label>
+            <input matInput required formControlName="quotedPrice" />
+  
+            <mat-error *ngIf="leadsGroup.get('quotedPrice')?.errors?.['pattern']"
+              >Enter a valid price</mat-error
+            >
+          </mat-form-field>
+  
+          <mat-form-field appearance="outline">
+            <mat-label>Select lead owner</mat-label>
+            <mat-select name="owner" formControlName="owner">
+              <mat-option
+                *ngFor="let employee of employeesData"
+                [value]="employee.name"
+              >
+                {{ employee.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-form-field appearance="outline" class="notes-input">
+            <mat-label>Notes</mat-label>
+            <textarea
+              matInput
+              placeholder="Add notes..."
+              name="notes"
+              formControlName="notes"
+            ></textarea>
+          </mat-form-field>
+        </div>
+  
+        <div class="button-block">
+          <button
+            class="submitButton"
+            mat-raised-button
+            color="primary"
+            type="submit"
+          >
+            Update Lead
+          </button>
+          <button
+            class="cancelButton"
+            mat-raised-button
+            color="accent"
+            (click)="navLeads($event)"
+          >
+            Cancel
+          </button>
+        </div>
+      </form>
+  
+      <!-- </mat-card-content> -->
+    </mat-card>
+  </div>
+  

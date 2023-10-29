@@ -120,4 +120,16 @@ export class ContactsCreateComponent implements OnInit {
       Swal.fire('Error', 'Please fill the fields without errors', 'error');
     }
   }
+
+  navContacts(event: Event) {
+    event.preventDefault();
+
+    const currentroute = this.router.url;
+    if (currentroute.toString().includes('admin')) {
+      this.router.navigate(['admin/contacts']);
+    } else {
+      this.router.navigate(['contacts']);
+    }
+  }
+
 }
