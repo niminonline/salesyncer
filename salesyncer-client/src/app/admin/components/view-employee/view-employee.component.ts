@@ -21,6 +21,8 @@ export class ViewEmployeeComponent implements OnInit{
   pincode!: string | undefined;
   role!: string | undefined;
   designation!: string | undefined;
+  casualLeaveBalance!: string | undefined;
+  sickLeaveBalance!: string | undefined;
 
 
 
@@ -40,6 +42,8 @@ export class ViewEmployeeComponent implements OnInit{
     this.pincode = this.selectedEmpData.address.pincode;
     this.role = this.selectedEmpData.role;
     this.designation = this.selectedEmpData.designation;
+    this.casualLeaveBalance = this.selectedEmpData.casualLeaveBalance;
+    this.sickLeaveBalance = this.selectedEmpData.sickLeaveBalance;
 
   }
 
@@ -48,5 +52,7 @@ export class ViewEmployeeComponent implements OnInit{
   navEmployees(){
     this.router.navigate(['admin/employees']);
   }
+
+  
 
 }

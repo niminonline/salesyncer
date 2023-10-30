@@ -1,10 +1,14 @@
 @import "src/styles.scss";
 
-.component-body {
-  width: 250px;
+
+.component-sidebar-body{
+ min-width:15vw
 }
+
 .menu {
   margin: 10px 0px;
+ 
+
 }
 
 .menu-button {
@@ -26,4 +30,8 @@
 mat-flat-button{
   background-color: $primary-blue;
 
+}
+.menu-container{
+ padding-top: 3px;
+  width: 100%;
 }

@@ -31,6 +31,7 @@ export class LeadsComponent implements OnInit, AfterViewInit  {
     'type',
     'product',
     'status',
+    'lastUpdate',
     'actions',
   ];
 

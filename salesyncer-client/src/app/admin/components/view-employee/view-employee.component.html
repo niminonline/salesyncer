@@ -1,48 +1,62 @@
 <div class="container-main-body">
+  <button
+    mat-icon-button
+    color="primary"
+    aria-label="back arrow"
+    (click)="navEmployees()"
+  >
+    <mat-icon>arrow_back</mat-icon>
+  </button>
 
+  <div class="user-container">
+    <h1 class="title">Profile</h1>
 
-    <button mat-icon-button color="primary" aria-label="back arrow" (click)="navEmployees()">
-        <mat-icon>arrow_back</mat-icon>
-      </button>
+    <table class="user-table">
+      <tr>
+        <th>Name</th>
+        <td>{{ name }}</td>
+      </tr>
+      <tr>
+        <th>Employee ID</th>
+        <td>{{ empId }}</td>
+      </tr>
+      <tr>
+        <th>Email</th>
+        <td>{{ email }}</td>
+      </tr>
+      <tr>
+        <th>Mobile</th>
+        <td>{{ phone }}</td>
+      </tr>
+      <tr>
+        <th>Branch</th>
+        <td>{{ branch }}</td>
+      </tr>
+      <tr>
+        <th>Role</th>
+        <td>{{ role }}</td>
+      </tr>
+      <tr>
+        <th>Designation</th>
+        <td>{{ designation }}</td>
+      </tr>
+      <tr>
+        <th>Casual leave balance</th>
+        <td>{{ casualLeaveBalance }}</td>
+      </tr>
+      <tr>
+        <th>Sick leave balance</th>
+        <td>{{ sickLeaveBalance }}</td>
+      </tr>
 
-    <div class="user-container">
+      <tr>
+        <th>Address</th>
+        <td>
+          {{ addressLine1 }}, {{ addressLine2 }}, {{ place }}, {{ pincode }}
+        </td>
+      </tr>
+    </table>
 
-      <h1 class="title">Profile</h1>
- 
-        <table class="user-table">
-          <tr>
-            <th>Name</th>
-            <td>{{name}}</td>
-          </tr>
-          <tr>
-            <th>Employee ID</th>
-            <td>{{empId}}</td>
-          </tr>
-          <tr>
-            <th>Email</th>
-            <td>{{email}}</td>
-          </tr>
-          <tr>
-            <th>Mobile</th>
-            <td>{{phone}}</td>
-          </tr>
-          <tr>
-            <th>Role</th>
-            <td>{{role}}</td>
-          </tr>
-          <tr>
-            <th>Designation</th>
-            <td>{{designation}}</td>
-          </tr>
-          <tr>
-            <th>Address</th>
-            <td>{{addressLine1}}, {{addressLine2}}, {{place}}, {{pincode}}</td>
-          </tr>
-         
-         
-          
-        </table>
-
+    
+  </div>
 </div>
-
-
