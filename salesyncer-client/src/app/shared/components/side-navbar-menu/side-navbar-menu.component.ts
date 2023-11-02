@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 })
 export class SideNavbarMenuComponent {
   @Input() menuItems!:any;
+  selectedMenuItem: number | null = null;
+
 
   constructor(private router:Router){}
   navigateToLink(link: string) {
