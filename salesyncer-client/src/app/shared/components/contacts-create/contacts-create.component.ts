@@ -40,15 +40,11 @@ export class ContactsCreateComponent implements OnInit {
       type: ['', [Validators.required]],
       place: ['', [Validators.required]],
       pincode: ['', [Validators.required, Validators.pattern('^[0-9]{6}$')]],
-      language: [
-        '',
-        [Validators.required],
-      ],
+      language: ['', [Validators.required]],
     });
   }
 
   getBranchData() {
-
     try {
       this.sharedAPI.getBranches().subscribe((response: any) => {
         if (response.status == 'OK') {
@@ -97,12 +93,12 @@ export class ContactsCreateComponent implements OnInit {
       this.sharedAPI.createContact(body).subscribe((response) => {
         // console.log(response);
 
-        this.showSpinner=true;
+        this.showSpinner = true;
         if (response && response.status !== 'OK') {
-          this.showSpinner=false;
+          this.showSpinner = false;
           Swal.fire('Error', response.message, 'error');
         } else {
-          this.showSpinner=false;
+          this.showSpinner = false;
           Swal.fire({
             position: 'center',
             icon: 'success',
@@ -111,9 +107,12 @@ export class ContactsCreateComponent implements OnInit {
             timer: 1500,
           });
 
-          const currentUrl = this.router.url;
-          this.router.navigate(['contacts'])
-
+          const currentroute = this.router.url;
+          if (currentroute.toString().includes('admin')) {
+            this.router.navigate(['admin/contacts']);
+          } else {
+            this.router.navigate(['contacts']);
+          }
         }
       });
     } else {
@@ -131,5 +130,4 @@ export class ContactsCreateComponent implements OnInit {
       this.router.navigate(['contacts']);
     }
   }
-
 }

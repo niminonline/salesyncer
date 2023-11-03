@@ -1,9 +1,3 @@
-import {
-  qCreateContactData,
-  qGetContactCount,
-  qIncContactCount,
-} from "../database/repositories/contacts-repo";
-
 import { qCreateLeadsData,qGetLeadsCount,qIncLeadCount } from "../database/repositories/leads-repo";
 import moment from 'moment'; 
 

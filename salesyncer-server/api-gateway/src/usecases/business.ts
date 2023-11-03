@@ -46,6 +46,8 @@ export const deleteContactDetails = async(data:object)=>{
     //publishChannel, publishData, publishAction, subscribeChannel
 return await publishAndResponse('business-service', data, 'deleteContactDetails', 'ApiRes-deleteContactDetails');
 }
+
+//==========================================Leads========================================================
 export const createLeadDetails = async(data:object)=>{
 
     //publishChannel, publishData, publishAction, subscribeChannel
@@ -71,3 +73,36 @@ export const deleteLeadDetails = async(data:object)=>{
     //publishChannel, publishData, publishAction, subscribeChannel
 return await publishAndResponse('business-service', data, 'deleteLeadDetails', 'ApiRes-deleteLeadDetails');
 }
+
+
+
+//==========================================Activity========================================================
+export const createActivityDetails = async(data:object)=>{
+
+    //publishChannel, publishData, publishAction, subscribeChannel
+return await publishAndResponse('business-service', data, 'createActivityDetails', 'ApiRes-createActivityDetails');
+}
+export const editActivityDetails = async(data:object)=>{
+
+    //publishChannel, publishData, publishAction, subscribeChannel
+return await publishAndResponse('business-service', data, 'editActivityDetails', 'ApiRes-editActivityDetails');
+}
+export const getActivityDetails = async(data:object)=>{
+   
+    //publishChannel, publishData, publishAction, subscribeChannel
+return await publishAndResponse('business-service', data, 'getActivityDetails', 'ApiRes-getActivityDetails');
+}
+export const getActivitiesDetails = async()=>{
+    const data={};
+    //publishChannel, publishData, publishAction, subscribeChannel
+    return await publishAndResponse('business-service', data, 'getActivitiesDetails', 'ApiRes-getActivitiesDetails');
+}
+export const deleteActivityDetails = async(data:object)=>{
+   
+    //publishChannel, publishData, publishAction, subscribeChannel
+return await publishAndResponse('business-service', data, 'deleteActivityDetails', 'ApiRes-deleteActivityDetails');
+}
+//=================================================================================================================
+
+
+

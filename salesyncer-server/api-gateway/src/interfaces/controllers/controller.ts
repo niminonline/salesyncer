@@ -32,6 +32,11 @@ import {
   getProductCategoryDetails,
   getProductsDetails,
   getLeadSourceDetails,
+  createActivityDetails,
+  editActivityDetails,
+  getActivityDetails,
+  getActivitiesDetails,
+  deleteActivityDetails,
 } from "../../usecases/business";
 
 //=============================Login Controllers===================================
@@ -572,3 +577,111 @@ export const deleteLead = async (req: Request, res: Response) => {
 };
 
 //=============================End Lead controllers================================
+
+
+
+
+//====================================Activity Controllers===============================
+export const createActivity = async (req: Request, res: Response) => {
+  try {
+    const headers = req.headers;
+    const data = req.body;
+    console.log("create activity data,header", data, headers);
+    const response: any = await verifyToken(headers);
+    if (response.status == "OK") {
+      const response: any = await createActivityDetails(data);
+
+      delete response.requestId;
+      delete response.action;
+      res.json(response);
+    } else {
+      res.json(response);
+    }
+  } catch (error) {
+    console.error("Error in /auth:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+export const editActivity = async (req: Request, res: Response) => {
+  try {
+    const headers = req.headers;
+    const data = req.body;
+    console.log("edit activity data,header", data, headers);
+    const response: any = await verifyToken(headers);
+    if (response.status == "OK") {
+      const response: any = await editActivityDetails(data);
+
+      delete response.requestId;
+      delete response.action;
+      res.json(response);
+    } else {
+      res.json(response);
+    }
+  } catch (error) {
+    console.error("Error in /auth:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+export const getActivity = async (req: Request, res: Response) => {
+  try {
+    const headers = req.headers;
+    const { _id } = req.query;
+    const data = { _id };
+    const response: any = await verifyToken(headers);
+    if (response.status == "OK") {
+      const response: any = await getActivityDetails(data);
+
+      delete response.requestId;
+      delete response.action;
+      res.json(response);
+    } else {
+      res.json(response);
+    }
+  } catch (error) {
+    console.error("Error in /auth:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+export const getActivities = async (req: Request, res: Response) => {
+  try {
+    const headers = req.headers;
+    const response: any = await verifyToken(headers);
+    if (response.status == "OK") {
+      const response: any = await getActivitiesDetails();
+
+      delete response.requestId;
+      delete response.action;
+      res.json(response);
+    } else {
+      res.json(response);
+    }
+  } catch (error) {
+    console.error("Error in /auth:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+export const deleteActivity = async (req: Request, res: Response) => {
+  try {
+    const headers = req.headers;
+    const { _id } = req.query;
+    const data = { _id };
+    const response: any = await verifyToken(headers);
+    if (response.status == "OK") {
+      const response: any = await deleteActivityDetails(data);
+
+      delete response.requestId;
+      delete response.action;
+      res.json(response);
+    } else {
+      res.json(response);
+    }
+  } catch (error) {
+    console.error("Error in /auth:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+//=============================End Activity controllers================================
+
+

@@ -13,10 +13,10 @@ const productsSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "ProductCategory",
   },
-  subcategory: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "ProductSubCategory",
-  },
+  // subcategory: {
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   ref: "ProductSubCategory",
+  // },
   status: {
     type: String,
     required: true,

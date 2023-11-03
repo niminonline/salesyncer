@@ -1,10 +1,15 @@
 import { publishToChannel } from "../../services/redisOps";
+import createActivityData from "../../usecases/createActivityData";
 import createContactData from "../../usecases/createContactData";
 import createLeadData from "../../usecases/createLeadData ";
+import deleteActivityData from "../../usecases/deleteActivityData";
 import deleteContactData from "../../usecases/deleteContactData";
 import deleteLeadData from "../../usecases/deleteLeadData";
+import editActivityData from "../../usecases/editActivityData";
 import editContactData from "../../usecases/editContactData";
 import editLeadData from "../../usecases/editLeadData";
+import getActivitiesData from "../../usecases/getActivitiesData";
+import getActivityData from "../../usecases/getActivityData";
 import getContactData from "../../usecases/getContactData";
 import getContactsData from "../../usecases/getContactsData";
 import getLeadData from "../../usecases/getLeadData";
@@ -404,3 +409,146 @@ export const deleteLeadDetails = async (data: any) => {
 };
 
 //============================End Lead Controllers=====================================================
+
+
+
+
+//============================Activity Controllers=====================================================
+
+export const createActivityDetails = async (data: any) => {
+  try {
+    // console.log("Req body of Activity Controller", data);
+    const { requestId, action } = data;
+    // console.log("email of Activity Controller", email);
+
+    const response: any = await createActivityData(data);
+
+    if (response) {
+      response.requestId = requestId;
+      response.action = action;
+      publishToChannel("ApiRes-createActivityDetails", response);
+    } else {
+      publishToChannel("ApiRes-createActivityDetails", {
+        status: "FAILED",
+        message: "Activity creation failed",
+      });
+    }
+
+    // console.log("myresponse", response);
+  } catch (error) {
+    console.error(error);
+  }
+};
+export const editActivityDetails = async (data: any) => {
+  try {
+    // console.log("Req body of Activity Controller", data);
+    const { requestId, action } = data;
+    // console.log("email of Activity Controller", email);
+
+    const response: any = await editActivityData(data);
+
+    if (response) {
+      response.requestId = requestId;
+      response.action = action;
+      publishToChannel("ApiRes-editActivityDetails", response);
+    } else {
+      publishToChannel("ApiRes-editActivityDetails", {
+        status: "FAILED",
+        message: "Activity updation failed",
+      });
+    }
+    // console.log("myresponse", response);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getActivityDetails = async (data: any) => {
+  try {
+    const { _id, requestId, action } = data;
+    // console.log("Request id, action from activity controller", requestId, action);
+    const response: any = await getActivityData(_id);
+    if (response.status == "OK") {
+      const data = {
+        activityData: response.activityData,
+        requestId,
+        action,
+        status: "OK",
+        message: "Activity data fetched successfully",
+      };
+      // console.log("fetched employees data", data);
+      publishToChannel("ApiRes-getActivityDetails", data);
+    } else {
+      publishToChannel("ApiRes-getActivityDetails", {
+        requestId,
+        action,
+        status: "FAILED",
+        message: response.message,
+      });
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getActivitiesDetails = async (data: any) => {
+  try {
+    const { requestId, action } = data;
+    // console.log("Request id, action from activities controller", requestId, action);
+    const response: any = await getActivitiesData();
+    if (response.status == "OK") {
+      const data = {
+        activitiesData: response.activitiesData,
+        requestId,
+        action,
+        status: "OK",
+        message: "Activities data fetched successfully",
+      };
+      // console.log("fetched activities data", data);
+      publishToChannel("ApiRes-getActivitiesDetails", data);
+    } else {
+      publishToChannel("ApiRes-getActivitiesDetails", {
+        requestId,
+        action,
+        status: "FAILED",
+        message: response.message,
+      });
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const deleteActivityDetails = async (data: any) => {
+  try {
+    const { _id, requestId, action } = data;
+    console.log(
+      "Request id, action from activity controller",
+      requestId,
+      action,
+      _id
+    );
+    const response: any = await deleteActivityData(_id);
+    if (response.status == "OK") {
+      const data = {
+        requestId,
+        action,
+        status: "OK",
+        message: "Activity deleted successfully",
+      };
+      // console.log("fetched employees data", data);
+      publishToChannel("ApiRes-deleteActivityDetails", data);
+    } else {
+      publishToChannel("ApiRes-deleteActivityDetails", {
+        requestId,
+        action,
+        status: "FAILED",
+        message: response.message,
+      });
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+//============================End Activity Controllers=====================================================

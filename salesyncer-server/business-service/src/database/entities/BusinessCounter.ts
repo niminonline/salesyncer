@@ -9,6 +9,10 @@ const businessCounterSchema = new mongoose.Schema({
     type: Number,
     default:1
   },
+  activityCounter: {
+    type: Number,
+    default:1
+  },
 
 });
 

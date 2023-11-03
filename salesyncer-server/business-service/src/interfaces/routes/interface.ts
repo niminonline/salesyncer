@@ -1,5 +1,24 @@
 import { Redis } from "ioredis";
-import { createContactDetails, editContactDetails, getContactDetails, getContactsDetails,deleteContactDetails, createLeadDetails, editLeadDetails, getLeadDetails, getLeadsDetails, deleteLeadDetails, getLeadSourceDetails, getProductCategoryDetails, getProductsDetails } from "../controllers/controller";
+import {
+  createContactDetails,
+  editContactDetails,
+  getContactDetails,
+  getContactsDetails,
+  deleteContactDetails,
+  createLeadDetails,
+  editLeadDetails,
+  getLeadDetails,
+  getLeadsDetails,
+  deleteLeadDetails,
+  getLeadSourceDetails,
+  getProductCategoryDetails,
+  getProductsDetails,
+  createActivityDetails,
+  editActivityDetails,
+  getActivityDetails,
+  getActivitiesDetails,
+  deleteActivityDetails,
+} from "../controllers/controller";
 // import { adminLogin,employeeLogin } from "../controllers/controller";
 
 const redisSubscriber = new Redis();
@@ -21,7 +40,6 @@ redisSubscriber.on("message", (channel: string, message: any) => {
     console.log("Data from api", data);
 
     switch (data.action) {
-
       case "getLeadSourceDetails":
         getLeadSourceDetails(data);
         break;
@@ -34,15 +52,15 @@ redisSubscriber.on("message", (channel: string, message: any) => {
       case "createContactDetails":
         createContactDetails(data);
         break;
-    
+
       case "editContactDetails":
         editContactDetails(data);
         break;
-    
+
       case "getContactDetails":
         getContactDetails(data);
         break;
-    
+
       case "getContactsDetails":
         getContactsDetails(data);
         break;
@@ -52,20 +70,38 @@ redisSubscriber.on("message", (channel: string, message: any) => {
       case "createLeadDetails":
         createLeadDetails(data);
         break;
-    
+
       case "editLeadDetails":
         editLeadDetails(data);
         break;
-    
+
       case "getLeadDetails":
         getLeadDetails(data);
         break;
-    
+
       case "getLeadsDetails":
         getLeadsDetails(data);
         break;
       case "deleteLeadDetails":
         deleteLeadDetails(data);
+        break;
+      case "createActivityDetails":
+        createActivityDetails(data);
+        break;
+
+      case "editActivityDetails":
+        editActivityDetails(data);
+        break;
+
+      case "getActivityDetails":
+        getActivityDetails(data);
+        break;
+
+      case "getActivitiesDetails":
+        getActivitiesDetails(data);
+        break;
+      case "deleteActivityDetails":
+        deleteActivityDetails(data);
         break;
     }
   }

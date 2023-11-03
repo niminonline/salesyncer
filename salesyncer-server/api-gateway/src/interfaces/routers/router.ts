@@ -28,6 +28,11 @@ import {
   getLeadSource,
   getProductCategory,
   getProducts,
+  createActivity,
+  editActivity,
+  getActivity,
+  getActivities,
+  deleteActivity,
 
 } from "../controllers/controller";
 
@@ -68,7 +73,14 @@ router.post("/edit-lead", editLead);
 router.get("/get-lead", getLead);
 router.get("/get-leads", getLeads);
 router.delete("/delete-lead", deleteLead);
-router.get("/get-leads", getLeads);
+
+
+
+router.post("/create-activity", createActivity);
+router.post("/edit-activity", editActivity);
+router.get("/get-activity", getActivity);
+router.get("/get-activities", getActivities);
+router.delete("/delete-activity", deleteActivity);
 
 
 export default router;
