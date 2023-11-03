@@ -1,4 +1,4 @@
-import { qGetProductsData } from "../database/repositories/leads-repo";
+import { qGetProductsData } from "../database/repositories/products-repo";
 
 const getProductsData = async (): Promise<object | undefined> => {
   try {

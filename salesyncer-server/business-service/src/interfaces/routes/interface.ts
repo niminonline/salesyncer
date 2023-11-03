@@ -18,6 +18,20 @@ import {
   getActivityDetails,
   getActivitiesDetails,
   deleteActivityDetails,
+  createProductDetails,
+  editProductDetails,
+  getProductDetails,
+  deleteProductDetails,
+  editSaleDetails,
+  createSaleDetails,
+  getSaleDetails,
+  getSalesDetails,
+  deleteSaleDetails,
+  // createTargetDetails,
+  // editTargetDetails,
+  // getTargetDetails,
+  // getTargetsDetails,
+  // deleteTargetDetails,
 } from "../controllers/controller";
 // import { adminLogin,employeeLogin } from "../controllers/controller";
 
@@ -67,6 +81,8 @@ redisSubscriber.on("message", (channel: string, message: any) => {
       case "deleteContactDetails":
         deleteContactDetails(data);
         break;
+
+        
       case "createLeadDetails":
         createLeadDetails(data);
         break;
@@ -85,6 +101,8 @@ redisSubscriber.on("message", (channel: string, message: any) => {
       case "deleteLeadDetails":
         deleteLeadDetails(data);
         break;
+
+
       case "createActivityDetails":
         createActivityDetails(data);
         break;
@@ -103,6 +121,67 @@ redisSubscriber.on("message", (channel: string, message: any) => {
       case "deleteActivityDetails":
         deleteActivityDetails(data);
         break;
+
+
+      case "createProductDetails":
+        createProductDetails(data);
+        break;
+
+      case "editProductDetails":
+        editProductDetails(data);
+        break;
+
+      case "getProductDetails":
+        getProductDetails(data);
+        break;
+
+      case "getProductsDetails":
+        getProductsDetails(data);
+        break;
+      case "deleteProductDetails":
+        deleteProductDetails(data);
+        break;
+
+
+      case "createSaleDetails":
+        createSaleDetails(data);
+        break;
+
+      case "editSaleDetails":
+        editSaleDetails(data);
+        break;
+
+      case "getSaleDetails":
+        getSaleDetails(data);
+        break;
+
+      case "getSalesDetails":
+        getSalesDetails(data);
+        break;
+      case "deleteSaleDetails":
+        deleteSaleDetails(data);
+        break;
+
+
+
+      // case "createTargetDetails":
+      //   createTargetDetails(data);
+      //   break;
+
+      // case "editTargetDetails":
+      //   editTargetDetails(data);
+      //   break;
+
+      // case "getTargetDetails":
+      //   getTargetDetails(data);
+      //   break;
+
+      // case "getTargetsDetails":
+      //   getTargetsDetails(data);
+      //   break;
+      // case "deleteTargetDetails":
+      //   deleteTargetDetails(data);
+      //   break;
     }
   }
 });

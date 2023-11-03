@@ -13,6 +13,14 @@ const businessCounterSchema = new mongoose.Schema({
     type: Number,
     default:1
   },
+  saleCounter: {
+    type: Number,
+    default:1
+  },
+  productCounter: {
+    type: Number,
+    default:1
+  },
 
 });
 

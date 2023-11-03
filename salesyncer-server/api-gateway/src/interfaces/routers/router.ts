@@ -33,6 +33,20 @@ import {
   getActivity,
   getActivities,
   deleteActivity,
+  createProduct,
+  editProduct,
+  getProduct,
+  deleteProduct,
+  createSale,
+  editSale,
+  getSale,
+  deleteSale,
+  getSales,
+  createTarget,
+  editTarget,
+  getTarget,
+  getTargets,
+  deleteTarget,
 
 } from "../controllers/controller";
 
@@ -46,7 +60,7 @@ router.get("/get-branches", getBranches);
 
 router.get("/get-lead-source", getLeadSource);
 router.get("/get-product-category", getProductCategory);
-router.get("/get-products", getProducts);
+// router.get("/get-products", getProducts);
 
 router.post("/admin-login", adminLogin);
 router.post("/employee-login", employeeLogin);
@@ -81,6 +95,26 @@ router.post("/edit-activity", editActivity);
 router.get("/get-activity", getActivity);
 router.get("/get-activities", getActivities);
 router.delete("/delete-activity", deleteActivity);
+
+
+////////////////////////////////////////////////////
+router.post("/create-product", createProduct);
+router.post("/edit-product", editProduct);
+router.get("/get-product", getProduct);
+router.get("/get-products", getProducts);
+router.delete("/delete-product", deleteProduct);
+
+router.post("/create-sale", createSale);
+router.post("/edit-sale", editSale);
+router.get("/get-sale", getSale);
+router.get("/get-sales", getSales);
+router.delete("/delete-sale", deleteSale);
+
+router.post("/create-target", createTarget);
+router.post("/edit-target", editTarget);
+router.get("/get-target", getTarget);
+router.get("/get-targets", getTargets);
+router.delete("/delete-target", deleteTarget);
 
 
 export default router;

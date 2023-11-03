@@ -14,11 +14,11 @@ export const getProductCategoryDetails = async()=>{
     return await publishAndResponse('business-service', data, 'getProductCategoryDetails', 'ApiRes-getProductCategoryDetails');
 }
 
-export const getProductsDetails = async()=>{
-    const data={};
-    //publishChannel, publishData, publishAction, subscribeChannel
-    return await publishAndResponse('business-service', data, 'getProductsDetails', 'ApiRes-getProductsDetails');
-}
+// export const getProductsDetails = async()=>{
+//     const data={};
+//     //publishChannel, publishData, publishAction, subscribeChannel
+//     return await publishAndResponse('business-service', data, 'getProductsDetails', 'ApiRes-getProductsDetails');
+// }
 
 
 export const createContactDetails = async(data:object)=>{
@@ -105,4 +105,91 @@ return await publishAndResponse('business-service', data, 'deleteActivityDetails
 //=================================================================================================================
 
 
+
+//==========================================Products========================================================
+export const createProductDetails = async(data:object)=>{
+
+    //publishChannel, publishData, publishAction, subscribeChannel
+return await publishAndResponse('business-service', data, 'createProductDetails', 'ApiRes-createProductDetails');
+}
+export const editProductDetails = async(data:object)=>{
+
+    //publishChannel, publishData, publishAction, subscribeChannel
+return await publishAndResponse('business-service', data, 'editProductDetails', 'ApiRes-editProductDetails');
+}
+export const getProductDetails = async(data:object)=>{
+   
+    //publishChannel, publishData, publishAction, subscribeChannel
+return await publishAndResponse('business-service', data, 'getProductDetails', 'ApiRes-getProductDetails');
+}
+export const getProductsDetails = async()=>{
+    const data={};
+    //publishChannel, publishData, publishAction, subscribeChannel
+    return await publishAndResponse('business-service', data, 'getProductsDetails', 'ApiRes-getProductsDetails');
+}
+export const deleteProductDetails = async(data:object)=>{
+   
+    //publishChannel, publishData, publishAction, subscribeChannel
+return await publishAndResponse('business-service', data, 'deleteProductDetails', 'ApiRes-deleteProductDetails');
+}
+//=================================================================================================================
+
+
+//==========================================Sales========================================================
+export const createSaleDetails = async(data:object)=>{
+
+    //publishChannel, publishData, publishAction, subscribeChannel
+return await publishAndResponse('business-service', data, 'createSaleDetails', 'ApiRes-createSaleDetails');
+}
+export const editSaleDetails = async(data:object)=>{
+
+    //publishChannel, publishData, publishAction, subscribeChannel
+return await publishAndResponse('business-service', data, 'editSaleDetails', 'ApiRes-editSaleDetails');
+}
+export const getSaleDetails = async(data:object)=>{
+   
+    //publishChannel, publishData, publishAction, subscribeChannel
+return await publishAndResponse('business-service', data, 'getSaleDetails', 'ApiRes-getSaleDetails');
+}
+export const getSalesDetails = async()=>{
+    const data={};
+    //publishChannel, publishData, publishAction, subscribeChannel
+    return await publishAndResponse('business-service', data, 'getSalesDetails', 'ApiRes-getSalesDetails');
+}
+export const deleteSaleDetails = async(data:object)=>{
+   
+    //publishChannel, publishData, publishAction, subscribeChannel
+return await publishAndResponse('business-service', data, 'deleteSaleDetails', 'ApiRes-deleteSaleDetails');
+}
+//=================================================================================================================
+
+
+
+//==========================================Target========================================================
+export const createTargetDetails = async(data:object)=>{
+
+    //publishChannel, publishData, publishAction, subscribeChannel
+return await publishAndResponse('business-service', data, 'createTargetDetails', 'ApiRes-createTargetDetails');
+}
+export const editTargetDetails = async(data:object)=>{
+
+    //publishChannel, publishData, publishAction, subscribeChannel
+return await publishAndResponse('business-service', data, 'editTargetDetails', 'ApiRes-editTargetDetails');
+}
+export const getTargetDetails = async(data:object)=>{
+   
+    //publishChannel, publishData, publishAction, subscribeChannel
+return await publishAndResponse('business-service', data, 'getTargetDetails', 'ApiRes-getTargetDetails');
+}
+export const getTargetsDetails = async()=>{
+    const data={};
+    //publishChannel, publishData, publishAction, subscribeChannel
+    return await publishAndResponse('business-service', data, 'getTargetsDetails', 'ApiRes-getTargetsDetails');
+}
+export const deleteTargetDetails = async(data:object)=>{
+   
+    //publishChannel, publishData, publishAction, subscribeChannel
+return await publishAndResponse('business-service', data, 'deleteTargetDetails', 'ApiRes-deleteTargetDetails');
+}
+//=================================================================================================================
 

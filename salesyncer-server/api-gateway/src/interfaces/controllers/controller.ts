@@ -37,6 +37,20 @@ import {
   getActivityDetails,
   getActivitiesDetails,
   deleteActivityDetails,
+  deleteProductDetails,
+  getProductDetails,
+  editProductDetails,
+  createProductDetails,
+  getTargetDetails,
+  getTargetsDetails,
+  deleteTargetDetails,
+  editTargetDetails,
+  createTargetDetails,
+  deleteSaleDetails,
+  getSalesDetails,
+  getSaleDetails,
+  editSaleDetails,
+  createSaleDetails,
 } from "../../usecases/business";
 
 //=============================Login Controllers===================================
@@ -243,24 +257,24 @@ export const getProductCategory = async (req: Request, res: Response) => {
 
 
 
-export const getProducts = async (req: Request, res: Response) => {
-  try {
-    const headers = req.headers;
-    const response: any = await verifyToken(headers);
-    if (response.status == "OK") {
-      const response: any = await getProductsDetails();
+// export const getProducts = async (req: Request, res: Response) => {
+//   try {
+//     const headers = req.headers;
+//     const response: any = await verifyToken(headers);
+//     if (response.status == "OK") {
+//       const response: any = await getProductsDetails();
 
-      delete response.requestId;
-      delete response.action;
-      res.json(response);
-    } else {
-      res.json(response);
-    }
-  } catch (error) {
-    console.error("Error in /auth:", error);
-    res.status(500).json({ error: "Internal Server Error" });
-  }
-};
+//       delete response.requestId;
+//       delete response.action;
+//       res.json(response);
+//     } else {
+//       res.json(response);
+//     }
+//   } catch (error) {
+//     console.error("Error in /auth:", error);
+//     res.status(500).json({ error: "Internal Server Error" });
+//   }
+// };
 
 
 
@@ -685,3 +699,314 @@ export const deleteActivity = async (req: Request, res: Response) => {
 //=============================End Activity controllers================================
 
 
+
+//====================================Product Controllers===============================
+export const createProduct = async (req: Request, res: Response) => {
+  try {
+    const headers = req.headers;
+    const data = req.body;
+    console.log("create Product data,header", data, headers);
+    const response: any = await verifyToken(headers);
+    if (response.status == "OK") {
+      const response: any = await createProductDetails(data);
+
+      delete response.requestId;
+      delete response.action;
+      res.json(response);
+    } else {
+      res.json(response);
+    }
+  } catch (error) {
+    console.error("Error in /auth:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+export const editProduct = async (req: Request, res: Response) => {
+  try {
+    const headers = req.headers;
+    const data = req.body;
+    console.log("edit Product data,header", data, headers);
+    const response: any = await verifyToken(headers);
+    if (response.status == "OK") {
+      const response: any = await editProductDetails(data);
+
+      delete response.requestId;
+      delete response.action;
+      res.json(response);
+    } else {
+      res.json(response);
+    }
+  } catch (error) {
+    console.error("Error in /auth:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+export const getProduct = async (req: Request, res: Response) => {
+  try {
+    const headers = req.headers;
+    const { _id } = req.query;
+    const data = { _id };
+    const response: any = await verifyToken(headers);
+    if (response.status == "OK") {
+      const response: any = await getProductDetails(data);
+
+      delete response.requestId;
+      delete response.action;
+      res.json(response);
+    } else {
+      res.json(response);
+    }
+  } catch (error) {
+    console.error("Error in /auth:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+export const getProducts = async (req: Request, res: Response) => {
+  try {
+    const headers = req.headers;
+    const response: any = await verifyToken(headers);
+    if (response.status == "OK") {
+      const response: any = await getProductsDetails();
+
+      delete response.requestId;
+      delete response.action;
+      res.json(response);
+    } else {
+      res.json(response);
+    }
+  } catch (error) {
+    console.error("Error in /auth:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+export const deleteProduct = async (req: Request, res: Response) => {
+  try {
+    const headers = req.headers;
+    const { _id } = req.query;
+    const data = { _id };
+    const response: any = await verifyToken(headers);
+    if (response.status == "OK") {
+      const response: any = await deleteProductDetails(data);
+
+      delete response.requestId;
+      delete response.action;
+      res.json(response);
+    } else {
+      res.json(response);
+    }
+  } catch (error) {
+    console.error("Error in /auth:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+//=============================End Product controllers================================
+
+
+//====================================Sale Controllers===============================
+export const createSale = async (req: Request, res: Response) => {
+  try {
+    const headers = req.headers;
+    const data = req.body;
+    console.log("create Sale data,header", data, headers);
+    const response: any = await verifyToken(headers);
+    if (response.status == "OK") {
+      const response: any = await createSaleDetails(data);
+
+      delete response.requestId;
+      delete response.action;
+      res.json(response);
+    } else {
+      res.json(response);
+    }
+  } catch (error) {
+    console.error("Error in /auth:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+export const editSale = async (req: Request, res: Response) => {
+  try {
+    const headers = req.headers;
+    const data = req.body;
+    console.log("edit Sale data,header", data, headers);
+    const response: any = await verifyToken(headers);
+    if (response.status == "OK") {
+      const response: any = await editSaleDetails(data);
+
+      delete response.requestId;
+      delete response.action;
+      res.json(response);
+    } else {
+      res.json(response);
+    }
+  } catch (error) {
+    console.error("Error in /auth:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+export const getSale = async (req: Request, res: Response) => {
+  try {
+    const headers = req.headers;
+    const { _id } = req.query;
+    const data = { _id };
+    const response: any = await verifyToken(headers);
+    if (response.status == "OK") {
+      const response: any = await getSaleDetails(data);
+
+      delete response.requestId;
+      delete response.action;
+      res.json(response);
+    } else {
+      res.json(response);
+    }
+  } catch (error) {
+    console.error("Error in /auth:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+export const getSales = async (req: Request, res: Response) => {
+  try {
+    const headers = req.headers;
+    const response: any = await verifyToken(headers);
+    if (response.status == "OK") {
+      const response: any = await getSalesDetails();
+
+      delete response.requestId;
+      delete response.action;
+      res.json(response);
+    } else {
+      res.json(response);
+    }
+  } catch (error) {
+    console.error("Error in /auth:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+export const deleteSale = async (req: Request, res: Response) => {
+  try {
+    const headers = req.headers;
+    const { _id } = req.query;
+    const data = { _id };
+    const response: any = await verifyToken(headers);
+    if (response.status == "OK") {
+      const response: any = await deleteSaleDetails(data);
+
+      delete response.requestId;
+      delete response.action;
+      res.json(response);
+    } else {
+      res.json(response);
+    }
+  } catch (error) {
+    console.error("Error in /auth:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+//=============================End Sale controllers================================
+
+
+//====================================Target Controllers===============================
+export const createTarget = async (req: Request, res: Response) => {
+  try {
+    const headers = req.headers;
+    const data = req.body;
+    console.log("create Target data,header", data, headers);
+    const response: any = await verifyToken(headers);
+    if (response.status == "OK") {
+      const response: any = await createTargetDetails(data);
+
+      delete response.requestId;
+      delete response.action;
+      res.json(response);
+    } else {
+      res.json(response);
+    }
+  } catch (error) {
+    console.error("Error in /auth:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+export const editTarget = async (req: Request, res: Response) => {
+  try {
+    const headers = req.headers;
+    const data = req.body;
+    console.log("edit Target data,header", data, headers);
+    const response: any = await verifyToken(headers);
+    if (response.status == "OK") {
+      const response: any = await editTargetDetails(data);
+
+      delete response.requestId;
+      delete response.action;
+      res.json(response);
+    } else {
+      res.json(response);
+    }
+  } catch (error) {
+    console.error("Error in /auth:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+export const getTarget = async (req: Request, res: Response) => {
+  try {
+    const headers = req.headers;
+    const { _id } = req.query;
+    const data = { _id };
+    const response: any = await verifyToken(headers);
+    if (response.status == "OK") {
+      const response: any = await getTargetDetails(data);
+
+      delete response.requestId;
+      delete response.action;
+      res.json(response);
+    } else {
+      res.json(response);
+    }
+  } catch (error) {
+    console.error("Error in /auth:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+export const getTargets = async (req: Request, res: Response) => {
+  try {
+    const headers = req.headers;
+    const response: any = await verifyToken(headers);
+    if (response.status == "OK") {
+      const response: any = await getTargetsDetails();
+
+      delete response.requestId;
+      delete response.action;
+      res.json(response);
+    } else {
+      res.json(response);
+    }
+  } catch (error) {
+    console.error("Error in /auth:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+export const deleteTarget = async (req: Request, res: Response) => {
+  try {
+    const headers = req.headers;
+    const { _id } = req.query;
+    const data = { _id };
+    const response: any = await verifyToken(headers);
+    if (response.status == "OK") {
+      const response: any = await deleteTargetDetails(data);
+
+      delete response.requestId;
+      delete response.action;
+      res.json(response);
+    } else {
+      res.json(response);
+    }
+  } catch (error) {
+    console.error("Error in /auth:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+//=============================End Target controllers================================
