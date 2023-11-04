@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SharedApiService } from 'src/app/shared/services/shared-api.service';
 
 import { Store } from '@ngrx/store';
@@ -36,18 +36,37 @@ export class ActivitiesEditComponent implements OnInit {
   status!:string;
   type!:string;
   feedback!:string;
-  hourToDisplay!:string;
-  minuteToDisplay!:string;
-  dateToDisplay!:Date;
+  hourToDisplay!:number;
+  minuteToDisplay!:number;
+  dateToDisplay!:string;
+  scheduledTimeToDisplay!:string;
   activityData!:any;
+  _id!:string|null;
 
   constructor(
     private sharedAPI: SharedApiService,
     private fb: FormBuilder,
     private router: Router,
-    private store: Store
-  ) {}
-
+    private store: Store,
+    private activatedRouter: ActivatedRoute
+  ) {
+    this._id = this.activatedRouter.snapshot.queryParamMap.get('_id');
+    console.log("ID=",this._id);
+  
+      this.inputGroup = this.fb.group({
+        lead: ['', [Validators.required]],
+        type: ['', [Validators.required]],
+        status: ['', [Validators.required]],
+        owner: ['', [Validators.required]],
+        scheduledActivity: ['', [Validators.required]],
+        date: [''],
+        hour: [''],
+        minute: [''],
+        feedback: [''],
+      });
+    
+  }
+  
   ngOnInit() {
     this.getEmployeesData();
     this.getLeadsData();
@@ -71,7 +90,7 @@ export class ActivitiesEditComponent implements OnInit {
         this.currentOwner = response.name;
         console.log('Current owner data loaded');
       }
-      this.initFormgroup();
+      // this.initFormgroup();
     });
   }
 
@@ -85,28 +104,48 @@ export class ActivitiesEditComponent implements OnInit {
   getActivityTypes() {
     this.sharedAPI.getActivityTypes().subscribe((response) => {
       this.activityTypes = response.activityTypes;
-      console.log(this.getActivityTypes);
+      console.log(this.activityTypes);
     });
   }
 
 
   getActivityData(){
-    this.sharedAPI.getActivities().forEach((response)=>{
-      this.activityData
-    })
+    this.sharedAPI.getActivity(this._id).subscribe((response)=>{
+      this.activityData=response.activityData;
+
+      console.log("Activity data fetched", this.activityData)
+      this.leadId=this.activityData.lead._id;
+      
+      this.owner=this.activityData.lead.owner;
+      this.scheduledActivity=this.activityData.scheduledActivity;
+      this.scheduledTimeToDisplay=this.activityData.scheduledTime;
+      this.status=this.activityData.status;
+      this.type=this.activityData.type;
+      this.feedback=this.activityData.feedback;
+      const date= new Date(this.scheduledTimeToDisplay);
+
+      this.hourToDisplay= date.getHours();
+      this.minuteToDisplay=date.getMinutes();
+      this.dateToDisplay= (date.getMonth()+1)+"/"+date.getDate()+"/"+date.getFullYear();
+      console.log("date----",this.dateToDisplay)
+      // console.log(this.scheduledTime)
+
+      this.initFormgroup()
+    });
   }
 
   initFormgroup() {
+    console.log(this.leadId+"---/"+this.type+"---/"+this.status+"-----/"+this.owner+"-----/"+this.scheduledActivity+ "--->/"+this.dateToDisplay+"---/"+this.hourToDisplay+"---/"+this.minuteToDisplay)
     this.inputGroup = this.fb.group({
-      lead: ['', [Validators.required]],
-      type: ['', [Validators.required]],
-      status: ['', [Validators.required]],
-      owner: [this.currentOwner, [Validators.required]],
-      scheduledActivity: ['', [Validators.required]],
-      date: [''],
-      hour: [''],
-      minute: [''],
-      feedback: [''],
+      lead: [this.leadId, [Validators.required]],
+      type: [this.type, [Validators.required]],
+      status: [this.status, [Validators.required]],
+      owner: [this.owner, [Validators.required]],
+      scheduledActivity: [this.scheduledActivity, [Validators.required]],
+      date: [this.scheduledTimeToDisplay],
+      hour: [this.hourToDisplay.toString().padStart(2, '0')],
+      minute: [this.minuteToDisplay.toString().padStart(2, '0')],
+      feedback: [this.feedback],
     });
   }
 
@@ -130,6 +169,7 @@ export class ActivitiesEditComponent implements OnInit {
       const { lead, owner, scheduledActivity, status, type, feedback } =
         data.value;
       const body = {
+        _id:this._id,
         lead,
         owner,
         scheduledActivity,
@@ -139,7 +179,7 @@ export class ActivitiesEditComponent implements OnInit {
         feedback,
       };
       console.log('Data', body);
-      this.sharedAPI.createActivity(body).subscribe((response) => {
+      this.sharedAPI.editActivity(body).subscribe((response) => {
         // console.log(response);
         if (response && response.status !== 'OK') {
           this.showSpinner = false;
@@ -149,7 +189,7 @@ export class ActivitiesEditComponent implements OnInit {
           Swal.fire({
             position: 'center',
             icon: 'success',
-            title: 'Activity created successfully',
+            title: 'Activity updated successfully',
             showConfirmButton: false,
             timer: 1500,
           });
