@@ -11,7 +11,7 @@ import * as UserActions from '../../../employee/store/actions/user.actions';
 @Component({
   selector: 'app-activities-edit',
   templateUrl: './activities-edit.component.html',
-  styleUrls: ['./activities-edit.component.scss']
+  styleUrls: ['./activities-edit.component.scss'],
 })
 export class ActivitiesEditComponent implements OnInit {
   employeesData!: any;
@@ -27,21 +27,20 @@ export class ActivitiesEditComponent implements OnInit {
   minutes: string[] = Array.from({ length: 60 }, (_, i) =>
     i.toString().padStart(2, '0')
   );
-  
 
-  leadId!:string;
-  owner!:string;
-  scheduledActivity!:string;
+  leadId!: string;
+  owner!: string;
+  scheduledActivity!: string;
   scheduledTime!: any;
-  status!:string;
-  type!:string;
-  feedback!:string;
-  hourToDisplay!:number;
-  minuteToDisplay!:number;
-  dateToDisplay!:string;
-  scheduledTimeToDisplay!:string;
-  activityData!:any;
-  _id!:string|null;
+  status!: string;
+  type!: string;
+  feedback!: string;
+  hourToDisplay!: number;
+  minuteToDisplay!: number;
+  dateToDisplay!: string;
+  scheduledTimeToDisplay!: string;
+  activityData!: any;
+  _id!: string | null;
 
   constructor(
     private sharedAPI: SharedApiService,
@@ -51,22 +50,21 @@ export class ActivitiesEditComponent implements OnInit {
     private activatedRouter: ActivatedRoute
   ) {
     this._id = this.activatedRouter.snapshot.queryParamMap.get('_id');
-    console.log("ID=",this._id);
-  
-      this.inputGroup = this.fb.group({
-        lead: ['', [Validators.required]],
-        type: ['', [Validators.required]],
-        status: ['', [Validators.required]],
-        owner: ['', [Validators.required]],
-        scheduledActivity: ['', [Validators.required]],
-        date: [''],
-        hour: [''],
-        minute: [''],
-        feedback: [''],
-      });
-    
+    console.log('ID=', this._id);
+
+    this.inputGroup = this.fb.group({
+      lead: ['', [Validators.required]],
+      type: ['', [Validators.required]],
+      status: ['', [Validators.required]],
+      owner: ['', [Validators.required]],
+      scheduledActivity: [''],
+      date: [''],
+      hour: [''],
+      minute: [''],
+      feedback: [''],
+    });
   }
-  
+
   ngOnInit() {
     this.getEmployeesData();
     this.getLeadsData();
@@ -108,40 +106,39 @@ export class ActivitiesEditComponent implements OnInit {
     });
   }
 
+  getActivityData() {
+    this.sharedAPI.getActivity(this._id).subscribe((response) => {
+      this.activityData = response.activityData;
 
-  getActivityData(){
-    this.sharedAPI.getActivity(this._id).subscribe((response)=>{
-      this.activityData=response.activityData;
+      console.log('Activity data fetched', this.activityData);
+      this.leadId = this.activityData.lead._id;
 
-      console.log("Activity data fetched", this.activityData)
-      this.leadId=this.activityData.lead._id;
-      
-      this.owner=this.activityData.lead.owner;
-      this.scheduledActivity=this.activityData.scheduledActivity;
-      this.scheduledTimeToDisplay=this.activityData.scheduledTime;
-      this.status=this.activityData.status;
-      this.type=this.activityData.type;
-      this.feedback=this.activityData.feedback;
-      const date= new Date(this.scheduledTimeToDisplay);
+      this.owner = this.activityData.lead.owner;
+      this.scheduledActivity = this.activityData.scheduledActivity;
+      this.scheduledTimeToDisplay = this.activityData.scheduledTime;
+      this.status = this.activityData.status;
+      this.type = this.activityData.type;
+      this.feedback = this.activityData.feedback;
+      const date = new Date(this.scheduledTimeToDisplay);
 
-      this.hourToDisplay= date.getHours();
-      this.minuteToDisplay=date.getMinutes();
-      this.dateToDisplay= (date.getMonth()+1)+"/"+date.getDate()+"/"+date.getFullYear();
-      console.log("date----",this.dateToDisplay)
+      this.hourToDisplay = date.getHours();
+      this.minuteToDisplay = date.getMinutes();
+      this.dateToDisplay =
+        date.getMonth() + 1 + '/' + date.getDate() + '/' + date.getFullYear();
+      console.log('date----', this.dateToDisplay);
       // console.log(this.scheduledTime)
 
-      this.initFormgroup()
+      this.initFormgroup();
     });
   }
 
   initFormgroup() {
-    console.log(this.leadId+"---/"+this.type+"---/"+this.status+"-----/"+this.owner+"-----/"+this.scheduledActivity+ "--->/"+this.dateToDisplay+"---/"+this.hourToDisplay+"---/"+this.minuteToDisplay)
     this.inputGroup = this.fb.group({
       lead: [this.leadId, [Validators.required]],
       type: [this.type, [Validators.required]],
       status: [this.status, [Validators.required]],
       owner: [this.owner, [Validators.required]],
-      scheduledActivity: [this.scheduledActivity, [Validators.required]],
+      scheduledActivity: [this.scheduledActivity],
       date: [this.scheduledTimeToDisplay],
       hour: [this.hourToDisplay.toString().padStart(2, '0')],
       minute: [this.minuteToDisplay.toString().padStart(2, '0')],
@@ -157,19 +154,23 @@ export class ActivitiesEditComponent implements OnInit {
     if (!data.invalid) {
       this.showSpinner = true;
 
-      const dateInput = data.value.date;
-      const year = dateInput.getFullYear();
-      const month = dateInput.getMonth();
-      const day = dateInput.getDate();
-      const inputHour = parseInt(data.value.hour, 10);
-      const inputMinute = parseInt(data.value.minute, 10);
-      this.scheduledTime = new Date(year, month, day, inputHour, inputMinute);
-      console.log('Scheduled date', this.scheduledTime);
+      if (data.value.scheduledActivity !== '') {
+        const dateInput = data.value.date;
+        const year = dateInput.getFullYear();
+        const month = dateInput.getMonth();
+        const day = dateInput.getDate();
+        const inputHour = parseInt(data.value.hour, 10);
+        const inputMinute = parseInt(data.value.minute, 10);
+        this.scheduledTime = new Date(year, month, day, inputHour, inputMinute);
+        console.log('Scheduled date', this.scheduledTime);
+      } else {
+        this.scheduledTime = '';
+      }
 
       const { lead, owner, scheduledActivity, status, type, feedback } =
         data.value;
       const body = {
-        _id:this._id,
+        _id: this._id,
         lead,
         owner,
         scheduledActivity,

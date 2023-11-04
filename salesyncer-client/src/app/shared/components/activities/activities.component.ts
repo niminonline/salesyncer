@@ -13,13 +13,11 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-activities',
   templateUrl: './activities.component.html',
-  styleUrls: ['./activities.component.scss']
+  styleUrls: ['./activities.component.scss'],
 })
-export class ActivitiesComponent implements OnInit, AfterViewInit  {
-
+export class ActivitiesComponent implements OnInit, AfterViewInit {
   activitiesData!: any;
   showSpinner: boolean = false;
-
 
   dataSource!: MatTableDataSource<any>;
   displayedColumns: string[] = [
@@ -43,16 +41,13 @@ export class ActivitiesComponent implements OnInit, AfterViewInit  {
   ) {}
 
   ngOnInit() {
-
-    this.sharedAPI.getActivities().subscribe((response)=>{
-      this.activitiesData= response.activitiesData;
+    this.sharedAPI.getActivities().subscribe((response) => {
+      this.activitiesData = response.activitiesData;
       this.dataSource = new MatTableDataSource(this.activitiesData);
-      this.dataSource.paginator=this.paginator;
+      this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-    })
-     }
-
- 
+    });
+  }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -69,7 +64,6 @@ export class ActivitiesComponent implements OnInit, AfterViewInit  {
   }
 
   navCreateActivity() {
-
     const currentroute = this.router.url;
     if (currentroute.toString().includes('admin')) {
       this.router.navigate(['admin/activities-create']);
@@ -79,18 +73,14 @@ export class ActivitiesComponent implements OnInit, AfterViewInit  {
   }
 
   navEditActivity(_id: string) {
-
     const currentroute = this.router.url;
     if (currentroute.toString().includes('admin')) {
       this.router.navigate(['admin/activities-edit'], { queryParams: { _id } });
     } else {
       this.router.navigate(['activities-edit'], { queryParams: { _id } });
     }
-
-
   }
   navViewActivity(_id: string) {
-
     const currentroute = this.router.url;
     if (currentroute.toString().includes('admin')) {
       this.router.navigate(['admin/activities-view'], { queryParams: { _id } });
@@ -100,7 +90,6 @@ export class ActivitiesComponent implements OnInit, AfterViewInit  {
   }
 
   deleteActivity(_id: string) {
-
     Swal.fire({
       title: 'Confirmation',
       text: `Are you sure to delete the activity?`,
@@ -111,38 +100,40 @@ export class ActivitiesComponent implements OnInit, AfterViewInit  {
       confirmButtonText: 'Yes',
     }).then((result) => {
       if (result.isConfirmed) {
-    
-    this.showSpinner = true;
-    this.sharedAPI.deleteLead(_id).subscribe((response)=>{
-      if (response.status == 'OK') {
-        this.showSpinner = false;
-        this.store.dispatch(ContactsActions.retrieveContactsData());
+        this.showSpinner = true;
+        this.sharedAPI.deleteActivity(_id).subscribe((response) => {
+          if (response.status == 'OK') {
+            this.showSpinner = false;
+            this.store.dispatch(ContactsActions.retrieveContactsData());
 
-        Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: 'Activity deleted successfully',
-          showConfirmButton: false,
-          timer: 1500,
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'Activity deleted successfully',
+              showConfirmButton: false,
+              timer: 1500,
+            });
+
+            const currentUrl = this.router.url;
+            if (currentUrl.toString().includes('admin')) {
+              this.router
+                .navigateByUrl('admin', { skipLocationChange: true })
+                .then(() => {
+                  this.router.navigate(['admin/activities']);
+                });
+            } else {
+              this.router
+                .navigateByUrl('', { skipLocationChange: true })
+                .then(() => {
+                  this.router.navigate(['activities']);
+                });
+            }
+          } else {
+            this.showSpinner = false;
+            Swal.fire(response.status, response.message, 'error');
+          }
         });
-        
-        
-        const currentroute= this.router.url;
-        if(currentroute.toString().includes('admin'))
-        {
-         this.router.navigate(['admin/activities']);
-        }
-        else{
-          this.router.navigate(['activities']);
-        }
-      } else {
-        this.showSpinner = false;
-        Swal.fire(response.status, response.message, 'error');
       }
-
-    })
+    });
   }
-
-  })
-}
 }

@@ -8,7 +8,6 @@ import { Store } from '@ngrx/store';
 import { selectEmployeeData } from '../../../employee/store/selectors/user.selectors';
 import * as UserActions from '../../../employee/store/actions/user.actions';
 
-
 @Component({
   selector: 'app-activities-create',
   templateUrl: './activities-create.component.html',
@@ -29,7 +28,7 @@ export class ActivitiesCreateComponent implements OnInit {
     i.toString().padStart(2, '0')
   );
   scheduledTime!: any;
-  _id!:string;
+  _id!: string;
 
   constructor(
     private sharedAPI: SharedApiService,
@@ -84,7 +83,7 @@ export class ActivitiesCreateComponent implements OnInit {
       type: ['', [Validators.required]],
       status: ['', [Validators.required]],
       owner: [this.currentOwner, [Validators.required]],
-      scheduledActivity: ['', [Validators.required]],
+      scheduledActivity: [''],
       date: [''],
       hour: [''],
       minute: [''],
@@ -100,14 +99,16 @@ export class ActivitiesCreateComponent implements OnInit {
     if (!data.invalid) {
       this.showSpinner = true;
 
-      const dateInput = data.value.date;
-      const year = dateInput.getFullYear();
-      const month = dateInput.getMonth();
-      const day = dateInput.getDate();
-      const inputHour = parseInt(data.value.hour, 10);
-      const inputMinute = parseInt(data.value.minute, 10);
-      this.scheduledTime = new Date(year, month, day, inputHour, inputMinute);
-      console.log('Scheduled date', this.scheduledTime);
+      if (data.value.scheduledActivity !== '') {
+        const dateInput = data.value.date;
+        const year = dateInput.getFullYear();
+        const month = dateInput.getMonth();
+        const day = dateInput.getDate();
+        const inputHour = parseInt(data.value.hour, 10);
+        const inputMinute = parseInt(data.value.minute, 10);
+        this.scheduledTime = new Date(year, month, day, inputHour, inputMinute);
+        console.log('Scheduled date', this.scheduledTime);
+      }
 
       const { lead, owner, scheduledActivity, status, type, feedback } =
         data.value;

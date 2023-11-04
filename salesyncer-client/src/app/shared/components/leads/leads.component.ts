@@ -14,15 +14,13 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-leads',
   templateUrl: './leads.component.html',
-  styleUrls: ['./leads.component.scss']
+  styleUrls: ['./leads.component.scss'],
 })
-export class LeadsComponent implements OnInit, AfterViewInit  {
-
+export class LeadsComponent implements OnInit, AfterViewInit {
   leadsData!: any;
   selectedContactData!: any;
   branchData!: any;
   showSpinner: boolean = false;
-
 
   dataSource!: MatTableDataSource<any>;
   displayedColumns: string[] = [
@@ -45,14 +43,13 @@ export class LeadsComponent implements OnInit, AfterViewInit  {
   ) {}
 
   ngOnInit() {
-
-    this.sharedAPI.getLeads().subscribe((response)=>{
-      this.leadsData= response.leadsData;
+    this.sharedAPI.getLeads().subscribe((response) => {
+      this.leadsData = response.leadsData;
       this.dataSource = new MatTableDataSource(this.leadsData);
-      this.dataSource.paginator=this.paginator;
+      this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-    })
-     }
+    });
+  }
 
   getBranchData() {
     this.sharedAPI.getBranches().subscribe((response: any) => {
@@ -80,7 +77,6 @@ export class LeadsComponent implements OnInit, AfterViewInit  {
   }
 
   navCreateLead() {
-
     const currentroute = this.router.url;
     if (currentroute.toString().includes('admin')) {
       this.router.navigate(['admin/leads-create']);
@@ -90,18 +86,14 @@ export class LeadsComponent implements OnInit, AfterViewInit  {
   }
 
   navEditLead(_id: string) {
-
     const currentroute = this.router.url;
     if (currentroute.toString().includes('admin')) {
       this.router.navigate(['admin/leads-edit'], { queryParams: { _id } });
     } else {
       this.router.navigate(['leads-edit'], { queryParams: { _id } });
     }
-
-
   }
   navViewLead(_id: string) {
-
     const currentroute = this.router.url;
     if (currentroute.toString().includes('admin')) {
       this.router.navigate(['admin/leads-view'], { queryParams: { _id } });
@@ -111,7 +103,6 @@ export class LeadsComponent implements OnInit, AfterViewInit  {
   }
 
   deleteLead(_id: string) {
-
     Swal.fire({
       title: 'Confirmation',
       text: `Are you sure to delete the lead?`,
@@ -122,38 +113,40 @@ export class LeadsComponent implements OnInit, AfterViewInit  {
       confirmButtonText: 'Yes',
     }).then((result) => {
       if (result.isConfirmed) {
-    
-    this.showSpinner = true;
-    this.sharedAPI.deleteLead(_id).subscribe((response)=>{
-      if (response.status == 'OK') {
-        this.showSpinner = false;
-        this.store.dispatch(ContactsActions.retrieveContactsData());
+        this.showSpinner = true;
+        this.sharedAPI.deleteLead(_id).subscribe((response) => {
+          if (response.status == 'OK') {
+            this.showSpinner = false;
+            this.store.dispatch(ContactsActions.retrieveContactsData());
 
-        Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: 'Lead deleted successfully',
-          showConfirmButton: false,
-          timer: 1500,
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'Lead deleted successfully',
+              showConfirmButton: false,
+              timer: 1500,
+            });
+
+            const currentUrl = this.router.url;
+            if (currentUrl.toString().includes('admin')) {
+              this.router
+                .navigateByUrl('admin', { skipLocationChange: true })
+                .then(() => {
+                  this.router.navigate(['admin/leads']);
+                });
+            } else {
+              this.router
+                .navigateByUrl('', { skipLocationChange: true })
+                .then(() => {
+                  this.router.navigate(['leads']);
+                });
+            }
+          } else {
+            this.showSpinner = false;
+            Swal.fire(response.status, response.message, 'error');
+          }
         });
-        
-        
-        const currentroute= this.router.url;
-        if(currentroute.toString().includes('admin'))
-        {
-         this.router.navigate(['admin/leads']);
-        }
-        else{
-          this.router.navigate(['leads']);
-        }
-      } else {
-        this.showSpinner = false;
-        Swal.fire(response.status, response.message, 'error');
       }
-
-    })
+    });
   }
-
-  })
-}
 }
