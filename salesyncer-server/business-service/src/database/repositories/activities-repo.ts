@@ -1,5 +1,6 @@
 import BusinessCounter from "../entities/BusinessCounter";
 import Activity from "../entities/activity";
+import ActivityType from "../entities/activityType";
 
 ////==============================================
 export const qGetActivitiesData = async () => {
@@ -93,6 +94,69 @@ export const qIncActivityCount = async () => {
 export const qDeleteActivityDataById = async (_id: string) => {
   try {
     return await Activity.findByIdAndRemove(_id);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+////==============================================
+
+
+
+
+
+
+///==============================================
+export const qGetActivityTypesData = async () => {
+  try {
+    console.log("entered mongo a")
+    return await ActivityType.find({});
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+
+
+////==============================================
+
+export const qCreateActivityTypeData = async (newActivityTypeData: object) => {
+  try {
+    const newActivityType = new ActivityType(newActivityTypeData);
+
+    const addActivityTypeToDB = await newActivityType.save();
+    return addActivityTypeToDB;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+
+////==============================================
+
+export const qUpdateActivityTypeDataById = async (
+  _id: string,
+  newActivityTypeData: any
+) => {
+  try {
+    console.log("New activityType data to update", _id, newActivityTypeData);
+    const updateOperation = {
+      $set: newActivityTypeData,
+    };
+    // console.log("Update ops", updateOperation)
+    const response = await ActivityType.findByIdAndUpdate(_id, updateOperation);
+
+    return response;
+  } catch (error) {}
+};
+
+
+////==============================================
+
+
+export const qDeleteActivityTypeDataById = async (_id: string) => {
+  try {
+    return await ActivityType.findByIdAndRemove(_id);
   } catch (error) {
     console.log(error);
   }

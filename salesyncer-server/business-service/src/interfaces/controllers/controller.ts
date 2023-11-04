@@ -1,21 +1,25 @@
 import { publishToChannel } from "../../services/redisOps";
 import createActivityData from "../../usecases/createActivityData";
+import createActivityTypeData from "../../usecases/createActivityTypeData ";
 import createContactData from "../../usecases/createContactData";
 import createLeadData from "../../usecases/createLeadData ";
 import createProductData from "../../usecases/createProductData";
 import createSaleData from "../../usecases/createSaleData";
 import deleteActivityData from "../../usecases/deleteActivityData";
+import deleteActivityTypeData from "../../usecases/deleteActivityTypeData";
 import deleteContactData from "../../usecases/deleteContactData";
 import deleteLeadData from "../../usecases/deleteLeadData";
 import deleteProductData from "../../usecases/deleteProductData";
 import deleteSaleData from "../../usecases/deleteSaleData ";
 import editActivityData from "../../usecases/editActivityData";
+import editActivityTypeData from "../../usecases/editActivityTypeData";
 import editContactData from "../../usecases/editContactData";
 import editLeadData from "../../usecases/editLeadData";
 import editProductData from "../../usecases/editProductData";
 import editSaleData from "../../usecases/editSaleData";
 import getActivitiesData from "../../usecases/getActivitiesData";
 import getActivityData from "../../usecases/getActivityData";
+import getActivityTypesData from "../../usecases/getActivityTypesData";
 import getContactData from "../../usecases/getContactData";
 import getContactsData from "../../usecases/getContactsData";
 import getLeadData from "../../usecases/getLeadData";
@@ -988,3 +992,117 @@ export const deleteSaleDetails = async (data: any) => {
 
 // //============================End Target Controllers=====================================================
 
+
+
+
+//============================ActivityType Controllers=====================================================
+
+export const createActivityTypeDetails = async (data: any) => {
+  try {
+    // console.log("Req body of ActivityType Controller", data);
+    const { requestId, action } = data;
+    // console.log("email of ActivityType Controller", email);
+
+    const response: any = await createActivityTypeData(data);
+
+    if (response) {
+      response.requestId = requestId;
+      response.action = action;
+      publishToChannel("ApiRes-createActivityTypeDetails", response);
+    } else {
+      publishToChannel("ApiRes-createActivityTypeDetails", {
+        status: "FAILED",
+        message: "ActivityType creation failed",
+      });
+    }
+
+    // console.log("myresponse", response);
+  } catch (error) {
+    console.error(error);
+  }
+};
+export const editActivityTypeDetails = async (data: any) => {
+  try {
+    // console.log("Req body of ActivityType Controller", data);
+    const { requestId, action } = data;
+    // console.log("email of ActivityType Controller", email);
+
+    const response: any = await editActivityTypeData(data);
+
+    if (response) {
+      response.requestId = requestId;
+      response.action = action;
+      publishToChannel("ApiRes-editActivityTypeDetails", response);
+    } else {
+      publishToChannel("ApiRes-editActivityTypeDetails", {
+        status: "FAILED",
+        message: "ActivityType updation failed",
+      });
+    }
+    // console.log("myresponse", response);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getActivityTypesDetails = async (data: any) => {
+  try {
+    const { requestId, action } = data;
+    console.log("Request id, action from actypes controller", requestId, action);
+    const response: any = await getActivityTypesData();
+    if (response.status == "OK") {
+      const data = {
+        activityTypes: response.activityTypesData,
+        requestId,
+        action,
+        status: "OK",
+        message: "ActivityTypes data fetched successfully",
+      };
+      // console.log("fetched Sale data", data);
+      publishToChannel("ApiRes-getActivityTypesDetails", data);
+    } else {
+      publishToChannel("ApiRes-getActivityTypesDetails", {
+        requestId,
+        action,
+        status: "FAILED",
+        message: response.message,
+      });
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const deleteActivityTypeDetails = async (data: any) => {
+  try {
+    const { _id, requestId, action } = data;
+    console.log(
+      "Request id, action from ActivityType controller",
+      requestId,
+      action,
+      _id
+    );
+    const response: any = await deleteActivityTypeData(_id);
+    if (response.status == "OK") {
+      const data = {
+        requestId,
+        action,
+        status: "OK",
+        message: "ActivityType deleted successfully",
+      };
+      // console.log("fetched Sale data", data);
+      publishToChannel("ApiRes-deleteActivityTypeDetails", data);
+    } else {
+      publishToChannel("ApiRes-deleteActivityTypeDetails", {
+        requestId,
+        action,
+        status: "FAILED",
+        message: response.message,
+      });
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+//============================End ActivityType Controllers=====================================================

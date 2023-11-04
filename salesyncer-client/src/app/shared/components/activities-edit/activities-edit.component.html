@@ -1,0 +1,148 @@
+<div class="component-body">
+    <h1 class="heading">Edit Activity</h1>
+  
+    <div class="spinner-container" *ngIf="showSpinner">
+      <img src="assets/images/loading1.gif" alt="" />
+      <!-- <mat-spinner class="spinner"></mat-spinner> -->
+    </div>
+  
+    <mat-card class="formCard">
+      <!-- <mat-card-content> -->
+  
+      <form [formGroup]="inputGroup" (ngSubmit)="submitForm(inputGroup)">
+        <div class="row">
+          <mat-form-field appearance="outline">
+            <mat-label>Select Lead</mat-label>
+            <mat-select name="lead" formControlName="lead">
+              <mat-option *ngFor="let lead of leadsData" [value]="lead._id">
+                {{ lead.leadId }}({{ lead.client.name }})
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+  
+          <mat-form-field appearance="outline">
+            <mat-label>Select Activity Type</mat-label>
+            <mat-select name="type" formControlName="type">
+              <mat-option
+                *ngFor="let activityType of activityTypes"
+                [value]="activityType.activityType"
+              >
+                {{ activityType.activityType }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+  
+        <div class="row">
+          <mat-form-field appearance="outline">
+            <mat-label>Select Status</mat-label>
+            <mat-select name="status" formControlName="status">
+              <mat-option value="In Progress"> In Progress </mat-option>
+              <mat-option value="Completed"> Completed </mat-option>
+              <mat-option value="Failed"> Failed </mat-option>
+            </mat-select>
+          </mat-form-field>
+  
+          <mat-form-field appearance="outline">
+            <mat-label>Select Owner</mat-label>
+            <mat-select name="owner" formControlName="owner">
+              <mat-option
+                *ngFor="let employee of employeesData"
+                [value]="employee.name"
+              >
+                {{ employee.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+  
+        <div class="row">
+          <mat-form-field appearance="outline">
+            <mat-label>Select Scheduled Activity</mat-label>
+            <mat-select
+              name="scheduledActivity"
+              formControlName="scheduledActivity"
+            >
+              <mat-option [value]=""> None </mat-option>
+              <mat-option
+                *ngFor="let activityType of activityTypes"
+                [value]="activityType.activityType"
+              >
+                {{ activityType.activityType }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+  
+         
+          <div class="datetime-block" >
+            <mat-form-field class="short">
+              <mat-label>Date</mat-label>
+              <input
+                matInput
+                [matDatepicker]="datePicker"
+                formControlName="date"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="datePicker"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #datePicker></mat-datepicker>
+            </mat-form-field>
+  
+            <mat-form-field class="v-short">
+              <mat-label>Hour</mat-label>
+              <mat-select     name="hour"
+              formControlName="hour">
+                <mat-option *ngFor="let hour of hours" [value]="hour" >
+                  {{ hour }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+  
+            <mat-form-field class="v-short">
+              <mat-label>Minute</mat-label>
+              <mat-select   name="minute"
+              formControlName="minute">
+                <mat-option *ngFor="let minute of minutes" [value]="minute">
+                  {{ minute }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <mat-form-field appearance="outline" class="notes-input">
+            <mat-label>Feedback</mat-label>
+            <textarea
+              matInput
+              placeholder="Add feedback..."
+              name="feedback"
+              formControlName="feedback"
+            ></textarea>
+          </mat-form-field>
+        </div>
+  
+        <div class="button-block">
+          <button
+            class="submitButton"
+            mat-raised-button
+            color="primary"
+            type="submit"
+          >
+            Update Lead
+          </button>
+          <button
+            class="cancelButton"
+            mat-raised-button
+            color="accent"
+            (click)="navActivities($event)"
+          >
+            Cancel
+          </button>
+        </div>
+      </form>
+  
+      <!-- </mat-card-content> -->
+    </mat-card>
+  </div>
+  

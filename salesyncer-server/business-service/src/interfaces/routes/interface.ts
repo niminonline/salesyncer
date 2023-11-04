@@ -27,6 +27,10 @@ import {
   getSaleDetails,
   getSalesDetails,
   deleteSaleDetails,
+  createActivityTypeDetails,
+  editActivityTypeDetails,
+  getActivityTypesDetails,
+  deleteActivityTypeDetails,
   // createTargetDetails,
   // editTargetDetails,
   // getTargetDetails,
@@ -182,6 +186,21 @@ redisSubscriber.on("message", (channel: string, message: any) => {
       // case "deleteTargetDetails":
       //   deleteTargetDetails(data);
       //   break;
+
+      case "createActivityTypeDetails":
+        createActivityTypeDetails(data);
+        break;
+
+      case "editActivityTypeDetails":
+        editActivityTypeDetails(data);
+        break;
+
+      case "getActivityTypesDetails":
+        getActivityTypesDetails(data);
+        break;
+      case "deleteActivityTypeDetails":
+        deleteActivityTypeDetails(data);
+        break;
     }
   }
 });

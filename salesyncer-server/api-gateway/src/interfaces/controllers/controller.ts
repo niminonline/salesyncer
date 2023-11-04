@@ -51,6 +51,10 @@ import {
   getSaleDetails,
   editSaleDetails,
   createSaleDetails,
+  deleteActivityTypeDetails,
+  getActivityTypesDetails,
+  editActivityTypeDetails,
+  createActivityTypeDetails,
 } from "../../usecases/business";
 
 //=============================Login Controllers===================================
@@ -1010,3 +1014,89 @@ export const deleteTarget = async (req: Request, res: Response) => {
 };
 
 //=============================End Target controllers================================
+
+
+
+//====================================Actvity Type Controllers===============================
+export const createActivityType = async (req: Request, res: Response) => {
+  try {
+    const headers = req.headers;
+    const data = req.body;
+    console.log("create ActivityType data,header", data, headers);
+    const response: any = await verifyToken(headers);
+    if (response.status == "OK") {
+      const response: any = await createActivityTypeDetails(data);
+
+      delete response.requestId;
+      delete response.action;
+      res.json(response);
+    } else {
+      res.json(response);
+    }
+  } catch (error) {
+    console.error("Error in /auth:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+export const editActivityType = async (req: Request, res: Response) => {
+  try {
+    const headers = req.headers;
+    const data = req.body;
+    console.log("edit ActivityType data,header", data, headers);
+    const response: any = await verifyToken(headers);
+    if (response.status == "OK") {
+      const response: any = await editActivityTypeDetails(data);
+
+      delete response.requestId;
+      delete response.action;
+      res.json(response);
+    } else {
+      res.json(response);
+    }
+  } catch (error) {
+    console.error("Error in /auth:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+export const getActivityTypes = async (req: Request, res: Response) => {
+  try {
+    const headers = req.headers;
+    const response: any = await verifyToken(headers);
+    if (response.status == "OK") {
+      const response: any = await getActivityTypesDetails();
+
+      delete response.requestId;
+      delete response.action;
+      res.json(response);
+    } else {
+      res.json(response);
+    }
+  } catch (error) {
+    console.error("Error in /auth:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+export const deleteActivityType = async (req: Request, res: Response) => {
+  try {
+    const headers = req.headers;
+    const { _id } = req.query;
+    const data = { _id };
+    const response: any = await verifyToken(headers);
+    if (response.status == "OK") {
+      const response: any = await deleteActivityTypeDetails(data);
+
+      delete response.requestId;
+      delete response.action;
+      res.json(response);
+    } else {
+      res.json(response);
+    }
+  } catch (error) {
+    console.error("Error in /auth:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+//=============================End Activity Type controllers================================

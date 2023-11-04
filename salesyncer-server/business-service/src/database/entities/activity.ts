@@ -16,9 +16,9 @@ const activitySchema = new mongoose.Schema(
     type: {
       type: String,
     },
-    empId: {
-      type: String,
-    },
+    // empId: {
+    //   type: String,
+    // },
     owner: {
       type: String,
     },

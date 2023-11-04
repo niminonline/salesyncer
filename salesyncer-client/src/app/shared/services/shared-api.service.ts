@@ -15,6 +15,7 @@ import {
 export class SharedApiService {
   constructor(private http: HttpClient) {}
 
+
   getBranches(): Observable<Branch> {
     return this.http.get<Branch>(`/get-branches`);
   }
@@ -28,6 +29,7 @@ export class SharedApiService {
     return this.http.get<any>(`/get-products`);
   }
 
+  //============================Employee===========================
   getEmployeesData(): Observable<any> {
     return this.http.get('/get-employees-data');
   }
@@ -39,6 +41,7 @@ export class SharedApiService {
     return this.http.post<any>(`/update-employee`, data);
   }
 
+  //============================Leave===========================
   getLeaveCategory(): Observable<LeaveCategoryResponse> {
     return this.http.get<LeaveCategoryResponse>(`/get-leave-category`);
   }
@@ -48,6 +51,8 @@ export class SharedApiService {
   leaveRequests(): Observable<any> {
     return this.http.get<any>(`/leave-requests`);
   }
+
+  //============================Contact===========================
 
   createContact(data: object | null): Observable<any> {
     return this.http.post<any>(`/create-contact`, data);
@@ -64,6 +69,8 @@ export class SharedApiService {
   deleteContact(_id:string|null): Observable<any> {
     return this.http.delete<any>(`/delete-contact?_id=${_id}`);
   }
+
+  //============================Lead===========================
   createLead(data: object | null): Observable<any> {
     return this.http.post<any>(`/create-lead`, data);
   }
@@ -79,4 +86,40 @@ export class SharedApiService {
   deleteLead(_id:string|null): Observable<any> {
     return this.http.delete<any>(`/delete-lead?_id=${_id}`);
   }
+//============================Activity===========================
+  createActivity(data: object | null): Observable<any> {
+    return this.http.post<any>(`/create-activity`, data);
+  }
+  getActivities(): Observable<any> {
+    return this.http.get<any>(`/get-activities`);
+  }
+  getActivity(_id:string|null): Observable<any> {
+    return this.http.get<any>(`/get-activity?_id=${_id}`);
+  }
+  editActivity(data: object | null): Observable<any> {
+    return this.http.post<any>(`/edit-activity`, data);
+  }
+  deleteActivity(_id:string|null): Observable<any> {
+    return this.http.delete<any>(`/delete-activity?_id=${_id}`);
+  }
+
+  //============================Activity Types===========================
+  createActivityType(data: object | null): Observable<any> {
+    return this.http.post<any>(`/create-activity-type`, data);
+  }
+  getActivityTypes(): Observable<any> {
+    return this.http.get<any>(`/get-activity-types`);
+  }
+  editActivityType(data: object | null): Observable<any> {
+    return this.http.post<any>(`/edit-activity-type`, data);
+  }
+  deleteActivityType(_id:string|null): Observable<any> {
+    return this.http.delete<any>(`/delete-activity-type?_id=${_id}`);
+  }
+
+
+
+
+
+
 }

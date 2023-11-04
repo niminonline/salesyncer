@@ -9,7 +9,6 @@ const editActivityData = async (newActivityData: any) => {
       const dataToUpdate = {
         lead: newActivityData.lead,
         type: newActivityData.type,
-        empId: newActivityData.empId,
         owner: newActivityData.owner,
         status: newActivityData.status,
         scheduledActivity: newActivityData.scheduledActivity,

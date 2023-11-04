@@ -16,6 +16,14 @@ import { LeadsComponent } from './components/leads/leads.component';
 import { LeadsViewComponent } from './components/leads-view/leads-view.component';
 import { LeadsEditComponent } from './components/leads-edit/leads-edit.component';
 import { LeadsCreateComponent } from './components/leads-create/leads-create.component';
+import { ActivitiesComponent } from './components/activities/activities.component';
+import { ActivitiesCreateComponent } from './components/activities-create/activities-create.component';
+import { ActivitiesEditComponent } from './components/activities-edit/activities-edit.component';
+import { ActivitiesViewComponent } from './components/activities-view/activities-view.component';
+import { ProductsComponent } from './components/products/products.component';
+import { ProductsCreateComponent } from './components/products-create/products-create.component';
+import { ProductsViewComponent } from './components/products-view/products-view.component';
+import { ProductsEditComponent } from './components/products-edit/products-edit.component';
 
 const components = [
   LoginBlockComponent,
@@ -37,8 +45,17 @@ const components = [
     LeadsViewComponent,
     LeadsEditComponent,
     LeadsCreateComponent,
+    ActivitiesComponent,
+    ActivitiesCreateComponent,
+    ActivitiesEditComponent,
+    ActivitiesViewComponent,
+    ProductsComponent,
+    ProductsCreateComponent,
+    ProductsViewComponent,
+    ProductsEditComponent,
+    
   ],
-  imports: [CommonModule, MaterialModule, ReactiveFormsModule],
+  imports: [CommonModule, MaterialModule, ReactiveFormsModule,],
   exports: [components, TwoDecimalDigitsPipe],
 })
 export class SharedModule {}

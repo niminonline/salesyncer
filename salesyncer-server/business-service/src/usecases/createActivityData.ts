@@ -11,7 +11,6 @@
           activityId: "SSACT0" + activityCount,
           lead:activityData.lead,
           type:activityData.type,
-          empId:activityData.empId,
           owner:activityData.owner,
           status:activityData.status,
           scheduledActivity:activityData.scheduledActivity,

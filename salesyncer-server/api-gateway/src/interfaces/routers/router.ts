@@ -47,6 +47,10 @@ import {
   getTarget,
   getTargets,
   deleteTarget,
+  createActivityType,
+  editActivityType,
+  deleteActivityType,
+  getActivityTypes,
 
 } from "../controllers/controller";
 
@@ -116,5 +120,10 @@ router.get("/get-target", getTarget);
 router.get("/get-targets", getTargets);
 router.delete("/delete-target", deleteTarget);
 
+
+router.post("/create-activity-type", createActivityType);
+router.post("/edit-activity-type", editActivityType);
+router.get("/get-activity-types", getActivityTypes);
+router.delete("/delete-activity-type", deleteActivityType);
 
 export default router;

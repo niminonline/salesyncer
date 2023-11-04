@@ -193,3 +193,27 @@ return await publishAndResponse('business-service', data, 'deleteTargetDetails',
 }
 //=================================================================================================================
 
+
+//==========================================Activity Type========================================================
+export const createActivityTypeDetails = async(data:object)=>{
+
+    //publishChannel, publishData, publishAction, subscribeChannel
+return await publishAndResponse('business-service', data, 'createActivityTypeDetails', 'ApiRes-createActivityTypeDetails');
+}
+export const editActivityTypeDetails = async(data:object)=>{
+
+    //publishChannel, publishData, publishAction, subscribeChannel
+return await publishAndResponse('business-service', data, 'editActivityTypeDetails', 'ApiRes-editActivityTypeDetails');
+}
+export const getActivityTypesDetails = async()=>{
+    const data={};
+    //publishChannel, publishData, publishAction, subscribeChannel
+    return await publishAndResponse('business-service', data, 'getActivityTypesDetails', 'ApiRes-getActivityTypesDetails');
+}
+export const deleteActivityTypeDetails = async(data:object)=>{
+   
+    //publishChannel, publishData, publishAction, subscribeChannel
+return await publishAndResponse('business-service', data, 'deleteActivityTypeDetails', 'ApiRes-deleteActivityTypeDetails');
+}
+//=================================================================================================================
+

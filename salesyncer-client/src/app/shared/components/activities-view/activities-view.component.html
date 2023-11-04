@@ -1,0 +1,87 @@
+<div class="container-main-body">
+  <h1 class="title">Activity Details</h1>
+
+  <div class="display-container">
+    <table class="display-table">
+      <div class="table-row-1">
+        <div class="table-block-1">
+          <tr>
+            <th>Activity ID</th>
+            <td>{{ activityData.activityId}}</td>
+          </tr>
+          <tr>
+            <th>Activity Type</th>
+            <td>{{ activityData.type }}</td>
+          </tr>
+          <tr>
+            <th>Activity Status</th>
+            <td>{{ activityData.lead.source }}</td>
+          </tr>
+          <tr>
+            <th>Lead ID</th>
+            <td>{{ activityData.lead.leadId}}</td>
+          </tr>
+          <tr>
+            <th>Lead Type</th>
+            <td>{{ activityData.lead.type}}</td>
+          </tr>
+          <tr>
+            <th>Lead Status</th>
+            <td>{{ activityData.lead.status }}</td>
+          </tr>
+
+          <tr>
+            <th>Branch</th>
+            <td>{{ activityData.lead.branch }}</td>
+          </tr>
+          
+          
+          
+          
+        </div>
+        
+        <div class="table-block-2">
+            
+            <tr>
+              <th>Owner</th>
+              <td>{{ activityData.lead.owner }}</td>
+            </tr>
+            <tr>
+                <th>Client Name</th>
+            <td>{{ activityData.lead.client.name }}</td>
+          </tr>
+        
+          <tr>
+            <th>Client ID</th>
+            <td>{{ activityData.lead.client.contactId }}</td>
+          </tr>
+          <tr>
+            <th>Client Contact</th>
+            <td>{{ activityData.lead.client.phone }}</td>
+          </tr>
+          <tr>
+            <th>Scheduled activity</th>
+            <td>{{ activityData.scheduledActivity}}</td>
+          </tr>
+          <tr>
+            <th>Scheduled time</th>
+            <td>{{ activityData.scheduledTime | date: "dd-MM-YYYY hh:mm:a"}}</td>
+          </tr>
+          <tr>
+            <th>Feedback</th>
+            <td>{{ activityData.feedback }}</td>
+          </tr>
+        </div>
+      </div>
+    </table>
+
+    <div class="button-block">
+      <button mat-raised-button color="accent" (click)="navEditActivity()">
+        Edit
+      </button>
+      <button mat-raised-button color="primary" (click)="navActivities()">
+        Back
+      </button>
+    </div>
+  </div>
+</div>
