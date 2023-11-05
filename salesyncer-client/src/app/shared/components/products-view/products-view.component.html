@@ -1,1 +1,44 @@
-<p>products-view works!</p>
+<div class="container-main-body">
+
+
+    <h1 class="title">Contact Details</h1>
+   
+    <div class="content-container">
+        <table class="content-table">
+          <tr>
+            <th>Product ID</th>
+            <td>{{productData.productId}}</td>
+          </tr>
+          <tr>
+            <th>Product</th>
+            <td>{{productData.name}}</td>
+          </tr>
+          <tr>
+            <th>Category</th>
+            <td>{{productData.category}}</td>
+          </tr>
+          <tr>
+            <th>Status</th>
+            <td>{{productData.status}}</td>
+          </tr>
+          <tr>
+            <th>MRP</th>
+            <td>{{productData.mrp}}</td>
+          </tr>
+          <tr>
+            <th>LSP</th>
+            <td>{{productData.lsp}}</td>
+          </tr>
+       
+            
+        </table>
+  
+  
+        <div class="button-block">
+        <button mat-raised-button color="accent" (click)="navEditProduct()">Edit</button>
+        <button mat-raised-button color="primary" (click)="navProducts()">Back</button>
+        </div>
+  </div>
+  
+  
+  

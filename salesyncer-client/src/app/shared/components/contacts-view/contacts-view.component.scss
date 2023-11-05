@@ -8,7 +8,7 @@
 
 }
 
-.contact-container {
+.content-container {
     padding: 50px;
     border: 2px solid rgb(235, 235, 235) ;
     border-radius: 40px 0px 40px 0px;
@@ -19,7 +19,7 @@
     margin: auto;
   }
 
-  .contact-container:hover {
+  .content-container:hover {
     border-radius: 0px 40px 0px 40px;
     transition: 2s;
   }
@@ -27,7 +27,7 @@
 .title{
     text-align: center;
   }
-.contact-table {
+.content-table {
     text-align: left;
     line-height: 2rem;
     td {

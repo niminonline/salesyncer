@@ -1,1 +1,111 @@
-<p>products-edit works!</p>
+<div class="component-body">
+    <h1 class="heading">Edit Product</h1>
+  
+    <div class="spinner-container" *ngIf="showSpinner">
+      <img src="assets/images/loading1.gif" alt="" />
+      <!-- <mat-spinner class="spinner"></mat-spinner> -->
+    </div>
+  
+   
+  <mat-card class="formCard">
+    <!-- <mat-card-content> -->
+
+    <form [formGroup]="inputGroup" (ngSubmit)="submitForm(inputGroup)">
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Product Name</mat-label>
+          <input matInput required formControlName="name" />
+          <mat-error *ngIf="inputGroup.get('name')?.errors?.['required']"
+            >Product Name is required</mat-error
+          >
+        </mat-form-field>
+    </div>
+
+    <div class="row">
+
+        <mat-form-field appearance="outline">
+          <mat-label>Select Product category</mat-label>
+          <mat-select name="productCategory" formControlName="productCategory">
+            <mat-option
+              *ngFor="let productCategory of productCategoryData"
+              [value]="productCategory.productCategory"
+            >
+              {{ productCategory.productCategory }}
+            </mat-option>
+            <mat-error *ngIf="inputGroup.get('productCategory')?.errors?.['productCategory']"
+              >Products Category is required</mat-error
+            >
+          </mat-select>
+        </mat-form-field>
+
+    </div>
+
+    <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Select Status</mat-label>
+          <mat-select name="status" formControlName="status">
+            <mat-option value="Available"> Available </mat-option>
+            <mat-option value="Out Of Stock"> Out Of Stock </mat-option>
+            <mat-option value="Discountinued"> Discoutinued </mat-option>
+          </mat-select>
+
+          <mat-error *ngIf="inputGroup.get('status')?.errors?.['required']"
+            >Status is required</mat-error
+          >
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+      
+        <mat-form-field appearance="outline">
+          <mat-label>Maximum Retail Price</mat-label>
+          <input matInput required formControlName="mrp" />
+          <mat-error *ngIf="inputGroup.get('mrp')?.errors?.['required']"
+            >MRP is required</mat-error
+          >
+          <mat-error *ngIf="inputGroup.get('mrp')?.errors?.['pattern']"
+            >Enter a valid amount</mat-error
+          >
+        </mat-form-field>
+
+        </div>
+
+        <div class="row">
+
+        <mat-form-field appearance="outline">
+          <mat-label>Least Selling Price</mat-label>
+          <input matInput required formControlName="lsp" />
+          <mat-error *ngIf="inputGroup.get('lsp')?.errors?.['required']"
+            >LSP is required</mat-error
+          >
+          <mat-error *ngIf="inputGroup.get('lsp')?.errors?.['pattern']"
+            >Enter a valid amount</mat-error
+          >
+        </mat-form-field>
+
+       
+      </div>
+
+      <div class="button-block">
+        <button
+          class="submitButton"
+          mat-raised-button
+          color="primary"
+          type="submit"
+        >
+          Update Product
+        </button>
+        <button
+          class="cancelButton"
+          mat-raised-button
+          color="accent"
+          (click)="navProducts($event)"
+        >
+          Cancel
+        </button>
+      </div>
+    </form>
+
+    <!-- </mat-card-content> -->
+  </mat-card>
+</div>

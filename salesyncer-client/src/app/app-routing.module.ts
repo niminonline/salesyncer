@@ -37,6 +37,10 @@ import { ActivitiesComponent } from './shared/components/activities/activities.c
 import { ActivitiesCreateComponent } from './shared/components/activities-create/activities-create.component';
 import { ActivitiesViewComponent } from './shared/components/activities-view/activities-view.component';
 import { ActivitiesEditComponent } from './shared/components/activities-edit/activities-edit.component';
+import { ProductsComponent } from './shared/components/products/products.component';
+import { ProductsCreateComponent } from './shared/components/products-create/products-create.component';
+import { ProductsViewComponent } from './shared/components/products-view/products-view.component';
+import { ProductsEditComponent } from './shared/components/products-edit/products-edit.component';
 
 
 const routes: Routes = [
@@ -64,6 +68,10 @@ const routes: Routes = [
     { path: 'activities-create', component: ActivitiesCreateComponent},
     { path: 'activities-view', component: ActivitiesViewComponent},
     { path: 'activities-edit', component: ActivitiesEditComponent},
+    { path: 'products', component: ProductsComponent},
+    { path: 'products-create', component: ProductsCreateComponent},
+    { path: 'products-view', component: ProductsViewComponent},
+    { path: 'products-edit', component: ProductsEditComponent},
   ]
 },
 
@@ -88,6 +96,10 @@ const routes: Routes = [
     { path: 'activities-create', component: ActivitiesCreateComponent},
     { path: 'activities-view', component: ActivitiesViewComponent},
     { path: 'activities-edit', component: ActivitiesEditComponent},
+    { path: 'products', component: ProductsComponent},
+    { path: 'products-create', component: ProductsCreateComponent},
+    { path: 'products-view', component: ProductsViewComponent},
+    { path: 'products-edit', component: ProductsEditComponent},
 
   ]
 },

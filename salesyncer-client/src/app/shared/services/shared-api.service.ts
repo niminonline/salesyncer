@@ -25,9 +25,6 @@ export class SharedApiService {
   getProductCategory(): Observable<any> {
     return this.http.get<any>(`/get-product-category`);
   }
-  getProducts(): Observable<any> {
-    return this.http.get<any>(`/get-products`);
-  }
 
   //============================Employee===========================
   getEmployeesData(): Observable<any> {
@@ -101,6 +98,23 @@ export class SharedApiService {
   }
   deleteActivity(_id:string|null): Observable<any> {
     return this.http.delete<any>(`/delete-activity?_id=${_id}`);
+  }
+
+//============================Product===========================
+  createProduct(data: object | null): Observable<any> {
+    return this.http.post<any>(`/create-product`, data);
+  }
+  getProducts(): Observable<any> {
+    return this.http.get<any>(`/get-products`);
+  }
+  getProduct(_id:string|null): Observable<any> {
+    return this.http.get<any>(`/get-product?_id=${_id}`);
+  }
+  editProduct(data: object | null): Observable<any> {
+    return this.http.post<any>(`/edit-product`, data);
+  }
+  deleteProduct(_id:string|null): Observable<any> {
+    return this.http.delete<any>(`/delete-product?_id=${_id}`);
   }
 
   //============================Activity Types===========================
