@@ -7,15 +7,16 @@ const editSaleData = async (newSaleData: any) => {
     if (newSaleData) {
       const { _id } = newSaleData;
       const dataToUpdate = {
-        invoiceNumber:newSaleData.invoiceNumber,
-            leadId:newSaleData.leadId,
-            branchName:newSaleData.branchName,
-            employeeName:newSaleData.employeeName,
-            amount:newSaleData.amount,
-            productName:newSaleData.productName,
-            productCategory:newSaleData.productCategory,
-            quantity:newSaleData.quantity,
-            price:newSaleData.price,
+        invoiceNumber: newSaleData.invoiceNumber,
+        lead: newSaleData.lead,
+        date: newSaleData.date,
+        branchName: newSaleData.branchName,
+        employeeName: newSaleData.employeeName,
+        amount: newSaleData.amount,
+        productName: newSaleData.productName,
+        productCategory: newSaleData.productCategory,
+        quantity: newSaleData.quantity,
+        price: newSaleData.price,
       };
 
       const updateResponse = await qUpdateSaleDataById(_id, dataToUpdate);

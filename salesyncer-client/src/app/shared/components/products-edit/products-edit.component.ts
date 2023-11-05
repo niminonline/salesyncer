@@ -29,7 +29,7 @@ export class ProductsEditComponent implements OnInit {
     private activatedRouter: ActivatedRoute
   ) {
     this._id = this.activatedRouter.snapshot.queryParamMap.get('_id');
-    console.log('ID=', this._id);
+    // console.log('ID=', this._id);
 
     this.inputGroup = this.fb.group({
       name: ['', [Validators.required]],

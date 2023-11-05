@@ -46,7 +46,7 @@
   
           <ng-container matColumnDef="date">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Sale Date</th>
-            <td mat-cell *matCellDef="let row">{{ row.date|date:"dd-MM-YYY hh:mm a"  }}</td>
+            <td mat-cell *matCellDef="let row">{{ row.date|date:"dd-MM-YYY"  }}</td>
           </ng-container>
   
           <ng-container matColumnDef="saleId">

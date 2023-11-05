@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
 import { Router, ActivatedRoute } from '@angular/router';
-import { selectContactsData } from 'src/app/employee/store/selectors/contacts.selectors ';
-import { ContactType, ContactsType } from '../../interfaces/interfaces';
 import { SharedApiService } from '../../services/shared-api.service';
 @Component({
   selector: 'app-leads-view',
@@ -11,7 +8,6 @@ import { SharedApiService } from '../../services/shared-api.service';
 })
 export class LeadsViewComponent implements OnInit {
   constructor(
-    private store: Store,
     private router: Router,
     private activatedRouter: ActivatedRoute,
     private sharedApi:SharedApiService,

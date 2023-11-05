@@ -1,1 +1,73 @@
-<p>sales-view works!</p>
+<div class="container-main-body">
+  <h1 class="title">Sales Details</h1>
+
+  <div class="display-container">
+    <table class="display-table">
+      <div class="table-row-1">
+        <div class="table-block-1">
+          <tr>
+            <th>Invoice Number</th>
+            <td>{{ saleData.invoiceNumber }}</td>
+          </tr>
+          <tr>
+            <th>Sale ID</th>
+            <td>{{ saleData.saleId }}</td>
+          </tr>
+          <tr>
+            <th>Lead ID</th>
+            <td>{{ saleData.lead.leadId }}</td>
+          </tr>
+          <tr>
+            <th>Branch</th>
+            <td>{{ saleData.branchName }}</td>
+          </tr>
+          <tr>
+            <th>Employee</th>
+            <td>{{ saleData.employeeName }}</td>
+          </tr>
+
+          <tr>
+            <th>Sale Date</th>
+            <td>{{ saleData.date | date : "dd/MM/yyyy" }}</td>
+          </tr>
+        </div>
+
+        <div class="table-block-2">
+          <tr>
+            <th>Client Name</th>
+            <td>{{ saleData.lead.client.name }}</td>
+          </tr>
+          <tr>
+            <th>Client Contact</th>
+            <td>{{ saleData.lead.client.phone }}</td>
+          </tr>
+          <tr>
+            <th>Place</th>
+            <td>{{ saleData.lead.client.place }}</td>
+          </tr>
+          <tr>
+            <th>Product Category</th>
+            <td>{{ saleData.productCategory }}</td>
+          </tr>
+          <tr>
+            <th>Product</th>
+            <td>{{ saleData.productName }}</td>
+          </tr>
+          <tr>
+            <th>Amount</th>
+            <td>{{ saleData.amount }}</td>
+          </tr>
+        </div>
+      </div>
+    </table>
+
+    <div class="button-block">
+      <button mat-raised-button color="accent" (click)="navEditSale()">
+        Edit
+      </button>
+      <button mat-raised-button color="primary" (click)="navSales()">
+        Back
+      </button>
+    </div>
+  </div>
+</div>

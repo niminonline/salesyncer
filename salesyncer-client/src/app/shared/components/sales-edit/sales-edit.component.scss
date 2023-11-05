@@ -1,0 +1,47 @@
+.component-body {
+    width: 80vw;
+    min-height: 600px;
+    margin: 20px;
+    padding: 10px;
+  }
+  .heading {
+    text-align: center;
+    margin: 20px;
+  }
+  
+  mat-form-field {
+    width: 40%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .formCard {
+    // border: 2px solid #3f51b5 ;
+    width: 80%;
+    text-align: center;
+    margin: auto;
+    border-radius: 5px;
+    margin-top: 20px;
+    padding: 20px 10px 20px 10px;
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+  }
+  
+  
+  .row {
+    display: flex;
+    justify-content: space-evenly;
+  }
+  
+  .notes-input {
+    width: 85%;
+  }
+  
+  .button-block {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 30px;
+    gap: 10px;
+  
+  }
+  
