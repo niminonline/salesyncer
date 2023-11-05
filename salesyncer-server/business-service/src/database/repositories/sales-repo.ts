@@ -4,7 +4,12 @@ import Sale from "../entities/sales";
 ////==============================================
 export const qGetSalesData = async () => {
   try {
-    return await Sale.find({}).sort({ _id: -1 });
+    return await Sale.find({}).populate({
+      path: "lead",
+      populate: {
+        path: "client",
+      },
+    }).sort({ _id: -1 });
   } catch (error) {
     console.log(error);
   }

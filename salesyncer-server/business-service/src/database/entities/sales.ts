@@ -7,9 +7,12 @@ const saleSchema = new mongoose.Schema({
   invoiceNumber: {
     type: String,
   },
+  saleId: {
+    type: String,
+  },
   lead: {
     type: mongoose.Schema.Types.ObjectId,
-      ref: "Leads",
+    ref: "Leads",
   },
   // branchCode: {
   //   type: String,
@@ -34,25 +37,25 @@ const saleSchema = new mongoose.Schema({
   },
   // products: [
   //   {
-      // productId: {
-      //   type: String,
-      // },
-      productName: {
-        type: String,
-      },
-      productCategory: {
-        type: String,
-      },
-      // ProductSubCategory: {
-      //   type: String,
-      // },
-      quantity: {
-        type: Number,
-      },
-      price: {
-        type: Number,
-      },
-    // },
+  // productId: {
+  //   type: String,
+  // },
+  productName: {
+    type: String,
+  },
+  productCategory: {
+    type: String,
+  },
+  // ProductSubCategory: {
+  //   type: String,
+  // },
+  quantity: {
+    type: Number,
+  },
+  price: {
+    type: Number,
+  },
+  // },
   // ],
 });
 

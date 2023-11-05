@@ -131,7 +131,22 @@ export class SharedApiService {
     return this.http.delete<any>(`/delete-activity-type?_id=${_id}`);
   }
 
-
+//============================Sales===========================
+createSale(data: object | null): Observable<any> {
+  return this.http.post<any>(`/create-sale`, data);
+}
+getSales(): Observable<any> {
+  return this.http.get<any>(`/get-sales`);
+}
+getSale(_id:string|null): Observable<any> {
+  return this.http.get<any>(`/get-sale?_id=${_id}`);
+}
+editSale(data: object | null): Observable<any> {
+  return this.http.post<any>(`/edit-sale`, data);
+}
+deleteSale(_id:string|null): Observable<any> {
+  return this.http.delete<any>(`/delete-sale?_id=${_id}`);
+}
 
 
 

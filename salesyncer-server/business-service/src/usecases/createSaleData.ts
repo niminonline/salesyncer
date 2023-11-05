@@ -11,7 +11,7 @@
             saleId: "SSSL0" + saleCount,
             date:saleData.date,
             invoiceNumber:saleData.invoiceNumber,
-            lead:saleData.leadId,
+            lead:saleData.lead,
             branchName:saleData.branchName,
             employeeName:saleData.employeeName,
             amount:saleData.amount,

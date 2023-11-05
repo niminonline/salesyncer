@@ -41,6 +41,10 @@ import { ProductsComponent } from './shared/components/products/products.compone
 import { ProductsCreateComponent } from './shared/components/products-create/products-create.component';
 import { ProductsViewComponent } from './shared/components/products-view/products-view.component';
 import { ProductsEditComponent } from './shared/components/products-edit/products-edit.component';
+import { SalesComponent } from './shared/components/sales/sales.component';
+import { SalesCreateComponent } from './shared/components/sales-create/sales-create.component';
+import { SalesViewComponent } from './shared/components/sales-view/sales-view.component';
+import { SalesEditComponent } from './shared/components/sales-edit/sales-edit.component';
 
 
 const routes: Routes = [
@@ -72,6 +76,10 @@ const routes: Routes = [
     { path: 'products-create', component: ProductsCreateComponent},
     { path: 'products-view', component: ProductsViewComponent},
     { path: 'products-edit', component: ProductsEditComponent},
+    { path: 'sales', component: SalesComponent},
+    { path: 'sales-create', component: SalesCreateComponent},
+    { path: 'sales-view', component: SalesViewComponent},
+    { path: 'sales-edit', component: SalesEditComponent},
   ]
 },
 
@@ -100,6 +108,10 @@ const routes: Routes = [
     { path: 'products-create', component: ProductsCreateComponent},
     { path: 'products-view', component: ProductsViewComponent},
     { path: 'products-edit', component: ProductsEditComponent},
+    { path: 'sales', component: SalesComponent},
+    { path: 'sales-create', component: SalesCreateComponent},
+    { path: 'sales-view', component: SalesViewComponent},
+    { path: 'sales-edit', component: SalesEditComponent},
 
   ]
 },

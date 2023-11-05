@@ -24,6 +24,10 @@ import { ProductsComponent } from './components/products/products.component';
 import { ProductsCreateComponent } from './components/products-create/products-create.component';
 import { ProductsViewComponent } from './components/products-view/products-view.component';
 import { ProductsEditComponent } from './components/products-edit/products-edit.component';
+import { SalesComponent } from './components/sales/sales.component';
+import { SalesCreateComponent } from './components/sales-create/sales-create.component';
+import { SalesEditComponent } from './components/sales-edit/sales-edit.component';
+import { SalesViewComponent } from './components/sales-view/sales-view.component';
 
 const components = [
   LoginBlockComponent,
@@ -53,6 +57,10 @@ const components = [
     ProductsCreateComponent,
     ProductsViewComponent,
     ProductsEditComponent,
+    SalesComponent,
+    SalesCreateComponent,
+    SalesEditComponent,
+    SalesViewComponent,
     
   ],
   imports: [CommonModule, MaterialModule, ReactiveFormsModule,],

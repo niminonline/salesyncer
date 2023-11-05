@@ -795,7 +795,7 @@ export const getSalesDetails = async (data: any) => {
     const response: any = await getSalesData();
     if (response.status == "OK") {
       const data = {
-        saleData: response.salesData,
+        salesData: response.salesData,
         requestId,
         action,
         status: "OK",
