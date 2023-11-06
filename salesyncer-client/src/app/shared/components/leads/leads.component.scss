@@ -19,3 +19,42 @@
   gap: 30px;
   align-items: center;
 }
+
+.pipeline-container{
+  width:250px;
+  height: 100px;
+  background-color: aqua;
+  border-radius: 20px;
+  // border : 2px solid gray;
+  padding: 10px;
+  text-align: center;
+  box-shadow: $card-shadow;
+ cursor: pointer;
+}
+
+.pipeline-block{
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  justify-content: space-between;
+
+  .pipeline-all{
+    background-color: $light-grey;
+  }
+  .pipeline-new{
+    background-color: $light-grey;
+  }
+  .pipeline-in-progress{
+    background-color: $light-grey;
+  }
+  .pipeline-negotiation{
+    background-color: $light-grey;
+  }
+  .pipeline-converted{
+    background-color:$light-grey;
+  }
+  .pipeline-failed{
+    background-color:$light-grey;
+  }
+}
+

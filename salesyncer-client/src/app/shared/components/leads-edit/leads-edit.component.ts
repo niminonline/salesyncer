@@ -250,10 +250,12 @@ export class LeadsEditComponent implements OnInit {
             timer: 1500,
           });
 
-          const currentroute = this.router.url;
-          if (currentroute.toString().includes('admin')) {
-            this.router.navigate(['admin/leads']);
-          } else {
+          const currentroute= this.router.url;
+          if(currentroute.toString().includes('admin'))
+          {
+           this.router.navigate(['admin/leads']);
+          }
+          else{
             this.router.navigate(['leads']);
           }
         }

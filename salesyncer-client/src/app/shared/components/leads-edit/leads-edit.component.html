@@ -38,7 +38,9 @@
             <mat-label>Select Status</mat-label>
             <mat-select name="status" formControlName="status">
                 <mat-option value="In Progress">In Progess</mat-option>
-                <mat-option value="Closed">Closed</mat-option>
+                <mat-option value="Negotiation">Negotiation</mat-option>
+                <mat-option value="Converted">Converted</mat-option>
+                <mat-option value="Failed">Failed</mat-option>
             </mat-select>
           </mat-form-field>
   
@@ -73,9 +75,9 @@
             <mat-select name="product" formControlName="product">
               <mat-option
                 *ngFor="let product of productsData"
-                [value]="product.productName"
+                [value]="product.name"
               >
-                {{ product.productName }}
+                {{ product.name }}
               </mat-option>
             </mat-select>
           </mat-form-field>

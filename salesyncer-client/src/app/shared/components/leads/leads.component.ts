@@ -21,6 +21,15 @@ export class LeadsComponent implements OnInit, AfterViewInit {
   selectedContactData!: any;
   branchData!: any;
   showSpinner: boolean = false;
+  allLeadsCount!:number;
+  newLeadsCount!:number;
+  inProgressLeadsCount!:number;
+  negotiationLeadsCount!:number;
+  convertedLeadsCount!:number;
+  failedLeadsCount!:number;
+
+  
+
 
   dataSource!: MatTableDataSource<any>;
   displayedColumns: string[] = [
@@ -45,6 +54,12 @@ export class LeadsComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.sharedAPI.getLeads().subscribe((response) => {
       this.leadsData = response.leadsData;
+      this.allLeadsCount =this.leadsData.length;
+      this.newLeadsCount =this.leadsData.filter((lead:any)=>lead.status=="New").length;
+      this.inProgressLeadsCount =this.leadsData.filter((lead:any)=>lead.status=="In Progress").length;
+      this.negotiationLeadsCount =this.leadsData.filter((lead:any)=>lead.status=="Negotiation").length;
+      this.convertedLeadsCount =this.leadsData.filter((lead:any)=>lead.status=="Converted").length;
+      this.failedLeadsCount =this.leadsData.filter((lead:any)=>lead.status=="Failed").length;
       this.dataSource = new MatTableDataSource(this.leadsData);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -74,6 +89,43 @@ export class LeadsComponent implements OnInit, AfterViewInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  filterAllLeads(){
+    this.dataSource = new MatTableDataSource(this.leadsData);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+  filterNewLeads(){
+   const newLeads= this.leadsData.filter((lead:any)=>lead.status=="New");
+   this.dataSource = new MatTableDataSource(newLeads);
+   this.dataSource.paginator = this.paginator;
+   this.dataSource.sort = this.sort;
+
+  }
+  filterInProgressLeads(){
+    const newLeads= this.leadsData.filter((lead:any)=>lead.status=="In Progress");
+    this.dataSource = new MatTableDataSource(newLeads);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+  filterNegotiationLeads(){
+    const newLeads= this.leadsData.filter((lead:any)=>lead.status=="Negotiation");
+    this.dataSource = new MatTableDataSource(newLeads);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+  filterConvetertedLeads(){
+    const newLeads= this.leadsData.filter((lead:any)=>lead.status=="Converted");
+    this.dataSource = new MatTableDataSource(newLeads);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+  filterFailedLeads(){
+    const newLeads= this.leadsData.filter((lead:any)=>lead.status=="Failed");
+    this.dataSource = new MatTableDataSource(newLeads);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   navCreateLead() {

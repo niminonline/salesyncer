@@ -1,13 +1,38 @@
 <div class="component-body">
-    <div class="spinner-container" *ngIf="showSpinner">
-      <img src="assets/images/loading1.gif" alt="" />
-      <!-- <mat-spinner class="spinner"></mat-spinner> -->
+  <div class="spinner-container" *ngIf="showSpinner">
+    <img src="assets/images/loading1.gif" alt="" />
+    <!-- <mat-spinner class="spinner"></mat-spinner> -->
+  </div>
+
+  <div class="pipeline-block">
+    <div class="pipeline-container pipeline-all" (click)="filterAllLeads()">
+      <h1 class="pipeline-title">All Leads</h1>
+      <h3>{{allLeadsCount }} Leads</h3>
+      </div>
+    <div class="pipeline-container pipeline-new" (click)="filterNewLeads()">
+      <h1 class="pipeline-title">New</h1>
+      <h3>{{newLeadsCount}}  Leads</h3>
     </div>
-  
-    <div class="header-block">
+    <div class="pipeline-container pipeline-in-progress" (click)="filterInProgressLeads()">
+      <h1 class="pipeline-title">In Progress</h1>
+      <h3>{{inProgressLeadsCount}}  Leads</h3>
+    </div>
+    <div class="pipeline-container pipeline-negotiation" (click)="filterNegotiationLeads()">
+      <h1 class="pipeline-title">Negotiation</h1>
+      <h3>{{negotiationLeadsCount}}  Leads</h3>
+    </div>
+    <div class="pipeline-container pipeline-converted" (click)="filterConvetertedLeads()">
+      <h1 class="pipeline-title">Converted</h1>
+      <h3>{{convertedLeadsCount}}  Leads</h3>
+    </div>
+    <div class="pipeline-container pipeline-failed" (click)="filterFailedLeads()">
+      <h1 class="pipeline-title">Failed</h1>
+      <h3>{{failedLeadsCount}}  Leads</h3>
+    </div>
+  </div>
 
-
-      <!-- <mat-form-field>
+  <div class="header-block">
+    <!-- <mat-form-field>
         <mat-label>Select branch</mat-label>
         <mat-select name="selectedBranch">
           <mat-option *ngFor="let branch of branchData" [value]="branch.branchCode">
@@ -15,81 +40,85 @@
                 </mat-option>
         </mat-select>
       </mat-form-field> -->
-  
-      <button
-        mat-raised-button
-        color="primary"
-        class="add-user-btn"
-        (click)="navCreateLead()"
-      >
-        Add Lead
-      </button>
-    </div>
-  
-    <div class="body-block">
-      <mat-form-field class="search-field">
-        <mat-label>Search</mat-label>
-        <input
-          matInput
-          (keyup)="applyFilter($event)"
-          placeholder="Search anything"
-          #input
-        />
-      </mat-form-field>
-  
-      <div class="mat-elevation-z8">
-        <table mat-table [dataSource]="dataSource" matSort>
-          <ng-container matColumnDef="leadId">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Lead ID</th>
-            <td mat-cell *matCellDef="let row">{{ row.leadId }}</td>
-          </ng-container>
-  
-          <ng-container matColumnDef="clientName">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Client Name</th>
-            <td mat-cell *matCellDef="let row">{{ row.client.name }}</td>
-          </ng-container>
-  
-          <ng-container matColumnDef="type">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Type</th>
-            <td mat-cell *matCellDef="let row">{{ row.type }}</td>
-          </ng-container>
-  
-          <ng-container matColumnDef="product">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Product</th>
-            <td mat-cell *matCellDef="let row">{{ row.product }}</td>
-          </ng-container>
-  
-          <ng-container matColumnDef="status">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
-            <td mat-cell *matCellDef="let row">{{ row.status }}</td>
-          </ng-container>
-          <ng-container matColumnDef="lastUpdate">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Last Updated</th>
-            <td mat-cell *matCellDef="let row">{{ row.updatedAt|date:"dd-MM-YYY hh:mm a" }}</td>
-          </ng-container>
-  
-          <ng-container matColumnDef="actions">
-            <th mat-header-cell *matHeaderCellDef>Actions</th>
-            <td mat-cell *matCellDef="let row">
-              <div class="action-button-block">
-                <button
-                  mat-icon-button
-                  color="primary"
-                  aria-label="view"
-                  (click)="navViewLead(row._id)"
-                >
-                  <mat-icon>visibility</mat-icon>
-                </button>
-                <button
-                  mat-icon-button
-                  color="primary"
-                  aria-label="edit"
-                  (click)="navEditLead(row._id)"
-                >
-                  <mat-icon>edit</mat-icon>
-                </button>
-  
-                <!-- <button
+
+    <button
+      mat-raised-button
+      color="primary"
+      class="add-user-btn"
+      (click)="navCreateLead()"
+    >
+      Add Lead
+    </button>
+  </div>
+
+  <div class="body-block">
+    <mat-form-field class="search-field">
+      <mat-label>Search</mat-label>
+      <input
+        matInput
+        (keyup)="applyFilter($event)"
+        placeholder="Search anything"
+        #input
+      />
+    </mat-form-field>
+
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource" matSort>
+        <ng-container matColumnDef="leadId">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Lead ID</th>
+          <td mat-cell *matCellDef="let row">{{ row.leadId }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="clientName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Client Name</th>
+          <td mat-cell *matCellDef="let row">{{ row.client.name }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="type">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Type</th>
+          <td mat-cell *matCellDef="let row">{{ row.type }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="product">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Product</th>
+          <td mat-cell *matCellDef="let row">{{ row.product }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+          <td mat-cell *matCellDef="let row">{{ row.status }}</td>
+        </ng-container>
+        <ng-container matColumnDef="lastUpdate">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            Last Updated
+          </th>
+          <td mat-cell *matCellDef="let row">
+            {{ row.updatedAt | date : "dd-MM-YYY hh:mm a" }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef>Actions</th>
+          <td mat-cell *matCellDef="let row">
+            <div class="action-button-block">
+              <button
+                mat-icon-button
+                color="primary"
+                aria-label="view"
+                (click)="navViewLead(row._id)"
+              >
+                <mat-icon>visibility</mat-icon>
+              </button>
+              <button
+                mat-icon-button
+                color="primary"
+                aria-label="edit"
+                (click)="navEditLead(row._id)"
+              >
+                <mat-icon>edit</mat-icon>
+              </button>
+
+              <!-- <button
                   mat-icon-button
                   color="warn"
                   aria-label="delete"
@@ -97,27 +126,26 @@
                 >
                   <mat-icon>close</mat-icon>
                 </button> -->
-              </div>
-            </td>
-          </ng-container>
-  
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-  
-          <!-- Row shown when there is no matching data. -->
-          <tr class="mat-row" *matNoDataRow>
-            <td class="mat-cell" colspan="4">
-              No data matching the filter "{{ input.value }}"
-            </td>
-          </tr>
-        </table>
-  
-        <!-- <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator> -->
-        <mat-paginator
-          #paginator
-          [pageSizeOptions]="[5, 10, 25, 100]"
-        ></mat-paginator>
-      </div>
+            </div>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+        <!-- Row shown when there is no matching data. -->
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">
+            No data matching the filter "{{ input.value }}"
+          </td>
+        </tr>
+      </table>
+
+      <!-- <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator> -->
+      <mat-paginator
+        #paginator
+        [pageSizeOptions]="[5, 10, 25, 100]"
+      ></mat-paginator>
     </div>
   </div>
-  
+</div>
