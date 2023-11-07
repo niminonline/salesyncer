@@ -17,3 +17,32 @@
 }
 
 
+
+.leave-request-container{
+    width:250px;
+    height: 100px;
+    border-radius: 20px;
+    // border : 2px solid gray;
+    padding: 10px;
+    text-align: center;
+    box-shadow: $card-shadow;
+   cursor: pointer;
+   margin: 20px;
+  }
+  
+  .leave-request-block{
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    justify-content: space-between;
+  
+    .leave-all{
+      background-color: $light-grey;
+    }
+    .leave-request{
+      background-color: $light-grey;
+    }
+    .leave-cancellation{
+      background-color: $light-grey;
+    }
+}

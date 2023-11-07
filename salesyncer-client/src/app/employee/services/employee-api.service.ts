@@ -15,6 +15,9 @@ export class EmployeeApiService {
   applyLeave(data: object): Observable<any> {
     return this.http.post<any>(`/apply-leave`, data);
   }
+  cancelLeave(_id:string):Observable<any>{
+    return this.http.get<any>(`/cancel-leave?_id=${_id}`)
+  }
 
 
 }

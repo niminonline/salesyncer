@@ -19,13 +19,14 @@ export class AddUserComponent {
     private sharedAPI: SharedApiService,
     private fb: FormBuilder,
     private router: Router,
-    private adminAPI: AdminAPIService,
+    private adminAPI: AdminAPIService
   ) {}
 
   submitted: boolean = false;
 
   signupGroup!: FormGroup;
   branchData!: any;
+  showSpinner: boolean = false;
 
   getBranchData() {
     this.sharedAPI.getBranches().subscribe((response: any) => {
@@ -42,13 +43,8 @@ export class AddUserComponent {
     this.getBranchData();
 
     this.signupGroup = this.fb.group({
-      name: [
-        '',
-        [Validators.required, Validators.pattern('^[A-Za-z \\.]+')],
-      ],
-      selectedBranch: ['',[
-        Validators.required,       
-      ],],
+      name: ['', [Validators.required, Validators.pattern('^[A-Za-z \\.]+')]],
+      selectedBranch: ['', [Validators.required]],
 
       email: [
         '',
@@ -73,6 +69,8 @@ export class AddUserComponent {
   signupSubmit(data: any): void {
     this.submitted = true;
     if (!data.invalid) {
+      this.showSpinner = true;
+
       // console.log(data.value);
       console.log('Data', data);
       const {
@@ -101,28 +99,29 @@ export class AddUserComponent {
       };
 
       console.log('body-' + body.selectedBranch);
-        this.adminAPI.addEmployee(body).subscribe((response) => {
-          // console.log(response);
-          if (response && response.status !== 'OK') {
-            Swal.fire('Error', response.message, 'error');
-          } else {
-            Swal.fire({
-              position: 'center',
-              icon: 'success',
-              title: 'User registered successfully',
-              showConfirmButton: false,
-              timer: 1500,
-            });
+      this.adminAPI.addEmployee(body).subscribe((response) => {
+        // console.log(response);
+        if (response && response.status !== 'OK') {
+          this.showSpinner = false;
 
-            const currentUrl = this.router.url;
-            this.router.navigate(['admin/employees'])
-           
-           
-          }
-        });
-      } else {
-        Swal.fire('Error', 'Please fill the fields without errors', 'error');
-      }
+          Swal.fire('Error', response.message, 'error');
+        } else {
+          this.showSpinner = false;
+
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'User registered successfully',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+
+          const currentUrl = this.router.url;
+          this.router.navigate(['admin/employees']);
+        }
+      });
+    } else {
+      Swal.fire('Error', 'Please fill the fields without errors', 'error');
     }
   }
-
+}

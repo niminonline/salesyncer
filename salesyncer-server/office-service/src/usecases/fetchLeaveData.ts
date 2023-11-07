@@ -3,10 +3,10 @@ import { qfetchLeaveData } from "../database/repositories/employeeRepo";
 const fetchLeaveData = async (data:any): Promise<object | undefined> => {
   try {
     const {_id,startDate,endDate}=data;
-    const leaveData = await qfetchLeaveData(_id,startDate,endDate);
-    if (leaveData) {
+    const leavesData = await qfetchLeaveData(_id,startDate,endDate);
+    if (leavesData) {
       return {
-        leaveData,
+        leavesData,
         message: " Leave data fetched successfully",
         status: "OK",
       };

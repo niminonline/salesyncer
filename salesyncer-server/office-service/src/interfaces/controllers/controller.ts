@@ -11,6 +11,7 @@ import applyLeaveData from "../../usecases/applyLeaveData";
 import fetchLeaveData from "../../usecases/fetchLeaveData";
 import getLeaveRequestsData from "../../usecases/getLeaveRequestsData";
 import leaveAction from "../../usecases/leaveAction";
+import cancelLeaveData from "../../usecases/cancelLeaveData";
 interface AdminData {
   email: string;
   password: string;
@@ -269,7 +270,7 @@ export const fetchLeaveDetails = async (data:any) => {
       const response: any = await fetchLeaveData(data);
       if (response.status == "OK") {
         const data = {
-          leaveData:response.leaveData,
+          leavesData:response.leavesData,
           requestId,
           action,
           status: "OK",
@@ -331,6 +332,32 @@ export const fetchLeaveDetails = async (data:any) => {
           publishToChannel("ApiRes-doLeaveAction", data);
         } else {
           publishToChannel("ApiRes-doLeaveAction", {
+            requestId,
+            action,
+            status: "FAILED",
+            message: response.message,
+          });
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    export const cancelLeaveDetails = async (data: any) => {
+      try {
+        // console.log("Req body of leave action", data);
+        const { requestId, action,_id } = data;
+        const response: any = await cancelLeaveData(_id);
+        // console.log("Request id, action from cancel leave action controller",response);
+        if (response.status == "OK") {
+          const data = {
+            requestId,
+            action,
+            ...response
+          };
+          // console.log("myresponse", data);
+          publishToChannel("ApiRes-cancelLeaveDetails", data);
+        } else {
+          publishToChannel("ApiRes-cancelLeaveDetails", {
             requestId,
             action,
             status: "FAILED",

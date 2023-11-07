@@ -11,7 +11,8 @@ import {
   applyLeaveDetails,
   fetchLeaveDetails,
   getLeaveRequests,
-  doLeaveAction
+  doLeaveAction,
+  cancelLeaveDetails
 
 
   
@@ -73,6 +74,9 @@ redisSubscriber.on("message", (channel: string, message: any) => {
         break;
       case "doLeaveAction":
         doLeaveAction(data);
+        break;
+      case "cancelLeaveDetails":
+        cancelLeaveDetails(data);
         break;
     }
   }

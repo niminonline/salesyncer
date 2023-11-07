@@ -14,25 +14,30 @@ import Swal from 'sweetalert2';
   styleUrls: ['./leave-request.component.scss'],
 })
 export class LeaveRequestComponent implements OnInit {
-  tableData!: any[];
-  dataSource!: MatTableDataSource<any>;
-  showSpinner: boolean = false;
-
-
   displayedColumns: string[] = [
     'name',
-    'role',
+    'designation',
     'branch',
     'startDate',
     'endDate',
     'leavecategory',
     'reason',
     'appliedDate',
+    'requestType',
     'actions',
   ];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-    @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild(MatSort) sort!: MatSort;
+  leaveRequestData!: any[];
+  cancelRequestData!: any[];
+  leaveRequestCount!: number;
+  cancelRequestCount!: number;
+  allRequestCount!: number;
+  requestType!: string;
+  leavesData!: any;
+  dataSource!: MatTableDataSource<any>;
+  showSpinner: boolean = false;
 
   constructor(
     private sharedAPI: SharedApiService,
@@ -46,19 +51,56 @@ export class LeaveRequestComponent implements OnInit {
 
   getLeaveRequests() {
     this.sharedAPI.leaveRequests().subscribe((response) => {
-      this.tableData = response.leaveRequests;
-      console.log(this.tableData);
-      this.dataSource = new MatTableDataSource(this.tableData);
-      this.dataSource.paginator=this.paginator;
+      this.leavesData = response.leaveRequests;
+      this.allRequestCount = this.leavesData.length;
+      this.leavesData.map((leaveData: any) => {
+        if (leaveData?.status == 'Pending') {
+          leaveData.requestType = 'Leave Request';
+        } else if (leaveData?.status == 'Cancellation Requested') {
+          leaveData.requestType = 'Cancellation Request';
+        }
+      });
+      // console.log(this.tableData);
+      this.leaveRequestData = this.leavesData.filter(
+        (leaveData: any) => leaveData.status == 'Pending'
+      );
+      this.leaveRequestCount = this.leaveRequestData.length;
+      this.cancelRequestData = this.leavesData.filter(
+        (leaveData: any) => leaveData.status == 'Cancellation Requested'
+      );
+      this.cancelRequestCount = this.cancelRequestData.length;
+      this.dataSource = new MatTableDataSource(this.leavesData);
+      this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-
     });
   }
 
-  // ngAfterViewInit() {
-  //   this.dataSource.paginator = this.paginator;
-  //   this.dataSource.sort = this.sort;
-  // }
+  filterAllRequest() {
+    this.dataSource = new MatTableDataSource(this.leavesData);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+  filterLeaveRequest() {
+    const leaveRequests = this.leavesData.filter(
+      (leaveData: any) => leaveData.status == 'Pending'
+    );
+    this.dataSource = new MatTableDataSource(leaveRequests);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+  filterCancelRequest() {
+    const cancelRequests = this.leavesData.filter(
+      (leaveData: any) => leaveData.status == 'Cancellation Requested'
+    );
+    this.dataSource = new MatTableDataSource(cancelRequests);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -80,7 +122,6 @@ export class LeaveRequestComponent implements OnInit {
       confirmButtonText: 'Yes',
     }).then((result) => {
       if (result.isConfirmed) {
-
         this.showSpinner = true;
         this.adminApi.leaveAction({ _id, toDo }).subscribe((response) => {
           console.log(response);

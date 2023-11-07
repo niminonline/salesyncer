@@ -49,6 +49,7 @@ export interface EmployeeType
 
 
     export interface LeaveData {
+      [x: string]: any;
       leaveData: LeaveItem[];
       status: string;
       message: string;

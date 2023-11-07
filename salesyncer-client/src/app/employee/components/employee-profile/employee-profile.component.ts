@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
+import * as EmployeeActions from '.././../store/actions/user.actions'
 
 import { selectEmployeeData } from '../../store/selectors/user.selectors';
 
@@ -14,9 +15,12 @@ export class EmployeeProfileComponent implements OnInit {
   employeeData!: any;
 
   ngOnInit(): void {
+    this.refreshEmployeeData();
     this.getEmployeeData();
   }
-
+refreshEmployeeData(){
+  this.store.dispatch(EmployeeActions.retrieveEmployeeData());
+}
   getEmployeeData() {
     this.store.select(selectEmployeeData).subscribe((employeeData) => {
       if (employeeData) {

@@ -51,6 +51,7 @@ import {
   editActivityType,
   deleteActivityType,
   getActivityTypes,
+  cancelLeave,
 
 } from "../controllers/controller";
 
@@ -79,6 +80,8 @@ router.post("/apply-leave", applyLeave);
 router.post("/fetch-leave-data", fetchLeaveData);
 router.get("/leave-requests", leaveRequests);
 router.post("/leave-action", leaveAction);
+router.get("/cancel-leave", cancelLeave);
+
 
 router.post("/create-contact", createContact);
 router.post("/edit-contact", editContact);

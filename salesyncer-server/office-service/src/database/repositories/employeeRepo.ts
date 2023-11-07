@@ -63,47 +63,48 @@ export const qfetchLeaveData = async (
 };
 export const qGetLeaveRequests = async () => {
   // console.log("Request reached repo");
-  const response = await Leave.find({ status: "Pending" }).populate("employee");
+  const response = await Leave.find({$or:[{status: "Pending" },{status: "Cancellation Requested" }] }).populate("employee");
   // console.log(response);
   return response;
 };
 
-
-
-
-
-
 export const qDoleaveAction = async (_id: string, toDo: string) => {
   console.log("Request reached repo", _id, toDo);
 
-  if (toDo === "approve") {
-    const leaveData = await Leave.findById(_id);
-    const emp_id=leaveData?.employee;
-    const employeeData = await Employee.findById(emp_id);
-    console.log(employeeData);
+  const leaveData = await Leave.findById(_id);
+  const emp_id = leaveData?.employee;
+  const employeeData = await Employee.findById(emp_id);
+  if (leaveData && leaveData.startDate && leaveData.endDate) {
+    let days =
+      (leaveData.endDate.getTime() - leaveData.startDate.getTime()) /
+      (1000 * 60 * 60 * 24);
+    if (leaveData.startDate !== leaveData.endDate) {
+      days += 1;
+    }
+    console.log("Days===", days);
+    const type = leaveData?.leaveCategory;
 
-    if (leaveData && leaveData.startDate && leaveData.endDate) {
-      let days = 
-        (leaveData.endDate.getTime() - leaveData.startDate.getTime()) /
-        (1000 * 60 * 60 * 24);
-        if(leaveData.startDate!==leaveData.endDate){
-          days+=1;
-        }
-        console.log("Days===",days);
-      const type = leaveData?.leaveCategory;
+    if (toDo === "approve") {
+      console.log(employeeData);
+
       if (type == "Casual") {
         if (employeeData && employeeData?.casualLeaveBalance >= days) {
           const approved = await Leave.findOneAndUpdate(
             { _id },
             { $set: { status: "Approved" } }
           );
-          await Employee.findByIdAndUpdate(emp_id,{ $inc: { casualLeaveBalance: -days } });
+          await Employee.findByIdAndUpdate(emp_id, {
+            $inc: { casualLeaveBalance: -days },
+          });
           // employeeData.casualLeaveBalance-=days;
           // await employeeData.save();
 
           return { status: "OK", message: "Leave approved successfully" };
         } else {
-          return { status: "FAILED", message: "Insufficient casual leave balance" };
+          return {
+            status: "FAILED",
+            message: "Insufficient casual leave balance",
+          };
         }
       } else if (type == "Sick") {
         if (employeeData && employeeData?.sickLeaveBalance >= days) {
@@ -113,28 +114,66 @@ export const qDoleaveAction = async (_id: string, toDo: string) => {
           );
           // employeeData.sickLeaveBalance-=days;
           // await employeeData.save();
-           await Employee.findByIdAndUpdate(emp_id,{ $inc: { sickLeaveBalance: -days } });
+          await Employee.findByIdAndUpdate(emp_id, {
+            $inc: { sickLeaveBalance: -days },
+          });
           return { status: "OK", message: "Leave approved successfully" };
         } else {
-          return { status: "FAILED", message: "Insufficient sick leave balance" };
+          return {
+            status: "FAILED",
+            message: "Insufficient sick leave balance",
+          };
         }
       } else {
         const approved = await Leave.findOneAndUpdate(
           { _id },
           { $set: { status: "Approved" } }
         );
-        
+
         return { status: "OK", message: "Leave approved successfully" };
       }
-    }
+    } else if (toDo === "reject") {
+      const rejected = await Leave.findOneAndUpdate(
+        { _id },
+        { $set: { status: "Rejected" } }
+      );
+      return { status: "OK", message: "Leave rejected successfully" };
+    } else if (toDo === "cancel") {
+      const cancelled = await Leave.findOneAndUpdate(
+        { _id },
+        { $set: { status: "Cancelled" } }
+      );
+      if (leaveData?.leaveCategory == "Sick") {
+        await Employee.findByIdAndUpdate(emp_id, {
+          $inc: { sickLeaveBalance: days },
+        });
+      } else if (leaveData?.leaveCategory == "Casual") {
+        await Employee.findByIdAndUpdate(emp_id, {
+          $inc: { casualLeaveBalance: days },
+        });
+      }
 
-     } else if (toDo === "reject") {
-    const rejected = await Leave.findOneAndUpdate(
-      { _id },
-      { $set: { status: "Rejected" } }
-    );
-    return {status:"OK",message:"Leave rejected successfully"}
+      return { status: "OK", message: "Leave cancelled successfully" };
+    }
   } else {
     return null;
   }
 };
+
+
+export const qCancelLeave= async(_id:string)=>{
+  const response= await Leave.findByIdAndUpdate(_id,{$set:{status:"Cancelled"}})
+  if(response){
+    return { status: "OK", message: "Leave cancelled successfully" };
+  }
+}
+export const qSendLeaveCancelRequest= async(_id:string)=>{
+  const response= await Leave.findByIdAndUpdate(_id,{$set:{status:"Cancellation Requested"}})
+  if(response){
+    return { status: "OK", message: "Leave cancellation requested successfully" };
+  }
+}
+export const qGetCurrentLeaveStatus= async(_id:string)=>{
+  const leaveData= await Leave.findById(_id)
+  return leaveData?.status;
+}

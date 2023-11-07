@@ -1,48 +1,67 @@
 import { publishAndResponse } from "../services/RedisOps";
+import service from "../constants/services";
+import {
+    getEmployeeDataChannel,
+    addEmployeeDataChannel,
+    getBranchDetailsChannel,
+    addBranchDetailsChannel,
+    getEmployeesDetailsChannel,
+    updateEmployeeDetailsChannel,
+    getLeaveCategoryDetailsChannel,
+    applyLeaveDetailsChannel,
+    fetchLeaveDetailsChannel,
+    getLeaveRequestsChannel,
+    doLeaveActionChannel,
+    cancelLeaveDetailsChannel
+  } from '../constants/office-channels'
 
 
 export const getEmployeeData = async(data:object)=>{
 
-    return await publishAndResponse('office-service', data, 'getEmployeeData', 'ApiRes-getEmployeeData');
+    return await publishAndResponse(service.office, data, getEmployeeDataChannel.send, getEmployeeDataChannel.listen);
 }
 export const addEmployeeData = async(data:object)=>{
     
-    return await publishAndResponse('office-service', data, 'addEmployeeData', 'ApiRes-addEmployeeData');
+    return await publishAndResponse(service.office, data,addEmployeeDataChannel.send,addEmployeeDataChannel.listen);
 }
 export const getBranchDetails = async()=>{
     const data={};
-    return await publishAndResponse('office-service', data, 'getBranchDetails', 'ApiRes-getBranchDetails');
+    return await publishAndResponse(service.office, data, getBranchDetailsChannel.send,getBranchDetailsChannel.listen);
 }
 export const addBranchDetails = async(data:object)=>{
-    return await publishAndResponse('office-service', data, 'addBranchDetails', 'ApiRes-addBranchDetails');
+    return await publishAndResponse(service.office, data, addBranchDetailsChannel.send,addBranchDetailsChannel.listen);
 }
 export const getEmployeesDetails = async()=>{
     const data={};
     
-    return await publishAndResponse('office-service', data, 'getEmployeesDetails', 'ApiRes-getEmployeesDetails');
+    return await publishAndResponse(service.office, data, getEmployeesDetailsChannel.send, getEmployeesDetailsChannel.listen);
 }
 export const updateEmployeeDetails = async(data:object)=>{
     
-    return await publishAndResponse('office-service', data, 'updateEmployeeDetails', 'ApiRes-updateEmployeeDetails');
+    return await publishAndResponse(service.office, data, updateEmployeeDetailsChannel.send, updateEmployeeDetailsChannel.listen);
 }
 export const getLeaveCategoryDetails = async()=>{
     const data={};
-    return await publishAndResponse('office-service', data, 'getLeaveCategoryDetails', 'ApiRes-getLeaveCategoryDetails');
+    return await publishAndResponse(service.office, data, getLeaveCategoryDetailsChannel.send, getLeaveCategoryDetailsChannel.listen);
 }
 
 
 export const applyLeaveDetails = async(data:object)=>{
     
-    return await publishAndResponse('office-service', data, 'applyLeaveDetails', 'ApiRes-applyLeaveDetails');
+    return await publishAndResponse(service.office, data, applyLeaveDetailsChannel.send, applyLeaveDetailsChannel.listen);
 }
 export const fetchLeaveDetails = async(data:object)=>{
-    return await publishAndResponse('office-service', data, 'fetchLeaveDetails', 'ApiRes-fetchLeaveDetails');
+    return await publishAndResponse(service.office, data, fetchLeaveDetailsChannel.send, fetchLeaveDetailsChannel.listen);
 }
 export const getLeaveRequests = async()=>{
     const data={};
-    return await publishAndResponse('office-service', data, 'getLeaveRequests', 'ApiRes-getLeaveRequests');
+    return await publishAndResponse(service.office, data, getLeaveRequestsChannel.send, getLeaveRequestsChannel.listen);
 }
 export const doLeaveAction = async(data:object)=>{
     
-    return await publishAndResponse('office-service', data, 'doLeaveAction', 'ApiRes-doLeaveAction');
+    return await publishAndResponse(service.office, data, doLeaveActionChannel.send, doLeaveActionChannel.listen);
+}
+export const cancelLeaveDetails = async(data:object)=>{
+    
+    return await publishAndResponse(service.office, data, cancelLeaveDetailsChannel.send, cancelLeaveDetailsChannel.listen);
 }

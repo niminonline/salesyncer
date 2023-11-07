@@ -16,6 +16,7 @@ import {
   fetchLeaveDetails,
   getLeaveRequests,
   doLeaveAction,
+  cancelLeaveDetails,
 } from "../../usecases/office";
 import {
   
@@ -388,6 +389,29 @@ export const leaveAction = async (req: Request, res: Response) => {
   }
 };
 
+
+export const cancelLeave= async (req:Request,res:Response)=>{
+  try{
+    const _id= req.query;
+    const headers=req.headers;
+
+    const response:any= await verifyToken(headers);
+    if (response.status == "OK") {
+      const data={_id}
+      const response: any = await cancelLeaveDetails(data);
+
+      delete response.requestId;
+      delete response.action;
+      res.json(response);
+    } else {
+      res.json(response);
+    }
+  } catch (error) {
+    console.error("Error in /auth:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+  
 //======================================End Leave Controllers=============================
 
 //====================================Contact Controllers===============================
@@ -395,7 +419,7 @@ export const createContact = async (req: Request, res: Response) => {
   try {
     const headers = req.headers;
     const data = req.body;
-    console.log("create Contact data,header", data, headers);
+    // console.log("create Contact data,header", data, headers);
     const response: any = await verifyToken(headers);
     if (response.status == "OK") {
       const response: any = await createContactDetails(data);
