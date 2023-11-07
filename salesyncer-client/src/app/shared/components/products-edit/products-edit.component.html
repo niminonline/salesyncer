@@ -1,12 +1,11 @@
 <div class="component-body">
-    <h1 class="heading">Edit Product</h1>
-  
-    <div class="spinner-container" *ngIf="showSpinner">
-      <img src="assets/images/loading1.gif" alt="" />
-      <!-- <mat-spinner class="spinner"></mat-spinner> -->
-    </div>
-  
-   
+  <h1 class="heading">Edit Product</h1>
+
+  <div class="spinner-container" *ngIf="showSpinner">
+    <img src="assets/images/loading1.gif" alt="" />
+    <!-- <mat-spinner class="spinner"></mat-spinner> -->
+  </div>
+
   <mat-card class="formCard">
     <!-- <mat-card-content> -->
 
@@ -19,10 +18,9 @@
             >Product Name is required</mat-error
           >
         </mat-form-field>
-    </div>
+      </div>
 
-    <div class="row">
-
+      <div class="row">
         <mat-form-field appearance="outline">
           <mat-label>Select Product category</mat-label>
           <mat-select name="productCategory" formControlName="productCategory">
@@ -32,21 +30,22 @@
             >
               {{ productCategory.productCategory }}
             </mat-option>
-            <mat-error *ngIf="inputGroup.get('productCategory')?.errors?.['productCategory']"
+            <mat-error
+              *ngIf="inputGroup.get('productCategory')?.errors?.['productCategory']"
               >Products Category is required</mat-error
             >
           </mat-select>
         </mat-form-field>
+      </div>
 
-    </div>
-
-    <div class="row">
+      <div class="row">
         <mat-form-field appearance="outline">
           <mat-label>Select Status</mat-label>
           <mat-select name="status" formControlName="status">
             <mat-option value="Available"> Available </mat-option>
             <mat-option value="Out Of Stock"> Out Of Stock </mat-option>
-            <mat-option value="Discountinued"> Discoutinued </mat-option>
+            <mat-option value="Discontinued"> Discontinued </mat-option>
+            <mat-option value="Upcoming"> Upcoming </mat-option>
           </mat-select>
 
           <mat-error *ngIf="inputGroup.get('status')?.errors?.['required']"
@@ -56,7 +55,6 @@
       </div>
 
       <div class="row">
-      
         <mat-form-field appearance="outline">
           <mat-label>Maximum Retail Price</mat-label>
           <input matInput required formControlName="mrp" />
@@ -67,11 +65,9 @@
             >Enter a valid amount</mat-error
           >
         </mat-form-field>
+      </div>
 
-        </div>
-
-        <div class="row">
-
+      <div class="row">
         <mat-form-field appearance="outline">
           <mat-label>Least Selling Price</mat-label>
           <input matInput required formControlName="lsp" />
@@ -82,8 +78,6 @@
             >Enter a valid amount</mat-error
           >
         </mat-form-field>
-
-       
       </div>
 
       <div class="button-block">

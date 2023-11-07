@@ -86,6 +86,13 @@ export class ProductsEditComponent implements OnInit {
     this.submitted = true;
     // console.log(data.value);
     if (!data.invalid) {
+
+
+      if( parseFloat(data.value.mrp)<= parseFloat(data.value.lsp)){
+        Swal.fire('Error', "LSP must be less than or equal to MRP", 'error');
+        return;
+      }
+      
       this.showSpinner = true;
 
       const { name, productCategory, status, mrp, lsp } = data.value;

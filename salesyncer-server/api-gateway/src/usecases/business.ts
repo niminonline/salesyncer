@@ -1,219 +1,372 @@
 import { publishAndResponse } from "../services/RedisOps";
 import service from "../constants/services";
+import {
+  getLeadSourceDetailsChannel,
+  getProductCategoryDetailsChannel,
+  createContactDetailsChannel,
+  editContactDetailsChannel,
+  getContactDetailsChannel,
+  getContactsDetailsChannel,
+  deleteContactDetailsChannel,
+  createLeadDetailsChannel,
+  editLeadDetailsChannel,
+  getLeadDetailsChannel,
+  getLeadsDetailsChannel,
+  deleteLeadDetailsChannel,
+  createActivityDetailsChannel,
+  editActivityDetailsChannel,
+  getActivityDetailsChannel,
+  getActivitiesDetailsChannel,
+  deleteActivityDetailsChannel,
+  createProductDetailsChannel,
+  editProductDetailsChannel,
+  getProductDetailsChannel,
+  getProductsDetailsChannel,
+  deleteProductDetailsChannel,
+  createSaleDetailsChannel,
+  editSaleDetailsChannel,
+  getSaleDetailsChannel,
+  getSalesDetailsChannel,
+  deleteSaleDetailsChannel,
+  createTargetDetailsChannel,
+  editTargetDetailsChannel,
+  getTargetDetailsChannel,
+  getTargetsDetailsChannel,
+  deleteTargetDetailsChannel,
+  createActivityTypeDetailsChannel,
+  editActivityTypeDetailsChannel,
+  getActivityTypesDetailsChannel,
+  deleteActivityTypeDetailsChannel,
+} from "../constants/business-channels";
 
 
-export const getLeadSourceDetails = async()=>{
-    const data={};
-    //publishChannel, publishData, publishAction, subscribeChannel
-    return await publishAndResponse(service.business, data, 'getLeadSourceDetails', 'ApiRes-getLeadSourceDetails');
-}
+export const getLeadSourceDetails = async () => {
+  const data = {};
 
-export const getProductCategoryDetails = async()=>{
-    const data={};
-    //publishChannel, publishData, publishAction, subscribeChannel
-    return await publishAndResponse(service.business, data, 'getProductCategoryDetails', 'ApiRes-getProductCategoryDetails');
-}
+  return await publishAndResponse(
+    service.business,
+    data,
+   getLeadSourceDetailsChannel.send,
+   getLeadSourceDetailsChannel.listen
+  );
+};
+
+export const getProductCategoryDetails = async () => {
+  const data = {};
+
+  return await publishAndResponse(
+    service.business,
+    data,
+   getProductCategoryDetailsChannel.send,
+   getProductCategoryDetailsChannel.listen
+  );
+};
 
 // export const getProductsDetails = async()=>{
 //     const data={};
-//     //publishChannel, publishData, publishAction, subscribeChannel
+//
 //     return await publishAndResponse(service.business, data, 'getProductsDetails', 'ApiRes-getProductsDetails');
 // }
 
+export const createContactDetails = async (data: object) => {
+  return await publishAndResponse(
+    service.business,
+    data,
+    createContactDetailsChannel.send,
+   createContactDetailsChannel.listen
+  );
+};
+export const editContactDetails = async (data: object) => {
+  return await publishAndResponse(
+    service.business,
+    data,
+   editContactDetailsChannel.send,
+   editContactDetailsChannel.listen
+  );
+};
+export const getContactDetails = async (data: object) => {
+  return await publishAndResponse(
+    service.business,
+    data,
+  getContactDetailsChannel.send,
+   getContactDetailsChannel.listen
+  );
+};
+export const getContactsDetails = async () => {
+  const data = {};
 
-export const createContactDetails = async(data:object)=>{
-
-    //publishChannel, publishData, publishAction, subscribeChannel
-return await publishAndResponse(service.business, data, 'createContactDetails', 'ApiRes-createContactDetails');
-}
-export const editContactDetails = async(data:object)=>{
-
-    //publishChannel, publishData, publishAction, subscribeChannel
-return await publishAndResponse(service.business, data, 'editContactDetails', 'ApiRes-editContactDetails');
-}
-export const getContactDetails = async(data:object)=>{
-   
-    //publishChannel, publishData, publishAction, subscribeChannel
-return await publishAndResponse(service.business, data, 'getContactDetails', 'ApiRes-getContactDetails');
-}
-export const getContactsDetails = async()=>{
-    const data={};
-    //publishChannel, publishData, publishAction, subscribeChannel
-    return await publishAndResponse(service.business, data, 'getContactsDetails', 'ApiRes-getContactsDetails');
-}
-export const deleteContactDetails = async(data:object)=>{
-   
-    //publishChannel, publishData, publishAction, subscribeChannel
-return await publishAndResponse(service.business, data, 'deleteContactDetails', 'ApiRes-deleteContactDetails');
-}
+  return await publishAndResponse(
+    service.business,
+    data,
+  getContactsDetailsChannel.send,
+   getContactsDetailsChannel.listen
+  );
+};
+export const deleteContactDetails = async (data: object) => {
+  return await publishAndResponse(
+    service.business,
+    data,
+   deleteContactDetailsChannel.send,
+   deleteContactDetailsChannel.listen
+  );
+};
 
 //==========================================Leads========================================================
-export const createLeadDetails = async(data:object)=>{
+export const createLeadDetails = async (data: object) => {
+  return await publishAndResponse(
+    service.business,
+    data,
+   createLeadDetailsChannel.send,
+   createLeadDetailsChannel.listen
+  );
+};
+export const editLeadDetails = async (data: object) => {
+  return await publishAndResponse(
+    service.business,
+    data,
+   editLeadDetailsChannel.send,
+   editLeadDetailsChannel.listen
+  );
+};
+export const getLeadDetails = async (data: object) => {
+  return await publishAndResponse(
+    service.business,
+    data,
+   getLeadDetailsChannel.send,
+   getLeadDetailsChannel.listen
+  );
+};
+export const getLeadsDetails = async () => {
+  const data = {};
 
-    //publishChannel, publishData, publishAction, subscribeChannel
-return await publishAndResponse(service.business, data, 'createLeadDetails', 'ApiRes-createLeadDetails');
-}
-export const editLeadDetails = async(data:object)=>{
-
-    //publishChannel, publishData, publishAction, subscribeChannel
-return await publishAndResponse(service.business, data, 'editLeadDetails', 'ApiRes-editLeadDetails');
-}
-export const getLeadDetails = async(data:object)=>{
-   
-    //publishChannel, publishData, publishAction, subscribeChannel
-return await publishAndResponse(service.business, data, 'getLeadDetails', 'ApiRes-getLeadDetails');
-}
-export const getLeadsDetails = async()=>{
-    const data={};
-    //publishChannel, publishData, publishAction, subscribeChannel
-    return await publishAndResponse(service.business, data, 'getLeadsDetails', 'ApiRes-getLeadsDetails');
-}
-export const deleteLeadDetails = async(data:object)=>{
-   
-    //publishChannel, publishData, publishAction, subscribeChannel
-return await publishAndResponse(service.business, data, 'deleteLeadDetails', 'ApiRes-deleteLeadDetails');
-}
-
-
+  return await publishAndResponse(
+    service.business,
+    data,
+   getLeadsDetailsChannel.send,
+   getLeadsDetailsChannel.listen
+  );
+};
+export const deleteLeadDetails = async (data: object) => {
+  return await publishAndResponse(
+    service.business,
+    data,
+   deleteLeadDetailsChannel.send,
+   deleteLeadDetailsChannel.listen
+  );
+};
 
 //==========================================Activity========================================================
-export const createActivityDetails = async(data:object)=>{
+export const createActivityDetails = async (data: object) => {
+  return await publishAndResponse(
+    service.business,
+    data,
+    createActivityDetailsChannel.send,
+   createActivityDetailsChannel.listen
+  );
+};
+export const editActivityDetails = async (data: object) => {
+  return await publishAndResponse(
+    service.business,
+    data,
+   editActivityDetailsChannel.send,
+   editActivityDetailsChannel.listen
+  );
+};
+export const getActivityDetails = async (data: object) => {
+  return await publishAndResponse(
+    service.business,
+    data,
+  getActivityDetailsChannel.send,
+    getActivityDetailsChannel.listen
+  );
+};
+export const getActivitiesDetails = async () => {
+  const data = {};
 
-    //publishChannel, publishData, publishAction, subscribeChannel
-return await publishAndResponse(service.business, data, 'createActivityDetails', 'ApiRes-createActivityDetails');
-}
-export const editActivityDetails = async(data:object)=>{
-
-    //publishChannel, publishData, publishAction, subscribeChannel
-return await publishAndResponse(service.business, data, 'editActivityDetails', 'ApiRes-editActivityDetails');
-}
-export const getActivityDetails = async(data:object)=>{
-   
-    //publishChannel, publishData, publishAction, subscribeChannel
-return await publishAndResponse(service.business, data, 'getActivityDetails', 'ApiRes-getActivityDetails');
-}
-export const getActivitiesDetails = async()=>{
-    const data={};
-    //publishChannel, publishData, publishAction, subscribeChannel
-    return await publishAndResponse(service.business, data, 'getActivitiesDetails', 'ApiRes-getActivitiesDetails');
-}
-export const deleteActivityDetails = async(data:object)=>{
-   
-    //publishChannel, publishData, publishAction, subscribeChannel
-return await publishAndResponse(service.business, data, 'deleteActivityDetails', 'ApiRes-deleteActivityDetails');
-}
+  return await publishAndResponse(
+    service.business,
+    data,
+  getActivitiesDetailsChannel.send,
+   getActivitiesDetailsChannel.listen
+  );
+};
+export const deleteActivityDetails = async (data: object) => {
+  return await publishAndResponse(
+    service.business,
+    data,
+   deleteActivityDetailsChannel.send,
+   deleteActivityDetailsChannel.listen
+  );
+};
 //=================================================================================================================
-
-
 
 //==========================================Products========================================================
-export const createProductDetails = async(data:object)=>{
+export const createProductDetails = async (data: object) => {
+  return await publishAndResponse(
+    service.business,
+    data,
+    createProductDetailsChannel.send,
+   createProductDetailsChannel.listen
+  );
+};
+export const editProductDetails = async (data: object) => {
+  return await publishAndResponse(
+    service.business,
+    data,
+  editProductDetailsChannel.send,
+   editProductDetailsChannel.listen
+  );
+};
+export const getProductDetails = async (data: object) => {
+  return await publishAndResponse(
+    service.business,
+    data,
+   getProductDetailsChannel.send,
+   getProductDetailsChannel.listen
+  );
+};
+export const getProductsDetails = async () => {
+  const data = {};
 
-    //publishChannel, publishData, publishAction, subscribeChannel
-return await publishAndResponse(service.business, data, 'createProductDetails', 'ApiRes-createProductDetails');
-}
-export const editProductDetails = async(data:object)=>{
-
-    //publishChannel, publishData, publishAction, subscribeChannel
-return await publishAndResponse(service.business, data, 'editProductDetails', 'ApiRes-editProductDetails');
-}
-export const getProductDetails = async(data:object)=>{
-   
-    //publishChannel, publishData, publishAction, subscribeChannel
-return await publishAndResponse(service.business, data, 'getProductDetails', 'ApiRes-getProductDetails');
-}
-export const getProductsDetails = async()=>{
-    const data={};
-    //publishChannel, publishData, publishAction, subscribeChannel
-    return await publishAndResponse(service.business, data, 'getProductsDetails', 'ApiRes-getProductsDetails');
-}
-export const deleteProductDetails = async(data:object)=>{
-   
-    //publishChannel, publishData, publishAction, subscribeChannel
-return await publishAndResponse(service.business, data, 'deleteProductDetails', 'ApiRes-deleteProductDetails');
-}
+  return await publishAndResponse(
+    service.business,
+    data,
+  getProductsDetailsChannel.send,
+getProductsDetailsChannel.listen
+  );
+};
+export const deleteProductDetails = async (data: object) => {
+  return await publishAndResponse(
+    service.business,
+    data,
+   deleteProductDetailsChannel.send,
+    deleteProductDetailsChannel.listen
+  );
+};
 //=================================================================================================================
-
 
 //==========================================Sales========================================================
-export const createSaleDetails = async(data:object)=>{
+export const createSaleDetails = async (data: object) => {
+  return await publishAndResponse(
+    service.business,
+    data,
+  createSaleDetailsChannel.send,
+   createSaleDetailsChannel.listen
+  );
+};
+export const editSaleDetails = async (data: object) => {
+  return await publishAndResponse(
+    service.business,
+    data,
+   editSaleDetailsChannel.send,
+   editSaleDetailsChannel.listen
+  );
+};
+export const getSaleDetails = async (data: object) => {
+  return await publishAndResponse(
+    service.business,
+    data,
+ getSaleDetailsChannel.send,
+   getSaleDetailsChannel.listen
+  );
+};
+export const getSalesDetails = async () => {
+  const data = {};
 
-    //publishChannel, publishData, publishAction, subscribeChannel
-return await publishAndResponse(service.business, data, 'createSaleDetails', 'ApiRes-createSaleDetails');
-}
-export const editSaleDetails = async(data:object)=>{
-
-    //publishChannel, publishData, publishAction, subscribeChannel
-return await publishAndResponse(service.business, data, 'editSaleDetails', 'ApiRes-editSaleDetails');
-}
-export const getSaleDetails = async(data:object)=>{
-   
-    //publishChannel, publishData, publishAction, subscribeChannel
-return await publishAndResponse(service.business, data, 'getSaleDetails', 'ApiRes-getSaleDetails');
-}
-export const getSalesDetails = async()=>{
-    const data={};
-    //publishChannel, publishData, publishAction, subscribeChannel
-    return await publishAndResponse(service.business, data, 'getSalesDetails', 'ApiRes-getSalesDetails');
-}
-export const deleteSaleDetails = async(data:object)=>{
-   
-    //publishChannel, publishData, publishAction, subscribeChannel
-return await publishAndResponse(service.business, data, 'deleteSaleDetails', 'ApiRes-deleteSaleDetails');
-}
+  return await publishAndResponse(
+    service.business,
+    data,
+   getSalesDetailsChannel.send,
+   getSalesDetailsChannel.listen
+  );
+};
+export const deleteSaleDetails = async (data: object) => {
+  return await publishAndResponse(
+    service.business,
+    data,
+    deleteSaleDetailsChannel.send,
+deleteSaleDetailsChannel.listen  );
+};
 //=================================================================================================================
-
-
 
 //==========================================Target========================================================
-export const createTargetDetails = async(data:object)=>{
+export const createTargetDetails = async (data: object) => {
+  return await publishAndResponse(
+    service.business,
+    data,
+    createTargetDetailsChannel.send,
+   createTargetDetailsChannel.listen
+  );
+};
+export const editTargetDetails = async (data: object) => {
+  return await publishAndResponse(
+    service.business,
+    data,
+  editTargetDetailsChannel.send,
+editTargetDetailsChannel.listen
+  );
+};
+export const getTargetDetails = async (data: object) => {
+  return await publishAndResponse(
+    service.business,
+    data,
+   getTargetDetailsChannel.send,
+   getTargetDetailsChannel.listen
+  );
+};
+export const getTargetsDetails = async () => {
+  const data = {};
 
-    //publishChannel, publishData, publishAction, subscribeChannel
-return await publishAndResponse(service.business, data, 'createTargetDetails', 'ApiRes-createTargetDetails');
-}
-export const editTargetDetails = async(data:object)=>{
-
-    //publishChannel, publishData, publishAction, subscribeChannel
-return await publishAndResponse(service.business, data, 'editTargetDetails', 'ApiRes-editTargetDetails');
-}
-export const getTargetDetails = async(data:object)=>{
-   
-    //publishChannel, publishData, publishAction, subscribeChannel
-return await publishAndResponse(service.business, data, 'getTargetDetails', 'ApiRes-getTargetDetails');
-}
-export const getTargetsDetails = async()=>{
-    const data={};
-    //publishChannel, publishData, publishAction, subscribeChannel
-    return await publishAndResponse(service.business, data, 'getTargetsDetails', 'ApiRes-getTargetsDetails');
-}
-export const deleteTargetDetails = async(data:object)=>{
-   
-    //publishChannel, publishData, publishAction, subscribeChannel
-return await publishAndResponse(service.business, data, 'deleteTargetDetails', 'ApiRes-deleteTargetDetails');
-}
+  return await publishAndResponse(
+    service.business,
+    data,
+   getTargetsDetailsChannel.send,
+   getTargetsDetailsChannel.listen
+  );
+};
+export const deleteTargetDetails = async (data: object) => {
+  return await publishAndResponse(
+    service.business,
+    data,
+   deleteTargetDetailsChannel.send,
+  deleteTargetDetailsChannel.listen
+  );
+};
 //=================================================================================================================
-
 
 //==========================================Activity Type========================================================
-export const createActivityTypeDetails = async(data:object)=>{
+export const createActivityTypeDetails = async (data: object) => {
+  return await publishAndResponse(
+    service.business,
+    data,
+  createActivityTypeDetailsChannel.send,
+  createActivityTypeDetailsChannel.listen
+  );
+};
+export const editActivityTypeDetails = async (data: object) => {
+  return await publishAndResponse(
+    service.business,
+    data,
+   editActivityTypeDetailsChannel.send,
+   editActivityTypeDetailsChannel.listen
+  );
+};
+export const getActivityTypesDetails = async () => {
+  const data = {};
 
-    //publishChannel, publishData, publishAction, subscribeChannel
-return await publishAndResponse(service.business, data, 'createActivityTypeDetails', 'ApiRes-createActivityTypeDetails');
-}
-export const editActivityTypeDetails = async(data:object)=>{
-
-    //publishChannel, publishData, publishAction, subscribeChannel
-return await publishAndResponse(service.business, data, 'editActivityTypeDetails', 'ApiRes-editActivityTypeDetails');
-}
-export const getActivityTypesDetails = async()=>{
-    const data={};
-    //publishChannel, publishData, publishAction, subscribeChannel
-    return await publishAndResponse(service.business, data, 'getActivityTypesDetails', 'ApiRes-getActivityTypesDetails');
-}
-export const deleteActivityTypeDetails = async(data:object)=>{
-   
-    //publishChannel, publishData, publishAction, subscribeChannel
-return await publishAndResponse(service.business, data, 'deleteActivityTypeDetails', 'ApiRes-deleteActivityTypeDetails');
-}
+  return await publishAndResponse(
+    service.business,
+    data,
+  getActivityTypesDetailsChannel.send,
+   getActivityTypesDetailsChannel.listen
+  );
+};
+export const deleteActivityTypeDetails = async (data: object) => {
+  return await publishAndResponse(
+    service.business,
+    data,
+   deleteActivityTypeDetailsChannel.send,
+    deleteActivityTypeDetailsChannel.listen
+  );
+};
 //=================================================================================================================
-

@@ -45,7 +45,8 @@
           <mat-select name="status" formControlName="status">
             <mat-option value="Available"> Available </mat-option>
             <mat-option value="Out Of Stock"> Out Of Stock </mat-option>
-            <mat-option value="Discountinued"> Discoutinued </mat-option>
+            <mat-option value="Discontinued"> Discontinued </mat-option>
+            <mat-option value="Upcoming"> Upcoming </mat-option>
           </mat-select>
 
           <mat-error *ngIf="inputGroup.get('status')?.errors?.['required']"
