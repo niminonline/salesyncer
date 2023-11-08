@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component,OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { selectEmployeeId } from '../../store/selectors/auth.selectors';
 import { Store } from '@ngrx/store';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatSort} from '@angular/material/sort';
 import { SharedApiService } from 'src/app/shared/services/shared-api.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { EmployeeApiService } from '../../services/employee-api.service';
@@ -21,7 +23,8 @@ export class LeaveComponent implements OnInit {
   leavesData!: any;
   dataSource: any;
   showSpinner: boolean = false;
-
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
@@ -89,7 +92,10 @@ export class LeaveComponent implements OnInit {
           }),
         }));
         this.dataSource = new MatTableDataSource(this.leavesData);
-        console.log('New data', this.leavesData);
+        this.dataSource.paginator=this.paginator;
+        this.dataSource.sort = this.sort;
+
+        // console.log('New data', this.leavesData);
       });
     }
   }

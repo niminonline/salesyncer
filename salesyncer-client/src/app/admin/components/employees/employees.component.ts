@@ -2,8 +2,6 @@ import { Component,OnInit,AfterViewInit, ViewChild } from '@angular/core';
 import { SharedApiService } from 'src/app/shared/services/shared-api.service';
 import { Router } from '@angular/router';
 import { AdminDataRepoService } from '../../services/admin-data-repo.service';
-
-
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';

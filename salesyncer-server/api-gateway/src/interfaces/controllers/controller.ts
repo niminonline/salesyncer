@@ -17,6 +17,7 @@ import {
   getLeaveRequests,
   doLeaveAction,
   cancelLeaveDetails,
+  editBranchDetails,
 } from "../../usecases/office";
 import {
   
@@ -199,18 +200,47 @@ export const getBranches = async (req: Request, res: Response) => {
 
 export const addBranch = async (req: Request, res: Response) => {
   try {
+    
     const data = req.body;
-    const response: any = await addBranchDetails(data);
+    const headers = req.headers;
+    const response: any = await verifyToken(headers);
+    if (response.status == "OK") {
+      const response: any = await addBranchDetails(data);
 
-    delete response.requestId;
-    delete response.action;
-    res.json(response);
+      delete response.requestId;
+      delete response.action;
+      res.json(response);
+    } else {
+      res.json(response);
+    }
   } catch (error) {
     console.error("Error in /auth:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
+export const editBranch = async (req: Request, res: Response) => {
 
+
+  try {
+    
+    const data = req.body;
+    const headers = req.headers;
+    const response: any = await verifyToken(headers);
+    if (response.status == "OK") {
+      const response: any = await editBranchDetails(data);
+
+      delete response.requestId;
+      delete response.action;
+      res.json(response);
+    } else {
+      res.json(response);
+    }
+  } catch (error) {
+    console.error("Error in /auth:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+
+}
 //==============================================End Branch Controllers=======================
 
 //==============================================Lead SOurce=================================
@@ -1104,9 +1134,9 @@ export const getActivityTypes = async (req: Request, res: Response) => {
 
 export const deleteActivityType = async (req: Request, res: Response) => {
   try {
-    const headers = req.headers;
     const { _id } = req.query;
     const data = { _id };
+    const headers = req.headers;
     const response: any = await verifyToken(headers);
     if (response.status == "OK") {
       const response: any = await deleteActivityTypeDetails(data);

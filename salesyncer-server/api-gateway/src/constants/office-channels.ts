@@ -14,6 +14,10 @@ const addBranchDetailsChannel = {
   send: "addBranchDetails",
   listen: "ApiRes-addBranchDetails",
 };
+const editBranchDetailsChannel = {
+  send: "editBranchDetails",
+  listen: "ApiRes-editBranchDetails",
+};
 const getEmployeesDetailsChannel = {
   send: "getEmployeesDetails",
   listen: "ApiRes-getEmployeesDetails",
@@ -50,6 +54,7 @@ const cancelLeaveDetailsChannel = {
 export {
   getEmployeeDataChannel,
   addEmployeeDataChannel,
+  editBranchDetailsChannel,
   getBranchDetailsChannel,
   addBranchDetailsChannel,
   getEmployeesDetailsChannel,

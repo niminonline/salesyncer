@@ -40,44 +40,52 @@ export class ActivitiesComponent implements OnInit, AfterViewInit {
   todaysActivities: any;
   upcomingActivities: any;
   missedActivities: any;
-
+  
   constructor(
     private sharedAPI: SharedApiService,
     private router: Router,
     private store: Store
-  ) {}
+    ) {}
+    
+    ngOnInit() {
+      this.sharedAPI.getActivities().subscribe((response) => {
+        console.log(response.activitiesData);
+        this.activitiesData = response.activitiesData.map((activity: any) => {
+          const scheduledTime = new Date(activity.scheduledTime);
+          console.log("ScheduledTime---", scheduledTime);
+          return { ...activity, scheduledTime: scheduledTime };
+        });
+        this.allActivitiesCount=this.activitiesData.length;
+        this.activitiesData.map((activity:any)=>{
+          console.log(activity.scheduledTime)
+        })
+        
 
-  ngOnInit() {
-    this.sharedAPI.getActivities().subscribe((response) => {
-      this.activitiesData = response.activitiesData.map((activity: any) => {
-        const scheduledTime = new Date(activity.scheduledTime);
-        return { ...activity, scheduledTime: scheduledTime };
-      });
-      this.allActivitiesCount=this.activitiesData.length;
-      console.log(this.activitiesData);
-
-      const today = new Date().setHours(0, 0, 0, 0);
+        this.dataSource = new MatTableDataSource(this.activitiesData);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+        
+        const today = new Date().setHours(0, 0, 0, 0);
       this.upcomingActivities = this.activitiesData.filter((activity: any) => {
-        const scheduledTime = new Date(activity.scheduledTime).setHours(0, 0, 0, 0);
-        const timeDifference = (scheduledTime - today) / (1000 * 60 * 60 * 24); 
-        return ((timeDifference < 3 &&  today<scheduledTime) &&(activity.status !=="Completed"));
+        const currentScheduledTime = new Date(activity.scheduledTime).setHours(0, 0, 0, 0);
+        const timeDifference = (currentScheduledTime - today) / (1000 * 60 * 60 * 24); 
+        return ((timeDifference < 3 &&  today<currentScheduledTime) &&(activity.status !=="Completed"));
       });
       this.upcomingActivitiesCount= this.upcomingActivities.length;
       this.todaysActivities = this.activitiesData.filter((activity: any) => {
-        return  (activity.scheduledTime.setHours(0, 0, 0, 0) == today) &&(activity.status !=="Completed");
+        const currentScheduledTime = new Date(activity.scheduledTime).setHours(0, 0, 0, 0);
+        return  (currentScheduledTime == today) &&(activity.status !=="Completed");
        });
        this.todaysActivitiesCount=this.todaysActivities.length;
 
 
        this.missedActivities = this.activitiesData.filter((activity: any) => {
-        return  ((activity.scheduledTime.setHours(0, 0, 0, 0) < today) &&(activity.status !=="Completed"));
+        const currentScheduledTime = new Date(activity.scheduledTime).setHours(0, 0, 0, 0);
+        return  ((currentScheduledTime < today) &&(activity.status !=="Completed"));
       });
       this.missedActivitiesCount= this.missedActivities.length;
 
 
-      this.dataSource = new MatTableDataSource(this.activitiesData);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
     });
   }
 

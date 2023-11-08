@@ -12,7 +12,8 @@ import {
   fetchLeaveDetails,
   getLeaveRequests,
   doLeaveAction,
-  cancelLeaveDetails
+  cancelLeaveDetails,
+  editBranchDetails
 
 
   
@@ -49,6 +50,9 @@ redisSubscriber.on("message", (channel: string, message: any) => {
         break;
       case "addBranchDetails":
         addBranchDetails(data);
+        break;
+      case "editBranchDetails":
+        editBranchDetails(data);
         break;
       case "getEmployeesDetails":
         getEmployeesDetails(data);

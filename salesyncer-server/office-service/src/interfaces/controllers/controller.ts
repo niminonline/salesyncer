@@ -12,6 +12,7 @@ import fetchLeaveData from "../../usecases/fetchLeaveData";
 import getLeaveRequestsData from "../../usecases/getLeaveRequestsData";
 import leaveAction from "../../usecases/leaveAction";
 import cancelLeaveData from "../../usecases/cancelLeaveData";
+import editBranchData from "../../usecases/editBranchData";
 interface AdminData {
   email: string;
   password: string;
@@ -107,6 +108,34 @@ export const addBranchDetails = async (data: any) => {
         status: "OK",
         message: "Branch added successfully",
         branchData:response
+      };
+      // console.log("myresponse", data);
+      publishToChannel("ApiRes-addBranchDetails", data);
+    } else {
+      publishToChannel("ApiRes-addEmployeeData", {
+        requestId,
+        action,
+        status: "FAILED",
+        message: "No response ",
+      });
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+export const editBranchDetails = async (data: any) => {
+  try {
+    // console.log("Req body of addBranchDetails Controller", data);
+    const { requestId, action} = data;
+    const response: any = await editBranchData(data);
+    // console.log("All branch data",response);
+    
+    if (response.status == "OK") {
+      const data = {
+        requestId,
+        action,
+        status: "OK",
+        message: "Branch updated successfully",
       };
       // console.log("myresponse", data);
       publishToChannel("ApiRes-addBranchDetails", data);

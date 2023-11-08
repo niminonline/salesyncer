@@ -5,6 +5,7 @@ import {
     addEmployeeDataChannel,
     getBranchDetailsChannel,
     addBranchDetailsChannel,
+    editBranchDetailsChannel,
     getEmployeesDetailsChannel,
     updateEmployeeDetailsChannel,
     getLeaveCategoryDetailsChannel,
@@ -30,6 +31,9 @@ export const getBranchDetails = async()=>{
 }
 export const addBranchDetails = async(data:object)=>{
     return await publishAndResponse(service.office, data, addBranchDetailsChannel.send,addBranchDetailsChannel.listen);
+}
+export const editBranchDetails = async(data:object)=>{
+    return await publishAndResponse(service.office, data, editBranchDetailsChannel.send,addBranchDetailsChannel.listen);
 }
 export const getEmployeesDetails = async()=>{
     const data={};

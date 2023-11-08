@@ -20,6 +20,9 @@ export class AdminAPIService {
   addBranch(data: object): Observable<AdminLoginResponse> {
     return this.http.post<AdminLoginResponse>(`/add-branch`, data);
   }
+  editBranch(data: object): Observable<AdminLoginResponse> {
+    return this.http.post<AdminLoginResponse>(`/edit-branch`, data);
+  }
   addEmployee(data: object): Observable<any> {
     return this.http.post<any>(`/add-employee`, data);
   }

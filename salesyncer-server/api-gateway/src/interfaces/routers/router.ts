@@ -52,6 +52,7 @@ import {
   deleteActivityType,
   getActivityTypes,
   cancelLeave,
+  editBranch,
 
 } from "../controllers/controller";
 
@@ -62,6 +63,7 @@ router.get("/", (req, res) => {
 });
 router.post("/add-branch", addBranch);
 router.get("/get-branches", getBranches);
+router.post("/edit-branch", editBranch);
 
 router.get("/get-lead-source", getLeadSource);
 router.get("/get-product-category", getProductCategory);
