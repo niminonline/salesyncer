@@ -26,9 +26,9 @@
         <mat-form-field appearance="outline">
           <mat-label>Select lead type</mat-label>
           <mat-select name="type" formControlName="type">
-            <mat-option value="cold">Cold</mat-option>
-            <mat-option value="warm">Warm</mat-option>
-            <mat-option value="hot">Hot</mat-option>
+            <mat-option value="Cold">Cold</mat-option>
+            <mat-option value="Warm">Warm</mat-option>
+            <mat-option value="Hot">Hot</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
@@ -62,7 +62,7 @@
       <div class="row">
         <mat-form-field appearance="outline">
           <mat-label>Select Product category</mat-label>
-          <mat-select name="productCategory" formControlName="productCategory">
+          <mat-select name="productCategory" formControlName="productCategory" >
             <mat-option
               *ngFor="let productCategory of productCategoryData"
               [value]="productCategory.productCategory"
@@ -72,11 +72,12 @@
           </mat-select>
         </mat-form-field>
 
+      
         <mat-form-field appearance="outline">
           <mat-label>Select Product</mat-label>
           <mat-select name="product" formControlName="product">
             <mat-option
-              *ngFor="let product of productsData"
+              *ngFor="let product of filteredProducts"
               [value]="product.name"
             >
               {{ product.name }}

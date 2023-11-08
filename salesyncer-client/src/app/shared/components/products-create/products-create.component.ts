@@ -55,7 +55,7 @@ export class ProductsCreateComponent implements OnInit {
    
     // console.log(data.value);
     if (!data.invalid) {
-      if( parseFloat(data.value.mrp)<= parseFloat(data.value.lsp)){
+      if( parseFloat(data.value.mrp)< parseFloat(data.value.lsp)){
         Swal.fire('Error', "LSP must be less than or equal to MRP", 'error');
         return;
       }

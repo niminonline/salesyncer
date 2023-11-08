@@ -145,3 +145,23 @@ this.dataSource.paginator=this.paginator;
 
 
 ======================================================================
+Change values of select according to another form selecct
+
+
+    const categoryControl: FormControl = this.leadsGroup.get('productCategory') as FormControl;
+    categoryControl.valueChanges.subscribe((selectedCategory) => {
+      if (selectedCategory) {
+        this.onCategoryChange(selectedCategory);
+      }
+    });
+
+
+  onCategoryChange(selectedCategory: string){
+    this.filteredProducts= this.productsData.filter((product:any)=>product.category== selectedCategory)
+
+  }
+
+
+
+======================================================================
+

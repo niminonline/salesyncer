@@ -28,6 +28,8 @@ export class LeadsEditComponent implements OnInit {
   leadData!: any;
   leadsData!:any;
   _id!: any;
+  filteredProducts: any;
+  selectedCategory: any;
 
   constructor(
     private sharedAPI: SharedApiService,
@@ -200,6 +202,9 @@ export class LeadsEditComponent implements OnInit {
       owner: [this.leadData?.owner || '', [Validators.required]],
       notes: [this.leadData?.notes || ''],
     });
+
+
+    
   }
 
   submitLeads(data: any): void {
@@ -274,5 +279,9 @@ export class LeadsEditComponent implements OnInit {
     } else {
       this.router.navigate(['leads']);
     }
+  }
+  onCategoryChange(){
+    this.filteredProducts= this.productsData.filter((product:any)=>product.category== this.selectedCategory)
+
   }
 }
