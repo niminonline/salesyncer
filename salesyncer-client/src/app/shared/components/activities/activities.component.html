@@ -3,21 +3,43 @@
       <img src="assets/images/loading1.gif" alt="" />
     </div>
   
+    
+    
+    <!-- <mat-form-field>
+      <mat-label>Select branch</mat-label>
+      <mat-select name="selectedBranch">
+        <mat-option *ngFor="let branch of branchData" [value]="branch.branchCode">
+          {{ branch.branchName }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field> -->
+    
+    
+    <div class="todo-activities-block">
+      <div class="todo-activities-container all-activities" (click)="filterAllActivities()">
+        <h1 class="todo-activities-title">All Activities</h1>
+        <h3>{{allActivitiesCount }} Activities</h3>
+      </div>
+      <div class="todo-activities-container missed-activities" (click)="filterMissedActivities()">
+        <h1 class="todo-activities-title">Missed Activities</h1>
+        <h3>{{missedActivitiesCount }} Activities</h3>
+      </div>
+      <div class="todo-activities-container todays-activities" (click)="filterTodaysActivities()">
+        <h1 class="todo-activities-title">Today's Activities</h1>
+        <h3>{{todaysActivitiesCount}}  Activities</h3>
+      </div>
+      <div class="todo-activities-container upcoming-activities" (click)="filterUpcomingActivities()">
+        <h1 class="todo-activities-title">Upcoming Activities</h1>
+        <h3>{{upcomingActivitiesCount}}  Activities</h3>
+      </div>
+    </div>
+    
+    
     <div class="header-block">
-
-
-      <!-- <mat-form-field>
-        <mat-label>Select branch</mat-label>
-        <mat-select name="selectedBranch">
-          <mat-option *ngFor="let branch of branchData" [value]="branch.branchCode">
-                  {{ branch.branchName }}
-                </mat-option>
-        </mat-select>
-      </mat-form-field> -->
-  
-      <button
-        mat-raised-button
-        color="primary"
+    
+    <button
+    mat-raised-button
+    color="primary"
         class="add-user-btn"
         (click)="navCreateActivity()"
       >

@@ -16,6 +16,10 @@ import Swal from 'sweetalert2';
   styleUrls: ['./activities.component.scss'],
 })
 export class ActivitiesComponent implements OnInit, AfterViewInit {
+  allActivitiesCount: any;
+  missedActivitiesCount: any;
+  todaysActivitiesCount: any;
+  upcomingActivitiesCount: any;
   activitiesData!: any;
   showSpinner: boolean = false;
 
@@ -33,6 +37,9 @@ export class ActivitiesComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
+  todaysActivities: any;
+  upcomingActivities: any;
+  missedActivities: any;
 
   constructor(
     private sharedAPI: SharedApiService,
@@ -42,7 +49,32 @@ export class ActivitiesComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.sharedAPI.getActivities().subscribe((response) => {
-      this.activitiesData = response.activitiesData;
+      this.activitiesData = response.activitiesData.map((activity: any) => {
+        const scheduledTime = new Date(activity.scheduledTime);
+        return { ...activity, scheduledTime: scheduledTime };
+      });
+      this.allActivitiesCount=this.activitiesData.length;
+      console.log(this.activitiesData);
+
+      const today = new Date().setHours(0, 0, 0, 0);
+      this.upcomingActivities = this.activitiesData.filter((activity: any) => {
+        const scheduledTime = new Date(activity.scheduledTime).setHours(0, 0, 0, 0);
+        const timeDifference = (scheduledTime - today) / (1000 * 60 * 60 * 24); 
+        return ((timeDifference < 3 &&  today<scheduledTime) &&(activity.status !=="Completed"));
+      });
+      this.upcomingActivitiesCount= this.upcomingActivities.length;
+      this.todaysActivities = this.activitiesData.filter((activity: any) => {
+        return  (activity.scheduledTime.setHours(0, 0, 0, 0) == today) &&(activity.status !=="Completed");
+       });
+       this.todaysActivitiesCount=this.todaysActivities.length;
+
+
+       this.missedActivities = this.activitiesData.filter((activity: any) => {
+        return  ((activity.scheduledTime.setHours(0, 0, 0, 0) < today) &&(activity.status !=="Completed"));
+      });
+      this.missedActivitiesCount= this.missedActivities.length;
+
+
       this.dataSource = new MatTableDataSource(this.activitiesData);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -135,5 +167,32 @@ export class ActivitiesComponent implements OnInit, AfterViewInit {
         });
       }
     });
+  }
+
+  filterAllActivities() {
+    this.dataSource = new MatTableDataSource(this.activitiesData);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+  filterUpcomingActivities() {
+  
+    this.dataSource = new MatTableDataSource(this.upcomingActivities);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+
+  filterTodaysActivities() {
+
+    
+    this.dataSource = new MatTableDataSource(this.todaysActivities);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+  filterMissedActivities() {
+
+    
+    this.dataSource = new MatTableDataSource(this.missedActivities);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 }

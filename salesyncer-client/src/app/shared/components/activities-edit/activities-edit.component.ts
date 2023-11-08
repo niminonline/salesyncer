@@ -155,7 +155,8 @@ export class ActivitiesEditComponent implements OnInit {
       this.showSpinner = true;
 
       if (data.value.scheduledActivity !== '') {
-        const dateInput = data.value.date;
+        // const dateInput = data.value.date;
+        const dateInput = new Date(data.value.date);
         const year = dateInput.getFullYear();
         const month = dateInput.getMonth();
         const day = dateInput.getDate();
