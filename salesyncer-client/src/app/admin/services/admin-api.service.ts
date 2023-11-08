@@ -23,6 +23,19 @@ export class AdminAPIService {
   editBranch(data: object): Observable<AdminLoginResponse> {
     return this.http.post<AdminLoginResponse>(`/edit-branch`, data);
   }
+  createActivityType(data: object | null): Observable<any> {
+    return this.http.post<any>(`/create-activity-type`, data);
+  }
+
+  editActivityType(data: object | null): Observable<any> {
+    return this.http.post<any>(`/edit-activity-type`, data);
+  }
+  deleteActivityType(_id:string|null): Observable<any> {
+    return this.http.delete<any>(`/delete-activity-type?_id=${_id}`);
+  }
+
+  
+
   addEmployee(data: object): Observable<any> {
     return this.http.post<any>(`/add-employee`, data);
   }

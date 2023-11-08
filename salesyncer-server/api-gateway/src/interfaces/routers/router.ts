@@ -65,8 +65,12 @@ router.post("/add-branch", addBranch);
 router.get("/get-branches", getBranches);
 router.post("/edit-branch", editBranch);
 
+// router.post("/add-product-category", addProductCategory);
+// router.get("/get-product-category", getProductCategory);
+// router.post("/edit-product-category", editProductCategory);
+
+
 router.get("/get-lead-source", getLeadSource);
-router.get("/get-product-category", getProductCategory);
 // router.get("/get-products", getProducts);
 
 router.post("/admin-login", adminLogin);

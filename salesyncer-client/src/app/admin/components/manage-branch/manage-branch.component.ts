@@ -81,6 +81,14 @@ export class ManageBranchComponent implements OnInit {
               text: response.message,
             });
           } else {
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'Branch created successfully',
+              showConfirmButton: false,
+              timer: 1500,
+            });
+
             const currentUrl = this.router.url;
             this.router
               .navigateByUrl('admin', { skipLocationChange: true })

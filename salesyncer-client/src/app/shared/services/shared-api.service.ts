@@ -19,6 +19,15 @@ export class SharedApiService {
   getBranches(): Observable<Branch> {
     return this.http.get<Branch>(`/get-branches`);
   }
+ //============================Activity Types===========================
+  
+ getActivityTypes(): Observable<any> {
+  return this.http.get<any>(`/get-activity-types`);
+}
+
+
+
+//============================Sales===========================
   getLeadSource(): Observable<any> {
     return this.http.get<any>(`/get-lead-source`);
   }
@@ -117,21 +126,7 @@ export class SharedApiService {
     return this.http.delete<any>(`/delete-product?_id=${_id}`);
   }
 
-  //============================Activity Types===========================
-  createActivityType(data: object | null): Observable<any> {
-    return this.http.post<any>(`/create-activity-type`, data);
-  }
-  getActivityTypes(): Observable<any> {
-    return this.http.get<any>(`/get-activity-types`);
-  }
-  editActivityType(data: object | null): Observable<any> {
-    return this.http.post<any>(`/edit-activity-type`, data);
-  }
-  deleteActivityType(_id:string|null): Observable<any> {
-    return this.http.delete<any>(`/delete-activity-type?_id=${_id}`);
-  }
-
-//============================Sales===========================
+ 
 createSale(data: object | null): Observable<any> {
   return this.http.post<any>(`/create-sale`, data);
 }
