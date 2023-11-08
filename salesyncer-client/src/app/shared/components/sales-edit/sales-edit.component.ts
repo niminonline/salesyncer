@@ -13,7 +13,7 @@ import { selectEmployeeData } from '../../../employee/store/selectors/user.selec
   styleUrls: ['./sales-edit.component.scss']
 })
 export class SalesEditComponent implements OnInit {
-  productCategoryData: any;
+  productCategoriesData: any;
   productsData: any;
   employeesData!: any;
   submitted: boolean = false;
@@ -45,7 +45,7 @@ export class SalesEditComponent implements OnInit {
   ngOnInit() {
     this.getEmployeesData();
     this.getBranchData();
-    this.getProductCategory();
+    this.getProductCategories();
     this.getProducts();
     this.getLeadsData();
     this.getSaleData();
@@ -95,11 +95,11 @@ export class SalesEditComponent implements OnInit {
       console.log(error);
     }
   }
-  getProductCategory() {
+  getProductCategories() {
     try {
-      this.sharedAPI.getProductCategory().subscribe((response: any) => {
+      this.sharedAPI.getProductCategories().subscribe((response: any) => {
         if (response.status == 'OK') {
-          this.productCategoryData = response.productCategoryData;
+          this.productCategoriesData = response.productCategoriesData;
         } else {
           console.log(response.message);
         }

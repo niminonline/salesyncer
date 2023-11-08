@@ -37,8 +37,10 @@ import {
   editActivityTypeDetailsChannel,
   getActivityTypesDetailsChannel,
   deleteActivityTypeDetailsChannel,
+  createProductCategoryDetailsChannel,
+  editProductCategoryDetailsChannel,
+  deleteProductCategoryDetailsChannel,
 } from "../constants/business-channels";
-
 
 export const getLeadSourceDetails = async () => {
   const data = {};
@@ -46,50 +48,34 @@ export const getLeadSourceDetails = async () => {
   return await publishAndResponse(
     service.business,
     data,
-   getLeadSourceDetailsChannel.send,
-   getLeadSourceDetailsChannel.listen
+    getLeadSourceDetailsChannel.send,
+    getLeadSourceDetailsChannel.listen
   );
 };
 
-export const getProductCategoryDetails = async () => {
-  const data = {};
-
-  return await publishAndResponse(
-    service.business,
-    data,
-   getProductCategoryDetailsChannel.send,
-   getProductCategoryDetailsChannel.listen
-  );
-};
-
-// export const getProductsDetails = async()=>{
-//     const data={};
-//
-//     return await publishAndResponse(service.business, data, 'getProductsDetails', 'ApiRes-getProductsDetails');
-// }
 
 export const createContactDetails = async (data: object) => {
   return await publishAndResponse(
     service.business,
     data,
     createContactDetailsChannel.send,
-   createContactDetailsChannel.listen
+    createContactDetailsChannel.listen
   );
 };
 export const editContactDetails = async (data: object) => {
   return await publishAndResponse(
     service.business,
     data,
-   editContactDetailsChannel.send,
-   editContactDetailsChannel.listen
+    editContactDetailsChannel.send,
+    editContactDetailsChannel.listen
   );
 };
 export const getContactDetails = async (data: object) => {
   return await publishAndResponse(
     service.business,
     data,
-  getContactDetailsChannel.send,
-   getContactDetailsChannel.listen
+    getContactDetailsChannel.send,
+    getContactDetailsChannel.listen
   );
 };
 export const getContactsDetails = async () => {
@@ -98,16 +84,16 @@ export const getContactsDetails = async () => {
   return await publishAndResponse(
     service.business,
     data,
-  getContactsDetailsChannel.send,
-   getContactsDetailsChannel.listen
+    getContactsDetailsChannel.send,
+    getContactsDetailsChannel.listen
   );
 };
 export const deleteContactDetails = async (data: object) => {
   return await publishAndResponse(
     service.business,
     data,
-   deleteContactDetailsChannel.send,
-   deleteContactDetailsChannel.listen
+    deleteContactDetailsChannel.send,
+    deleteContactDetailsChannel.listen
   );
 };
 
@@ -116,24 +102,24 @@ export const createLeadDetails = async (data: object) => {
   return await publishAndResponse(
     service.business,
     data,
-   createLeadDetailsChannel.send,
-   createLeadDetailsChannel.listen
+    createLeadDetailsChannel.send,
+    createLeadDetailsChannel.listen
   );
 };
 export const editLeadDetails = async (data: object) => {
   return await publishAndResponse(
     service.business,
     data,
-   editLeadDetailsChannel.send,
-   editLeadDetailsChannel.listen
+    editLeadDetailsChannel.send,
+    editLeadDetailsChannel.listen
   );
 };
 export const getLeadDetails = async (data: object) => {
   return await publishAndResponse(
     service.business,
     data,
-   getLeadDetailsChannel.send,
-   getLeadDetailsChannel.listen
+    getLeadDetailsChannel.send,
+    getLeadDetailsChannel.listen
   );
 };
 export const getLeadsDetails = async () => {
@@ -142,16 +128,16 @@ export const getLeadsDetails = async () => {
   return await publishAndResponse(
     service.business,
     data,
-   getLeadsDetailsChannel.send,
-   getLeadsDetailsChannel.listen
+    getLeadsDetailsChannel.send,
+    getLeadsDetailsChannel.listen
   );
 };
 export const deleteLeadDetails = async (data: object) => {
   return await publishAndResponse(
     service.business,
     data,
-   deleteLeadDetailsChannel.send,
-   deleteLeadDetailsChannel.listen
+    deleteLeadDetailsChannel.send,
+    deleteLeadDetailsChannel.listen
   );
 };
 
@@ -161,22 +147,22 @@ export const createActivityDetails = async (data: object) => {
     service.business,
     data,
     createActivityDetailsChannel.send,
-   createActivityDetailsChannel.listen
+    createActivityDetailsChannel.listen
   );
 };
 export const editActivityDetails = async (data: object) => {
   return await publishAndResponse(
     service.business,
     data,
-   editActivityDetailsChannel.send,
-   editActivityDetailsChannel.listen
+    editActivityDetailsChannel.send,
+    editActivityDetailsChannel.listen
   );
 };
 export const getActivityDetails = async (data: object) => {
   return await publishAndResponse(
     service.business,
     data,
-  getActivityDetailsChannel.send,
+    getActivityDetailsChannel.send,
     getActivityDetailsChannel.listen
   );
 };
@@ -186,16 +172,16 @@ export const getActivitiesDetails = async () => {
   return await publishAndResponse(
     service.business,
     data,
-  getActivitiesDetailsChannel.send,
-   getActivitiesDetailsChannel.listen
+    getActivitiesDetailsChannel.send,
+    getActivitiesDetailsChannel.listen
   );
 };
 export const deleteActivityDetails = async (data: object) => {
   return await publishAndResponse(
     service.business,
     data,
-   deleteActivityDetailsChannel.send,
-   deleteActivityDetailsChannel.listen
+    deleteActivityDetailsChannel.send,
+    deleteActivityDetailsChannel.listen
   );
 };
 //=================================================================================================================
@@ -206,23 +192,23 @@ export const createProductDetails = async (data: object) => {
     service.business,
     data,
     createProductDetailsChannel.send,
-   createProductDetailsChannel.listen
+    createProductDetailsChannel.listen
   );
 };
 export const editProductDetails = async (data: object) => {
   return await publishAndResponse(
     service.business,
     data,
-  editProductDetailsChannel.send,
-   editProductDetailsChannel.listen
+    editProductDetailsChannel.send,
+    editProductDetailsChannel.listen
   );
 };
 export const getProductDetails = async (data: object) => {
   return await publishAndResponse(
     service.business,
     data,
-   getProductDetailsChannel.send,
-   getProductDetailsChannel.listen
+    getProductDetailsChannel.send,
+    getProductDetailsChannel.listen
   );
 };
 export const getProductsDetails = async () => {
@@ -231,15 +217,15 @@ export const getProductsDetails = async () => {
   return await publishAndResponse(
     service.business,
     data,
-  getProductsDetailsChannel.send,
-getProductsDetailsChannel.listen
+    getProductsDetailsChannel.send,
+    getProductsDetailsChannel.listen
   );
 };
 export const deleteProductDetails = async (data: object) => {
   return await publishAndResponse(
     service.business,
     data,
-   deleteProductDetailsChannel.send,
+    deleteProductDetailsChannel.send,
     deleteProductDetailsChannel.listen
   );
 };
@@ -250,24 +236,24 @@ export const createSaleDetails = async (data: object) => {
   return await publishAndResponse(
     service.business,
     data,
-  createSaleDetailsChannel.send,
-   createSaleDetailsChannel.listen
+    createSaleDetailsChannel.send,
+    createSaleDetailsChannel.listen
   );
 };
 export const editSaleDetails = async (data: object) => {
   return await publishAndResponse(
     service.business,
     data,
-   editSaleDetailsChannel.send,
-   editSaleDetailsChannel.listen
+    editSaleDetailsChannel.send,
+    editSaleDetailsChannel.listen
   );
 };
 export const getSaleDetails = async (data: object) => {
   return await publishAndResponse(
     service.business,
     data,
- getSaleDetailsChannel.send,
-   getSaleDetailsChannel.listen
+    getSaleDetailsChannel.send,
+    getSaleDetailsChannel.listen
   );
 };
 export const getSalesDetails = async () => {
@@ -276,8 +262,8 @@ export const getSalesDetails = async () => {
   return await publishAndResponse(
     service.business,
     data,
-   getSalesDetailsChannel.send,
-   getSalesDetailsChannel.listen
+    getSalesDetailsChannel.send,
+    getSalesDetailsChannel.listen
   );
 };
 export const deleteSaleDetails = async (data: object) => {
@@ -285,7 +271,8 @@ export const deleteSaleDetails = async (data: object) => {
     service.business,
     data,
     deleteSaleDetailsChannel.send,
-deleteSaleDetailsChannel.listen  );
+    deleteSaleDetailsChannel.listen
+  );
 };
 //=================================================================================================================
 
@@ -295,23 +282,23 @@ export const createTargetDetails = async (data: object) => {
     service.business,
     data,
     createTargetDetailsChannel.send,
-   createTargetDetailsChannel.listen
+    createTargetDetailsChannel.listen
   );
 };
 export const editTargetDetails = async (data: object) => {
   return await publishAndResponse(
     service.business,
     data,
-  editTargetDetailsChannel.send,
-editTargetDetailsChannel.listen
+    editTargetDetailsChannel.send,
+    editTargetDetailsChannel.listen
   );
 };
 export const getTargetDetails = async (data: object) => {
   return await publishAndResponse(
     service.business,
     data,
-   getTargetDetailsChannel.send,
-   getTargetDetailsChannel.listen
+    getTargetDetailsChannel.send,
+    getTargetDetailsChannel.listen
   );
 };
 export const getTargetsDetails = async () => {
@@ -320,16 +307,16 @@ export const getTargetsDetails = async () => {
   return await publishAndResponse(
     service.business,
     data,
-   getTargetsDetailsChannel.send,
-   getTargetsDetailsChannel.listen
+    getTargetsDetailsChannel.send,
+    getTargetsDetailsChannel.listen
   );
 };
 export const deleteTargetDetails = async (data: object) => {
   return await publishAndResponse(
     service.business,
     data,
-   deleteTargetDetailsChannel.send,
-  deleteTargetDetailsChannel.listen
+    deleteTargetDetailsChannel.send,
+    deleteTargetDetailsChannel.listen
   );
 };
 //=================================================================================================================
@@ -339,16 +326,16 @@ export const createActivityTypeDetails = async (data: object) => {
   return await publishAndResponse(
     service.business,
     data,
-  createActivityTypeDetailsChannel.send,
-  createActivityTypeDetailsChannel.listen
+    createActivityTypeDetailsChannel.send,
+    createActivityTypeDetailsChannel.listen
   );
 };
 export const editActivityTypeDetails = async (data: object) => {
   return await publishAndResponse(
     service.business,
     data,
-   editActivityTypeDetailsChannel.send,
-   editActivityTypeDetailsChannel.listen
+    editActivityTypeDetailsChannel.send,
+    editActivityTypeDetailsChannel.listen
   );
 };
 export const getActivityTypesDetails = async () => {
@@ -357,16 +344,55 @@ export const getActivityTypesDetails = async () => {
   return await publishAndResponse(
     service.business,
     data,
-  getActivityTypesDetailsChannel.send,
-   getActivityTypesDetailsChannel.listen
+    getActivityTypesDetailsChannel.send,
+    getActivityTypesDetailsChannel.listen
   );
 };
 export const deleteActivityTypeDetails = async (data: object) => {
   return await publishAndResponse(
     service.business,
     data,
-   deleteActivityTypeDetailsChannel.send,
+    deleteActivityTypeDetailsChannel.send,
     deleteActivityTypeDetailsChannel.listen
+  );
+};
+//=================================================================================================================
+
+//==========================================Product Category ========================================================
+export const createProductCategoryDetails = async (data: object) => {
+  return await publishAndResponse(
+    service.business,
+    data,
+    createProductCategoryDetailsChannel.send,
+    createProductCategoryDetailsChannel.listen
+  );
+};
+export const editProductCategoryDetails = async (data: object) => {
+  return await publishAndResponse(
+    service.business,
+    data,
+    editProductCategoryDetailsChannel.send,
+    editProductCategoryDetailsChannel.listen
+  );
+};
+
+export const getProductCategoryDetails = async () => {
+  const data = {};
+
+  return await publishAndResponse(
+    service.business,
+    data,
+    getProductCategoryDetailsChannel.send,
+    getProductCategoryDetailsChannel.listen
+  );
+};
+
+export const deleteProductCategoryDetails = async (data: object) => {
+  return await publishAndResponse(
+    service.business,
+    data,
+    deleteProductCategoryDetailsChannel.send,
+    deleteProductCategoryDetailsChannel.listen
   );
 };
 //=================================================================================================================

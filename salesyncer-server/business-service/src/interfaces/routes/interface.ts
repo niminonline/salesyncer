@@ -31,6 +31,9 @@ import {
   editActivityTypeDetails,
   getActivityTypesDetails,
   deleteActivityTypeDetails,
+  createProductCategoryDetails,
+  editProductCategoryDetails,
+  deleteProductCategoryDetails,
   // createTargetDetails,
   // editTargetDetails,
   // getTargetDetails,
@@ -200,6 +203,20 @@ redisSubscriber.on("message", (channel: string, message: any) => {
         break;
       case "deleteActivityTypeDetails":
         deleteActivityTypeDetails(data);
+        break;
+
+        
+      case "createProductCategoryDetails":
+        createProductCategoryDetails(data);
+        break;
+
+      case "editProductCategoryDetails":
+        editProductCategoryDetails(data);
+        break;
+
+     
+      case "deleteProductCategoryDetails":
+        deleteProductCategoryDetails(data);
         break;
     }
   }

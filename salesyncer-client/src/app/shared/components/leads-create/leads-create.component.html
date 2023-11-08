@@ -64,7 +64,7 @@
           <mat-label>Select Product category</mat-label>
           <mat-select name="productCategory" formControlName="productCategory" >
             <mat-option
-              *ngFor="let productCategory of productCategoryData"
+              *ngFor="let productCategory of productCategoriesData"
               [value]="productCategory.productCategory"
             >
               {{ productCategory.productCategory }}

@@ -12,7 +12,7 @@ export class ProductsEditComponent implements OnInit {
   submitted: boolean = false;
   inputGroup!: FormGroup;
   showSpinner: boolean = false;
-  productCategoryData: any;
+  productCategoriesData: any;
   productData!: any;
   _id!: string | null;
   name!:string|null;
@@ -41,15 +41,15 @@ export class ProductsEditComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getProductCategory();
+    this.getProductCategories();
     this.getProductData();
   }
 
-  getProductCategory() {
+  getProductCategories() {
     try {
-      this.sharedAPI.getProductCategory().subscribe((response: any) => {
+      this.sharedAPI.getProductCategories().subscribe((response: any) => {
         if (response.status == 'OK') {
-          this.productCategoryData = response.productCategoryData;
+          this.productCategoriesData = response.productCategoriesData;
         } else {
           console.log(response.message);
         }

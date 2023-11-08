@@ -53,6 +53,9 @@ import {
   getActivityTypes,
   cancelLeave,
   editBranch,
+  createProductCategory,
+  editProductCategory,
+  deleteProductCategory,
 
 } from "../controllers/controller";
 
@@ -64,11 +67,6 @@ router.get("/", (req, res) => {
 router.post("/add-branch", addBranch);
 router.get("/get-branches", getBranches);
 router.post("/edit-branch", editBranch);
-
-// router.post("/add-product-category", addProductCategory);
-// router.get("/get-product-category", getProductCategory);
-// router.post("/edit-product-category", editProductCategory);
-
 
 router.get("/get-lead-source", getLeadSource);
 // router.get("/get-products", getProducts);
@@ -134,5 +132,11 @@ router.post("/create-activity-type", createActivityType);
 router.post("/edit-activity-type", editActivityType);
 router.get("/get-activity-types", getActivityTypes);
 router.delete("/delete-activity-type", deleteActivityType);
+
+
+router.post("/create-product-category", createProductCategory);
+router.post("/edit-product-category", editProductCategory);
+router.get("/get-product-categories", getProductCategory);
+router.delete("/delete-product-category", deleteProductCategory);
 
 export default router;

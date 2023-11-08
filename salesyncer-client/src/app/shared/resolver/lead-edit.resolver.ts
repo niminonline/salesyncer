@@ -12,7 +12,7 @@ export class LeadsEditResolver implements Resolve<any> {
   resolve() {
     return forkJoin([
       this.sharedAPI.getLeadSource(),
-      this.sharedAPI.getProductCategory(),
+      this.sharedAPI.getProductCategories(),
       this.sharedAPI.getBranches(),
       this.sharedAPI.getEmployeesData(),
       this.sharedAPI.getLeads(),
@@ -23,7 +23,7 @@ export class LeadsEditResolver implements Resolve<any> {
       map((results) => {
         return {
           leadSourceData: results[0],
-          productCategoryData: results[1],
+          productCategoriesData: results[1],
           branchData: results[2],
           employeesData: results[3],
           leadsData:results[4],

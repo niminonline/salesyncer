@@ -144,3 +144,15 @@ export const  deleteActivityTypeDetailsChannel = {
     send: 'deleteActivityTypeDetails',
     listen: 'ApiRes-deleteActivityTypeDetails',
   };
+export const  editProductCategoryDetailsChannel = {
+    send: 'editProductCategoryDetails',
+    listen: 'ApiRes-editProductCategoryDetails',
+  };
+export const  createProductCategoryDetailsChannel = {
+    send: 'createProductCategoryDetails',
+    listen: 'ApiRes-createProductCategoryDetails',
+  };
+export const  deleteProductCategoryDetailsChannel = {
+    send: 'deleteProductCategoryDetails',
+    listen: 'ApiRes-deleteProductCategoryDetails',
+  };

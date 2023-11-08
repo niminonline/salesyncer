@@ -3,18 +3,21 @@ import createActivityData from "../../usecases/createActivityData";
 import createActivityTypeData from "../../usecases/createActivityTypeData ";
 import createContactData from "../../usecases/createContactData";
 import createLeadData from "../../usecases/createLeadData ";
+import createProductCategoryData from "../../usecases/createProductCategoryData ";
 import createProductData from "../../usecases/createProductData";
 import createSaleData from "../../usecases/createSaleData";
 import deleteActivityData from "../../usecases/deleteActivityData";
 import deleteActivityTypeData from "../../usecases/deleteActivityTypeData";
 import deleteContactData from "../../usecases/deleteContactData";
 import deleteLeadData from "../../usecases/deleteLeadData";
+import deleteProductCategoryData from "../../usecases/deleteProductCategoryData";
 import deleteProductData from "../../usecases/deleteProductData";
 import deleteSaleData from "../../usecases/deleteSaleData ";
 import editActivityData from "../../usecases/editActivityData";
 import editActivityTypeData from "../../usecases/editActivityTypeData";
 import editContactData from "../../usecases/editContactData";
 import editLeadData from "../../usecases/editLeadData";
+import editProductCategoryData from "../../usecases/editProductCategoryData";
 import editProductData from "../../usecases/editProductData";
 import editSaleData from "../../usecases/editSaleData";
 import getActivitiesData from "../../usecases/getActivitiesData";
@@ -30,8 +33,6 @@ import getProductData from "../../usecases/getProductData";
 import getProductsData from "../../usecases/getProductsData";
 import getSaleData from "../../usecases/getSaleData ";
 import getSalesData from "../../usecases/getSalesData ";
-
-
 
 //============================Lead Source Controllers==============================================
 
@@ -63,11 +64,7 @@ export const getLeadSourceDetails = async (data: any) => {
   }
 };
 
-
-
 //============================End Lead Source Controllers==============================================
-
-
 
 //============================Product Controllers==============================================
 
@@ -78,7 +75,7 @@ export const getProductCategoryDetails = async (data: any) => {
     const response: any = await getProductCategoryData();
     if (response.status == "OK") {
       const data = {
-        productCategoryData: response.productCategoryData,
+        productCategoriesData: response.productCategoriesData,
         requestId,
         action,
         status: "OK",
@@ -127,21 +124,7 @@ export const getProductCategoryDetails = async (data: any) => {
 //   }
 // };
 
-
-
-
-
-
-
-
-
-
-
-
 //============================End Product Controllers==============================================
-
-
-
 
 //============================Contact Controllers==============================================
 
@@ -423,9 +406,6 @@ export const deleteLeadDetails = async (data: any) => {
 
 //============================End Lead Controllers=====================================================
 
-
-
-
 //============================Activity Controllers=====================================================
 
 export const createActivityDetails = async (data: any) => {
@@ -565,8 +545,6 @@ export const deleteActivityDetails = async (data: any) => {
 };
 
 //============================End Activity Controllers=====================================================
-
-
 
 //============================Product Controllers=====================================================
 
@@ -708,8 +686,6 @@ export const deleteProductDetails = async (data: any) => {
 
 //============================End Product Controllers=====================================================
 
-
-
 //============================Sale Controllers=====================================================
 
 export const createSaleDetails = async (data: any) => {
@@ -849,8 +825,6 @@ export const deleteSaleDetails = async (data: any) => {
 };
 
 //============================End Sale Controllers=====================================================
-
-
 
 // //============================Target Controllers=====================================================
 
@@ -992,9 +966,6 @@ export const deleteSaleDetails = async (data: any) => {
 
 // //============================End Target Controllers=====================================================
 
-
-
-
 //============================ActivityType Controllers=====================================================
 
 export const createActivityTypeDetails = async (data: any) => {
@@ -1048,7 +1019,11 @@ export const editActivityTypeDetails = async (data: any) => {
 export const getActivityTypesDetails = async (data: any) => {
   try {
     const { requestId, action } = data;
-    console.log("Request id, action from actypes controller", requestId, action);
+    console.log(
+      "Request id, action from actypes controller",
+      requestId,
+      action
+    );
     const response: any = await getActivityTypesData();
     if (response.status == "OK") {
       const data = {
@@ -1094,6 +1069,90 @@ export const deleteActivityTypeDetails = async (data: any) => {
       publishToChannel("ApiRes-deleteActivityTypeDetails", data);
     } else {
       publishToChannel("ApiRes-deleteActivityTypeDetails", {
+        requestId,
+        action,
+        status: "FAILED",
+        message: response.message,
+      });
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+//============================End ActivityType Controllers=====================================================
+
+//============================Product Category Controllers=====================================================
+
+export const createProductCategoryDetails = async (data: any) => {
+  try {
+    // console.log("Req body of ProductCategory Controller", data);
+    const { requestId, action } = data;
+    // console.log("email of ActivityType Controller", email);
+
+    const response: any = await createProductCategoryData(data);
+
+    if (response) {
+      response.requestId = requestId;
+      response.action = action;
+      publishToChannel("ApiRes-createProductCategoryDetails", response);
+    } else {
+      publishToChannel("ApiRes-createProductCategoryDetails", {
+        status: "FAILED",
+        message: "Product Category creation failed",
+      });
+    }
+
+    // console.log("myresponse", response);
+  } catch (error) {
+    console.error(error);
+  }
+};
+export const editProductCategoryDetails = async (data: any) => {
+  try {
+    // console.log("Req body of ProductCategory Controller", data);
+    const { requestId, action } = data;
+    // console.log("email of ProductCategory Controller", email);
+
+    const response: any = await editProductCategoryData(data);
+
+    if (response) {
+      response.requestId = requestId;
+      response.action = action;
+      publishToChannel("ApiRes-editProductCategoryDetails", response);
+    } else {
+      publishToChannel("ApiRes-editProductCategoryDetails", {
+        status: "FAILED",
+        message: "Product Category updation failed",
+      });
+    }
+    // console.log("myresponse", response);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const deleteProductCategoryDetails = async (data: any) => {
+  try {
+    const { _id, requestId, action } = data;
+    console.log(
+      "Request id, action from ProductCategory controller",
+      requestId,
+      action,
+      _id
+    );
+    const response: any = await deleteProductCategoryData(_id);
+    if (response.status == "OK") {
+      const data = {
+        requestId,
+        action,
+        status: "OK",
+        message: "Product Category deleted successfully",
+      };
+      // console.log("fetched Sale data", data);
+      publishToChannel("ApiRes-deleteProductCategoryDetails", data);
+    } else {
+      publishToChannel("ApiRes-deleteProductCategoryDetails", {
         requestId,
         action,
         status: "FAILED",

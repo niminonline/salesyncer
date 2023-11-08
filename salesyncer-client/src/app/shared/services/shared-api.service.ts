@@ -31,8 +31,8 @@ export class SharedApiService {
   getLeadSource(): Observable<any> {
     return this.http.get<any>(`/get-lead-source`);
   }
-  getProductCategory(): Observable<any> {
-    return this.http.get<any>(`/get-product-category`);
+  getProductCategories(): Observable<any> {
+    return this.http.get<any>(`/get-product-categories`);
   }
 
   //============================Employee===========================
@@ -126,7 +126,7 @@ export class SharedApiService {
     return this.http.delete<any>(`/delete-product?_id=${_id}`);
   }
 
- 
+ //=======================================================
 createSale(data: object | null): Observable<any> {
   return this.http.post<any>(`/create-sale`, data);
 }
@@ -142,8 +142,5 @@ editSale(data: object | null): Observable<any> {
 deleteSale(_id:string|null): Observable<any> {
   return this.http.delete<any>(`/delete-sale?_id=${_id}`);
 }
-
-
-
 
 }

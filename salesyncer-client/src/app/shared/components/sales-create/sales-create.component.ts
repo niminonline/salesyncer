@@ -15,7 +15,7 @@ import * as UserActions from '../../../employee/store/actions/user.actions';
   styleUrls: ['./sales-create.component.scss'],
 })
 export class SalesCreateComponent implements OnInit {
-  productCategoryData: any;
+  productCategoriesData: any;
   productsData: any;
   employeesData!: any;
   currentOwner!: string;
@@ -36,7 +36,7 @@ export class SalesCreateComponent implements OnInit {
   ngOnInit() {
     this.getEmployeesData();
     this.getBranchData();
-    this.getProductCategory();
+    this.getProductCategories();
     this.getProducts();
     this.getLeadsData();
     // this.initFormgroup();
@@ -92,11 +92,11 @@ export class SalesCreateComponent implements OnInit {
       console.log(error);
     }
   }
-  getProductCategory() {
+  getProductCategories() {
     try {
-      this.sharedAPI.getProductCategory().subscribe((response: any) => {
+      this.sharedAPI.getProductCategories().subscribe((response: any) => {
         if (response.status == 'OK') {
-          this.productCategoryData = response.productCategoryData;
+          this.productCategoriesData = response.productCategoriesData;
         } else {
           console.log(response.message);
         }

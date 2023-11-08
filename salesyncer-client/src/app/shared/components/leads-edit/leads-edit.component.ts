@@ -15,7 +15,7 @@ import * as UserActions from '../../../employee/store/actions/user.actions';
 })
 export class LeadsEditComponent implements OnInit {
   leadSourceData: any;
-  productCategoryData: any;
+  productCategoriesData: any;
   productsData: any;
   status!: any;
   employeesData!: any;
@@ -43,7 +43,7 @@ export class LeadsEditComponent implements OnInit {
 
     this.activatedRouter.data.subscribe((data) => {
       this.leadSourceData = data['initData'].leadSourceData.leadSourceData;
-      this.productCategoryData = data['initData'].productCategoryData.productCategoryData;
+      this.productCategoriesData = data['initData'].productCategoriesData.productCategoriesData;
       this.productsData = data['initData'].productsData.productsData;
       this.branchData = data['initData'].branchData.branchData;
       this.employeesData = data['initData'].employeesData.employeesData;
@@ -82,7 +82,7 @@ export class LeadsEditComponent implements OnInit {
     // this.getEmployeesData();
     // this.getBranchData();
     // this.getLeadSource();
-    // this.getProductCategory();
+    // this.getProductCategories();
     // this.getProducts();
     // this.getleadData();
   }
@@ -149,11 +149,11 @@ export class LeadsEditComponent implements OnInit {
     }
   }
 
-  getProductCategory() {
+  getProductCategories() {
     try {
-      this.sharedAPI.getProductCategory().subscribe((response: any) => {
+      this.sharedAPI.getProductCategories().subscribe((response: any) => {
         if (response.status == 'OK') {
-          this.productCategoryData = response.productCategoryData;
+          this.productCategoriesData = response.productCategoriesData;
           this.initFormgroup();
         } else {
           console.log(response.message);

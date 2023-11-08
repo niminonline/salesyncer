@@ -23,7 +23,7 @@ import * as ContactsActions from 'src/app/employee/store/actions/contacts.action
 })
 export class LeadsCreateComponent implements OnInit {
   leadSourceData: any;
-  productCategoryData: any;
+  productCategoriesData: any;
   productsData: any;
   contactData!: any;
   employeesData!: any;
@@ -50,7 +50,7 @@ export class LeadsCreateComponent implements OnInit {
     this.getEmployeesData();
     this.getBranchData();
     this.getLeadSource();
-    this.getProductCategory();
+    this.getProductCategories();
     this.getProducts();
     // this.initFormgroup();
   }
@@ -112,11 +112,11 @@ export class LeadsCreateComponent implements OnInit {
       console.log(error);
     }
   }
-  getProductCategory() {
+  getProductCategories() {
     try {
-      this.sharedAPI.getProductCategory().subscribe((response: any) => {
+      this.sharedAPI.getProductCategories().subscribe((response: any) => {
         if (response.status == 'OK') {
-          this.productCategoryData = response.productCategoryData;
+          this.productCategoriesData = response.productCategoriesData;
         } else {
           console.log(response.message);
         }

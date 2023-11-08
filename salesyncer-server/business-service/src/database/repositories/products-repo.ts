@@ -1,5 +1,6 @@
 import BusinessCounter from "../entities/BusinessCounter";
 import Product from "../entities/products";
+import ProductCategory from "../entities/productCategory";
 
 ////==============================================
 export const qGetProductsData = async () => {
@@ -81,6 +82,54 @@ export const qIncProductCount = async () => {
 export const qDeleteProductDataById = async (_id: string) => {
   try {
     return await Product.findByIdAndRemove(_id);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+////==============================================
+
+
+
+////==============================================
+
+export const qCreateProductCategoryData = async (newProductCategoryData: object) => {
+  try {
+    const newProductCategory = new ProductCategory(newProductCategoryData);
+
+    const addProductCategoryToDB = await newProductCategory.save();
+    return addProductCategoryToDB;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+
+////==============================================
+
+export const qUpdateProductCategoryDataById = async (
+  _id: string,
+  newProductCategoryData: any
+) => {
+  try {
+    // console.log("New ProductCategory data to update", _id, newProductCategoryData);
+    const updateOperation = {
+      $set: newProductCategoryData,
+    };
+    // console.log("Update ops", updateOperation)
+    const response = await ProductCategory.findByIdAndUpdate(_id, updateOperation);
+
+    return response;
+  } catch (error) {}
+};
+
+
+////==============================================
+
+
+export const qDeleteProductCategoryDataById = async (_id: string) => {
+  try {
+    return await ProductCategory.findByIdAndRemove(_id);
   } catch (error) {
     console.log(error);
   }
