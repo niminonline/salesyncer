@@ -3,7 +3,6 @@ import LeadSource from "../entities/leadSource";
 import ProductCategory from "../entities/productCategory";
 import Products from "../entities/products";
 import BusinessCounter from "../entities/BusinessCounter";
-import Contacts from "../entities/contacts";
 import moment from 'moment';
 
 ////==============================================
@@ -75,11 +74,9 @@ export const qUpdateLeadDataById = async (
   newLeadData: any
   ) => {
     try {
-      console.log("Emp id and data from leads repo",_id,newLeadData);
       const updateOperation = {
         $set: newLeadData,
       };
-      // console.log("Update ops", updateOperation)
       const response = await Leads.findByIdAndUpdate(_id, updateOperation);
       if(response){
         const currentDate = moment().format('DD/MM/YYYY hh:mm a');
@@ -96,7 +93,6 @@ export const qUpdateLeadDataById = async (
   export const qGetLeadsCount = async () => {
     try {
       const counterData:any=  await BusinessCounter.findOne(); 
-      // console.log("Counterdata",counterData.leadCounter) 
       return counterData.leadCounter;
     } catch (error) {
       console.log(error);

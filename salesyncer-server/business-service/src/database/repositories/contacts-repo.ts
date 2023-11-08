@@ -6,7 +6,7 @@ export const qGetContactsData = async () => {
   try {
     return await Contacts.find({});
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
@@ -19,7 +19,7 @@ export const qCreateContactData = async (newContactData: object) => {
    const addContactToDB=  await newContact.save();
    return addContactToDB;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
@@ -40,13 +40,10 @@ export const qUpdateContactsDataById = async (
   newContactData: object
   ) => {
     try {
-      console.log("Emp id and data from update repo",_id,newContactData);
       const updateOperation = {
         $set: newContactData,
       };
-      // console.log("Update ops", updateOperation)
       const response = await Contacts.findByIdAndUpdate(_id, updateOperation);
-      // console.log("Update ops response", response)
       return response;
     } catch (error) {}
   };
@@ -57,7 +54,6 @@ export const qUpdateContactsDataById = async (
   export const qGetContactCount = async () => {
     try {
       const counterData:any=  await BusinessCounter.findOne(); 
-      // console.log("Counterdata",counterData.contactCounter) 
       return counterData.contactCounter;
     } catch (error) {
       console.log(error);

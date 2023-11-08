@@ -34,6 +34,18 @@ export class AdminAPIService {
     return this.http.delete<any>(`/delete-activity-type?_id=${_id}`);
   }
 
+
+  createProductCategory(data: object | null): Observable<any> {
+    return this.http.post<any>(`/create-product-category`, data);
+  }
+
+  editProductCategory(data: object | null): Observable<any> {
+    return this.http.post<any>(`/edit-product-category`, data);
+  }
+  deleteProductCategory(_id:string|null): Observable<any> {
+    return this.http.delete<any>(`/delete-product-category?_id=${_id}`);
+  }
+
   
 
   addEmployee(data: object): Observable<any> {

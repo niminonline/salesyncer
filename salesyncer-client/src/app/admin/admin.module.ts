@@ -13,6 +13,7 @@ import { AddUserComponent } from './components/add-user/add-user.component';
 import { ViewEmployeeComponent } from './components/view-employee/view-employee.component';
 import { LeaveRequestComponent } from './components/leave-request/leave-request.component';
 import { ManageActivityTypeComponent } from './components/manage-activity-type/manage-activity-type.component';
+import { ManageProductCategoryComponent } from './components/manage-product-category/manage-product-category.component';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { ManageActivityTypeComponent } from './components/manage-activity-type/m
     ViewEmployeeComponent,
     LeaveRequestComponent,
     ManageActivityTypeComponent,
+    ManageProductCategoryComponent,
   ],
   imports: [
     CommonModule,

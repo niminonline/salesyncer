@@ -53,7 +53,7 @@ export const qUpdateActivityDataById = async (
   newActivityData: any
 ) => {
   try {
-    console.log("New activity data to update", _id, newActivityData);
+    // console.log("New activity data to update", _id, newActivityData);
     const updateOperation = {
       $set: newActivityData,
     };
@@ -109,7 +109,7 @@ export const qDeleteActivityDataById = async (_id: string) => {
 ///==============================================
 export const qGetActivityTypesData = async () => {
   try {
-    console.log("entered mongo a")
+    // console.log("entered mongo a")
     return await ActivityType.find({});
   } catch (error) {
     console.log(error);
@@ -139,11 +139,9 @@ export const qUpdateActivityTypeDataById = async (
   newActivityTypeData: any
 ) => {
   try {
-    console.log("New activityType data to update", _id, newActivityTypeData);
     const updateOperation = {
       $set: newActivityTypeData,
     };
-    // console.log("Update ops", updateOperation)
     const response = await ActivityType.findByIdAndUpdate(_id, updateOperation);
 
     return response;
