@@ -40,11 +40,9 @@
 //   newProductData: any
 // ) => {
 //   try {
-//     console.log("New Product data to update", _id, newProductData);
 //     const updateOperation = {
 //       $set: newProductData,
 //     };
-//     // console.log("Update ops", updateOperation)
 //     const response = await Product.findByIdAndUpdate(_id, updateOperation);
 
 //     return response;
@@ -56,7 +54,6 @@
 // export const qGetProductCount = async () => {
 //   try {
 //     const counterData: any = await BusinessCounter.findOne();
-//     // console.log("Counterdata",counterData.saleCounter)
 //     return counterData.saleProduct;
 //   } catch (error) {
 //     console.log(error);

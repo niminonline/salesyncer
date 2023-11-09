@@ -15,13 +15,11 @@ const createProductData = async (productData: any) => {
           productData.name.toLowerCase().replace(/\s/g, "").trim() &&
         product.category == productData.category
       ) {
-        console.log("If satisfies");
         return { status: "FAILED", message: "Product already exists" };
       }
     }
 
     const productCount = await qGetProductCount();
-    console.log("Product count", productCount);
     if (productData) {
       const newProductData = {
         productId: "SSPD0" + productCount,
@@ -33,7 +31,6 @@ const createProductData = async (productData: any) => {
       };
 
       const response: any = await qCreateProductData(newProductData);
-      console.log("Response from qProductData Q", response);
 
       if (response) {
         const updateProductCount = await qIncProductCount();

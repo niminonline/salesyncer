@@ -4,7 +4,6 @@ const deleteLeadData = async (_id: string): Promise<object | undefined> => {
   try {
     if (_id) {
       const deleteLeadData = await qDeleteLeadDataById(_id);
-      console.log("Lead data from Q", deleteLeadData);
       if (deleteLeadData) {
         return {
           deleteLeadData,

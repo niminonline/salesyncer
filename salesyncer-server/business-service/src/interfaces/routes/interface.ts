@@ -40,7 +40,6 @@ import {
   // getTargetsDetails,
   // deleteTargetDetails,
 } from "../controllers/controller";
-// import { adminLogin,employeeLogin } from "../controllers/controller";
 
 const redisSubscriber = new Redis();
 
@@ -58,7 +57,6 @@ export const subscribeToChannel = (channelName: string) => {
 redisSubscriber.on("message", (channel: string, message: any) => {
   if (channel === "business-service") {
     const data = JSON.parse(message);
-    console.log("Data from api", data);
 
     switch (data.action) {
       case "getLeadSourceDetails":

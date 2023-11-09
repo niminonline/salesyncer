@@ -3,7 +3,6 @@ import { qGetContactsData } from "../database/repositories/contacts-repo";
 const getContactsData = async (): Promise<object | undefined> => {
   try {
     const contactsData = await qGetContactsData();
-    console.log("Contact data from Q", contactsData);
     if (contactsData) {
       return {
         contactsData,

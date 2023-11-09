@@ -3,7 +3,6 @@ import { qGetLeadsSourceData } from "../database/repositories/leads-repo";
 const getLeadSourceData = async (): Promise<object | undefined> => {
   try {
     const leadSourceData = await qGetLeadsSourceData();
-    console.log("leadsource data from Q", leadSourceData);
     if (leadSourceData) {
       return {
         leadSourceData,

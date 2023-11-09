@@ -12,7 +12,6 @@
         };
   
         const response: any = await qCreateActivityTypeData(newActivityTypeData);
-        console.log("Response from qActivityTypeData Q", response);
   
         if (response) {
         

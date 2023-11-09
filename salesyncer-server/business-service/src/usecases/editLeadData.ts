@@ -2,7 +2,6 @@ import { qUpdateLeadDataById } from "../database/repositories/leads-repo";
 
 const editLeadData = async (newLeadData: any) => {
   try {
-    // console.log("New contact data from business service", newContactData);
 
     if (newLeadData) {
       const { _id } = newLeadData;

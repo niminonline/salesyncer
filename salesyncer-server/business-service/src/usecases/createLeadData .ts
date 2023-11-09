@@ -4,7 +4,6 @@ import moment from 'moment';
 const createLeadData = async (leadData: any) => {
   try {
     const leadsCount = await qGetLeadsCount();
-    console.log("contact count",leadsCount)
     if (leadData) {
 
       
@@ -26,7 +25,6 @@ const createLeadData = async (leadData: any) => {
       };
 
       const response: any = await qCreateLeadsData(newLeadData);
-      console.log("Response from qcreateleads Q", response);
 
       if (response) {
         const updateContactCount = await qIncLeadCount();

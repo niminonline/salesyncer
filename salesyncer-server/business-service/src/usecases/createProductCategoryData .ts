@@ -12,7 +12,6 @@
         };
   
         const response: any = await qCreateProductCategoryData(newProductCategoryData);
-        // console.log("Response from qProductCategoryData Q", response);
   
         if (response) {
         

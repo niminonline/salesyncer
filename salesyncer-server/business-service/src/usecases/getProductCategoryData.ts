@@ -3,7 +3,6 @@ import { qGetProductCategoryData } from "../database/repositories/leads-repo";
 const getProductCategoryData = async (): Promise<object | undefined> => {
   try {
     const productCategoriesData = await qGetProductCategoryData();
-    console.log("Product category data from Q", productCategoriesData);
     if (productCategoriesData) {
       return {
         productCategoriesData,

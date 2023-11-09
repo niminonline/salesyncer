@@ -4,7 +4,6 @@
   const createActivityData = async (activityData: any) => {
     try {
       const activityCount = await qGetActivityCount();
-      console.log("Activity count",activityCount)
       if (activityData) {
   
           const newActivityData = {
@@ -20,7 +19,6 @@
         };
   
         const response: any = await qCreateActivityData(newActivityData);
-        console.log("Response from qActivityData Q", response);
   
         if (response) {
           const updateActivityCount = await qIncActivityCount();

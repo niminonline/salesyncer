@@ -52,7 +52,7 @@ export const publishToChannel=(channelName:string,response: any) =>{
   
             resolve(response);
           } else {
-            // console.log("Received message on different channel:", channel);
+            console.log("Received message on different channel:", channel);
           }
         });
       } catch (error) {

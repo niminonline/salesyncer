@@ -2,7 +2,6 @@ import { qUpdateActivityDataById } from "../database/repositories/activities-rep
 
 const editActivityData = async (newActivityData: any) => {
   try {
-    // console.log("New activity data from business service", newActivityData);
 
     if (newActivityData) {
       const { _id } = newActivityData;

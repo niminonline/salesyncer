@@ -50,11 +50,9 @@ export const qUpdateSaleDataById = async (
   newSaleData: any
 ) => {
   try {
-    console.log("New Sale data to update", _id, newSaleData);
     const updateOperation = {
       $set: newSaleData,
     };
-    // console.log("Update ops", updateOperation)
     const response = await Sale.findByIdAndUpdate(_id, updateOperation);
 
     return response;
@@ -66,7 +64,6 @@ export const qUpdateSaleDataById = async (
 export const qGetSaleCount = async () => {
   try {
     const counterData: any = await BusinessCounter.findOne();
-    // console.log("Counterdata",counterData.saleCounter)
     return counterData.saleCounter;
   } catch (error) {
     console.log(error);

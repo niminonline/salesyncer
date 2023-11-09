@@ -109,11 +109,9 @@ export const qUpdateProductCategoryDataById = async (
   newProductCategoryData: any
 ) => {
   try {
-    // console.log("New ProductCategory data to update", _id, newProductCategoryData);
     const updateOperation = {
       $set: newProductCategoryData,
     };
-    // console.log("Update ops", updateOperation)
     const response = await ProductCategory.findByIdAndUpdate(_id, updateOperation);
 
     return response;

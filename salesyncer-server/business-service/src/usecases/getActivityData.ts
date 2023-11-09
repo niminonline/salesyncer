@@ -4,7 +4,6 @@ const getActivityData = async (_id: string): Promise<object | undefined> => {
   try {
     if (_id) {
       const activityData = await qGetActivityDataById(_id);
-      // console.log("activity data from Q", activityData);
       if (activityData) {
         return {
             activityData,

@@ -7,7 +7,6 @@ import {
 const createContactData = async (contactData: any) => {
   try {
     const contactCount = await qGetContactCount();
-    // console.log("contact count",contactCount)
     if (contactData) {
       const newContactData = {
         contactId: "SSCNT0" + contactCount,
@@ -24,7 +23,6 @@ const createContactData = async (contactData: any) => {
       };
 
       const response: any = await qCreateContactData(newContactData);
-      console.log("Response from qaddContactData Q", response);
 
       if (response) {
         const updateContactCount = await qIncContactCount();

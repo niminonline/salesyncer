@@ -4,7 +4,6 @@
   const createSaleData = async (saleData: any) => {
     try {
       const saleCount = await qGetSaleCount();
-      console.log("Sale count",saleCount)
       if (saleData) {
   
           const newSaleData = {
@@ -23,7 +22,6 @@
         };
   
         const response: any = await qCreateSaleData(newSaleData);
-        console.log("Response from qSaleData Q", response);
   
         if (response) {
           const updateSaleCount = await qIncSaleCount();

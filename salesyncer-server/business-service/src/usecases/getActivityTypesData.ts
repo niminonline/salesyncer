@@ -3,7 +3,6 @@ import { qGetActivityTypesData } from "../database/repositories/activities-repo"
 const getActivityTypesData = async (): Promise<object | undefined> => {
   try {
     const activityTypesData = await qGetActivityTypesData();
-    console.log("ActivityTypes data from Q", activityTypesData);
     if (activityTypesData) {
       return {
         activityTypesData,

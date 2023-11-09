@@ -4,7 +4,6 @@ const deleteActivityData = async (_id: string): Promise<object | undefined> => {
   try {
     if (_id) {
       const deleteActivityData = await qDeleteActivityDataById(_id);
-      console.log("Activity data from Q", deleteActivityData);
       if (deleteActivityData) {
         return {
             deleteActivityData,

@@ -39,7 +39,6 @@ import getSalesData from "../../usecases/getSalesData ";
 export const getLeadSourceDetails = async (data: any) => {
   try {
     const { requestId, action } = data;
-    // console.log("Request id, action from office controller", requestId, action);
     const response: any = await getLeadSourceData();
     if (response.status == "OK") {
       const data = {
@@ -49,7 +48,6 @@ export const getLeadSourceDetails = async (data: any) => {
         status: "OK",
         message: "LeadSource data fetched successfully",
       };
-      // console.log("fetched employees data", data);
       publishToChannel("ApiRes-getLeadSourceDetails", data);
     } else {
       publishToChannel("ApiRes-getLeadSourceDetails", {
@@ -71,7 +69,6 @@ export const getLeadSourceDetails = async (data: any) => {
 export const getProductCategoryDetails = async (data: any) => {
   try {
     const { requestId, action } = data;
-    // console.log("Request id, action from office controller", requestId, action);
     const response: any = await getProductCategoryData();
     if (response.status == "OK") {
       const data = {
@@ -81,7 +78,6 @@ export const getProductCategoryDetails = async (data: any) => {
         status: "OK",
         message: "Product Category data fetched successfully",
       };
-      // console.log("fetched employees data", data);
       publishToChannel("ApiRes-getProductCategoryDetails", data);
     } else {
       publishToChannel("ApiRes-getProductCategoryDetails", {
@@ -99,7 +95,6 @@ export const getProductCategoryDetails = async (data: any) => {
 // export const getProductsDetails = async (data: any) => {
 //   try {
 //     const { requestId, action } = data;
-//     // console.log("Request id, action from office controller", requestId, action);
 //     const response: any = await getProductsData();
 //     if (response.status == "OK") {
 //       const data = {
@@ -109,7 +104,6 @@ export const getProductCategoryDetails = async (data: any) => {
 //         status: "OK",
 //         message: "Products data fetched successfully",
 //       };
-//       // console.log("fetched employees data", data);
 //       publishToChannel("ApiRes-getProductsDetails", data);
 //     } else {
 //       publishToChannel("ApiRes-getProductsDetails", {
@@ -130,9 +124,7 @@ export const getProductCategoryDetails = async (data: any) => {
 
 export const createContactDetails = async (data: any) => {
   try {
-    // console.log("Req body of getEmployeeDetails Controller", data);
     const { requestId, action } = data;
-    // console.log("email of getEmployeeDetails Controller", email);
 
     const response: any = await createContactData(data);
 
@@ -147,16 +139,13 @@ export const createContactDetails = async (data: any) => {
       });
     }
 
-    // console.log("myresponse", response);
   } catch (error) {
     console.error(error);
   }
 };
 export const editContactDetails = async (data: any) => {
   try {
-    // console.log("Req body of getEmployeeDetails Controller", data);
     const { requestId, action } = data;
-    // console.log("email of getEmployeeDetails Controller", email);
 
     const response: any = await editContactData(data);
 
@@ -170,7 +159,6 @@ export const editContactDetails = async (data: any) => {
         message: "Contact Updation failed",
       });
     }
-    // console.log("myresponse", response);
   } catch (error) {
     console.error(error);
   }
@@ -179,7 +167,6 @@ export const editContactDetails = async (data: any) => {
 export const getContactDetails = async (data: any) => {
   try {
     const { _id, requestId, action } = data;
-    // console.log("Request id, action from office controller", requestId, action);
     const response: any = await getContactData(_id);
     if (response.status == "OK") {
       const data = {
@@ -189,7 +176,6 @@ export const getContactDetails = async (data: any) => {
         status: "OK",
         message: "Contact data fetched successfully",
       };
-      // console.log("fetched employees data", data);
       publishToChannel("ApiRes-getContactDetails", data);
     } else {
       publishToChannel("ApiRes-getContactDetails", {
@@ -207,7 +193,6 @@ export const getContactDetails = async (data: any) => {
 export const getContactsDetails = async (data: any) => {
   try {
     const { requestId, action } = data;
-    // console.log("Request id, action from office controller", requestId, action);
     const response: any = await getContactsData();
     if (response.status == "OK") {
       const data = {
@@ -217,7 +202,6 @@ export const getContactsDetails = async (data: any) => {
         status: "OK",
         message: "Contacts data fetched successfully",
       };
-      // console.log("fetched employees data", data);
       publishToChannel("ApiRes-getContactsDetails", data);
     } else {
       publishToChannel("ApiRes-getContactsDetails", {
@@ -235,12 +219,6 @@ export const getContactsDetails = async (data: any) => {
 export const deleteContactDetails = async (data: any) => {
   try {
     const { _id, requestId, action } = data;
-    console.log(
-      "Request id, action from office controller",
-      requestId,
-      action,
-      _id
-    );
     const response: any = await deleteContactData(_id);
     if (response.status == "OK") {
       const data = {
@@ -249,7 +227,6 @@ export const deleteContactDetails = async (data: any) => {
         status: "OK",
         message: "Contact deleted successfully",
       };
-      // console.log("fetched employees data", data);
       publishToChannel("ApiRes-deleteContactDetails", data);
     } else {
       publishToChannel("ApiRes-deleteContactDetails", {
@@ -270,9 +247,7 @@ export const deleteContactDetails = async (data: any) => {
 
 export const createLeadDetails = async (data: any) => {
   try {
-    // console.log("Req body of getEmployeeDetails Controller", data);
     const { requestId, action } = data;
-    // console.log("email of getEmployeeDetails Controller", email);
 
     const response: any = await createLeadData(data);
 
@@ -287,16 +262,13 @@ export const createLeadDetails = async (data: any) => {
       });
     }
 
-    // console.log("myresponse", response);
   } catch (error) {
     console.error(error);
   }
 };
 export const editLeadDetails = async (data: any) => {
   try {
-    // console.log("Req body of getEmployeeDetails Controller", data);
     const { requestId, action } = data;
-    // console.log("email of getEmployeeDetails Controller", email);
 
     const response: any = await editLeadData(data);
 
@@ -310,7 +282,6 @@ export const editLeadDetails = async (data: any) => {
         message: "Lead updation failed",
       });
     }
-    // console.log("myresponse", response);
   } catch (error) {
     console.error(error);
   }
@@ -319,7 +290,6 @@ export const editLeadDetails = async (data: any) => {
 export const getLeadDetails = async (data: any) => {
   try {
     const { _id, requestId, action } = data;
-    // console.log("Request id, action from office controller", requestId, action);
     const response: any = await getLeadData(_id);
     if (response.status == "OK") {
       const data = {
@@ -329,7 +299,6 @@ export const getLeadDetails = async (data: any) => {
         status: "OK",
         message: "Lead data fetched successfully",
       };
-      // console.log("fetched employees data", data);
       publishToChannel("ApiRes-getLeadDetails", data);
     } else {
       publishToChannel("ApiRes-getLeadDetails", {
@@ -347,7 +316,6 @@ export const getLeadDetails = async (data: any) => {
 export const getLeadsDetails = async (data: any) => {
   try {
     const { requestId, action } = data;
-    // console.log("Request id, action from office controller", requestId, action);
     const response: any = await getLeadsData();
     if (response.status == "OK") {
       const data = {
@@ -357,7 +325,6 @@ export const getLeadsDetails = async (data: any) => {
         status: "OK",
         message: "Leads data fetched successfully",
       };
-      // console.log("fetched employees data", data);
       publishToChannel("ApiRes-getLeadsDetails", data);
     } else {
       publishToChannel("ApiRes-getLeadsDetails", {
@@ -375,12 +342,6 @@ export const getLeadsDetails = async (data: any) => {
 export const deleteLeadDetails = async (data: any) => {
   try {
     const { _id, requestId, action } = data;
-    console.log(
-      "Request id, action from office controller",
-      requestId,
-      action,
-      _id
-    );
     const response: any = await deleteLeadData(_id);
     if (response.status == "OK") {
       const data = {
@@ -389,7 +350,6 @@ export const deleteLeadDetails = async (data: any) => {
         status: "OK",
         message: "Lead deleted successfully",
       };
-      // console.log("fetched employees data", data);
       publishToChannel("ApiRes-deleteLeadDetails", data);
     } else {
       publishToChannel("ApiRes-deleteLeadDetails", {
@@ -410,9 +370,7 @@ export const deleteLeadDetails = async (data: any) => {
 
 export const createActivityDetails = async (data: any) => {
   try {
-    // console.log("Req body of Activity Controller", data);
     const { requestId, action } = data;
-    // console.log("email of Activity Controller", email);
 
     const response: any = await createActivityData(data);
 
@@ -427,16 +385,13 @@ export const createActivityDetails = async (data: any) => {
       });
     }
 
-    // console.log("myresponse", response);
   } catch (error) {
     console.error(error);
   }
 };
 export const editActivityDetails = async (data: any) => {
   try {
-    // console.log("Req body of Activity Controller", data);
     const { requestId, action } = data;
-    // console.log("email of Activity Controller", email);
 
     const response: any = await editActivityData(data);
 
@@ -450,7 +405,6 @@ export const editActivityDetails = async (data: any) => {
         message: "Activity updation failed",
       });
     }
-    // console.log("myresponse", response);
   } catch (error) {
     console.error(error);
   }
@@ -459,7 +413,6 @@ export const editActivityDetails = async (data: any) => {
 export const getActivityDetails = async (data: any) => {
   try {
     const { _id, requestId, action } = data;
-    // console.log("Request id, action from activity controller", requestId, action);
     const response: any = await getActivityData(_id);
     if (response.status == "OK") {
       const data = {
@@ -469,7 +422,6 @@ export const getActivityDetails = async (data: any) => {
         status: "OK",
         message: "Activity data fetched successfully",
       };
-      // console.log("fetched employees data", data);
       publishToChannel("ApiRes-getActivityDetails", data);
     } else {
       publishToChannel("ApiRes-getActivityDetails", {
@@ -487,7 +439,6 @@ export const getActivityDetails = async (data: any) => {
 export const getActivitiesDetails = async (data: any) => {
   try {
     const { requestId, action } = data;
-    // console.log("Request id, action from activities controller", requestId, action);
     const response: any = await getActivitiesData();
     if (response.status == "OK") {
       const data = {
@@ -497,7 +448,6 @@ export const getActivitiesDetails = async (data: any) => {
         status: "OK",
         message: "Activities data fetched successfully",
       };
-      // console.log("fetched activities data", data);
       publishToChannel("ApiRes-getActivitiesDetails", data);
     } else {
       publishToChannel("ApiRes-getActivitiesDetails", {
@@ -515,12 +465,6 @@ export const getActivitiesDetails = async (data: any) => {
 export const deleteActivityDetails = async (data: any) => {
   try {
     const { _id, requestId, action } = data;
-    console.log(
-      "Request id, action from activity controller",
-      requestId,
-      action,
-      _id
-    );
     const response: any = await deleteActivityData(_id);
     if (response.status == "OK") {
       const data = {
@@ -529,7 +473,6 @@ export const deleteActivityDetails = async (data: any) => {
         status: "OK",
         message: "Activity deleted successfully",
       };
-      // console.log("fetched employees data", data);
       publishToChannel("ApiRes-deleteActivityDetails", data);
     } else {
       publishToChannel("ApiRes-deleteActivityDetails", {
@@ -550,9 +493,7 @@ export const deleteActivityDetails = async (data: any) => {
 
 export const createProductDetails = async (data: any) => {
   try {
-    // console.log("Req body of Product Controller", data);
     const { requestId, action } = data;
-    // console.log("email of Product Controller", email);
 
     const response: any = await createProductData(data);
 
@@ -567,16 +508,13 @@ export const createProductDetails = async (data: any) => {
       });
     }
 
-    // console.log("myresponse", response);
   } catch (error) {
     console.error(error);
   }
 };
 export const editProductDetails = async (data: any) => {
   try {
-    // console.log("Req body of Product Controller", data);
     const { requestId, action } = data;
-    // console.log("email of Product Controller", email);
 
     const response: any = await editProductData(data);
 
@@ -590,7 +528,6 @@ export const editProductDetails = async (data: any) => {
         message: "Product updation failed",
       });
     }
-    // console.log("myresponse", response);
   } catch (error) {
     console.error(error);
   }
@@ -599,7 +536,6 @@ export const editProductDetails = async (data: any) => {
 export const getProductDetails = async (data: any) => {
   try {
     const { _id, requestId, action } = data;
-    // console.log("Request id, action from Product controller", requestId, action);
     const response: any = await getProductData(_id);
     if (response.status == "OK") {
       const data = {
@@ -609,7 +545,6 @@ export const getProductDetails = async (data: any) => {
         status: "OK",
         message: "Product data fetched successfully",
       };
-      // console.log("fetched Product data", data);
       publishToChannel("ApiRes-getProductDetails", data);
     } else {
       publishToChannel("ApiRes-getProductDetails", {
@@ -627,7 +562,6 @@ export const getProductDetails = async (data: any) => {
 export const getProductsDetails = async (data: any) => {
   try {
     const { requestId, action } = data;
-    // console.log("Request id, action from Products controller", requestId, action);
     const response: any = await getProductsData();
     if (response.status == "OK") {
       const data = {
@@ -637,7 +571,6 @@ export const getProductsDetails = async (data: any) => {
         status: "OK",
         message: "Products data fetched successfully",
       };
-      // console.log("fetched activities data", data);
       publishToChannel("ApiRes-getProductsDetails", data);
     } else {
       publishToChannel("ApiRes-getProductsDetails", {
@@ -655,12 +588,6 @@ export const getProductsDetails = async (data: any) => {
 export const deleteProductDetails = async (data: any) => {
   try {
     const { _id, requestId, action } = data;
-    console.log(
-      "Request id, action from Product controller",
-      requestId,
-      action,
-      _id
-    );
     const response: any = await deleteProductData(_id);
     if (response.status == "OK") {
       const data = {
@@ -669,7 +596,6 @@ export const deleteProductDetails = async (data: any) => {
         status: "OK",
         message: "Product deleted successfully",
       };
-      // console.log("fetched employees data", data);
       publishToChannel("ApiRes-deleteProductDetails", data);
     } else {
       publishToChannel("ApiRes-deleteProductDetails", {
@@ -690,9 +616,7 @@ export const deleteProductDetails = async (data: any) => {
 
 export const createSaleDetails = async (data: any) => {
   try {
-    // console.log("Req body of Sale Controller", data);
     const { requestId, action } = data;
-    // console.log("email of Sale Controller", email);
 
     const response: any = await createSaleData(data);
 
@@ -707,16 +631,13 @@ export const createSaleDetails = async (data: any) => {
       });
     }
 
-    // console.log("myresponse", response);
   } catch (error) {
     console.error(error);
   }
 };
 export const editSaleDetails = async (data: any) => {
   try {
-    // console.log("Req body of Sale Controller", data);
     const { requestId, action } = data;
-    // console.log("email of Sale Controller", email);
 
     const response: any = await editSaleData(data);
 
@@ -730,7 +651,6 @@ export const editSaleDetails = async (data: any) => {
         message: "Sale updation failed",
       });
     }
-    // console.log("myresponse", response);
   } catch (error) {
     console.error(error);
   }
@@ -739,7 +659,6 @@ export const editSaleDetails = async (data: any) => {
 export const getSaleDetails = async (data: any) => {
   try {
     const { _id, requestId, action } = data;
-    // console.log("Request id, action from Sale controller", requestId, action);
     const response: any = await getSaleData(_id);
     if (response.status == "OK") {
       const data = {
@@ -749,7 +668,6 @@ export const getSaleDetails = async (data: any) => {
         status: "OK",
         message: "Sale data fetched successfully",
       };
-      // console.log("fetched Sale data", data);
       publishToChannel("ApiRes-getSaleDetails", data);
     } else {
       publishToChannel("ApiRes-getSaleDetails", {
@@ -767,7 +685,6 @@ export const getSaleDetails = async (data: any) => {
 export const getSalesDetails = async (data: any) => {
   try {
     const { requestId, action } = data;
-    // console.log("Request id, action from PSales controller", requestId, action);
     const response: any = await getSalesData();
     if (response.status == "OK") {
       const data = {
@@ -777,7 +694,6 @@ export const getSalesDetails = async (data: any) => {
         status: "OK",
         message: "Sales data fetched successfully",
       };
-      // console.log("fetched Sale data", data);
       publishToChannel("ApiRes-getSalesDetails", data);
     } else {
       publishToChannel("ApiRes-getSalesDetails", {
@@ -795,12 +711,6 @@ export const getSalesDetails = async (data: any) => {
 export const deleteSaleDetails = async (data: any) => {
   try {
     const { _id, requestId, action } = data;
-    console.log(
-      "Request id, action from Sale controller",
-      requestId,
-      action,
-      _id
-    );
     const response: any = await deleteSaleData(_id);
     if (response.status == "OK") {
       const data = {
@@ -809,7 +719,6 @@ export const deleteSaleDetails = async (data: any) => {
         status: "OK",
         message: "Sale deleted successfully",
       };
-      // console.log("fetched Sale data", data);
       publishToChannel("ApiRes-deleteSaleDetails", data);
     } else {
       publishToChannel("ApiRes-deleteSaleDetails", {
@@ -830,9 +739,7 @@ export const deleteSaleDetails = async (data: any) => {
 
 // export const createTargetDetails = async (data: any) => {
 //   try {
-//     // console.log("Req body of Target Controller", data);
 //     const { requestId, action } = data;
-//     // console.log("email of Target Controller", email);
 
 //     const response: any = await createTargetData(data);
 
@@ -847,16 +754,13 @@ export const deleteSaleDetails = async (data: any) => {
 //       });
 //     }
 
-//     // console.log("myresponse", response);
 //   } catch (error) {
 //     console.error(error);
 //   }
 // };
 // export const editTargetDetails = async (data: any) => {
 //   try {
-//     // console.log("Req body of Target Controller", data);
 //     const { requestId, action } = data;
-//     // console.log("email of Target Controller", email);
 
 //     const response: any = await editTargetData(data);
 
@@ -870,7 +774,6 @@ export const deleteSaleDetails = async (data: any) => {
 //         message: "Target updation failed",
 //       });
 //     }
-//     // console.log("myresponse", response);
 //   } catch (error) {
 //     console.error(error);
 //   }
@@ -879,7 +782,6 @@ export const deleteSaleDetails = async (data: any) => {
 // export const getTargetDetails = async (data: any) => {
 //   try {
 //     const { _id, requestId, action } = data;
-//     // console.log("Request id, action from Target controller", requestId, action);
 //     const response: any = await getTargetData(_id);
 //     if (response.status == "OK") {
 //       const data = {
@@ -889,7 +791,6 @@ export const deleteSaleDetails = async (data: any) => {
 //         status: "OK",
 //         message: "Target data fetched successfully",
 //       };
-//       // console.log("fetched Target data", data);
 //       publishToChannel("ApiRes-getTargetDetails", data);
 //     } else {
 //       publishToChannel("ApiRes-getTargetDetails", {
@@ -907,7 +808,6 @@ export const deleteSaleDetails = async (data: any) => {
 // export const getTargetsDetails = async (data: any) => {
 //   try {
 //     const { requestId, action } = data;
-//     // console.log("Request id, action from Target controller", requestId, action);
 //     const response: any = await getTargetsData();
 //     if (response.status == "OK") {
 //       const data = {
@@ -917,7 +817,6 @@ export const deleteSaleDetails = async (data: any) => {
 //         status: "OK",
 //         message: "Target data fetched successfully",
 //       };
-//       // console.log("fetched Sale data", data);
 //       publishToChannel("ApiRes-getTargetsDetails", data);
 //     } else {
 //       publishToChannel("ApiRes-getTargetsDetails", {
@@ -935,12 +834,6 @@ export const deleteSaleDetails = async (data: any) => {
 // export const deleteTargetDetails = async (data: any) => {
 //   try {
 //     const { _id, requestId, action } = data;
-//     console.log(
-//       "Request id, action from Target controller",
-//       requestId,
-//       action,
-//       _id
-//     );
 //     const response: any = await deleteTargetData(_id);
 //     if (response.status == "OK") {
 //       const data = {
@@ -949,7 +842,6 @@ export const deleteSaleDetails = async (data: any) => {
 //         status: "OK",
 //         message: "Target deleted successfully",
 //       };
-//       // console.log("fetched Sale data", data);
 //       publishToChannel("ApiRes-deleteTargetDetails", data);
 //     } else {
 //       publishToChannel("ApiRes-deleteTargetDetails", {
@@ -970,9 +862,7 @@ export const deleteSaleDetails = async (data: any) => {
 
 export const createActivityTypeDetails = async (data: any) => {
   try {
-    // console.log("Req body of ActivityType Controller", data);
     const { requestId, action } = data;
-    // console.log("email of ActivityType Controller", email);
 
     const response: any = await createActivityTypeData(data);
 
@@ -987,16 +877,13 @@ export const createActivityTypeDetails = async (data: any) => {
       });
     }
 
-    // console.log("myresponse", response);
   } catch (error) {
     console.error(error);
   }
 };
 export const editActivityTypeDetails = async (data: any) => {
   try {
-    // console.log("Req body of ActivityType Controller", data);
     const { requestId, action } = data;
-    // console.log("email of ActivityType Controller", email);
 
     const response: any = await editActivityTypeData(data);
 
@@ -1010,7 +897,6 @@ export const editActivityTypeDetails = async (data: any) => {
         message: "ActivityType updation failed",
       });
     }
-    // console.log("myresponse", response);
   } catch (error) {
     console.error(error);
   }
@@ -1019,11 +905,6 @@ export const editActivityTypeDetails = async (data: any) => {
 export const getActivityTypesDetails = async (data: any) => {
   try {
     const { requestId, action } = data;
-    console.log(
-      "Request id, action from actypes controller",
-      requestId,
-      action
-    );
     const response: any = await getActivityTypesData();
     if (response.status == "OK") {
       const data = {
@@ -1033,7 +914,6 @@ export const getActivityTypesDetails = async (data: any) => {
         status: "OK",
         message: "ActivityTypes data fetched successfully",
       };
-      // console.log("fetched Sale data", data);
       publishToChannel("ApiRes-getActivityTypesDetails", data);
     } else {
       publishToChannel("ApiRes-getActivityTypesDetails", {
@@ -1051,12 +931,6 @@ export const getActivityTypesDetails = async (data: any) => {
 export const deleteActivityTypeDetails = async (data: any) => {
   try {
     const { _id, requestId, action } = data;
-    console.log(
-      "Request id, action from ActivityType controller",
-      requestId,
-      action,
-      _id
-    );
     const response: any = await deleteActivityTypeData(_id);
     if (response.status == "OK") {
       const data = {
@@ -1065,7 +939,6 @@ export const deleteActivityTypeDetails = async (data: any) => {
         status: "OK",
         message: "ActivityType deleted successfully",
       };
-      // console.log("fetched Sale data", data);
       publishToChannel("ApiRes-deleteActivityTypeDetails", data);
     } else {
       publishToChannel("ApiRes-deleteActivityTypeDetails", {
@@ -1086,9 +959,7 @@ export const deleteActivityTypeDetails = async (data: any) => {
 
 export const createProductCategoryDetails = async (data: any) => {
   try {
-    // console.log("Req body of ProductCategory Controller", data);
     const { requestId, action } = data;
-    // console.log("email of ActivityType Controller", email);
 
     const response: any = await createProductCategoryData(data);
 
@@ -1103,16 +974,13 @@ export const createProductCategoryDetails = async (data: any) => {
       });
     }
 
-    // console.log("myresponse", response);
   } catch (error) {
     console.error(error);
   }
 };
 export const editProductCategoryDetails = async (data: any) => {
   try {
-    // console.log("Req body of ProductCategory Controller", data);
     const { requestId, action } = data;
-    // console.log("email of ProductCategory Controller", email);
 
     const response: any = await editProductCategoryData(data);
 
@@ -1126,7 +994,6 @@ export const editProductCategoryDetails = async (data: any) => {
         message: "Product Category updation failed",
       });
     }
-    // console.log("myresponse", response);
   } catch (error) {
     console.error(error);
   }
@@ -1135,12 +1002,6 @@ export const editProductCategoryDetails = async (data: any) => {
 export const deleteProductCategoryDetails = async (data: any) => {
   try {
     const { _id, requestId, action } = data;
-    console.log(
-      "Request id, action from ProductCategory controller",
-      requestId,
-      action,
-      _id
-    );
     const response: any = await deleteProductCategoryData(_id);
     if (response.status == "OK") {
       const data = {
@@ -1149,7 +1010,6 @@ export const deleteProductCategoryDetails = async (data: any) => {
         status: "OK",
         message: "Product Category deleted successfully",
       };
-      // console.log("fetched Sale data", data);
       publishToChannel("ApiRes-deleteProductCategoryDetails", data);
     } else {
       publishToChannel("ApiRes-deleteProductCategoryDetails", {

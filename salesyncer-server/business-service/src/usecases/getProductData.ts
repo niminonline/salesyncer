@@ -4,7 +4,6 @@ const getProductData = async (_id: string): Promise<object | undefined> => {
   try {
     if (_id) {
       const productData = await qGetProductDataById(_id);
-      // console.log("Product data from Q", productData);
       if (productData) {
         return {
             productData,

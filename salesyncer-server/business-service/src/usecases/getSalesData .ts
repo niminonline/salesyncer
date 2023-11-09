@@ -3,7 +3,6 @@ import { qGetSalesData } from "../database/repositories/sales-repo";
 const getSalesData = async (): Promise<object | undefined> => {
   try {
     const salesData = await qGetSalesData();
-    console.log("sales  data from Q", salesData);
     if (salesData) {
       return {
         salesData,

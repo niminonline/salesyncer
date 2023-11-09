@@ -4,7 +4,6 @@ const getLeadData = async (_id: string): Promise<object | undefined> => {
   try {
     if (_id) {
       const leadData = await qGetLeadDataById(_id);
-      // console.log("Employee data from Q", employeeData);
       if (leadData) {
         return {
           leadData,

@@ -53,11 +53,9 @@ export const qUpdateActivityDataById = async (
   newActivityData: any
 ) => {
   try {
-    // console.log("New activity data to update", _id, newActivityData);
     const updateOperation = {
       $set: newActivityData,
     };
-    // console.log("Update ops", updateOperation)
     const response = await Activity.findByIdAndUpdate(_id, updateOperation);
 
     return response;
@@ -69,7 +67,6 @@ export const qUpdateActivityDataById = async (
 export const qGetActivityCount = async () => {
   try {
     const counterData: any = await BusinessCounter.findOne();
-    // console.log("Counterdata",counterData.activityCounter)
     return counterData.activityCounter;
   } catch (error) {
     console.log(error);
@@ -101,22 +98,14 @@ export const qDeleteActivityDataById = async (_id: string) => {
 
 ////==============================================
 
-
-
-
-
-
 ///==============================================
 export const qGetActivityTypesData = async () => {
   try {
-    // console.log("entered mongo a")
     return await ActivityType.find({});
   } catch (error) {
     console.log(error);
   }
 };
-
-
 
 ////==============================================
 
@@ -130,7 +119,6 @@ export const qCreateActivityTypeData = async (newActivityTypeData: object) => {
     console.log(error);
   }
 };
-
 
 ////==============================================
 
@@ -148,9 +136,7 @@ export const qUpdateActivityTypeDataById = async (
   } catch (error) {}
 };
 
-
 ////==============================================
-
 
 export const qDeleteActivityTypeDataById = async (_id: string) => {
   try {

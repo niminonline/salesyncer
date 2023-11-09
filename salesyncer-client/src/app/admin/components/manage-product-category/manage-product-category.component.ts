@@ -140,7 +140,7 @@ export class ManageProductCategoryComponent implements OnInit {
               Swal.fire({
                 position: 'center',
                 icon: 'success',
-                title: 'Product Categoryupdated successfully',
+                title: 'Product category updated successfully',
                 showConfirmButton: false,
                 timer: 1500,
               });

@@ -2,7 +2,6 @@ import { qUpdateSaleDataById } from "../database/repositories/sales-repo";
 
 const editSaleData = async (newSaleData: any) => {
   try {
-    // console.log("New Product data from business service", newActivityData);
 
     if (newSaleData) {
       const { _id } = newSaleData;

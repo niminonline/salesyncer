@@ -2,7 +2,6 @@ import { qUpdateProductCategoryDataById } from "../database/repositories/product
 
 const editProductCategoryData = async (newProductCategoryData: any) => {
   try {
-    // console.log("New productCategory data from business service", newProductCategoryData);
 
     if (newProductCategoryData) {
       const { _id } = newProductCategoryData;
