@@ -18,9 +18,12 @@ import {
   doLeaveAction,
   cancelLeaveDetails,
   editBranchDetails,
+  deleteTargetDetails,
+  editTargetDetails,
+  createTargetDetails,
+  setBranchTargetDetails,
 } from "../../usecases/office";
 import {
-  
   createContactDetails,
   createLeadDetails,
   deleteContactDetails,
@@ -43,11 +46,6 @@ import {
   getProductDetails,
   editProductDetails,
   createProductDetails,
-  getTargetDetails,
-  getTargetsDetails,
-  deleteTargetDetails,
-  editTargetDetails,
-  createTargetDetails,
   deleteSaleDetails,
   getSalesDetails,
   getSaleDetails,
@@ -203,7 +201,6 @@ export const getBranches = async (req: Request, res: Response) => {
 
 export const addBranch = async (req: Request, res: Response) => {
   try {
-    
     const data = req.body;
     const headers = req.headers;
     const response: any = await verifyToken(headers);
@@ -222,10 +219,7 @@ export const addBranch = async (req: Request, res: Response) => {
   }
 };
 export const editBranch = async (req: Request, res: Response) => {
-
-
   try {
-    
     const data = req.body;
     const headers = req.headers;
     const response: any = await verifyToken(headers);
@@ -242,8 +236,7 @@ export const editBranch = async (req: Request, res: Response) => {
     console.error("Error in /auth:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
-
-}
+};
 //==============================================End Branch Controllers=======================
 
 //==============================================Lead SOurce=================================
@@ -266,7 +259,6 @@ export const getLeadSource = async (req: Request, res: Response) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
-
 
 //==============================================End Lead SOurce=================================
 
@@ -370,15 +362,14 @@ export const leaveAction = async (req: Request, res: Response) => {
   }
 };
 
+export const cancelLeave = async (req: Request, res: Response) => {
+  try {
+    const _id = req.query;
+    const headers = req.headers;
 
-export const cancelLeave= async (req:Request,res:Response)=>{
-  try{
-    const _id= req.query;
-    const headers=req.headers;
-
-    const response:any= await verifyToken(headers);
+    const response: any = await verifyToken(headers);
     if (response.status == "OK") {
-      const data={_id}
+      const data = { _id };
       const response: any = await cancelLeaveDetails(data);
 
       delete response.requestId;
@@ -392,7 +383,7 @@ export const cancelLeave= async (req:Request,res:Response)=>{
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
-  
+
 //======================================End Leave Controllers=============================
 
 //====================================Contact Controllers===============================
@@ -601,9 +592,6 @@ export const deleteLead = async (req: Request, res: Response) => {
 
 //=============================End Lead controllers================================
 
-
-
-
 //====================================Activity Controllers===============================
 export const createActivity = async (req: Request, res: Response) => {
   try {
@@ -706,8 +694,6 @@ export const deleteActivity = async (req: Request, res: Response) => {
 };
 
 //=============================End Activity controllers================================
-
-
 
 //====================================Product Controllers===============================
 export const createProduct = async (req: Request, res: Response) => {
@@ -812,7 +798,6 @@ export const deleteProduct = async (req: Request, res: Response) => {
 
 //=============================End Product controllers================================
 
-
 //====================================Sale Controllers===============================
 export const createSale = async (req: Request, res: Response) => {
   try {
@@ -916,16 +901,34 @@ export const deleteSale = async (req: Request, res: Response) => {
 
 //=============================End Sale controllers================================
 
-
 //====================================Target Controllers===============================
 export const createTarget = async (req: Request, res: Response) => {
   try {
     const headers = req.headers;
     const data = req.body;
-    console.log("create Target data,header", data, headers);
     const response: any = await verifyToken(headers);
     if (response.status == "OK") {
       const response: any = await createTargetDetails(data);
+
+      delete response.requestId;
+      delete response.action;
+      res.json(response);
+    } else {
+      res.json(response);
+    }
+  } catch (error) {
+    console.error("Error in /auth:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+export const setBranchTarget = async (req: Request, res: Response) => {
+  try {
+    const headers = req.headers;
+    const data = req.body;
+    console.log("Set Target data,header", data, headers);
+    const response: any = await verifyToken(headers);
+    if (response.status == "OK") {
+      const response: any = await setBranchTargetDetails(data);
 
       delete response.requestId;
       delete response.action;
@@ -946,44 +949,6 @@ export const editTarget = async (req: Request, res: Response) => {
     const response: any = await verifyToken(headers);
     if (response.status == "OK") {
       const response: any = await editTargetDetails(data);
-
-      delete response.requestId;
-      delete response.action;
-      res.json(response);
-    } else {
-      res.json(response);
-    }
-  } catch (error) {
-    console.error("Error in /auth:", error);
-    res.status(500).json({ error: "Internal Server Error" });
-  }
-};
-export const getTarget = async (req: Request, res: Response) => {
-  try {
-    const headers = req.headers;
-    const { _id } = req.query;
-    const data = { _id };
-    const response: any = await verifyToken(headers);
-    if (response.status == "OK") {
-      const response: any = await getTargetDetails(data);
-
-      delete response.requestId;
-      delete response.action;
-      res.json(response);
-    } else {
-      res.json(response);
-    }
-  } catch (error) {
-    console.error("Error in /auth:", error);
-    res.status(500).json({ error: "Internal Server Error" });
-  }
-};
-export const getTargets = async (req: Request, res: Response) => {
-  try {
-    const headers = req.headers;
-    const response: any = await verifyToken(headers);
-    if (response.status == "OK") {
-      const response: any = await getTargetsDetails();
 
       delete response.requestId;
       delete response.action;
@@ -1019,8 +984,6 @@ export const deleteTarget = async (req: Request, res: Response) => {
 };
 
 //=============================End Target controllers================================
-
-
 
 //====================================Actvity Type Controllers===============================
 export const createActivityType = async (req: Request, res: Response) => {
@@ -1106,7 +1069,6 @@ export const deleteActivityType = async (req: Request, res: Response) => {
 
 //=============================End Activity Type controllers================================
 
-
 //====================================Product Category Controllers===============================
 export const createProductCategory = async (req: Request, res: Response) => {
   try {
@@ -1167,7 +1129,6 @@ export const getProductCategory = async (req: Request, res: Response) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
-
 
 export const deleteProductCategory = async (req: Request, res: Response) => {
   try {

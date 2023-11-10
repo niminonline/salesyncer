@@ -51,6 +51,31 @@ const cancelLeaveDetailsChannel = {
   listen: "ApiRes-cancelLeaveDetails",
 };
 
+const createTargetDetailsChannel = {
+  send: "createTargetDetails",
+  listen: "ApiRes-createTargetDetails",
+};
+const setBranchTargetDetailsChannel = {
+  send: "setBranchTargetDetails",
+  listen: "ApiRes-setBranchTargetDetails",
+};
+const editTargetDetailsChannel = {
+  send: "editTargetDetails",
+  listen: "ApiRes-editTargetDetails",
+};
+const getTargetDetailsChannel = {
+  send: "getTargetDetails",
+  listen: "ApiRes-getTargetDetails",
+};
+const getTargetsDetailsChannel = {
+  send: "getTargetsDetails",
+  listen: "ApiRes-getTargetsDetails",
+};
+const deleteTargetDetailsChannel = {
+  send: "deleteTargetDetails",
+  listen: "ApiRes-deleteTargetDetails",
+};
+
 export {
   getEmployeeDataChannel,
   addEmployeeDataChannel,
@@ -64,5 +89,11 @@ export {
   fetchLeaveDetailsChannel,
   getLeaveRequestsChannel,
   doLeaveActionChannel,
-  cancelLeaveDetailsChannel
+  cancelLeaveDetailsChannel,
+  createTargetDetailsChannel,
+  setBranchTargetDetailsChannel,
+  editTargetDetailsChannel,
+  getTargetDetailsChannel,
+  getTargetsDetailsChannel,
+  deleteTargetDetailsChannel,
 };

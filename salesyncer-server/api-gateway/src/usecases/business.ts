@@ -28,11 +28,6 @@ import {
   getSaleDetailsChannel,
   getSalesDetailsChannel,
   deleteSaleDetailsChannel,
-  createTargetDetailsChannel,
-  editTargetDetailsChannel,
-  getTargetDetailsChannel,
-  getTargetsDetailsChannel,
-  deleteTargetDetailsChannel,
   createActivityTypeDetailsChannel,
   editActivityTypeDetailsChannel,
   getActivityTypesDetailsChannel,
@@ -276,50 +271,7 @@ export const deleteSaleDetails = async (data: object) => {
 };
 //=================================================================================================================
 
-//==========================================Target========================================================
-export const createTargetDetails = async (data: object) => {
-  return await publishAndResponse(
-    service.business,
-    data,
-    createTargetDetailsChannel.send,
-    createTargetDetailsChannel.listen
-  );
-};
-export const editTargetDetails = async (data: object) => {
-  return await publishAndResponse(
-    service.business,
-    data,
-    editTargetDetailsChannel.send,
-    editTargetDetailsChannel.listen
-  );
-};
-export const getTargetDetails = async (data: object) => {
-  return await publishAndResponse(
-    service.business,
-    data,
-    getTargetDetailsChannel.send,
-    getTargetDetailsChannel.listen
-  );
-};
-export const getTargetsDetails = async () => {
-  const data = {};
 
-  return await publishAndResponse(
-    service.business,
-    data,
-    getTargetsDetailsChannel.send,
-    getTargetsDetailsChannel.listen
-  );
-};
-export const deleteTargetDetails = async (data: object) => {
-  return await publishAndResponse(
-    service.business,
-    data,
-    deleteTargetDetailsChannel.send,
-    deleteTargetDetailsChannel.listen
-  );
-};
-//=================================================================================================================
 
 //==========================================Activity Type========================================================
 export const createActivityTypeDetails = async (data: object) => {

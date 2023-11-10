@@ -44,8 +44,6 @@ import {
   getSales,
   createTarget,
   editTarget,
-  getTarget,
-  getTargets,
   deleteTarget,
   createActivityType,
   editActivityType,
@@ -56,6 +54,7 @@ import {
   createProductCategory,
   editProductCategory,
   deleteProductCategory,
+  setBranchTarget,
 
 } from "../controllers/controller";
 
@@ -122,9 +121,8 @@ router.get("/get-sales", getSales);
 router.delete("/delete-sale", deleteSale);
 
 router.post("/create-target", createTarget);
+router.post("/set-branch-target", setBranchTarget);
 router.post("/edit-target", editTarget);
-router.get("/get-target", getTarget);
-router.get("/get-targets", getTargets);
 router.delete("/delete-target", deleteTarget);
 
 

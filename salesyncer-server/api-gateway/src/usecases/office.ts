@@ -13,7 +13,13 @@ import {
     fetchLeaveDetailsChannel,
     getLeaveRequestsChannel,
     doLeaveActionChannel,
-    cancelLeaveDetailsChannel
+    cancelLeaveDetailsChannel,
+    createTargetDetailsChannel,
+    editTargetDetailsChannel,
+    getTargetDetailsChannel,
+    getTargetsDetailsChannel,
+    deleteTargetDetailsChannel,
+    setBranchTargetDetailsChannel
   } from '../constants/office-channels'
 
 
@@ -69,3 +75,39 @@ export const cancelLeaveDetails = async(data:object)=>{
     
     return await publishAndResponse(service.office, data, cancelLeaveDetailsChannel.send, cancelLeaveDetailsChannel.listen);
 }
+
+//==========================================Target========================================================
+export const createTargetDetails = async (data: object) => {
+    return await publishAndResponse(
+      service.office,
+      data,
+      createTargetDetailsChannel.send,
+      createTargetDetailsChannel.listen
+    );
+  };
+  export const setBranchTargetDetails = async (data: object) => {
+    return await publishAndResponse(
+      service.office,
+      data,
+      setBranchTargetDetailsChannel.send,
+      setBranchTargetDetailsChannel.listen
+    );
+  };
+  export const editTargetDetails = async (data: object) => {
+    return await publishAndResponse(
+      service.business,
+      data,
+      editTargetDetailsChannel.send,
+      editTargetDetailsChannel.listen
+    );
+  };
+  
+  export const deleteTargetDetails = async (data: object) => {
+    return await publishAndResponse(
+      service.business,
+      data,
+      deleteTargetDetailsChannel.send,
+      deleteTargetDetailsChannel.listen
+    );
+  };
+  //=================================================================================================================

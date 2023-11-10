@@ -108,26 +108,7 @@ export const  deleteSaleDetailsChannel = {
     send: 'deleteSaleDetails',
     listen: 'ApiRes-deleteSaleDetails',
   };
-export const  createTargetDetailsChannel = {
-    send: 'createTargetDetails',
-    listen: 'ApiRes-createTargetDetails',
-  };
-export const  editTargetDetailsChannel = {
-    send: 'editTargetDetails',
-    listen: 'ApiRes-editTargetDetails',
-  };
-export const  getTargetDetailsChannel = {
-    send: 'getTargetDetails',
-    listen: 'ApiRes-getTargetDetails',
-  };
-export const  getTargetsDetailsChannel = {
-    send: 'getTargetsDetails',
-    listen: 'ApiRes-getTargetsDetails',
-  };
-export const  deleteTargetDetailsChannel = {
-    send: 'deleteTargetDetails',
-    listen: 'ApiRes-deleteTargetDetails',
-  };
+;
 export const  createActivityTypeDetailsChannel = {
     send: 'createActivityTypeDetails',
     listen: 'ApiRes-createActivityTypeDetails',

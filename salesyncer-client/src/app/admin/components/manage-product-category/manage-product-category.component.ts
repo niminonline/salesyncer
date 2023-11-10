@@ -10,7 +10,7 @@ import { MatSort } from '@angular/material/sort';
 @Component({
   selector: 'app-manage-product-category',
   templateUrl: './manage-product-category.component.html',
-  styleUrls: ['./manage-product-category.component.scss']
+  styleUrls: ['./manage-product-category.component.scss'],
 })
 export class ManageProductCategoryComponent implements OnInit {
   productCategoriesData!: any;
@@ -58,30 +58,32 @@ export class ManageProductCategoryComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         console.log(result.value);
-        this.adminAPI.createProductCategory(result.value).subscribe((response) => {
-          if (response.status !== 'OK') {
-            Swal.fire({
-              icon: 'error',
-              title: 'Error',
-              text: response.message,
-            });
-          } else {
-            Swal.fire({
-              position: 'center',
-              icon: 'success',
-              title: 'Product Category created successfully',
-              showConfirmButton: false,
-              timer: 1500,
-            });
-
-            const currentUrl = this.router.url;
-            this.router
-              .navigateByUrl('admin', { skipLocationChange: true })
-              .then(() => {
-                this.router.navigateByUrl(currentUrl);
+        this.adminAPI
+          .createProductCategory(result.value)
+          .subscribe((response) => {
+            if (response.status !== 'OK') {
+              Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: response.message,
               });
-          }
-        });
+            } else {
+              Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Product Category created successfully',
+                showConfirmButton: false,
+                timer: 1500,
+              });
+
+              const currentUrl = this.router.url;
+              this.router
+                .navigateByUrl('admin', { skipLocationChange: true })
+                .then(() => {
+                  this.router.navigateByUrl(currentUrl);
+                });
+            }
+          });
       }
     });
   }
@@ -151,14 +153,12 @@ export class ManageProductCategoryComponent implements OnInit {
                 .then(() => {
                   this.router.navigateByUrl(currentUrl);
                 });
-            }{
-
             }
-            
+            {
+            }
           });
         }
       });
     }
-
   }
 }

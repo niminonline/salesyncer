@@ -13,6 +13,9 @@ import getLeaveRequestsData from "../../usecases/getLeaveRequestsData";
 import leaveAction from "../../usecases/leaveAction";
 import cancelLeaveData from "../../usecases/cancelLeaveData";
 import editBranchData from "../../usecases/editBranchData";
+import addTargetData from "../../usecases/addTargetData";
+import editTargetData from "../../usecases/editTargetData";
+import setBranchTargetData from "../../usecases/setBranchTargetData";
 interface AdminData {
   email: string;
   password: string;
@@ -22,9 +25,7 @@ interface AdminData {
 
 export const getEmployeeDetails = async (data: any) => {
   try {
-    // console.log("Req body of getEmployeeDetails Controller", data);
     const { _id, requestId, action } = data;
-    // console.log("email of getEmployeeDetails Controller", email);
 
     const response: any = await getEmployeeData(_id);
 
@@ -33,7 +34,6 @@ export const getEmployeeDetails = async (data: any) => {
       response.action = action;
     }
 
-    // console.log("myresponse", response);
     publishToChannel("ApiRes-getEmployeeData", response);
   } catch (error) {
     console.error(error);
@@ -41,9 +41,7 @@ export const getEmployeeDetails = async (data: any) => {
 };
 export const addEmployeeDetails = async (data: any) => {
   try {
-    // console.log("Req body of addEmployeeData Controller", data);
     const { requestId, action } = data;
-    // console.log("Request id, action from office controller", requestId, action);
     const response: any = await addEmployeeData(data);
     if (response.status == "OK") {
       const data = {
@@ -52,7 +50,6 @@ export const addEmployeeDetails = async (data: any) => {
         status: "OK",
         message: "Employee added successfully",
       };
-      // console.log("myresponse", data);
       publishToChannel("ApiRes-addEmployeeData", data);
     } else {
       publishToChannel("ApiRes-addEmployeeData", {
@@ -79,7 +76,6 @@ export const getBranchDetails = async (data:any) => {
         status: "OK",
         message: "Branches fetched successfully",
       };
-      // console.log("myresponse", data);
       publishToChannel("ApiRes-getBranchDetails", data);
     } else {
       publishToChannel("ApiRes-getBranchDetails", {
@@ -96,10 +92,8 @@ export const getBranchDetails = async (data:any) => {
 
 export const addBranchDetails = async (data: any) => {
   try {
-    // console.log("Req body of addBranchDetails Controller", data);
     const { requestId, action} = data;
     const response: any = await addBranchData(data);
-    // console.log("All branch data",response);
     
     if (response.status == "OK") {
       const data = {
@@ -109,10 +103,9 @@ export const addBranchDetails = async (data: any) => {
         message: "Branch added successfully",
         branchData:response
       };
-      // console.log("myresponse", data);
       publishToChannel("ApiRes-addBranchDetails", data);
     } else {
-      publishToChannel("ApiRes-addEmployeeData", {
+      publishToChannel("ApiRes-addBranchDetails", {
         requestId,
         action,
         status: "FAILED",
@@ -125,10 +118,8 @@ export const addBranchDetails = async (data: any) => {
 };
 export const editBranchDetails = async (data: any) => {
   try {
-    // console.log("Req body of addBranchDetails Controller", data);
     const { requestId, action} = data;
     const response: any = await editBranchData(data);
-    // console.log("All branch data",response);
     
     if (response.status == "OK") {
       const data = {
@@ -137,10 +128,9 @@ export const editBranchDetails = async (data: any) => {
         status: "OK",
         message: "Branch updated successfully",
       };
-      // console.log("myresponse", data);
       publishToChannel("ApiRes-addBranchDetails", data);
     } else {
-      publishToChannel("ApiRes-addEmployeeData", {
+      publishToChannel("ApiRes-addBranchDetails", {
         requestId,
         action,
         status: "FAILED",
@@ -154,7 +144,6 @@ export const editBranchDetails = async (data: any) => {
 export const getEmployeesDetails = async (data: any) => {
   try {
     const { requestId, action } = data;
-    // console.log("Request id, action from office controller", requestId, action);
     const response: any = await getEmployeesData();
     if (response.status == "OK") {
       const data = {
@@ -164,7 +153,6 @@ export const getEmployeesDetails = async (data: any) => {
         status: "OK",
         message: "Employees data fetched successfully",
       };
-      // console.log("fetched employees data", data);
       publishToChannel("ApiRes-getEmployeesDetails", data);
     } else {
       publishToChannel("ApiRes-getEmployeesDetails", {
@@ -181,7 +169,6 @@ export const getEmployeesDetails = async (data: any) => {
 export const getEmployeeDataWithEmail = async (data: any) => {
   try {
     const { requestId, action,email } = data;
-    // console.log("Request id, action from office controller", requestId, action,email);
     const response: any = await qEmployeeDataByEmail(email);
     if (response) {
       const data = {
@@ -191,7 +178,6 @@ export const getEmployeeDataWithEmail = async (data: any) => {
         status: "OK",
         message: "Employees data fetched successfully",
       };
-      // console.log("fetched employees data", data);
       publishToChannel("Res-getEmployeeDataWithEmail", data);
     } else {
       publishToChannel("Res-getEmployeeDataWithEmail", {
@@ -211,7 +197,6 @@ export const updateEmployeeDetails = async (data: any) => {
     console.log("Data got from auth to update employee",data)
     const { requestId, action,newEmpData } = data;
     const _id= newEmpData._id;
-    // console.log("Request id, action from office controller", requestId, action,newEmpData);
     
     const response: any = await updateEmployeeData(newEmpData);
     if (response.status == "OK") {
@@ -222,7 +207,6 @@ export const updateEmployeeDetails = async (data: any) => {
         status: "OK",
         message: "Employees data updated successfully",
       };
-      // console.log("fetched employees data", data);
       publishToChannel("ApiRes-updateEmployeeDetails", data);
     } else {
       publishToChannel("ApiRes-updateEmployeeDetails", {
@@ -251,7 +235,6 @@ export const getLeaveCategoryDetails = async (data:any) => {
         status: "OK",
         message: "Leave categories fetched successfully",
       };
-      // console.log("myresponse", data);
       publishToChannel("ApiRes-getLeaveCategoryDetails", data);
     } else {
       publishToChannel("ApiRes-getLeaveCategoryDetails", {
@@ -278,7 +261,6 @@ export const applyLeaveDetails = async (data: any) => {
         status: "OK",
         message: "Leave added successfully",
       };
-      // console.log("myresponse", data);
       publishToChannel("ApiRes-applyLeaveDetails", data);
     } else {
       publishToChannel("ApiRes-applyLeaveDetails", {
@@ -305,7 +287,6 @@ export const fetchLeaveDetails = async (data:any) => {
           status: "OK",
           message: "Leave Data fetched successfully",
         };
-        // console.log("myresponse", data);
         publishToChannel("ApiRes-fetchLeaveDetails", data);
       } else {
         publishToChannel("ApiRes-fetchLeaveDetails", {
@@ -331,7 +312,6 @@ export const fetchLeaveDetails = async (data:any) => {
           status: "OK",
           message: "Leave requests fetched successfully",
         };
-        // console.log("myresponse", data);
         publishToChannel("ApiRes-getLeaveRequests", data);
       } else {
         publishToChannel("ApiRes-getLeaveRequests", {
@@ -357,7 +337,6 @@ export const fetchLeaveDetails = async (data:any) => {
             action,
             ...response
           };
-          // console.log("myresponse", data);
           publishToChannel("ApiRes-doLeaveAction", data);
         } else {
           publishToChannel("ApiRes-doLeaveAction", {
@@ -373,17 +352,14 @@ export const fetchLeaveDetails = async (data:any) => {
     };
     export const cancelLeaveDetails = async (data: any) => {
       try {
-        // console.log("Req body of leave action", data);
         const { requestId, action,_id } = data;
         const response: any = await cancelLeaveData(_id);
-        // console.log("Request id, action from cancel leave action controller",response);
         if (response.status == "OK") {
           const data = {
             requestId,
             action,
             ...response
           };
-          // console.log("myresponse", data);
           publishToChannel("ApiRes-cancelLeaveDetails", data);
         } else {
           publishToChannel("ApiRes-cancelLeaveDetails", {
@@ -397,3 +373,87 @@ export const fetchLeaveDetails = async (data:any) => {
         console.error(error);
       }
     };
+
+
+  // ===========================Target=====================================
+  
+  export const createTargetDetails = async (data: any) => {
+    try {
+      const { requestId, action} = data;
+      const response: any = await addTargetData(data);
+      
+      if (response.status == "OK") {
+        const data = {
+          requestId,
+          action,
+          status: "OK",
+          message: "Target set successfully",
+        };
+        publishToChannel("ApiRes-createTargetDetails", data);
+      } else {
+        publishToChannel("ApiRes-createTargetDetails", {
+          requestId,
+          action,
+          status: "FAILED",
+          message: "No response ",
+        });
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  
+  export const setBranchTargetDetails = async (data: any) => {
+    try {
+      const { requestId, action} = data;
+      const response: any = await setBranchTargetData(data);
+      
+      if (response.status == "OK") {
+        const data = {
+          requestId,
+          action,
+          status: "OK",
+          message: "Branch target set successfully",
+        };
+        publishToChannel("ApiRes-setBranchTargetDetails", data);
+      } else {
+        publishToChannel("ApiRes-setBranchTargetDetails", {
+          requestId,
+          action,
+          status: "FAILED",
+          message: "No response ",
+        });
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  
+  
+  // export const editTargetDetails = async (data: any) => {
+  //   try {
+  //     const { requestId, action} = data;
+  //     const response: any = await editTargetData(data);
+      
+  //     if (response.status == "OK") {
+  //       const data = {
+  //         requestId,
+  //         action,
+  //         status: "OK",
+  //         message: "Target updated successfully",
+  //       };
+  //       publishToChannel("ApiRes-editTargetDetails", data);
+  //     } else {
+  //       publishToChannel("ApiRes-editTargetDetails", {
+  //         requestId,
+  //         action,
+  //         status: "FAILED",
+  //         message: "No response ",
+  //       });
+  //     }
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
+
+//======================================================================

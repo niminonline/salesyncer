@@ -13,7 +13,10 @@ import {
   getLeaveRequests,
   doLeaveAction,
   cancelLeaveDetails,
-  editBranchDetails
+  editBranchDetails,
+  createTargetDetails,
+  setBranchTargetDetails,
+  // editTargetDetails
 
 
   
@@ -82,6 +85,16 @@ redisSubscriber.on("message", (channel: string, message: any) => {
       case "cancelLeaveDetails":
         cancelLeaveDetails(data);
         break;
+      case "createTargetDetails":
+        createTargetDetails(data);
+        break;
+      case "setBranchTargetDetails":
+        setBranchTargetDetails(data);
+        break;
+      // case "editTargetDetails":
+      //   editTargetDetails(data);
+      //   break;
+     
     }
   }
 });
