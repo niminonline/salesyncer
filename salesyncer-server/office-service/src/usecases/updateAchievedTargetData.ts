@@ -1,6 +1,6 @@
-import { qSetTargetByemployeeId } from "../database/repositories/employeeRepo";
+import { qUpdateAchievedTarget } from "../database/repositories/employeeRepo";
 
-const addTargetData = async (targetData: any) => {
+const updateAchievedTargetData = async (targetData: any) => {
   try {
     const {_id}= targetData;
     if (targetData) {
@@ -8,13 +8,12 @@ const addTargetData = async (targetData: any) => {
         // _id: targetData._id,
         month: targetData.month,
         year: targetData.year,
-        target: targetData.target,
-        remaining: targetData.target,
+        sale: targetData.sale,
       };
 
-      const response: any = await qSetTargetByemployeeId(_id,targetDetails);
+      const response: any = await qUpdateAchievedTarget(_id,targetDetails);
       if (response) {
-        return { status: "OK", message: "Target set successfully" };
+        return { status: "OK", message: "Achieved target set successfully" };
       } else return { status: "FAILED", message: "Target set failed" };
     } else {
       return { status: "FAILED", message: "Target set failed" };
@@ -23,4 +22,4 @@ const addTargetData = async (targetData: any) => {
     console.error(err);
   }
 };
-export default addTargetData;
+export default updateAchievedTargetData;

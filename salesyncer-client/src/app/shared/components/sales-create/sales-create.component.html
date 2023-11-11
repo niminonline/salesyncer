@@ -25,10 +25,10 @@
 
         <mat-form-field appearance="outline">
           <mat-label>Select employee</mat-label>
-          <mat-select name="employeeName" formControlName="employeeName">
+          <mat-select name="employee_id" formControlName="employee_id">
             <mat-option
               *ngFor="let employee of employeesData"
-              [value]="employee.name"
+              [value]="employee._id"
             >
               {{ employee.name }}
             </mat-option>

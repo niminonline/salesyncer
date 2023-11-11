@@ -1,7 +1,7 @@
 <div class="component-body h-full">
   <mat-tab-group>
     <mat-tab label="View Targets">
-      <h1 class="text-3xl text-center p-8">View Targets</h1>
+      <h1 class="title .text-3xl text-center p-8">View Targets</h1>
       <div class="header-block">
         <!-- <button
                 mat-raised-button
@@ -14,57 +14,62 @@
       </div>
 
       <div class="spinner-container" *ngIf="showSpinner">
-        <img src="assets/images/loading1.gif" alt="">
+        <img src="assets/images/loading1.gif" alt="" />
       </div>
 
-
       <div class="select-employee-block w-full flex justify-center gap-7">
-
-        <form [formGroup]="empSelectForm" (ngSubmit)="onEmpSelectSubmit(empSelectForm)" class="w-full flex justify-center gap-7 items-baseline">
-        
-        <mat-form-field appearance="outline"  >
+        <form
+          [formGroup]="empSelectForm"
+          (ngSubmit)="onEmpSelectSubmit(empSelectForm)"
+          class="select-employee-block-elements w-full flex justify-center gap-7 items-baseline"
+        >
+          <mat-form-field appearance="outline">
             <mat-label>Select Employee</mat-label>
-            <mat-select formControlName="_id" >
-              <mat-option  *ngFor="let employee of employeesData" value={{employee._id}} >{{employee.name}}</mat-option>
-          
+            <mat-select formControlName="_id">
+              <mat-option
+                *ngFor="let employee of employeesData"
+                value="{{ employee._id }}"
+                >{{ employee.name }}</mat-option
+              >
             </mat-select>
           </mat-form-field>
-        <mat-form-field appearance="outline"  >
+          <mat-form-field appearance="outline">
             <mat-label>Month</mat-label>
-            <mat-select formControlName="month" >
-              <mat-option  *ngFor="let month of months" value={{month}} >{{month}}</mat-option>
-          
+            <mat-select formControlName="month">
+              <mat-option *ngFor="let month of months" value="{{ month }}">{{
+                month
+              }}</mat-option>
             </mat-select>
           </mat-form-field>
-        <mat-form-field appearance="outline"  >
+          <mat-form-field appearance="outline">
             <mat-label>Year</mat-label>
-            <mat-select formControlName="year" >
-              <mat-option  *ngFor="let year of years" value={{year}} >{{year}}</mat-option>
-          
+            <mat-select formControlName="year">
+              <mat-option *ngFor="let year of years" value="{{ year }}">{{
+                year
+              }}</mat-option>
             </mat-select>
           </mat-form-field>
 
           <button
-          class="submitButton"
-          mat-raised-button
-          color="primary"
-          type="submit"
-        >
-          Get
-        </button>
-
-</form>
-
+            class="submitButton"
+            mat-raised-button
+            color="primary"
+            type="submit"
+          >
+            Get
+          </button>
+        </form>
       </div>
-<!-- ==========================Target Card============================ -->
-<div class="target-card-block" *ngIf="isTargetCardVisible">
-    <app-target-card [target]="target" [achieved]="achieved" [remaining]="remaining" ></app-target-card>
-</div>
-<!-- ==========================Target Card============================ -->
-
-
-
-
+      <!-- ==========================Target Card============================ -->
+      <div class="target-card-block" *ngIf="isTargetCardVisible">
+        <app-target-card
+          [target]="target"
+          [achieved]="achieved"
+          [remaining]="remaining"
+          [percetangeCompleted]="percetangeCompleted"
+        ></app-target-card>
+      </div>
+      <!-- ========================== End Target Card============================ -->
 
       <div class="body-block">
         <mat-form-field class="search-field">
@@ -132,76 +137,141 @@
         </div>
       </div>
     </mat-tab>
-<!-- ===========================================Tab 2================================================= -->
-    <mat-tab label="Set Target">
+    <!-- ===========================================Tab 2================================================= -->
+    <mat-tab label="Set Employee Target">
+      <div class="set-target-block w-96 mx-auto overflow-hidden">
+        <h1 class="title p-8 text-center">Set Employee Target</h1>
+
+        <form
+          [formGroup]="setTargetForm"
+          (ngSubmit)="onSetTargetSubmit(setTargetForm)"
+          class="form-block flex flex-col"
+        >
+          <mat-form-field appearance="outline">
+            <mat-label>Select Employee</mat-label>
+            <mat-select formControlName="_id">
+              <mat-option
+                *ngFor="let employee of employeesData"
+                value="{{ employee._id }}"
+                >{{ employee.name }}</mat-option
+              >
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Month</mat-label>
+            <mat-select formControlName="month">
+              <mat-option *ngFor="let month of months" value="{{ month }}">{{
+                month
+              }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Year</mat-label>
+            <mat-select formControlName="year">
+              <mat-option *ngFor="let year of years" value="{{ year }}">{{
+                year
+              }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Target</mat-label>
+            <input matInput required formControlName="target" />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Notes</mat-label>
+            <textarea
+              matInput
+              formControlName="notes"
+              rows="5"
+              placeholder="Enter notes if any..."
+            ></textarea>
+          </mat-form-field>
+
+          <button
+            mat-raised-button
+            class="action-button"
+            color="primary"
+            type="submit"
+          >
+            Submit
+          </button>
+        </form>
+
+        <div class="table-component"></div>
+      </div>
+    </mat-tab>
+
+    <!-- ===========================================Tab 3================================================= -->
+    <mat-tab label="Set Branch Target">
+      <div class="set-target-block w-96 mx-auto overflow-hidden">
+        <h1 class="title p-8 text-center">Set Branch Target</h1>
+
+        <form
+          [formGroup]="setBranchTargetForm"
+          (ngSubmit)="onSetBranchTargetSubmit(setBranchTargetForm)"
+          class="orm-block flex flex-col"
+        >
+          <mat-form-field appearance="outline">
+            <mat-label>Select Employee</mat-label>
+            <mat-select formControlName="_id">
+              <mat-option
+                *ngFor="let employee of employeesData"
+                value="{{ employee._id }}"
+                >{{ employee.name }}</mat-option
+              >
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Month</mat-label>
+            <mat-select formControlName="month">
+              <mat-option *ngFor="let month of months" value="{{ month }}">{{
+                month
+              }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Year</mat-label>
+            <mat-select formControlName="year">
+              <mat-option *ngFor="let year of years" value="{{ year }}">{{
+                year
+              }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Target</mat-label>
+            <input matInput required formControlName="target" />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Notes</mat-label>
+            <textarea
+              matInput
+              formControlName="notes"
+              rows="5"
+              placeholder="Enter notes if any..."
+            ></textarea>
+          </mat-form-field>
+
+          <button
+            mat-raised-button
+            class="action-button"
+            color="primary"
+            type="submit"
+          >
+            Submit
+          </button>
+        </form>
+
         
-<div class="set-target-block w-96 mx-auto overflow-hidden">
-
-
-      
-            <h1 class="title p-8 text-center">Set Target</h1>
-          
-            <form [formGroup]="setTargetForm" (ngSubmit)="onSetTargetSubmit(setTargetForm)" class=" flex flex-col ">
-                
-                          
-                              
-            
-                    <mat-form-field appearance="outline">
-                      <mat-label>Select Employee</mat-label>
-                      <mat-select formControlName="_id">
-                        <mat-option  *ngFor="let employee of employeesData" value={{employee._id}}>{{employee.name}}</mat-option>
-                    
-                      </mat-select>
-                    </mat-form-field>
-
-                    <mat-form-field appearance="outline"  >
-                        <mat-label>Month</mat-label>
-                        <mat-select formControlName="month" >
-                          <mat-option  *ngFor="let month of months" value={{month}} >{{month}}</mat-option>
-                      
-                        </mat-select>
-                      </mat-form-field>
-        
-                    <mat-form-field appearance="outline"  >
-                        <mat-label>Year</mat-label>
-                        <mat-select formControlName="year" >
-                          <mat-option  *ngFor="let year of years" value={{year}} >{{year}}</mat-option>
-                      
-                        </mat-select>
-                      </mat-form-field>
-
-                      <mat-form-field appearance="outline">
-                        <mat-label>Target</mat-label>
-                        <input matInput required formControlName="target" />
-                    </mat-form-field>
-
-          
-                <mat-form-field appearance="outline">
-                  <mat-label>Notes</mat-label>
-                  <textarea
-                    matInput
-                    formControlName="notes"
-                    rows="5"
-                    placeholder="Enter notes if any..."
-                  ></textarea>
-                </mat-form-field>
-
-
     
-           
-
-            
-          
-          
-                <button mat-raised-button class="action-button" color="primary" type="submit">Submit</button>
-           
-            </form>
-          
-          
-            <div class="table-component"></div>
-        
-        </div>
-    
+      </div>
     </mat-tab>
   </mat-tab-group>
 </div>

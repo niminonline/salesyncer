@@ -16,6 +16,7 @@ import editBranchData from "../../usecases/editBranchData";
 import addTargetData from "../../usecases/addTargetData";
 import editTargetData from "../../usecases/editTargetData";
 import setBranchTargetData from "../../usecases/setBranchTargetData";
+import updateAchievedTargetData from "../../usecases/updateAchievedTargetData";
 interface AdminData {
   email: string;
   password: string;
@@ -430,17 +431,43 @@ export const fetchLeaveDetails = async (data:any) => {
   };
   
   
-  // export const editTargetDetails = async (data: any) => {
-  //   try {
-  //     const { requestId, action} = data;
-  //     const response: any = await editTargetData(data);
+  export const updateAchievedTargetDetails = async (data: any) => {
+    try {
+      const { requestId, action} = data;
+      const response: any = await updateAchievedTargetData(data);
       
-  //     if (response.status == "OK") {
-  //       const data = {
-  //         requestId,
-  //         action,
-  //         status: "OK",
-  //         message: "Target updated successfully",
+      if (response.status == "OK") {
+        const data = {
+          requestId,
+          action,
+          status: "OK",
+          message: "Remaining target set successfully",
+        };
+        publishToChannel("Res-updateAchievedTargetDetails", data);
+      } else {
+        publishToChannel("Res-updateAchievedTargetDetails", {
+          requestId,
+          action,
+          status: "FAILED",
+          message: "No response ",
+        });
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  
+  // export const editTargetDetails = async (data: any) => {
+    //   try {
+      //     const { requestId, action} = data;
+      //     const response: any = await editTargetData(data);
+      
+      //     if (response.status == "OK") {
+        //       const data = {
+          //         requestId,
+          //         action,
+          //         status: "OK",
+          //         message: "Target updated successfully",
   //       };
   //       publishToChannel("ApiRes-editTargetDetails", data);
   //     } else {

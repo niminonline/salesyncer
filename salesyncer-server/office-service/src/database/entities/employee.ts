@@ -67,6 +67,10 @@ const employeeSchema = new mongoose.Schema({
         },
         achieved: {
           type: Number,
+          default:0
+        },
+        remaining: {
+          type: Number,
         },
         notes: {
           type: String,

@@ -123,7 +123,7 @@ export class SalesCreateComponent implements OnInit {
   initFormgroup() {
     this.inputGroup = this.fb.group({
       branchName: [this.currentBranch, [Validators.required]],
-      employeeName: [this.currentOwner, [Validators.required]],
+      employee_id: [this.currentOwner, [Validators.required]],
       lead: ['', [Validators.required]],
       invoiceNumber: ['', [Validators.required]],
       productCategory: ['', [Validators.required]],
@@ -137,12 +137,17 @@ export class SalesCreateComponent implements OnInit {
     this.submitted = true;
     console.log(data.value);
     if (!data.invalid) {
-      this.showSpinner = true;
+     // this.showSpinner = true;
 
+      const currentEmployee= this.employeesData.find((employee:any)=>{
+        return employee._id=data.value.employee_id;
+      })
+      console.log("curr",currentEmployee);
+      const employeeName= currentEmployee.name;
       // console.log('Data', data);
       const {
         branchName,
-        employeeName,
+        employee_id,
         client,
         lead,
         invoiceNumber,
@@ -153,8 +158,8 @@ export class SalesCreateComponent implements OnInit {
       } = data.value;
       const body = {
         branchName,
+        employee_id,
         employeeName,
-        client,
         lead,
         invoiceNumber,
         productCategory,
@@ -165,8 +170,6 @@ export class SalesCreateComponent implements OnInit {
       console.log('Data', body);
 
       this.sharedAPI.createSale(body).subscribe((response) => {
-        // console.log(response);
-
         if (response && response.status !== 'OK') {
           this.showSpinner = false;
           Swal.fire('Error', response.message, 'error');

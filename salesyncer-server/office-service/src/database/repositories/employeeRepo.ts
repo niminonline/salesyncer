@@ -211,6 +211,7 @@ export const qEditTargetByemployeeId = async ( _id:string,data: any) => {
       {
         $addToSet: {
           "target.$.target": data.target,
+          "target.$.remaining": data.target,
           "target.$.notes": data.notes,
         },
       },
@@ -240,25 +241,57 @@ export const qSetTargetByBranch = async (branch: string, data: any) => {
       {
         $set: {
           "target.$.target": data.target,
+          "target.$.remaining": data.remaining,
+          "target.$.notes": data.notes,
         },
       }
     );
-
+    
     console.log("Updated target", response);
-
+    
     if (response.modifiedCount === 0) {
       console.log("No matching elements, adding new target");
-
+      
       const newResponse = await Employee.updateMany(
         { branch },
         { $push: { target: data } }
-      );
-
-      return newResponse;
-    } else {
-      return response;
+        );
+        
+        return newResponse;
+      } else {
+        return response;
+      }
+    } catch (error) {
+      console.error("Error:", error);
     }
-  } catch (error) {
-    console.error("Error:", error);
-  }
-};
+  };
+  
+  export const qUpdateAchievedTarget = async ( _id:string,data: any) => {
+    try {
+  
+      const response = await Employee.findOneAndUpdate(
+        // { _id, "target.month": data.month, "target.year": data.year },
+        { _id, "target": { $elemMatch: { month: data.month, year: data.year } } },
+        {
+          $inc: {
+            "target.$.achieved": data.sale,
+            "target.$.remaining": -data.sale,
+          },
+        },
+        { new: true }
+      );
+      console.log("New added target", response);
+      if (!response) {
+        const response = await Employee.findByIdAndUpdate(
+          data._id,
+          { $push: { target: data } },
+          { new: true }
+        );
+        return response;
+      } else {
+        return response;
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };

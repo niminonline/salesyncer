@@ -16,6 +16,7 @@ import {
   editBranchDetails,
   createTargetDetails,
   setBranchTargetDetails,
+  updateAchievedTargetDetails,
   // editTargetDetails
 
 
@@ -90,6 +91,9 @@ redisSubscriber.on("message", (channel: string, message: any) => {
         break;
       case "setBranchTargetDetails":
         setBranchTargetDetails(data);
+        break;
+      case "updateAchievedTargetDetails":
+        updateAchievedTargetDetails(data);
         break;
       // case "editTargetDetails":
       //   editTargetDetails(data);

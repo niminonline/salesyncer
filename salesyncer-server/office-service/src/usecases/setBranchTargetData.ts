@@ -9,6 +9,8 @@ const setBranchTargetData = async (targetData: any) => {
         month: targetData.month,
         year: targetData.year,
         target: targetData.target,
+        remaining: targetData.target,
+        notes: targetData.notes,
       };
 
       const response: any = await qSetTargetByBranch(branch,targetDetails);
