@@ -28,6 +28,7 @@ import { SalesComponent } from './components/sales/sales.component';
 import { SalesCreateComponent } from './components/sales-create/sales-create.component';
 import { SalesEditComponent } from './components/sales-edit/sales-edit.component';
 import { SalesViewComponent } from './components/sales-view/sales-view.component';
+import { TargetCardComponent } from './components/target-card/target-card.component';
 
 const components = [
   LoginBlockComponent,
@@ -61,6 +62,7 @@ const components = [
     SalesCreateComponent,
     SalesEditComponent,
     SalesViewComponent,
+    TargetCardComponent,
     
   ],
   imports: [CommonModule, MaterialModule, ReactiveFormsModule,],

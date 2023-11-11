@@ -14,6 +14,7 @@ import { ViewEmployeeComponent } from './components/view-employee/view-employee.
 import { LeaveRequestComponent } from './components/leave-request/leave-request.component';
 import { ManageActivityTypeComponent } from './components/manage-activity-type/manage-activity-type.component';
 import { ManageProductCategoryComponent } from './components/manage-product-category/manage-product-category.component';
+import { AdminTargetComponent } from './components/admin-target/admin-target.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { ManageProductCategoryComponent } from './components/manage-product-cate
     LeaveRequestComponent,
     ManageActivityTypeComponent,
     ManageProductCategoryComponent,
+    AdminTargetComponent,
   ],
   imports: [
     CommonModule,

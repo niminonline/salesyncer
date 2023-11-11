@@ -126,7 +126,7 @@ export class SharedApiService {
     return this.http.delete<any>(`/delete-product?_id=${_id}`);
   }
 
- //=======================================================
+ //====================Sale===================================
 createSale(data: object | null): Observable<any> {
   return this.http.post<any>(`/create-sale`, data);
 }

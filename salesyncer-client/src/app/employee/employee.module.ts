@@ -18,6 +18,7 @@ import { ContactsEffects } from './store/effects/contacts.effects ';
 import { UpdateProfileComponent } from './components/update-profile/update-profile.component';
 import { ApplyLeaveComponent } from './components/apply-leave/apply-leave.component';
 import { LeaveComponent } from './components/leave/leave.component';
+import { ViewTargetComponent } from './components/view-target/view-target.component';
 
 
 
@@ -30,6 +31,7 @@ import { LeaveComponent } from './components/leave/leave.component';
     UpdateProfileComponent,
     ApplyLeaveComponent,
     LeaveComponent,
+    ViewTargetComponent,
   ],
   imports: [
     CommonModule,

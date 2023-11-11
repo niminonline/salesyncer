@@ -49,8 +49,6 @@ export class ContactsComponent implements OnInit, AfterViewInit {
       this.dataSource = new MatTableDataSource(response);
       this.dataSource.paginator=this.paginator;
       this.dataSource.sort = this.sort;
-      console.log('Contactdata Got from selector', this.dataSource);
-      // this.dataSource = new MatTableDataSource(this.employeesData);
     });
   }
 

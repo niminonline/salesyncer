@@ -1,8 +1,8 @@
-<div class="component-main-body">
+<div class="component-sidebar-body">
   <div class="menu-container" *ngFor="let item of menuItems">
     <div class="menu">
-      <button mat-flat-button class="menu-button" (click)="navigateToLink(item.link)">
-        <i class="material-icons">{{item.icon}}</i>
+      <button mat-flat-button class="menu-button" theme="warn" (click)="navigateToLink(item.link)">
+        <i class="material-icons text-sky-600 px-2">{{item.icon}}</i>
         {{item.text}}
       </button>
     </div>

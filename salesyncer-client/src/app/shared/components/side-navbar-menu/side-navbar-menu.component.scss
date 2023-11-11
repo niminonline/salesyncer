@@ -2,7 +2,7 @@
 
 
 .component-sidebar-body{
- min-width:15vw
+ min-width:10vw
 }
 
 .menu {
@@ -19,6 +19,7 @@
   color: $primary-blue;
 }
 
+
 .menu-button:hover {
   color: $white;
   background-color: $primary-blue;
@@ -32,6 +33,6 @@ mat-flat-button{
 
 }
 .menu-container{
- padding-top: 3px;
+ padding-top: 10px;
   width: 100%;
 }

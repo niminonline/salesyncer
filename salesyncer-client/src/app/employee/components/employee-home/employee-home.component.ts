@@ -24,7 +24,7 @@ export class EmployeeHomeComponent implements OnInit{
     { icon: 'task', text: 'Activity', link: '/activities' },
     { icon: 'shopping_cart', text: 'Products', link: '/products' },
     { icon: 'trending_up', text: 'Sales', link: '/sales' },
-    { icon: 'filter_center_focus', text: 'Target', link: '/' },
+    { icon: 'filter_center_focus', text: 'Target', link: '/target' },
     // { icon: 'monetization_on', text: 'Expense', link: '/' },
     // { icon: 'insert_drive_file', text: 'Documents', link: '/' },
   ];

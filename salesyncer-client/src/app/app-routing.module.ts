@@ -45,6 +45,8 @@ import { SalesComponent } from './shared/components/sales/sales.component';
 import { SalesCreateComponent } from './shared/components/sales-create/sales-create.component';
 import { SalesViewComponent } from './shared/components/sales-view/sales-view.component';
 import { SalesEditComponent } from './shared/components/sales-edit/sales-edit.component';
+import { ViewTargetComponent } from './employee/components/view-target/view-target.component';
+import { AdminTargetComponent } from './admin/components/admin-target/admin-target.component';
 
 
 const routes: Routes = [
@@ -80,6 +82,7 @@ const routes: Routes = [
     { path: 'sales-create', component: SalesCreateComponent},
     { path: 'sales-view', component: SalesViewComponent},
     { path: 'sales-edit', component: SalesEditComponent},
+    { path: 'target', component: AdminTargetComponent},
   ]
 },
 
@@ -112,6 +115,7 @@ const routes: Routes = [
     { path: 'sales-create', component: SalesCreateComponent},
     { path: 'sales-view', component: SalesViewComponent},
     { path: 'sales-edit', component: SalesEditComponent},
+    { path: 'target', component: ViewTargetComponent},
 
   ]
 },

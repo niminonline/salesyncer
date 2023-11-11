@@ -21,7 +21,7 @@ export class AdminHomeComponent {
     { icon: 'task', text: 'Activity', link: '/admin/activities' },
     { icon: 'shopping_cart', text: 'Products', link: '/admin/products' },
     { icon: 'trending_up', text: 'Sales', link: '/admin/sales' },
-    { icon: 'filter_center_focus', text: 'Target', link: '/' },
+    { icon: 'filter_center_focus', text: 'Target', link: '/admin/target' },
     // { icon: 'monetization_on', text: 'Expense', link: '/' },
     { icon: 'settings', text: 'Manage', link: '/admin/manage' },
     // { icon: 'insert_drive_file', text: 'Documents', link: '/' },

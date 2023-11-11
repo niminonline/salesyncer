@@ -47,4 +47,8 @@ export class AdminAPIService {
   leaveAction(data: object | null): Observable<any> {
     return this.http.post<any>(`/leave-action`, data);
   }
+
+  setTargetByEmpId(data: object | null): Observable<any> {
+    return this.http.post<any>(`/create-target`, data);
+  }
 }
