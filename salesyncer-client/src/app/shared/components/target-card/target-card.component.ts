@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, } from '@angular/core';
 
 @Component({
   selector: 'app-target-card',
@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./target-card.component.scss']
 })
 export class TargetCardComponent {
+
+
+  @Input() target:any;
+  @Input() achieved:any;
+  @Input() remaining:any;
 
 }

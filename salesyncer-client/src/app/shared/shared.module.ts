@@ -36,6 +36,8 @@ const components = [
   SideNavbarMenuComponent,
   TableComponent,
   UpdateEmployeeComponent,
+  TargetCardComponent,
+  
 ];
 
 @NgModule({

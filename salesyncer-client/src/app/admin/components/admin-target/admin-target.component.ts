@@ -20,6 +20,9 @@ import {
 })
 export class AdminTargetComponent implements OnInit, AfterViewInit {
   targetData: any = [];
+  target!: string;
+  achieved!: string;
+  remaining!: string;
   employeesData!: any;
   dataSource!: MatTableDataSource<any>;
   empSelectForm: any;
@@ -27,7 +30,10 @@ export class AdminTargetComponent implements OnInit, AfterViewInit {
   setTargetForm!: any;
   submitted: boolean = false;
   showSpinner: boolean = false;
-  currentYear:number=  parseInt(new Date().getFullYear().toString());
+  currentYear: number = parseInt(new Date().getFullYear().toString());
+  searchedTarget:any={};
+  isTargetCardVisible=false;
+
   displayedColumns: string[] = [
     'month',
     'year',
@@ -52,7 +58,7 @@ export class AdminTargetComponent implements OnInit, AfterViewInit {
     'December',
   ];
   today = Date.now();
-  years = [this.currentYear-1, this.currentYear,this.currentYear+1];
+  years = [this.currentYear - 1, this.currentYear, this.currentYear + 1];
 
   constructor(
     private sharedApi: SharedApiService,
@@ -121,21 +127,38 @@ export class AdminTargetComponent implements OnInit, AfterViewInit {
     this.initEmpForm();
     this.initSetTargetForm();
   }
-  // getTargetsData(_id: string) {}
 
   onEmployeeChange(selectedEmp_id: string) {
     this.selectedEmployeeData = this.employeesData.find(
       (employee: any) => employee._id == selectedEmp_id
     );
-    console.log('emp data', this.selectedEmployeeData);
     this.targetData = this.selectedEmployeeData.target;
-    console.log('TARGET', this.targetData);
     this.dataSource = new MatTableDataSource(this.targetData);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
 
-  onEmpSelectSubmit() {}
+  onEmpSelectSubmit(data: any) {
+    if (!data.invalid) {
+
+      const{month,year}=data.value;
+      this.searchedTarget= this.targetData?.find((targetArray:any)=>{
+        return targetArray.month==month && targetArray.year==year
+      })
+      if(this.searchedTarget){
+        this.isTargetCardVisible=true;
+        this.target=this.searchedTarget.target;
+        this.achieved=this.searchedTarget.achieved;
+        this.remaining=this.searchedTarget.remaining;
+
+      }
+      else{
+        console.log("entered else")
+        this.isTargetCardVisible=false;
+        Swal.fire('Error', 'No results found', 'error');
+      }
+    }
+  }
 
   onSetTargetSubmit(data: any): void {
     this.submitted = true;
@@ -145,8 +168,6 @@ export class AdminTargetComponent implements OnInit, AfterViewInit {
       console.log(data.value);
 
       this.adminApi.setTargetByEmpId(data.value).subscribe((response) => {
-        // console.log(response);
-
         if (response && response.status !== 'OK') {
           this.showSpinner = false;
           Swal.fire('Error', response.message, 'error');

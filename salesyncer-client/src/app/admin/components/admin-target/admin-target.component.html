@@ -20,7 +20,7 @@
 
       <div class="select-employee-block w-full flex justify-center gap-7">
 
-        <form [formGroup]="empSelectForm" (ngSubmit)="onEmpSelectSubmit()" class="w-full flex justify-center gap-7 items-baseline">
+        <form [formGroup]="empSelectForm" (ngSubmit)="onEmpSelectSubmit(empSelectForm)" class="w-full flex justify-center gap-7 items-baseline">
         
         <mat-form-field appearance="outline"  >
             <mat-label>Select Employee</mat-label>
@@ -56,6 +56,13 @@
 </form>
 
       </div>
+<!-- ==========================Target Card============================ -->
+<div class="target-card-block" *ngIf="isTargetCardVisible">
+    <app-target-card [target]="target" [achieved]="achieved" [remaining]="remaining" ></app-target-card>
+</div>
+<!-- ==========================Target Card============================ -->
+
+
 
 
 
