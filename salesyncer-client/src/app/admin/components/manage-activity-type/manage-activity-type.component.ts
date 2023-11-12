@@ -57,7 +57,6 @@ export class ManageActivityTypeComponent implements OnInit {
       },
     }).then((result) => {
       if (result.isConfirmed) {
-        console.log(result.value);
         this.adminAPI.createActivityType(result.value).subscribe((response) => {
           if (response.status !== 'OK') {
             Swal.fire({
@@ -101,7 +100,6 @@ export class ManageActivityTypeComponent implements OnInit {
     });
     // const currentBranch= ...selectedBranch;
     const currentType = selectedType.activityType;
-    console.log(currentType);
     if (currentType) {
       Swal.fire({
         title: 'Update activity type details',
@@ -124,7 +122,6 @@ export class ManageActivityTypeComponent implements OnInit {
         },
       }).then((result) => {
         if (result.isConfirmed) {
-          console.log(result.value);
           const data = {
             _id: _id,
             activityType: result.value.activityType,
@@ -157,6 +154,5 @@ export class ManageActivityTypeComponent implements OnInit {
       });
     }
 
-    // console.log(...selectedBranch)
   }
 }

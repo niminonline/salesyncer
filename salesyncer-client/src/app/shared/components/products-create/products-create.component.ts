@@ -32,11 +32,11 @@ export class ProductsCreateComponent implements OnInit {
         if (response.status == 'OK') {
           this.productCategoriesData = response.productCategoriesData;
         } else {
-          console.log(response.message);
+          console.error(response.message);
         }
       });
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 
@@ -53,7 +53,6 @@ export class ProductsCreateComponent implements OnInit {
   submitForm(data: any): void {
     this.submitted = true;
    
-    // console.log(data.value);
     if (!data.invalid) {
       if( parseFloat(data.value.mrp)< parseFloat(data.value.lsp)){
         Swal.fire('Error', "LSP must be less than or equal to MRP", 'error');
@@ -71,10 +70,8 @@ export class ProductsCreateComponent implements OnInit {
         mrp,
         lsp,
       };
-      // console.log('Data', body);
 
       this.sharedAPI.createProduct(body).subscribe((response) => {
-        // console.log(response);
 
         if (response && response.status !== 'OK') {
           this.showSpinner = false;

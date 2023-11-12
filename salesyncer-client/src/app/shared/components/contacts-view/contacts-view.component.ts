@@ -20,9 +20,7 @@ export class ContactsViewComponent  implements OnInit {
 
     this.getContactsData();
     const _id= this.activatedRouter.snapshot.queryParamMap.get('_id');
-    // console.log("selected contact",this.selectedContactData);
     this.selectedContactData=this.contactsData.find((contact:ContactType)=>contact._id==_id);
-    // console.log("Selected contact",)
 
 
   }
@@ -31,9 +29,8 @@ export class ContactsViewComponent  implements OnInit {
     this.store.select(selectContactsData).subscribe((response) => {
       if (response) {
         this.contactsData = response;
-        console.log("Response",this.contactsData)
       } else {
-        console.log('Employee fetching from state failed');
+        console.error('Employee fetching from state failed');
       }
     });
   }
@@ -49,7 +46,6 @@ export class ContactsViewComponent  implements OnInit {
       else{
         this.router.navigate(['contacts-edit'],{ queryParams: {_id:this.selectedContactData._id} });   
          }
-      console.log(currentroute);
     }
 
 
@@ -65,7 +61,6 @@ export class ContactsViewComponent  implements OnInit {
     else{
       this.router.navigate(['contacts']);
     }
-    console.log(currentroute);
   }
 
   

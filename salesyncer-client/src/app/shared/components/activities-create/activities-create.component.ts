@@ -66,14 +66,12 @@ export class ActivitiesCreateComponent implements OnInit {
   getLeadsData() {
     this.sharedAPI.getLeads().subscribe((response) => {
       this.leadsData = response.leadsData;
-      console.log('leads-data', this.leadsData);
     });
   }
 
   getActivityTypes() {
     this.sharedAPI.getActivityTypes().subscribe((response) => {
       this.activityTypes = response.activityTypes;
-      console.log(this.getActivityTypes);
     });
   }
 
@@ -94,8 +92,6 @@ export class ActivitiesCreateComponent implements OnInit {
   submitForm(data: any): void {
     this.submitted = true;
 
-    // console.log('Data', data);
-    console.log(data.value);
     if (!data.invalid) {
       this.showSpinner = true;
 
@@ -107,7 +103,6 @@ export class ActivitiesCreateComponent implements OnInit {
         const inputHour = parseInt(data.value.hour, 10);
         const inputMinute = parseInt(data.value.minute, 10);
         this.scheduledTime = new Date(year, month, day, inputHour, inputMinute);
-        console.log('Scheduled date', this.scheduledTime);
       }
 
       const { lead, owner, scheduledActivity, status, type, feedback } =
@@ -121,9 +116,7 @@ export class ActivitiesCreateComponent implements OnInit {
         type,
         feedback,
       };
-      console.log('Data', body);
       this.sharedAPI.createActivity(body).subscribe((response) => {
-        // console.log(response);
         if (response && response.status !== 'OK') {
           this.showSpinner = false;
           Swal.fire('Error', response.message, 'error');

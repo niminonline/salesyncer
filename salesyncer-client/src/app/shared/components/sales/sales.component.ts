@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { SharedApiService } from 'src/app/shared/services/shared-api.service';
 import { Router } from '@angular/router';
 
@@ -13,7 +13,7 @@ import Swal from 'sweetalert2';
   templateUrl: './sales.component.html',
   styleUrls: ['./sales.component.scss'],
 })
-export class SalesComponent implements OnInit, AfterViewInit {
+export class SalesComponent implements OnInit {
   salesData!: any;
   showSpinner: boolean = false;
 
@@ -47,10 +47,10 @@ export class SalesComponent implements OnInit, AfterViewInit {
     });
   }
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-  }
+  // ngAfterViewInit() {
+  //   this.dataSource.paginator = this.paginator;
+  //   this.dataSource.sort = this.sort;
+  // }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

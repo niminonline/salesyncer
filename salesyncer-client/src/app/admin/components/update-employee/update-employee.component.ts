@@ -46,9 +46,8 @@ export class UpdateEmployeeComponent {
     this.sharedApi.getBranches().subscribe((response: any) => {
       if (response.status == 'OK') {
         this.branchData = response.branchData;
-        console.log(this.branchData);
       } else {
-        console.log(response.message);
+        console.error(response.message);
       }
     });
   }
@@ -56,7 +55,6 @@ export class UpdateEmployeeComponent {
   getemployeeData() {
 
     this.selectedEmpData = this.adminDataRepo.getSelectedEmpData();
-    // console.log('Selected user from service', this.selectedEmpData);
     this._id = this.selectedEmpData._id;
     this.name = this.selectedEmpData.name;
     this.branch = this.selectedEmpData.branch;
@@ -106,7 +104,6 @@ export class UpdateEmployeeComponent {
     this.submitted = true;
     if (group.valid) {
       const data = this.updateEmployeeGroup.value;
-      console.log('Data', data);
       data._id = this._id;
 
       this.showSpinner = true;

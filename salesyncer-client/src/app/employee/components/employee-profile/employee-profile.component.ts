@@ -26,7 +26,7 @@ refreshEmployeeData(){
       if (employeeData) {
         this.employeeData = employeeData;
       } else {
-        console.log('Employee fetching from state failed');
+        console.error('Employee fetching from state failed');
       }
     });
   }

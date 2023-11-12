@@ -213,18 +213,20 @@
         <form
           [formGroup]="setBranchTargetForm"
           (ngSubmit)="onSetBranchTargetSubmit(setBranchTargetForm)"
-          class="orm-block flex flex-col"
+          class="form-block flex flex-col"
         >
-          <mat-form-field appearance="outline">
-            <mat-label>Select Employee</mat-label>
-            <mat-select formControlName="_id">
+        <mat-form-field appearance="outline">
+            <mat-label>Select branch</mat-label>
+            <mat-select name="branch" formControlName="branch">
               <mat-option
-                *ngFor="let employee of employeesData"
-                value="{{ employee._id }}"
-                >{{ employee.name }}</mat-option
+                *ngFor="let branch of branchData"
+                [value]="branch.branchName"
               >
+                {{ branch.branchName }}
+              </mat-option>
             </mat-select>
           </mat-form-field>
+  
 
           <mat-form-field appearance="outline">
             <mat-label>Month</mat-label>

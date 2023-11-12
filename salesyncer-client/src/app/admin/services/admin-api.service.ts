@@ -51,4 +51,8 @@ export class AdminAPIService {
   setTargetByEmpId(data: object | null): Observable<any> {
     return this.http.post<any>(`/create-target`, data);
   }
+
+  setBranchTarget(data: object | null): Observable<any> {
+    return this.http.post<any>(`/set-branch-target`, data);
+  }
 }

@@ -90,11 +90,11 @@ export class LeadsCreateComponent implements OnInit {
           this.branchData = response.branchData;
           console.log('Branch data loaded');
         } else {
-          console.log(response.message);
+          console.error(response.message);
         }
       });
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 
@@ -105,11 +105,11 @@ export class LeadsCreateComponent implements OnInit {
           this.leadSourceData = response.leadSourceData;
           console.log('Lead source loaded');
         } else {
-          console.log(response.message);
+          console.error(response.message);
         }
       });
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
   getProductCategories() {
@@ -118,11 +118,11 @@ export class LeadsCreateComponent implements OnInit {
         if (response.status == 'OK') {
           this.productCategoriesData = response.productCategoriesData;
         } else {
-          console.log(response.message);
+          console.error(response.message);
         }
       });
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
   getProducts() {
@@ -130,13 +130,12 @@ export class LeadsCreateComponent implements OnInit {
       this.sharedAPI.getProducts().subscribe((response: any) => {
         if (response.status == 'OK') {
           this.productsData = response.productsData;
-          console.log('Products data loaded');
         } else {
-          console.log(response.message);
+          console.error(response.message);
         }
       });
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 
@@ -168,8 +167,6 @@ export class LeadsCreateComponent implements OnInit {
     if (!data.invalid) {
       this.showSpinner = true;
 
-      // console.log(data.value);
-      // console.log('Data', data);
       const {
         branch,
         type,
@@ -192,10 +189,8 @@ export class LeadsCreateComponent implements OnInit {
         owner,
         notes,
       };
-      console.log('Data', body);
 
       this.sharedAPI.createLead(body).subscribe((response) => {
-        // console.log(response);
 
         if (response && response.status !== 'OK') {
           this.showSpinner = false;

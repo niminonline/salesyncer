@@ -57,7 +57,6 @@ export class ManageProductCategoryComponent implements OnInit {
       },
     }).then((result) => {
       if (result.isConfirmed) {
-        console.log(result.value);
         this.adminAPI
           .createProductCategory(result.value)
           .subscribe((response) => {
@@ -103,7 +102,6 @@ export class ManageProductCategoryComponent implements OnInit {
     });
     // const currentBranch= ...selectedBranch;
     const currentCategory = selectedCategory.productCategory;
-    console.log(currentCategory);
     if (currentCategory) {
       Swal.fire({
         title: 'Update product category details',
@@ -126,7 +124,6 @@ export class ManageProductCategoryComponent implements OnInit {
         },
       }).then((result) => {
         if (result.isConfirmed) {
-          console.log(result.value);
           const data = {
             _id: _id,
             productCategory: result.value.productCategory,

@@ -22,14 +22,12 @@ export class ActivitiesViewComponent implements OnInit {
 
   getActivityData() {
     this._id = this.activatedRouter.snapshot.queryParamMap.get('_id');
-    console.log('id=', this._id);
     this.sharedApi.getActivity(this._id).subscribe((response) => {
       if (response) {
         this.activityData = response.activityData;
 
-        console.log('Response', this.activityData);
       } else {
-        console.log('Activity fetching failed');
+        console.error('Activity fetching failed');
       }
     });
   }
@@ -45,7 +43,6 @@ export class ActivitiesViewComponent implements OnInit {
         queryParams: { _id: this.activityData._id },
       });
     }
-    console.log(currentroute);
   }
 
   navActivities() {
@@ -55,6 +52,5 @@ export class ActivitiesViewComponent implements OnInit {
     } else {
       this.router.navigate(['activities']);
     }
-    console.log(currentroute);
   }
 }

@@ -29,7 +29,6 @@ export class ProductsEditComponent implements OnInit {
     private activatedRouter: ActivatedRoute
   ) {
     this._id = this.activatedRouter.snapshot.queryParamMap.get('_id');
-    // console.log('ID=', this._id);
 
     this.inputGroup = this.fb.group({
       name: ['', [Validators.required]],
@@ -51,11 +50,11 @@ export class ProductsEditComponent implements OnInit {
         if (response.status == 'OK') {
           this.productCategoriesData = response.productCategoriesData;
         } else {
-          console.log(response.message);
+          console.error(response.message);
         }
       });
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 
@@ -84,7 +83,6 @@ export class ProductsEditComponent implements OnInit {
 
   submitForm(data: any): void {
     this.submitted = true;
-    // console.log(data.value);
     if (!data.invalid) {
 
 
@@ -105,10 +103,8 @@ export class ProductsEditComponent implements OnInit {
         mrp,
         lsp,
       };
-      // console.log('Data', body);
 
       this.sharedAPI.editProduct(body).subscribe((response) => {
-        // console.log(response);
 
         if (response && response.status !== 'OK') {
           this.showSpinner = false;

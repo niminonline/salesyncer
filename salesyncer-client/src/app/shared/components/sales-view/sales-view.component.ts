@@ -22,13 +22,11 @@ export class SalesViewComponent implements OnInit {
 
   getSaleData() {
     this._id = this.activatedRouter.snapshot.queryParamMap.get('_id');
-    console.log('id=', this._id);
     this.sharedApi.getSale(this._id).subscribe((response) => {
       if (response) {
         this.saleData = response.saleData;
-        console.log('Response', this.saleData);
       } else {
-        console.log('Sale data fetching failed');
+        console.error('Sale data fetching failed');
       }
     });
   }
@@ -44,7 +42,6 @@ export class SalesViewComponent implements OnInit {
         queryParams: { _id: this.saleData._id },
       });
     }
-    console.log(currentroute);
   }
 
   navSales() {
@@ -54,6 +51,5 @@ export class SalesViewComponent implements OnInit {
     } else {
       this.router.navigate(['sales']);
     }
-    console.log(currentroute);
   }
 }

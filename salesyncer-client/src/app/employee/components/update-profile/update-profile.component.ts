@@ -50,7 +50,7 @@ export class UpdateProfileComponent {
           this.place=employeeData.address.place;
           this.pincode=employeeData.address.pincode;
         } else {
-          console.log('Employee fetching from state failed');
+          console.error('Employee fetching from state failed');
         }
       });
     
@@ -67,10 +67,8 @@ export class UpdateProfileComponent {
 
   updateEmployee(group: FormGroup) {
     this.submitted = true;
-    console.log(group);
     if (group.valid) {
       const newEmpData = this.updateEmployeeGroup.value;
-      console.log('Data', newEmpData);
 
       this.store.select(selectEmployeeId).subscribe((_id) => {
         this._id = _id;
@@ -88,7 +86,6 @@ export class UpdateProfileComponent {
             showConfirmButton: false,
             timer: 1500,
           });
-          console.log("RESPonse from update profile=",response)
           this.router.navigate(['profile'])
         } else {
           Swal.fire(response.status, response.message, 'error');

@@ -49,7 +49,6 @@ export class LeadsEditComponent implements OnInit {
       this.employeesData = data['initData'].employeesData.employeesData;
       this.leadsData = data['initData'].leadsData.leadsData;
       this.leadData=this.leadsData.find((lead:any)=>(lead._id==this._id))
-      // console.log("lead data",this.leadData)
       this.initFormgroup();
     });
 
@@ -89,10 +88,8 @@ export class LeadsEditComponent implements OnInit {
 
   getleadData() {
     this._id = this.activatedRouter.snapshot.queryParamMap.get('_id');
-    console.log('selected contact', this._id);
     this.sharedAPI.getLead(this._id).subscribe((response) => {
       this.leadData = response.LeadData;
-      console.log('lead data  ', this.leadData);
       this.initFormgroup();
     });
   }
@@ -125,11 +122,11 @@ export class LeadsEditComponent implements OnInit {
           console.log('Branch data loaded');
           this.initFormgroup();
         } else {
-          console.log(response.message);
+          console.error(response.message);
         }
       });
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 
@@ -138,14 +135,13 @@ export class LeadsEditComponent implements OnInit {
       this.sharedAPI.getLeadSource().subscribe((response: any) => {
         if (response.status == 'OK') {
           this.leadSourceData = response.leadSourceData;
-          console.log('Lead source loaded');
           this.initFormgroup();
         } else {
-          console.log(response.message);
+          console.error(response.message);
         }
       });
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 
@@ -156,11 +152,11 @@ export class LeadsEditComponent implements OnInit {
           this.productCategoriesData = response.productCategoriesData;
           this.initFormgroup();
         } else {
-          console.log(response.message);
+          console.error(response.message);
         }
       });
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 
@@ -169,14 +165,13 @@ export class LeadsEditComponent implements OnInit {
       this.sharedAPI.getProducts().subscribe((response: any) => {
         if (response.status == 'OK') {
           this.productsData = response.productsData;
-          console.log('Products data loaded');
           this.initFormgroup();
         } else {
-          console.log(response.message);
+          console.error(response.message);
         }
       });
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 
@@ -212,8 +207,6 @@ export class LeadsEditComponent implements OnInit {
     if (!data.invalid) {
       this.showSpinner = true;
 
-      // console.log(data.value);
-      // console.log('Data', data);
       const {
         branch,
         type,
@@ -237,10 +230,8 @@ export class LeadsEditComponent implements OnInit {
         owner,
         notes,
       };
-      console.log('Data-->', body);
 
       this.sharedAPI.editLead(body).subscribe((response) => {
-        // console.log(response);
 
         if (response && response.status !== 'OK') {
           this.showSpinner = false;

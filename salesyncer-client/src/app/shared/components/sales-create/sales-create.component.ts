@@ -68,11 +68,11 @@ export class SalesCreateComponent implements OnInit {
           this.branchData = response.branchData;
           console.log('Branch data loaded');
         } else {
-          console.log(response.message);
+          console.error(response.message);
         }
       });
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 
@@ -83,13 +83,13 @@ export class SalesCreateComponent implements OnInit {
           this.leadsData = response.leadsData;
           console.log('Leads data loaded');
         } else {
-          console.log(response.message);
+          console.error(response.message);
         }
 
         this.initFormgroup();
       });
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
   getProductCategories() {
@@ -98,11 +98,11 @@ export class SalesCreateComponent implements OnInit {
         if (response.status == 'OK') {
           this.productCategoriesData = response.productCategoriesData;
         } else {
-          console.log(response.message);
+          console.error(response.message);
         }
       });
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
   getProducts() {
@@ -112,11 +112,11 @@ export class SalesCreateComponent implements OnInit {
           this.productsData = response.productsData;
           console.log('Products data loaded');
         } else {
-          console.log(response.message);
+          console.error(response.message);
         }
       });
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 
@@ -135,20 +135,16 @@ export class SalesCreateComponent implements OnInit {
 
   submitForm(data: any): void {
     this.submitted = true;
-    console.log(data.value);
     if (!data.invalid) {
      // this.showSpinner = true;
 
       const currentEmployee= this.employeesData.find((employee:any)=>{
         return employee._id=data.value.employee_id;
       })
-      console.log("curr",currentEmployee);
       const employeeName= currentEmployee.name;
-      // console.log('Data', data);
       const {
         branchName,
         employee_id,
-        client,
         lead,
         invoiceNumber,
         productCategory,
@@ -167,7 +163,6 @@ export class SalesCreateComponent implements OnInit {
         date,
         amount,
       };
-      console.log('Data', body);
 
       this.sharedAPI.createSale(body).subscribe((response) => {
         if (response && response.status !== 'OK') {

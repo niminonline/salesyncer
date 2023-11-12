@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { SharedApiService } from 'src/app/shared/services/shared-api.service';
 import { Router } from '@angular/router';
 
@@ -15,7 +15,7 @@ import Swal from 'sweetalert2';
   templateUrl: './activities.component.html',
   styleUrls: ['./activities.component.scss'],
 })
-export class ActivitiesComponent implements OnInit, AfterViewInit {
+export class ActivitiesComponent implements OnInit {
   allActivitiesCount: any;
   missedActivitiesCount: any;
   todaysActivitiesCount: any;
@@ -49,16 +49,14 @@ export class ActivitiesComponent implements OnInit, AfterViewInit {
     
     ngOnInit() {
       this.sharedAPI.getActivities().subscribe((response) => {
-        console.log(response.activitiesData);
         this.activitiesData = response.activitiesData.map((activity: any) => {
           const scheduledTime = new Date(activity.scheduledTime);
-          console.log("ScheduledTime---", scheduledTime);
           return { ...activity, scheduledTime: scheduledTime };
         });
         this.allActivitiesCount=this.activitiesData.length;
-        this.activitiesData.map((activity:any)=>{
-          console.log(activity.scheduledTime)
-        })
+        // this.activitiesData.map((activity:any)=>{
+        //   console.log(activity.scheduledTime)
+        // })
         
 
         this.dataSource = new MatTableDataSource(this.activitiesData);
@@ -89,10 +87,10 @@ export class ActivitiesComponent implements OnInit, AfterViewInit {
     });
   }
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-  }
+  // ngAfterViewInit() {
+  //   this.dataSource.paginator = this.paginator;
+  //   this.dataSource.sort = this.sort;
+  // }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

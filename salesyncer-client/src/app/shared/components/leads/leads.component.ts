@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { SharedApiService } from 'src/app/shared/services/shared-api.service';
 import { Router } from '@angular/router';
 
@@ -16,7 +16,7 @@ import Swal from 'sweetalert2';
   templateUrl: './leads.component.html',
   styleUrls: ['./leads.component.scss'],
 })
-export class LeadsComponent implements OnInit, AfterViewInit {
+export class LeadsComponent implements OnInit {
   leadsData!: any;
   selectedContactData!: any;
   branchData!: any;
@@ -77,17 +77,16 @@ export class LeadsComponent implements OnInit, AfterViewInit {
     this.sharedAPI.getBranches().subscribe((response: any) => {
       if (response.status == 'OK') {
         this.branchData = response.branchData;
-        // console.log(this.branchData);
       } else {
-        console.log(response.message);
+        console.error(response.message);
       }
     });
   }
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-  }
+  // ngAfterViewInit() {
+  //   this.dataSource.paginator = this.paginator;
+  //   this.dataSource.sort = this.sort;
+  // }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

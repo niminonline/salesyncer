@@ -16,7 +16,6 @@ export class MainInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler
     ): Observable<HttpEvent<unknown>> {
-      // console.log("INteceptor token",this.token);
       const token = localStorage.getItem('token');
     if (token) {
       const newRequest = request.clone({
@@ -26,13 +25,11 @@ export class MainInterceptor implements HttpInterceptor {
         },
       });
       
-      // console.log(newRequest)
       return next.handle(newRequest);
     } else {
       const newRequest = request.clone({
         url: baseUrl + request.url,
       });
-      // console.log(newRequest)
       return next.handle(newRequest);
     }
   }

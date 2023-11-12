@@ -22,14 +22,12 @@ export class LeadsViewComponent implements OnInit {
 
   getleadData() {
     this._id = this.activatedRouter.snapshot.queryParamMap.get('_id');
-    console.log("id=",this._id)
     this.sharedApi.getLead(this._id).subscribe((response) => {
       if (response) {
         this.leadData = response.LeadData;
         this.leadData.log = this.leadData.log.reverse();
-        console.log('Response', this.leadData);
       } else {
-        console.log('Employee fetching from state failed');
+        console.error('Employee fetching from state failed');
       }
     });
   }
@@ -45,7 +43,6 @@ export class LeadsViewComponent implements OnInit {
         queryParams: { _id: this.leadData._id },
       });
     }
-    console.log(currentroute);
   }
 
   navContacts() {
@@ -55,6 +52,5 @@ export class LeadsViewComponent implements OnInit {
     } else {
       this.router.navigate(['leads']);
     }
-    console.log(currentroute);
   }
 }

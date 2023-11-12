@@ -22,7 +22,6 @@ export class EmployeeLoginComponent {
           localStorage.setItem('token', response.token);
           localStorage.setItem('_id', response._id);
         }
-        // console.log(response);
         const Toast = Swal.mixin({
           toast: true,
           position: 'bottom',

@@ -60,7 +60,6 @@ export class LeaveRequestComponent implements OnInit {
           leaveData.requestType = 'Cancellation Request';
         }
       });
-      // console.log(this.tableData);
       this.leaveRequestData = this.leavesData.filter(
         (leaveData: any) => leaveData.status == 'Pending'
       );
@@ -97,10 +96,10 @@ export class LeaveRequestComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-  }
+  // ngAfterViewInit() {
+  //   this.dataSource.paginator = this.paginator;
+  //   this.dataSource.sort = this.sort;
+  // }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -124,7 +123,6 @@ export class LeaveRequestComponent implements OnInit {
       if (result.isConfirmed) {
         this.showSpinner = true;
         this.adminApi.leaveAction({ _id, toDo }).subscribe((response) => {
-          console.log(response);
           if (response.status == 'OK') {
             this.showSpinner = false;
             Swal.fire({
@@ -150,9 +148,9 @@ export class LeaveRequestComponent implements OnInit {
     });
   }
 
-  rejectLeave(_id: string) {
-    this.adminApi.leaveAction({ _id, toDo: 'reject' }).subscribe((response) => {
-      console.log(response);
-    });
-  }
+  // rejectLeave(_id: string) {
+  //   this.adminApi.leaveAction({ _id, toDo: 'reject' }).subscribe((response) => {
+  //     console.log(response);
+  //   });
+  // }
 }

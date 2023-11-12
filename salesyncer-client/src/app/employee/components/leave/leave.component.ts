@@ -66,8 +66,6 @@ export class LeaveComponent implements OnInit {
       const formData = this.leaveFilterForm.value;
       formData._id = this._id;
       this.sharedApi.fetchLeaveData(formData).subscribe((response: any) => {
-        // this.tableData=response.leaveData;
-        console.log('RESp', response);
         const currentEmpLeavesData = response.leavesData.filter(
           (leaveData: any) => leaveData.employee.toString() == this._id
         );
@@ -95,7 +93,6 @@ export class LeaveComponent implements OnInit {
         this.dataSource.paginator=this.paginator;
         this.dataSource.sort = this.sort;
 
-        // console.log('New data', this.leavesData);
       });
     }
   }
@@ -103,7 +100,6 @@ export class LeaveComponent implements OnInit {
   getEmpObject_id() {
     this.store.select(selectEmployeeId).subscribe((response) => {
       this._id = response;
-      // console.log("id==",this._id)
     });
   }
 

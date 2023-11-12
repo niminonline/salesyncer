@@ -24,7 +24,6 @@ export class AdminLoginComponent {
             localStorage.setItem('token', response.token);
             localStorage.setItem('id', "admin");
           }
-          // console.log(response);
           const Toast = Swal.mixin({
             toast: true,
             position: 'bottom',

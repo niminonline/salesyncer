@@ -33,7 +33,6 @@ export class ContactsEditComponent implements OnInit {
     this.getBranchData();
     this.getContactsData();
     this._id = this.activatedRouter.snapshot.queryParamMap.get('_id');
-    console.log('selected contact', this._id);
     this.selectedContactData = this.contactsData.find(
       (contact: ContactType) => contact._id == this._id
     );
@@ -84,11 +83,11 @@ export class ContactsEditComponent implements OnInit {
         if (response.status == 'OK') {
           this.branchData = response.branchData;
         } else {
-          console.log(response.message);
+          console.error(response.message);
         }
       });
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 

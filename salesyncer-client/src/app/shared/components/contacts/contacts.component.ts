@@ -56,9 +56,8 @@ export class ContactsComponent implements OnInit, AfterViewInit {
     this.sharedAPI.getBranches().subscribe((response: any) => {
       if (response.status == 'OK') {
         this.branchData = response.branchData;
-        // console.log(this.branchData);
       } else {
-        console.log(response.message);
+        console.error(response.message);
       }
     });
   }

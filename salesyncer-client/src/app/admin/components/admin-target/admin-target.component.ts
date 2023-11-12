@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { SharedApiService } from 'src/app/shared/services/shared-api.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -18,7 +18,7 @@ import {
   templateUrl: './admin-target.component.html',
   styleUrls: ['./admin-target.component.scss'],
 })
-export class AdminTargetComponent implements OnInit, AfterViewInit {
+export class AdminTargetComponent implements OnInit {
   targetData: any = [];
   target!: string;
   achieved!: string;
@@ -31,10 +31,10 @@ export class AdminTargetComponent implements OnInit, AfterViewInit {
   submitted: boolean = false;
   showSpinner: boolean = false;
   currentYear: number = parseInt(new Date().getFullYear().toString());
-  searchedTarget:any={};
-  isTargetCardVisible=false;
-  percetangeCompleted!:number;
-  setBranchTargetForm!:FormGroup;
+  searchedTarget: any = {};
+  isTargetCardVisible = false;
+  percetangeCompleted!: number;
+  setBranchTargetForm!: FormGroup;
 
   displayedColumns: string[] = [
     'month',
@@ -61,6 +61,7 @@ export class AdminTargetComponent implements OnInit, AfterViewInit {
   ];
   today = Date.now();
   years = [this.currentYear - 1, this.currentYear, this.currentYear + 1];
+  branchData: any;
 
   constructor(
     private sharedApi: SharedApiService,
@@ -75,10 +76,10 @@ export class AdminTargetComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-  }
+  // ngAfterViewInit() {
+  //   this.dataSource.paginator = this.paginator;
+  //   this.dataSource.sort = this.sort;
+  // }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -90,6 +91,7 @@ export class AdminTargetComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.getEmployeesData();
+    this.getBranchData();
   }
 
   initEmpForm() {
@@ -133,12 +135,24 @@ export class AdminTargetComponent implements OnInit, AfterViewInit {
     this.sharedApi.getEmployeesData().subscribe((response) => {
       if (response) {
         this.employeesData = response.employeesData;
-        console.log('Emp data', this.employeesData);
-        // this.targetData = employeesData.target;
       }
     });
     this.initEmpForm();
     this.initSetTargetForm();
+  }
+
+  getBranchData() {
+    try {
+      this.sharedApi.getBranches().subscribe((response: any) => {
+        if (response.status == 'OK') {
+          this.branchData = response.branchData;
+        } else {
+          console.error(response.message);
+        }
+      });
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   onEmployeeChange(selectedEmp_id: string) {
@@ -153,21 +167,20 @@ export class AdminTargetComponent implements OnInit, AfterViewInit {
 
   onEmpSelectSubmit(data: any) {
     if (!data.invalid) {
-
-      const{month,year}=data.value;
-      this.searchedTarget= this.targetData?.find((targetArray:any)=>{
-        return targetArray.month==month && targetArray.year==year
-      })
-      if(this.searchedTarget){
-        this.isTargetCardVisible=true;
-        this.target=this.searchedTarget.target;
-        this.achieved=this.searchedTarget.achieved;
-        this.remaining=this.searchedTarget.remaining;
-        this.percetangeCompleted= Math.round(parseFloat(this.achieved)/(parseFloat(this.target))*100)
-
-      }
-      else{
-        this.isTargetCardVisible=false;
+      const { month, year } = data.value;
+      this.searchedTarget = this.targetData?.find((targetArray: any) => {
+        return targetArray.month == month && targetArray.year == year;
+      });
+      if (this.searchedTarget) {
+        this.isTargetCardVisible = true;
+        this.target = this.searchedTarget.target;
+        this.achieved = this.searchedTarget.achieved;
+        this.remaining = this.searchedTarget.remaining;
+        this.percetangeCompleted = Math.round(
+          (parseFloat(this.achieved) / parseFloat(this.target)) * 100
+        );
+      } else {
+        this.isTargetCardVisible = false;
         Swal.fire('Error', 'No results found', 'error');
       }
     }
@@ -177,9 +190,6 @@ export class AdminTargetComponent implements OnInit, AfterViewInit {
     this.submitted = true;
     if (!data.invalid) {
       this.showSpinner = true;
-
-      console.log(data.value);
-
       this.adminApi.setTargetByEmpId(data.value).subscribe((response) => {
         if (response && response.status !== 'OK') {
           this.showSpinner = false;
@@ -207,15 +217,12 @@ export class AdminTargetComponent implements OnInit, AfterViewInit {
     }
   }
 
-
   onSetBranchTargetSubmit(data: any): void {
     this.submitted = true;
     if (!data.invalid) {
       this.showSpinner = true;
 
-      console.log(data.value);
-
-      this.adminApi.setTargetByEmpId(data.value).subscribe((response) => {
+      this.adminApi.setBranchTarget(data.value).subscribe((response) => {
         if (response && response.status !== 'OK') {
           this.showSpinner = false;
           Swal.fire('Error', response.message, 'error');
@@ -224,7 +231,7 @@ export class AdminTargetComponent implements OnInit, AfterViewInit {
           Swal.fire({
             position: 'center',
             icon: 'success',
-            title: 'Target set successfully',
+            title: 'Branch target set successfully',
             showConfirmButton: false,
             timer: 1500,
           });

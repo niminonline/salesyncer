@@ -49,21 +49,18 @@ export class ContactsCreateComponent implements OnInit {
       this.sharedAPI.getBranches().subscribe((response: any) => {
         if (response.status == 'OK') {
           this.branchData = response.branchData;
-          console.log(this.branchData);
         } else {
-          console.log(response.message);
+          console.error(response.message);
         }
       });
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 
   submitContact(data: any): void {
     this.submitted = true;
     if (!data.invalid) {
-      // console.log(data.value);
-      // console.log('Data', data);
       const {
         name,
         branch,
@@ -88,10 +85,8 @@ export class ContactsCreateComponent implements OnInit {
         type,
         language,
       };
-      console.log('Data', body);
 
       this.sharedAPI.createContact(body).subscribe((response) => {
-        // console.log(response);
 
         this.showSpinner = true;
         if (response && response.status !== 'OK') {

@@ -17,7 +17,7 @@ import { FormControl } from '@angular/forms';
   templateUrl: './employees.component.html',
   styleUrls: ['./employees.component.scss']
 })
-export class EmployeesComponent implements OnInit,AfterViewInit  {
+export class EmployeesComponent implements OnInit  {
 branchData!:any;
 tableData!:any;
 // displayedColumns!:any;
@@ -43,17 +43,15 @@ ngOnInit(){
     if(response.status=='OK'){
 
       this.branchData=response.branchData;
-      // console.log(this.branchData);
     }
     else{
-      console.log(response.message);
+      console.error(response.message);
     }
   })
 
   this.sharedAPI.getEmployeesData().subscribe((response:any)=>{
     if(response.status=='OK'){
 
-      console.log(response);
       this.employeesData=response.employeesData;
 
       this.dataSource = new MatTableDataSource(this.employeesData);
@@ -63,10 +61,9 @@ ngOnInit(){
      
 
 
-      //this.tableData.actions= `<button mat-button >Click me</button>`
     }
     else{
-      console.log(response.message);
+      console.error(response.message);
     }
   })
 
@@ -114,10 +111,10 @@ ngOnInit(){
 }
 
 
-ngAfterViewInit() {
-  this.dataSource.paginator = this.paginator;
-  this.dataSource.sort = this.sort;
-}
+// ngAfterViewInit() {
+//   this.dataSource.paginator = this.paginator;
+//   this.dataSource.sort = this.sort;
+// }
 
 applyFilter(event: Event) {
   const filterValue = (event.target as HTMLInputElement).value;
@@ -142,7 +139,6 @@ navViewEmployee(_id:string){
   })
   
   this.adminDataRepo.setSelectedEmpData(this.selectedEmployeeData);
-  //  console.log(this.adminDataRepo.getSelectedEmpData())
   this.router.navigate(['admin/view-employee'])
 
 
@@ -150,13 +146,11 @@ navViewEmployee(_id:string){
 
 navUpdateEmployee(_id:string){
 
-  console.log(this.employeesData);
   this.selectedEmployeeData= this.employeesData.find((employee:any)=>{
     return employee._id==_id; 
   })
 
   this.adminDataRepo.setSelectedEmpData({...this.selectedEmployeeData});
-//  console.log(this.adminDataRepo.getSelectedEmpData())
 
 this.router.navigate(['admin/update-employee'])
 

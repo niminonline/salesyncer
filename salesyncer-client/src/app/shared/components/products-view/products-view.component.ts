@@ -43,7 +43,6 @@ export class ProductsViewComponent implements OnInit {
       else{
         this.router.navigate(['products-edit'],{ queryParams: {_id:this._id} });   
          }
-      console.log(currentroute);
     }
 
 
@@ -59,7 +58,6 @@ export class ProductsViewComponent implements OnInit {
     else{
       this.router.navigate(['products']);
     }
-    console.log(currentroute);
   }
 
   

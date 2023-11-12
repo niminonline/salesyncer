@@ -72,7 +72,6 @@ export class ManageBranchComponent implements OnInit {
       },
     }).then((result) => {
       if (result.isConfirmed) {
-        console.log(result.value);
         this.adminAPI.addBranch(result.value).subscribe((response) => {
           if (response.status !== 'OK') {
             Swal.fire({
@@ -119,7 +118,6 @@ export class ManageBranchComponent implements OnInit {
 const currentBranchName= selectedBranch.branchName;
 const currentBranchCode= selectedBranch.branchCode;
 const currentBranchLocation=selectedBranch.location;
-console.log(currentBranchCode,currentBranchName,currentBranchLocation)
 if(selectedBranch){
   Swal.fire({
     title: 'Update branch details',
@@ -153,7 +151,6 @@ if(selectedBranch){
     },
   }).then((result) => {
     if (result.isConfirmed) {
-      console.log(result.value);
       const data={
         _id:_id,
         branchCode:result.value.branchCode,
@@ -189,6 +186,5 @@ if(selectedBranch){
 }
 
 
-    // console.log(...selectedBranch)
   }
 }

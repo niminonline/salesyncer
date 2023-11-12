@@ -32,9 +32,8 @@ export class AddUserComponent {
     this.sharedAPI.getBranches().subscribe((response: any) => {
       if (response.status == 'OK') {
         this.branchData = response.branchData;
-        console.log(this.branchData);
       } else {
-        console.log(response.message);
+        console.error(response.message);
       }
     });
   }
@@ -71,8 +70,6 @@ export class AddUserComponent {
     if (!data.invalid) {
       this.showSpinner = true;
 
-      // console.log(data.value);
-      console.log('Data', data);
       const {
         name,
         selectedBranch,
@@ -98,9 +95,7 @@ export class AddUserComponent {
         designation,
       };
 
-      console.log('body-' + body.selectedBranch);
       this.adminAPI.addEmployee(body).subscribe((response) => {
-        // console.log(response);
         if (response && response.status !== 'OK') {
           this.showSpinner = false;
 

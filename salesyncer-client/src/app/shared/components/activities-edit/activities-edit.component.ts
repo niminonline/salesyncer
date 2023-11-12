@@ -50,7 +50,6 @@ export class ActivitiesEditComponent implements OnInit {
     private activatedRouter: ActivatedRoute
   ) {
     this._id = this.activatedRouter.snapshot.queryParamMap.get('_id');
-    console.log('ID=', this._id);
 
     this.inputGroup = this.fb.group({
       lead: ['', [Validators.required]],
@@ -95,14 +94,12 @@ export class ActivitiesEditComponent implements OnInit {
   getLeadsData() {
     this.sharedAPI.getLeads().subscribe((response) => {
       this.leadsData = response.leadsData;
-      console.log('leads-data', this.leadsData);
     });
   }
 
   getActivityTypes() {
     this.sharedAPI.getActivityTypes().subscribe((response) => {
       this.activityTypes = response.activityTypes;
-      console.log(this.activityTypes);
     });
   }
 
@@ -125,8 +122,6 @@ export class ActivitiesEditComponent implements OnInit {
       this.minuteToDisplay = date.getMinutes();
       this.dateToDisplay =
         date.getMonth() + 1 + '/' + date.getDate() + '/' + date.getFullYear();
-      console.log('date----', this.dateToDisplay);
-      // console.log(this.scheduledTime)
 
       this.initFormgroup();
     });
@@ -149,13 +144,10 @@ export class ActivitiesEditComponent implements OnInit {
   submitForm(data: any): void {
     this.submitted = true;
 
-    // console.log('Data', data);
-    console.log(data.value);
     if (!data.invalid) {
       this.showSpinner = true;
 
       if (data.value.scheduledActivity !== '') {
-        // const dateInput = data.value.date;
         const dateInput = new Date(data.value.date);
         const year = dateInput.getFullYear();
         const month = dateInput.getMonth();
@@ -163,7 +155,6 @@ export class ActivitiesEditComponent implements OnInit {
         const inputHour = parseInt(data.value.hour, 10);
         const inputMinute = parseInt(data.value.minute, 10);
         this.scheduledTime = new Date(year, month, day, inputHour, inputMinute);
-        console.log('Scheduled date', this.scheduledTime);
       } else {
         this.scheduledTime = '';
       }
@@ -180,9 +171,7 @@ export class ActivitiesEditComponent implements OnInit {
         type,
         feedback,
       };
-      console.log('Data', body);
       this.sharedAPI.editActivity(body).subscribe((response) => {
-        // console.log(response);
         if (response && response.status !== 'OK') {
           this.showSpinner = false;
           Swal.fire('Error', response.message, 'error');

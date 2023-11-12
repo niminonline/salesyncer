@@ -38,7 +38,6 @@ export class LoginBlockComponent {
     if (data.status === 'VALID') {
       const { email, password } = data.value;
       const credentials = { email, password };
-    //  console.log(credentials);
     this.sendCredentials.emit(credentials);
     } else {
       Swal.fire('Error', 'Please fill the fields without errors', 'error');

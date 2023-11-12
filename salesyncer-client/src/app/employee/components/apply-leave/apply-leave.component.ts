@@ -45,20 +45,17 @@ export class ApplyLeaveComponent implements OnInit {
   getEmpObject_id() {
     this.store.select(selectEmployeeId).subscribe((response) => {
       this._id = response;
-      // console.log("id==",this._id)
     });
   }
   getLeaveCategory() {
     this.sharedApi.getLeaveCategory().subscribe((response) => {
       this.leaveCategory = response?.leaveCategory;
-      // console.log(this.leaveCategory);
     });
   }
 
   getEmployeeData() {
     this.store.select(selectEmployeeData).subscribe((response) => {
       this.employeeData = response;
-      // console.log(this.employeeData);
     });
   }
 
@@ -69,28 +66,16 @@ export class ApplyLeaveComponent implements OnInit {
 
       const formData = this.leaveForm.value;
       formData._id = this._id;
-      // console.log(formData);
 
       const { startDate, endDate, category } = formData;
-      // console.log(category);
-      // console.log(typeof startDate);
-      // console.log(formData);
 
       const fromDate = new Date(startDate);
       const toDate = new Date(endDate);
-      // console.log(fromDate);
       let dayDifference =
         (toDate.getTime() - fromDate.getTime()) / (1000 * 60 * 60 * 24);
       if (startDate !== endDate) {
         dayDifference += 1;
       }
-      // console.log('dayDifference=', dayDifference);
-      // console.log(
-      //   'remaining leaves',
-      //   remainingCasualLeaves,
-      //   '--sick ',
-      //   remainingSickLeaves
-      // );
       if (category == 'Casual' && remainingCasualLeaves <= dayDifference) {
         Swal.fire('Error', 'Insufficient casual leave balance', 'error');
       } else if (category == 'Sick' && remainingSickLeaves <= dayDifference) {

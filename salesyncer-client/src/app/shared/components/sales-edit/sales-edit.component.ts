@@ -39,7 +39,6 @@ export class SalesEditComponent implements OnInit {
     private activatedRouter: ActivatedRoute
   ) {
     this._id = this.activatedRouter.snapshot.queryParamMap.get('_id');
-    // console.log('ID=', this._id);
   }
 
   ngOnInit() {
@@ -49,7 +48,6 @@ export class SalesEditComponent implements OnInit {
     this.getProducts();
     this.getLeadsData();
     this.getSaleData();
-    // this.initFormgroup();
   }
 
   getEmployeesData() {
@@ -71,11 +69,11 @@ export class SalesEditComponent implements OnInit {
           this.branchData = response.branchData;
           console.log('Branch data loaded');
         } else {
-          console.log(response.message);
+          console.error(response.message);
         }
       });
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 
@@ -86,13 +84,13 @@ export class SalesEditComponent implements OnInit {
           this.leadsData = response.leadsData;
           console.log('Leads data loaded');
         } else {
-          console.log(response.message);
+          console.error(response.message);
         }
 
         this.initFormgroup();
       });
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
   getProductCategories() {
@@ -101,11 +99,11 @@ export class SalesEditComponent implements OnInit {
         if (response.status == 'OK') {
           this.productCategoriesData = response.productCategoriesData;
         } else {
-          console.log(response.message);
+          console.error(response.message);
         }
       });
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
   getProducts() {
@@ -115,11 +113,11 @@ export class SalesEditComponent implements OnInit {
           this.productsData = response.productsData;
           console.log('Products data loaded');
         } else {
-          console.log(response.message);
+          console.error(response.message);
         }
       });
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
   getSaleData(){
@@ -154,11 +152,9 @@ export class SalesEditComponent implements OnInit {
 
   submitForm(data: any): void {
     this.submitted = true;
-    console.log(data.value);
     if (!data.invalid) {
       this.showSpinner = true;
 
-      // console.log('Data', data);
       const {
         branchName,
         employeeName,
@@ -182,10 +178,8 @@ export class SalesEditComponent implements OnInit {
         date,
         amount,
       };
-      console.log('Data', body);
 
       this.sharedAPI.editSale(body).subscribe((response) => {
-        // console.log(response);
 
         if (response && response.status !== 'OK') {
           this.showSpinner = false;
