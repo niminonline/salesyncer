@@ -6,17 +6,17 @@ import Swal from 'sweetalert2';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-
 @Component({
-  selector: 'app-manage-product-category',
-  templateUrl: './manage-product-category.component.html',
-  styleUrls: ['./manage-product-category.component.scss'],
+  selector: 'app-manage-lead-source',
+  templateUrl: './manage-lead-source.component.html',
+  styleUrls: ['./manage-lead-source.component.scss'],
 })
-export class ManageProductCategoryComponent implements OnInit {
-  productCategoriesData!: any;
-  displayedColumns = ['productCategory', 'actions'];
+export class ManageLeadSourceComponent implements OnInit {
+  leadSourceData!: any;
+  displayedColumns = ['leadSource', 'actions'];
   dataSource: any;
   _id!: string | null;
+
   showSpinner: boolean = false;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -28,62 +28,60 @@ export class ManageProductCategoryComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.sharedApi.getProductCategories().subscribe((response: any) => {
-      this.productCategoriesData = response.productCategoriesData;
-      this.dataSource = new MatTableDataSource(this.productCategoriesData);
+    this.sharedApi.getLeadSource().subscribe((response: any) => {
+      this.leadSourceData = response.leadSourceData;
+      this.dataSource = new MatTableDataSource(this.leadSourceData);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
   }
 
-  createProductCategory() {
+  createLeadSource() {
     Swal.fire({
-      title: 'Enter Category Name',
-      html: '<input id="productCategory" class="swal2-input" placeholder="Product Category Name">',
+      title: 'Enter Lead Source',
+      html: '<input id="leadSource" class="swal2-input" placeholder="Lead Source Name">',
       showCancelButton: true,
       confirmButtonText: 'Create',
       cancelButtonText: 'Cancel',
       focusConfirm: false,
       preConfirm: () => {
-        const productCategoryElement = Swal.getPopup()?.querySelector(
-          '#productCategory'
+        const leadSourceElement = Swal.getPopup()?.querySelector(
+          '#leadSource'
         ) as HTMLInputElement;
 
-        const productCategory = productCategoryElement.value;
+        const leadSource = leadSourceElement.value;
 
-        if (!productCategory) {
+        if (!leadSource) {
           Swal.showValidationMessage('Please fill the input field');
         }
-        return { productCategory };
+        return { leadSource };
       },
     }).then((result) => {
       if (result.isConfirmed) {
-        this.adminAPI
-          .createProductCategory(result.value)
-          .subscribe((response) => {
-            if (response.status !== 'OK') {
-              Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: response.message,
-              });
-            } else {
-              Swal.fire({
-                position: 'center',
-                icon: 'success',
-                title: 'Product Category created successfully',
-                showConfirmButton: false,
-                timer: 1500,
-              });
+        this.adminAPI.createLeadSource(result.value).subscribe((response) => {
+          if (response.status !== 'OK') {
+            Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              text: response.message,
+            });
+          } else {
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'Lead Source created successfully',
+              showConfirmButton: false,
+              timer: 1500,
+            });
 
-              const currentUrl = this.router.url;
-              this.router
-                .navigateByUrl('admin', { skipLocationChange: true })
-                .then(() => {
-                  this.router.navigateByUrl(currentUrl);
-                });
-            }
-          });
+            const currentUrl = this.router.url;
+            this.router
+              .navigateByUrl('admin', { skipLocationChange: true })
+              .then(() => {
+                this.router.navigateByUrl(currentUrl);
+              });
+          }
+        });
       }
     });
   }
@@ -97,39 +95,39 @@ export class ManageProductCategoryComponent implements OnInit {
     }
   }
 
-  editProductCategory(_id: string) {
-    const selectedCategory = this.productCategoriesData.find((type: any) => {
+  editLeadSource(_id: string) {
+    const selectedSource = this.leadSourceData.find((type: any) => {
       return type._id == _id;
     });
     // const currentBranch= ...selectedBranch;
-    const currentCategory = selectedCategory.productCategory;
-    if (currentCategory) {
+    const currentSource = selectedSource.leadSource;
+    if (currentSource) {
       Swal.fire({
-        title: 'Update product category details',
-        html: `<input id="productCategory" class="swal2-input" placeholder="Branch Code" value="${currentCategory}">`,
+        title: 'Update lead source details',
+        html: `<input id="leadSource" class="swal2-input" placeholder="Lead Source" value="${currentSource}">`,
         showCancelButton: true,
         confirmButtonText: 'Update',
         cancelButtonText: 'Cancel',
         focusConfirm: false,
         preConfirm: () => {
-          const productCategoryElement = Swal.getPopup()?.querySelector(
-            '#productCategory'
+          const leadSourceElement = Swal.getPopup()?.querySelector(
+            '#leadSource'
           ) as HTMLInputElement;
 
-          const productCategory = productCategoryElement.value;
+          const leadSource = leadSourceElement.value;
 
-          if (!productCategory) {
+          if (!leadSource) {
             Swal.showValidationMessage('Please fill the input field');
           }
-          return { productCategory };
+          return { leadSource };
         },
       }).then((result) => {
         if (result.isConfirmed) {
           const data = {
             _id: _id,
-            productCategory: result.value.productCategory,
+            leadSource: result.value.leadSource,
           };
-          this.adminAPI.editProductCategory(data).subscribe((response) => {
+          this.adminAPI.editLeadSource(data).subscribe((response) => {
             if (response.status !== 'OK') {
               Swal.fire({
                 icon: 'error',
@@ -140,7 +138,7 @@ export class ManageProductCategoryComponent implements OnInit {
               Swal.fire({
                 position: 'center',
                 icon: 'success',
-                title: 'Product category updated successfully',
+                title: 'Lead source updated successfully',
                 showConfirmButton: false,
                 timer: 1500,
               });
@@ -160,10 +158,10 @@ export class ManageProductCategoryComponent implements OnInit {
     }
   }
 
-  deleteProductCategory(_id: string) {
+  deleteLeadSource(_id: string) {
     Swal.fire({
       title: 'Confirmation',
-      text: `Are you sure to delete the product category?`,
+      text: `Are you sure to delete the lead source?`,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -172,14 +170,14 @@ export class ManageProductCategoryComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         this.showSpinner = true;
-        this.adminAPI.deleteProductCategory(_id).subscribe((response) => {
+        this.adminAPI.deleteLeadSource(_id).subscribe((response) => {
           if (response.status == 'OK') {
             this.showSpinner = false;
 
             Swal.fire({
               position: 'center',
               icon: 'success',
-              title: 'Product category deleted successfully',
+              title: 'Lead source deleted successfully',
               showConfirmButton: false,
               timer: 1500,
             });

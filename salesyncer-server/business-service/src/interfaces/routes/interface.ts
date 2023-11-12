@@ -34,11 +34,9 @@ import {
   createProductCategoryDetails,
   editProductCategoryDetails,
   deleteProductCategoryDetails,
-  // createTargetDetails,
-  // editTargetDetails,
-  // getTargetDetails,
-  // getTargetsDetails,
-  // deleteTargetDetails,
+  deleteLeadSourceDetails,
+  editLeadSourceDetails,
+  createLeadSourceDetails,
 } from "../controllers/controller";
 
 const redisSubscriber = new Redis();
@@ -59,9 +57,6 @@ redisSubscriber.on("message", (channel: string, message: any) => {
     const data = JSON.parse(message);
 
     switch (data.action) {
-      case "getLeadSourceDetails":
-        getLeadSourceDetails(data);
-        break;
       case "getProductCategoryDetails":
         getProductCategoryDetails(data);
         break;
@@ -87,7 +82,6 @@ redisSubscriber.on("message", (channel: string, message: any) => {
         deleteContactDetails(data);
         break;
 
-        
       case "createLeadDetails":
         createLeadDetails(data);
         break;
@@ -106,7 +100,6 @@ redisSubscriber.on("message", (channel: string, message: any) => {
       case "deleteLeadDetails":
         deleteLeadDetails(data);
         break;
-
 
       case "createActivityDetails":
         createActivityDetails(data);
@@ -127,7 +120,6 @@ redisSubscriber.on("message", (channel: string, message: any) => {
         deleteActivityDetails(data);
         break;
 
-
       case "createProductDetails":
         createProductDetails(data);
         break;
@@ -146,7 +138,6 @@ redisSubscriber.on("message", (channel: string, message: any) => {
       case "deleteProductDetails":
         deleteProductDetails(data);
         break;
-
 
       case "createSaleDetails":
         createSaleDetails(data);
@@ -167,27 +158,6 @@ redisSubscriber.on("message", (channel: string, message: any) => {
         deleteSaleDetails(data);
         break;
 
-
-
-      // case "createTargetDetails":
-      //   createTargetDetails(data);
-      //   break;
-
-      // case "editTargetDetails":
-      //   editTargetDetails(data);
-      //   break;
-
-      // case "getTargetDetails":
-      //   getTargetDetails(data);
-      //   break;
-
-      // case "getTargetsDetails":
-      //   getTargetsDetails(data);
-      //   break;
-      // case "deleteTargetDetails":
-      //   deleteTargetDetails(data);
-      //   break;
-
       case "createActivityTypeDetails":
         createActivityTypeDetails(data);
         break;
@@ -203,7 +173,6 @@ redisSubscriber.on("message", (channel: string, message: any) => {
         deleteActivityTypeDetails(data);
         break;
 
-        
       case "createProductCategoryDetails":
         createProductCategoryDetails(data);
         break;
@@ -212,9 +181,23 @@ redisSubscriber.on("message", (channel: string, message: any) => {
         editProductCategoryDetails(data);
         break;
 
-     
       case "deleteProductCategoryDetails":
         deleteProductCategoryDetails(data);
+        break;
+
+      case "createLeadSourceDetails":
+        createLeadSourceDetails(data);
+        break;
+
+      case "editLeadSourceDetails":
+        editLeadSourceDetails(data);
+        break;
+      case "getLeadSourceDetails":
+        getLeadSourceDetails(data);
+        break;
+
+      case "deleteLeadSourceDetails":
+        deleteLeadSourceDetails(data);
         break;
     }
   }

@@ -35,19 +35,10 @@ import {
   createProductCategoryDetailsChannel,
   editProductCategoryDetailsChannel,
   deleteProductCategoryDetailsChannel,
+  deleteLeadSourceDetailsChannel,
+  editLeadSourceDetailsChannel,
+  createLeadSourceDetailsChannel,
 } from "../constants/business-channels";
-
-export const getLeadSourceDetails = async () => {
-  const data = {};
-
-  return await publishAndResponse(
-    service.business,
-    data,
-    getLeadSourceDetailsChannel.send,
-    getLeadSourceDetailsChannel.listen
-  );
-};
-
 
 export const createContactDetails = async (data: object) => {
   return await publishAndResponse(
@@ -271,8 +262,6 @@ export const deleteSaleDetails = async (data: object) => {
 };
 //=================================================================================================================
 
-
-
 //==========================================Activity Type========================================================
 export const createActivityTypeDetails = async (data: object) => {
   return await publishAndResponse(
@@ -345,6 +334,44 @@ export const deleteProductCategoryDetails = async (data: object) => {
     data,
     deleteProductCategoryDetailsChannel.send,
     deleteProductCategoryDetailsChannel.listen
+  );
+};
+//=================================================================================================================
+
+//==========================================Lead Source ========================================================
+export const createLeadSourceDetails = async (data: object) => {
+  return await publishAndResponse(
+    service.business,
+    data,
+    createLeadSourceDetailsChannel.send,
+    createLeadSourceDetailsChannel.listen
+  );
+};
+export const editLeadSourceDetails = async (data: object) => {
+  return await publishAndResponse(
+    service.business,
+    data,
+    editLeadSourceDetailsChannel.send,
+    editLeadSourceDetailsChannel.listen
+  );
+};
+
+export const getLeadSourceDetails = async () => {
+  const data = {};
+
+  return await publishAndResponse(
+    service.business,
+    data,
+    getLeadSourceDetailsChannel.send,
+    getLeadSourceDetailsChannel.listen
+  );
+};
+export const deleteLeadSourceDetails = async (data: object) => {
+  return await publishAndResponse(
+    service.business,
+    data,
+    deleteLeadSourceDetailsChannel.send,
+    deleteLeadSourceDetailsChannel.listen
   );
 };
 //=================================================================================================================

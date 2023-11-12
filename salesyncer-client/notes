@@ -71,8 +71,8 @@ const currentUrl = this.router.url;
 
 ===============================================================================
 Spinner
+  showSpinner: boolean = false;
 
-showSpinner: boolean = false;
 this.showSpinner = true;
 this.showSpinner = false;
 

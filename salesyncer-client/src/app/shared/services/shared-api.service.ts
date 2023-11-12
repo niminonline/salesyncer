@@ -27,10 +27,12 @@ export class SharedApiService {
 
 
 
-//============================Sales===========================
-  getLeadSource(): Observable<any> {
-    return this.http.get<any>(`/get-lead-source`);
-  }
+//============================Lead Source===========================
+getLeadSource(): Observable<any> {
+  return this.http.get<any>(`/get-lead-source`);
+}
+
+//============================Product Catergory===========================
   getProductCategories(): Observable<any> {
     return this.http.get<any>(`/get-product-categories`);
   }

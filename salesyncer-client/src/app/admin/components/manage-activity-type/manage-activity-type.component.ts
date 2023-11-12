@@ -17,6 +17,8 @@ export class ManageActivityTypeComponent implements OnInit {
   displayedColumns = ['activityType', 'actions'];
   dataSource: any;
   _id!: string | null;
+  showSpinner: boolean = false;
+
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -155,4 +157,45 @@ export class ManageActivityTypeComponent implements OnInit {
     }
 
   }
+  deleteActivityType(_id: string) {
+    Swal.fire({
+      title: 'Confirmation',
+      text: `Are you sure to delete the activity type?`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33  ',
+      confirmButtonText: 'Yes',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.showSpinner = true;
+        this.adminAPI.deleteActivityType(_id).subscribe((response) => {
+          if (response.status == 'OK') {
+            this.showSpinner = false;
+
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'Activity type deleted successfully',
+              showConfirmButton: false,
+              timer: 1500,
+            });
+
+            const currentUrl = this.router.url;
+            this.router
+              .navigateByUrl('admin', { skipLocationChange: true })
+              .then(() => {
+                this.router.navigateByUrl(currentUrl);
+              });
+          } else {
+            this.showSpinner = false;
+            Swal.fire(response.status, response.message, 'error');
+          }
+        });
+      }
+    });
+  }
+
+
+
 }

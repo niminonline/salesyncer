@@ -39,20 +39,33 @@ export class AdminAPIService {
   deleteProductCategory(_id: string | null): Observable<any> {
     return this.http.delete<any>(`/delete-product-category?_id=${_id}`);
   }
-
+  
   addEmployee(data: object): Observable<any> {
     return this.http.post<any>(`/add-employee`, data);
   }
-
+  
   leaveAction(data: object | null): Observable<any> {
     return this.http.post<any>(`/leave-action`, data);
   }
-
+  
   setTargetByEmpId(data: object | null): Observable<any> {
     return this.http.post<any>(`/create-target`, data);
   }
-
+  
   setBranchTarget(data: object | null): Observable<any> {
     return this.http.post<any>(`/set-branch-target`, data);
+  }
+
+  //==================Lead Source=================================
+
+  createLeadSource(data: object | null): Observable<any> {
+    return this.http.post<any>(`/create-lead-source`, data);
+  }
+  
+  editLeadSource(data: object | null): Observable<any> {
+    return this.http.post<any>(`/edit-lead-source`, data);
+  }
+  deleteLeadSource(_id: string | null): Observable<any> {
+    return this.http.delete<any>(`/delete-lead-source?_id=${_id}`);
   }
 }

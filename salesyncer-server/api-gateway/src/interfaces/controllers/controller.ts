@@ -58,6 +58,9 @@ import {
   deleteProductCategoryDetails,
   editProductCategoryDetails,
   createProductCategoryDetails,
+  editLeadSourceDetails,
+  createLeadSourceDetails,
+  deleteLeadSourceDetails,
 } from "../../usecases/business";
 
 //=============================Login Controllers===================================
@@ -239,28 +242,6 @@ export const editBranch = async (req: Request, res: Response) => {
 };
 //==============================================End Branch Controllers=======================
 
-//==============================================Lead SOurce=================================
-
-export const getLeadSource = async (req: Request, res: Response) => {
-  try {
-    const headers = req.headers;
-    const response: any = await verifyToken(headers);
-    if (response.status == "OK") {
-      const response: any = await getLeadSourceDetails();
-
-      delete response.requestId;
-      delete response.action;
-      res.json(response);
-    } else {
-      res.json(response);
-    }
-  } catch (error) {
-    console.error("Error in /auth:", error);
-    res.status(500).json({ error: "Internal Server Error" });
-  }
-};
-
-//==============================================End Lead SOurce=================================
 
 //==============================================Leave Controllers=============================
 
@@ -617,7 +598,6 @@ export const editActivity = async (req: Request, res: Response) => {
   try {
     const headers = req.headers;
     const data = req.body;
-    console.log("edit activity data,header", data, headers);
     const response: any = await verifyToken(headers);
     if (response.status == "OK") {
       const response: any = await editActivityDetails(data);
@@ -700,7 +680,6 @@ export const createProduct = async (req: Request, res: Response) => {
   try {
     const headers = req.headers;
     const data = req.body;
-    console.log("create Product data,header", data, headers);
     const response: any = await verifyToken(headers);
     if (response.status == "OK") {
       const response: any = await createProductDetails(data);
@@ -720,7 +699,6 @@ export const editProduct = async (req: Request, res: Response) => {
   try {
     const headers = req.headers;
     const data = req.body;
-    console.log("edit Product data,header", data, headers);
     const response: any = await verifyToken(headers);
     if (response.status == "OK") {
       const response: any = await editProductDetails(data);
@@ -803,7 +781,6 @@ export const createSale = async (req: Request, res: Response) => {
   try {
     const headers = req.headers;
     const data = req.body;
-    console.log("create Sale data,header", data, headers);
     const response: any = await verifyToken(headers);
     if (response.status == "OK") {
       const response: any = await createSaleDetails(data);
@@ -823,7 +800,6 @@ export const editSale = async (req: Request, res: Response) => {
   try {
     const headers = req.headers;
     const data = req.body;
-    console.log("edit Sale data,header", data, headers);
     const response: any = await verifyToken(headers);
     if (response.status == "OK") {
       const response: any = await editSaleDetails(data);
@@ -945,7 +921,6 @@ export const editTarget = async (req: Request, res: Response) => {
   try {
     const headers = req.headers;
     const data = req.body;
-    console.log("edit Target data,header", data, headers);
     const response: any = await verifyToken(headers);
     if (response.status == "OK") {
       const response: any = await editTargetDetails(data);
@@ -1074,7 +1049,6 @@ export const createProductCategory = async (req: Request, res: Response) => {
   try {
     const headers = req.headers;
     const data = req.body;
-    // console.log("create productcategory data,header", data, headers);
     const response: any = await verifyToken(headers);
     if (response.status == "OK") {
       const response: any = await createProductCategoryDetails(data);
@@ -1094,7 +1068,6 @@ export const editProductCategory = async (req: Request, res: Response) => {
   try {
     const headers = req.headers;
     const data = req.body;
-    // console.log("edit pc data,header", data, headers);
     const response: any = await verifyToken(headers);
     if (response.status == "OK") {
       const response: any = await editProductCategoryDetails(data);
@@ -1152,3 +1125,85 @@ export const deleteProductCategory = async (req: Request, res: Response) => {
 };
 
 //=============================Product category controllers================================
+
+//====================================Lead Source Controllers===============================
+export const createLeadSource = async (req: Request, res: Response) => {
+  try {
+    const headers = req.headers;
+    const data = req.body;
+    const response: any = await verifyToken(headers);
+    if (response.status == "OK") {
+      const response: any = await createLeadSourceDetails(data);
+
+      delete response.requestId;
+      delete response.action;
+      res.json(response);
+    } else {
+      res.json(response);
+    }
+  } catch (error) {
+    console.error("Error in /auth:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+export const editLeadSource = async (req: Request, res: Response) => {
+  try {
+    const headers = req.headers;
+    const data = req.body;
+    const response: any = await verifyToken(headers);
+    if (response.status == "OK") {
+      const response: any = await editLeadSourceDetails(data);
+
+      delete response.requestId;
+      delete response.action;
+      res.json(response);
+    } else {
+      res.json(response);
+    }
+  } catch (error) {
+    console.error("Error in /auth:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+export const getLeadSource = async (req: Request, res: Response) => {
+  try {
+    const headers = req.headers;
+    const response: any = await verifyToken(headers);
+    if (response.status == "OK") {
+      const response: any = await getLeadSourceDetails();
+
+      delete response.requestId;
+      delete response.action;
+      res.json(response);
+    } else {
+      res.json(response);
+    }
+  } catch (error) {
+    console.error("Error in /auth:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+export const deleteLeadSource = async (req: Request, res: Response) => {
+  try {
+    const { _id } = req.query;
+    const data = { _id };
+    const headers = req.headers;
+    const response: any = await verifyToken(headers);
+    if (response.status == "OK") {
+      const response: any = await deleteLeadSourceDetails(data);
+
+      delete response.requestId;
+      delete response.action;
+      res.json(response);
+    } else {
+      res.json(response);
+    }
+  } catch (error) {
+    console.error("Error in /auth:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+//=============================Lead Source controllers================================

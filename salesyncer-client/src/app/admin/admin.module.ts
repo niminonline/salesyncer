@@ -15,6 +15,7 @@ import { LeaveRequestComponent } from './components/leave-request/leave-request.
 import { ManageActivityTypeComponent } from './components/manage-activity-type/manage-activity-type.component';
 import { ManageProductCategoryComponent } from './components/manage-product-category/manage-product-category.component';
 import { AdminTargetComponent } from './components/admin-target/admin-target.component';
+import { ManageLeadSourceComponent } from './components/manage-lead-source/manage-lead-source.component';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { AdminTargetComponent } from './components/admin-target/admin-target.com
     ManageActivityTypeComponent,
     ManageProductCategoryComponent,
     AdminTargetComponent,
+    ManageLeadSourceComponent,
   ],
   imports: [
     CommonModule,

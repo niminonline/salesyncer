@@ -1,4 +1,4 @@
-import { qGetProductCategoryData } from "../database/repositories/leads-repo";
+import { qGetProductCategoryData } from "../database/repositories/products-repo";
 
 const getProductCategoryData = async (): Promise<object | undefined> => {
   try {

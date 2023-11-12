@@ -119,7 +119,16 @@ export const qUpdateProductCategoryDataById = async (
 };
 
 
-////==============================================
+
+export const qGetProductCategoryData = async () => {
+  try {
+    return await ProductCategory.find({});
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+
 
 
 export const qDeleteProductCategoryDataById = async (_id: string) => {

@@ -3,6 +3,7 @@ import createActivityData from "../../usecases/createActivityData";
 import createActivityTypeData from "../../usecases/createActivityTypeData ";
 import createContactData from "../../usecases/createContactData";
 import createLeadData from "../../usecases/createLeadData ";
+import createLeadSourceData from "../../usecases/createLeadSourceData";
 import createProductCategoryData from "../../usecases/createProductCategoryData ";
 import createProductData from "../../usecases/createProductData";
 import createSaleData from "../../usecases/createSaleData";
@@ -10,6 +11,7 @@ import deleteActivityData from "../../usecases/deleteActivityData";
 import deleteActivityTypeData from "../../usecases/deleteActivityTypeData";
 import deleteContactData from "../../usecases/deleteContactData";
 import deleteLeadData from "../../usecases/deleteLeadData";
+import deleteLeadSourceData from "../../usecases/deleteLeadSourceData";
 import deleteProductCategoryData from "../../usecases/deleteProductCategoryData";
 import deleteProductData from "../../usecases/deleteProductData";
 import deleteSaleData from "../../usecases/deleteSaleData ";
@@ -17,6 +19,7 @@ import editActivityData from "../../usecases/editActivityData";
 import editActivityTypeData from "../../usecases/editActivityTypeData";
 import editContactData from "../../usecases/editContactData";
 import editLeadData from "../../usecases/editLeadData";
+import editLeadSourceData from "../../usecases/editLeadSourceDetails";
 import editProductCategoryData from "../../usecases/editProductCategoryData";
 import editProductData from "../../usecases/editProductData";
 import editSaleData from "../../usecases/editSaleData";
@@ -34,63 +37,7 @@ import getProductsData from "../../usecases/getProductsData";
 import getSaleData from "../../usecases/getSaleData ";
 import getSalesData from "../../usecases/getSalesData ";
 
-//============================Lead Source Controllers==============================================
-
-export const getLeadSourceDetails = async (data: any) => {
-  try {
-    const { requestId, action } = data;
-    const response: any = await getLeadSourceData();
-    if (response.status == "OK") {
-      const data = {
-        leadSourceData: response.leadSourceData,
-        requestId,
-        action,
-        status: "OK",
-        message: "LeadSource data fetched successfully",
-      };
-      publishToChannel("ApiRes-getLeadSourceDetails", data);
-    } else {
-      publishToChannel("ApiRes-getLeadSourceDetails", {
-        requestId,
-        action,
-        status: "FAILED",
-        message: response.message,
-      });
-    }
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-//============================End Lead Source Controllers==============================================
-
 //============================Product Controllers==============================================
-
-export const getProductCategoryDetails = async (data: any) => {
-  try {
-    const { requestId, action } = data;
-    const response: any = await getProductCategoryData();
-    if (response.status == "OK") {
-      const data = {
-        productCategoriesData: response.productCategoriesData,
-        requestId,
-        action,
-        status: "OK",
-        message: "Product Category data fetched successfully",
-      };
-      publishToChannel("ApiRes-getProductCategoryDetails", data);
-    } else {
-      publishToChannel("ApiRes-getProductCategoryDetails", {
-        requestId,
-        action,
-        status: "FAILED",
-        message: response.message,
-      });
-    }
-  } catch (error) {
-    console.error(error);
-  }
-};
 
 // export const getProductsDetails = async (data: any) => {
 //   try {
@@ -138,7 +85,6 @@ export const createContactDetails = async (data: any) => {
         message: "Contact creation failed",
       });
     }
-
   } catch (error) {
     console.error(error);
   }
@@ -261,7 +207,6 @@ export const createLeadDetails = async (data: any) => {
         message: "Lead creation failed",
       });
     }
-
   } catch (error) {
     console.error(error);
   }
@@ -384,7 +329,6 @@ export const createActivityDetails = async (data: any) => {
         message: "Activity creation failed",
       });
     }
-
   } catch (error) {
     console.error(error);
   }
@@ -507,7 +451,6 @@ export const createProductDetails = async (data: any) => {
         message: "Product creation failed",
       });
     }
-
   } catch (error) {
     console.error(error);
   }
@@ -630,7 +573,6 @@ export const createSaleDetails = async (data: any) => {
         message: "Sale creation failed",
       });
     }
-
   } catch (error) {
     console.error(error);
   }
@@ -735,129 +677,6 @@ export const deleteSaleDetails = async (data: any) => {
 
 //============================End Sale Controllers=====================================================
 
-// //============================Target Controllers=====================================================
-
-// export const createTargetDetails = async (data: any) => {
-//   try {
-//     const { requestId, action } = data;
-
-//     const response: any = await createTargetData(data);
-
-//     if (response) {
-//       response.requestId = requestId;
-//       response.action = action;
-//       publishToChannel("ApiRes-createTargetDetails", response);
-//     } else {
-//       publishToChannel("ApiRes-createTargetDetails", {
-//         status: "FAILED",
-//         message: "Target creation failed",
-//       });
-//     }
-
-//   } catch (error) {
-//     console.error(error);
-//   }
-// };
-// export const editTargetDetails = async (data: any) => {
-//   try {
-//     const { requestId, action } = data;
-
-//     const response: any = await editTargetData(data);
-
-//     if (response) {
-//       response.requestId = requestId;
-//       response.action = action;
-//       publishToChannel("ApiRes-editTargetDetails", response);
-//     } else {
-//       publishToChannel("ApiRes-editTargetDetails", {
-//         status: "FAILED",
-//         message: "Target updation failed",
-//       });
-//     }
-//   } catch (error) {
-//     console.error(error);
-//   }
-// };
-
-// export const getTargetDetails = async (data: any) => {
-//   try {
-//     const { _id, requestId, action } = data;
-//     const response: any = await getTargetData(_id);
-//     if (response.status == "OK") {
-//       const data = {
-//         targetData: response.targetData,
-//         requestId,
-//         action,
-//         status: "OK",
-//         message: "Target data fetched successfully",
-//       };
-//       publishToChannel("ApiRes-getTargetDetails", data);
-//     } else {
-//       publishToChannel("ApiRes-getTargetDetails", {
-//         requestId,
-//         action,
-//         status: "FAILED",
-//         message: response.message,
-//       });
-//     }
-//   } catch (error) {
-//     console.error(error);
-//   }
-// };
-
-// export const getTargetsDetails = async (data: any) => {
-//   try {
-//     const { requestId, action } = data;
-//     const response: any = await getTargetsData();
-//     if (response.status == "OK") {
-//       const data = {
-//         targetsData: response.targetsData,
-//         requestId,
-//         action,
-//         status: "OK",
-//         message: "Target data fetched successfully",
-//       };
-//       publishToChannel("ApiRes-getTargetsDetails", data);
-//     } else {
-//       publishToChannel("ApiRes-getTargetsDetails", {
-//         requestId,
-//         action,
-//         status: "FAILED",
-//         message: response.message,
-//       });
-//     }
-//   } catch (error) {
-//     console.error(error);
-//   }
-// };
-
-// export const deleteTargetDetails = async (data: any) => {
-//   try {
-//     const { _id, requestId, action } = data;
-//     const response: any = await deleteTargetData(_id);
-//     if (response.status == "OK") {
-//       const data = {
-//         requestId,
-//         action,
-//         status: "OK",
-//         message: "Target deleted successfully",
-//       };
-//       publishToChannel("ApiRes-deleteTargetDetails", data);
-//     } else {
-//       publishToChannel("ApiRes-deleteTargetDetails", {
-//         requestId,
-//         action,
-//         status: "FAILED",
-//         message: response.message,
-//       });
-//     }
-//   } catch (error) {
-//     console.error(error);
-//   }
-// };
-
-// //============================End Target Controllers=====================================================
-
 //============================ActivityType Controllers=====================================================
 
 export const createActivityTypeDetails = async (data: any) => {
@@ -876,7 +695,6 @@ export const createActivityTypeDetails = async (data: any) => {
         message: "ActivityType creation failed",
       });
     }
-
   } catch (error) {
     console.error(error);
   }
@@ -973,7 +791,6 @@ export const createProductCategoryDetails = async (data: any) => {
         message: "Product Category creation failed",
       });
     }
-
   } catch (error) {
     console.error(error);
   }
@@ -992,6 +809,32 @@ export const editProductCategoryDetails = async (data: any) => {
       publishToChannel("ApiRes-editProductCategoryDetails", {
         status: "FAILED",
         message: "Product Category updation failed",
+      });
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getProductCategoryDetails = async (data: any) => {
+  try {
+    const { requestId, action } = data;
+    const response: any = await getProductCategoryData();
+    if (response.status == "OK") {
+      const data = {
+        productCategoriesData: response.productCategoriesData,
+        requestId,
+        action,
+        status: "OK",
+        message: "Product Category data fetched successfully",
+      };
+      publishToChannel("ApiRes-getProductCategoryDetails", data);
+    } else {
+      publishToChannel("ApiRes-getProductCategoryDetails", {
+        requestId,
+        action,
+        status: "FAILED",
+        message: response.message,
       });
     }
   } catch (error) {
@@ -1025,3 +868,98 @@ export const deleteProductCategoryDetails = async (data: any) => {
 };
 
 //============================End ActivityType Controllers=====================================================
+
+//============================Lead Source Controllers=====================================================
+
+export const createLeadSourceDetails = async (data: any) => {
+  try {
+    const { requestId, action } = data;
+
+    const response: any = await createLeadSourceData(data);
+
+    if (response) {
+      response.requestId = requestId;
+      response.action = action;
+      publishToChannel("ApiRes-createLeadSourceDetails", response);
+    } else {
+      publishToChannel("ApiRes-createLeadSourceDetails", {
+        status: "FAILED",
+        message: "Lead Source Category creation failed",
+      });
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+export const editLeadSourceDetails = async (data: any) => {
+  try {
+    const { requestId, action } = data;
+
+    const response: any = await editLeadSourceData(data);
+
+    if (response) {
+      response.requestId = requestId;
+      response.action = action;
+      publishToChannel("ApiRes-editLeadSourceDetails", response);
+    } else {
+      publishToChannel("ApiRes-editLeadSourceDetails", {
+        status: "FAILED",
+        message: "Lead Source Category updation failed",
+      });
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getLeadSourceDetails = async (data: any) => {
+  try {
+    const { requestId, action } = data;
+    const response: any = await getLeadSourceData();
+    if (response.status == "OK") {
+      const data = {
+        leadSourceData: response.leadSourceData,
+        requestId,
+        action,
+        status: "OK",
+        message: "Lead Source data fetched successfully",
+      };
+      publishToChannel("ApiRes-getLeadSourceDetails", data);
+    } else {
+      publishToChannel("ApiRes-getLeadSourceDetails", {
+        requestId,
+        action,
+        status: "FAILED",
+        message: response.message,
+      });
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+export const deleteLeadSourceDetails = async (data: any) => {
+  try {
+    const { _id, requestId, action } = data;
+    const response: any = await deleteLeadSourceData(_id);
+    if (response.status == "OK") {
+      const data = {
+        requestId,
+        action,
+        status: "OK",
+        message: "Lead Source deleted successfully",
+      };
+      publishToChannel("ApiRes-deleteLeadSourceDetails", data);
+    } else {
+      publishToChannel("ApiRes-deleteLeadSourceDetails", {
+        requestId,
+        action,
+        status: "FAILED",
+        message: response.message,
+      });
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+//============================End Lead Source Controllers=====================================================

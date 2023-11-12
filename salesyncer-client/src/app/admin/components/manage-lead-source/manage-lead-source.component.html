@@ -2,7 +2,7 @@
     <mat-accordion class="accordion accordion-card" multi>
       <mat-expansion-panel>
         <mat-expansion-panel-header>
-          <mat-panel-title> Activity Type </mat-panel-title>
+          <mat-panel-title> Lead Source </mat-panel-title>
         </mat-expansion-panel-header>
   
         <div class="mat-body">
@@ -10,14 +10,14 @@
             <button
               mat-button
               color="primary"
-              aria-label="Create Activity Type Buttom"
-              (click)="createActivityType()"
+              aria-label="Create Lead Source Buttom"
+              (click)="createLeadSource()"
             >
-              <mat-icon>add</mat-icon> Add Activity Type
+              <mat-icon>add</mat-icon> Add Lead Source
             </button>
           </div>
   
-          <div class="table-component">
+          <div class="table-component"> 
             <mat-form-field class="search-field">
               <mat-label>Filter</mat-label>
               <input
@@ -30,14 +30,14 @@
   
             <div class="mat-elevation-z8">
               <table mat-table [dataSource]="dataSource" matSort>
-                <ng-container matColumnDef="activityType">
+                <ng-container matColumnDef="leadSource">
                   <th mat-header-cell *matHeaderCellDef mat-sort-header>
-                    Activity Type
+                    Lead Source
                   </th>
-                  <td mat-cell *matCellDef="let row">{{ row.activityType }}</td>
+                  <td mat-cell *matCellDef="let row">
+                    {{ row.leadSource }}
+                  </td>
                 </ng-container>
-  
-               
   
                 <ng-container matColumnDef="actions">
                   <th mat-header-cell *matHeaderCellDef>Actions</th>
@@ -47,17 +47,17 @@
                         mat-icon-button
                         color="primary"
                         aria-label="edit"
-                        (click)="editActivityType(row._id)"
+                        (click)="editLeadSource(row._id)"
                       >
                         <mat-icon>edit</mat-icon>
                       </button>
-
+                      
 
                       <button
                       mat-icon-button
                       color="warn"
                       aria-label="delete"
-                      (click)="deleteActivityType(row._id)"
+                      (click)="deleteLeadSource(row._id)"
                     >
                       <mat-icon>close</mat-icon>
                     </button>

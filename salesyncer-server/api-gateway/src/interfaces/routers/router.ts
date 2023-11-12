@@ -55,6 +55,9 @@ import {
   editProductCategory,
   deleteProductCategory,
   setBranchTarget,
+  createLeadSource,
+  editLeadSource,
+  deleteLeadSource,
 
 } from "../controllers/controller";
 
@@ -67,8 +70,6 @@ router.post("/add-branch", addBranch);
 router.get("/get-branches", getBranches);
 router.post("/edit-branch", editBranch);
 
-router.get("/get-lead-source", getLeadSource);
-// router.get("/get-products", getProducts);
 
 router.post("/admin-login", adminLogin);
 router.post("/employee-login", employeeLogin);
@@ -136,5 +137,11 @@ router.post("/create-product-category", createProductCategory);
 router.post("/edit-product-category", editProductCategory);
 router.get("/get-product-categories", getProductCategory);
 router.delete("/delete-product-category", deleteProductCategory);
+
+
+router.post("/create-lead-source", createLeadSource);
+router.post("/edit-lead-source", editLeadSource);
+router.get("/get-lead-source", getLeadSource);
+router.delete("/delete-lead-source", deleteLeadSource);
 
 export default router;

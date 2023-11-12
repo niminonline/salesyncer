@@ -5,26 +5,7 @@ import Products from "../entities/products";
 import BusinessCounter from "../entities/BusinessCounter";
 import moment from 'moment';
 
-////==============================================
-export const qGetLeadsSourceData = async () => {
-  try {
-    return await LeadSource.find({});
-  } catch (error) {
-    console.log(error);
-  }
-};
 
-////==============================================
-////==============================================
-export const qGetProductCategoryData = async () => {
-  try {
-    return await ProductCategory.find({});
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-////==============================================
 ////==============================================
 export const qGetProductsData = async () => {
   try {
@@ -49,9 +30,9 @@ export const qGetLeadsData = async () => {
 export const qCreateLeadsData = async (newLeadData: object) => {
   try {
     const newLead = new Leads(newLeadData);
-   
-   const addLeadToDB=  await newLead.save();
-   return addLeadToDB;
+    
+    const addLeadToDB=  await newLead.save();
+    return addLeadToDB;
   } catch (error) {
     console.log(error);
   }
@@ -80,7 +61,7 @@ export const qUpdateLeadDataById = async (
       const response = await Leads.findByIdAndUpdate(_id, updateOperation);
       if(response){
         const currentDate = moment().format('DD/MM/YYYY hh:mm a');
-
+        
         await Leads.findByIdAndUpdate(_id,{$push:{log:`${currentDate}: Lead updated by ${newLeadData.owner}`}})
       }
       return response;
@@ -99,9 +80,7 @@ export const qUpdateLeadDataById = async (
     }
   };
   
-  ////==============================================
-  ////==============================================
-  
+
   
   export const qIncLeadCount = async () => {
     try {
@@ -120,5 +99,57 @@ export const qUpdateLeadDataById = async (
       console.log(error);
     }
   };
+  
+  ////==============================================
+  ////=====================Lead Source=========================
+  
+  
+  export const qCreateLeadSourceData = async (newLeadSourceData: object) => {
+    try {
+      const newLeadSource = new LeadSource(newLeadSourceData);
+  
+      const addLeadSourceToDB = await newLeadSource.save();
+      return addLeadSourceToDB;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  
+  export const qUpdateLeadSourceDataById = async (
+    _id: string,
+    newLeadSourceData: any
+  ) => {
+    try {
+      const updateOperation = {
+        $set: newLeadSourceData,
+      };
+      const response = await LeadSource.findByIdAndUpdate(_id, updateOperation);
+  
+      return response;
+    } catch (error) {}
+  };
+  
+  
+  
+  export const qGetLeadsSourceData = async () => {
+    try {
+      return await LeadSource.find({});
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+
+
+  export const qDeleteLeadSourceById = async (_id: string) => {
+    try {
+      return await LeadSource.findByIdAndRemove(_id);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  
+
   
   ////==============================================
