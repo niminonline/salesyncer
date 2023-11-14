@@ -169,69 +169,92 @@ export interface ProductCategoriesData {
   message?: string;
 }
 
+export interface Activity {
+  _id: string;
+  lead: Lead;
+  activityId: string;
+  type: string;
+  owner: string;
+  status: string;
+  scheduledActivity?: string;
+  scheduledTime?: string;
+  feedback: string;
+  createdAt: string;
+  updatedAt: string;
+}
 
-// export interface Client {
-  //   _id: string;
-  //   contactId: string;
-  //   name: string;
-  //   branch: string;
-  //   email: string;
-  //   phone: string;
-  //   profession: string;
-  //   type: string;
-  //   address: string;
-  //   place: string;
-  //   pincode: number;
-  //   language: string;
-  // }
-  
-  export interface Activity {
-    _id: string;
-    lead: Lead;
-    activityId: string;
-    type: string;
-    owner: string;
-    status: string;
-    scheduledActivity?: string;
-    scheduledTime?: string;
-    feedback: string;
-    createdAt: string;
-    updatedAt: string;
-  }
-  
-  export interface ActivitiesData {
-    activitiesData: Activity[];
-    status?: string;
-    message?: string;
-  }
-  export interface ActivityType {
-    _id: string;
-    activityType: string;
-  }
-  
-  export interface ActivityTypesData {
-    activityTypesData: ActivityType[];
-    status?: string;
-    message?: string;
-  }
-  
+export interface ActivitiesData {
+  activitiesData: Activity[];
+  status?: string;
+  message?: string;
+}
+export interface ActivityType {
+  _id: string;
+  activityType: string;
+}
 
+export interface ActivityTypesData {
+  activityTypesData: ActivityType[];
+  status?: string;
+  message?: string;
+}
 
-  export interface Sale {
-    _id: string;
-    date: string;
-    invoiceNumber: string;
-    saleId: string;
-    lead: Lead;
-    branchName: string;
-    employeeName: string;
-    amount: number;
-    productName: string;
-    productCategory: string;
-  }
-  
-  export interface SalesData {
-    salesData: Sale[];
-    status?: string;
-    message?: string;
-  }
+export interface Sale {
+  _id: string;
+  date: string;
+  invoiceNumber: string;
+  saleId: string;
+  lead: Lead;
+  branchName: string;
+  employeeName: string;
+  amount: number;
+  productName: string;
+  productCategory: string;
+}
+
+export interface SalesData {
+  salesData: Sale[];
+  status?: string;
+  message?: string;
+}
+
+export interface Address {
+  addressLine1: string;
+  addressLine2: string;
+  place: string;
+  pincode: number;
+}
+
+export interface Target {
+  month: string;
+  year: number;
+  target: number;
+  achieved: number;
+  remaining: number;
+  notes: string;
+  _id: string;
+}
+
+export interface Employee {
+  _id: string;
+  address: Address;
+  casualLeaveBalance: number;
+  sickLeaveBalance: number;
+  empId: string;
+  name: string;
+  branch: string;
+  email: string;
+  phone: string;
+  role: string;
+  designation: string;
+  isRemoved: boolean;
+  isBlocked: boolean;
+  target: Target[];
+  attendance: any[];
+}
+
+interface EmployeesData {
+  employeesData: Employee[];
+  status?: string;
+  message?: string;
+}
