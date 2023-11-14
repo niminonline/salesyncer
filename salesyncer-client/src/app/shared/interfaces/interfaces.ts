@@ -168,3 +168,14 @@ export interface ProductCategoriesData {
   status?: string;
   message?: string;
 }
+
+export interface ActivityType {
+  _id: string;
+  activityType: string;
+}
+
+interface ActivityTypesData {
+  activityTypes: ActivityType[];
+  status?: string;
+  message?: string;
+}

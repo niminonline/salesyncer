@@ -1,6 +1,6 @@
 import { createReducer,on } from "@ngrx/store";
 import * as LeadsDataActions from '../actions/leadsData.actions'
-import { initialState } from "../state/branchData.state";
+import { initialState } from "../state/leadsData.state";
 
 
 
