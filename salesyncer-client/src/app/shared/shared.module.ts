@@ -49,6 +49,8 @@ import { productCategoriesDataReducer } from './store/reducers/productCategories
 import { ProductCategoriesDataEffects } from './store/effects/productCategoriesData.effects';
 import { ActivitiesDataEffects } from './store/effects/activitiesData.effects';
 import { activitiesDataReducer } from './store/reducers/activitiesData.reducer';
+import { activityTypesDataReducer } from './store/reducers/activityTypesData.reducer';
+import { ActivityTypesDataEffects } from './store/effects/activityTypesData.effects';
 
 const components = [
   LoginBlockComponent,
@@ -99,7 +101,8 @@ const components = [
         leadSourceData: leadSourceDataReducer,
         productsData:productsDataReducer,
         productCategoriesData:productCategoriesDataReducer,
-        activitiesData:activitiesDataReducer
+        activitiesData:activitiesDataReducer,
+        activityTypesData:activityTypesDataReducer
       },
       {}
     ),
@@ -111,7 +114,8 @@ const components = [
       LeadSourceDataEffects,
       ProductsDataEffects,
       ProductCategoriesDataEffects,
-      ActivitiesDataEffects
+      ActivitiesDataEffects,
+      ActivityTypesDataEffects
     ]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
   ],

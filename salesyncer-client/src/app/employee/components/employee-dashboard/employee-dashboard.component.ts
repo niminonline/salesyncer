@@ -5,6 +5,7 @@ import * as leadSourceDataActions from '../../../shared/store/actions/leadSource
 import * as productsDataActions from '../../../shared/store/actions/productsData.actions';
 import * as productCategoriesDataActions from '../../../shared/store/actions/productCategoriesData.actions';
 import * as activitiesDataActions from '../../../shared/store/actions/activitiesData.actions';
+import * as activityTypesDataActions from '../../../shared/store/actions/activityTypesData.actions';
 import { selectBranchData } from '../../../shared/store/selectors/branchData.selectors';
 import { selectLeadsData } from '../../../shared/store/selectors/leadsData.selectors';
 import { selectLeadSourceData } from '../../../shared/store/selectors/leadSourceData.selectors';
@@ -14,6 +15,7 @@ import { SharedApiService } from 'src/app/shared/services/shared-api.service';
 import { BranchData } from 'src/app/shared/interfaces/interfaces';
 import { Store } from '@ngrx/store';
 import { selectActivitiesData } from 'src/app/shared/store/selectors/ActivitiesData.selectors';
+import { selectActivityTypesData } from 'src/app/shared/store/selectors/activityTypesData.selectors';
 
 @Component({
   selector: 'app-employee-dashboard',
@@ -30,7 +32,8 @@ export class EmployeeDashboardComponent implements OnInit {
     // this.getLeadSourceData();
     // this.getProductsData();
     // this.getProductCategoriesData();
-    this.getActivitiesData();
+    // this.getActivitiesData();
+    this.getActivityTypesData();
   }
 
   getBranchData() {
@@ -67,6 +70,12 @@ export class EmployeeDashboardComponent implements OnInit {
   getActivitiesData() {
     this.store.dispatch(activitiesDataActions.retrieveActivitiesData());
     this.store.select(selectActivitiesData).subscribe((response) => {
+      console.log(response);
+    });
+  }
+  getActivityTypesData() {
+    this.store.dispatch(activityTypesDataActions.retrieveActivityTypesData());
+    this.store.select(selectActivityTypesData).subscribe((response) => {
       console.log(response);
     });
   }

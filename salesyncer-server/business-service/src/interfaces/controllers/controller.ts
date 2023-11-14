@@ -726,7 +726,7 @@ export const getActivityTypesDetails = async (data: any) => {
     const response: any = await getActivityTypesData();
     if (response.status == "OK") {
       const data = {
-        activityTypes: response.activityTypesData,
+        activityTypesData: response.activityTypesData,
         requestId,
         action,
         status: "OK",
