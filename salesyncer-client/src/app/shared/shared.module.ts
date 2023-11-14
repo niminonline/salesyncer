@@ -34,6 +34,15 @@ import { EffectsModule } from '@ngrx/effects';
 import { branchDataReducer } from './store/reducers/branchData.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { BranchDataEffects } from './store/effects/branchData.effects';
+import { userReducer } from './store/reducers/user.reducer';
+import { contactsReducer } from './store/reducers/contacts.reducer';
+import { authReducer } from './store/reducers/auth.reducer';
+import { ContactsEffects } from './store/effects/contacts.effects';
+import { UserEffects } from './store/effects/user.effects';
+import { leadsDataReducer } from './store/reducers/leadsData.reducer';
+import { LeadsDataEffects } from './store/effects/leadsData.effects';
+import { leadSourceDataReducer } from './store/reducers/leadSourceData.reducer';
+import { LeadSourceDataEffects } from './store/effects/leadSourceData.effects';
 
 const components = [
   LoginBlockComponent,
@@ -74,11 +83,8 @@ const components = [
     CommonModule,
     MaterialModule,
     ReactiveFormsModule,
-    StoreModule.forRoot(
-      { branchData:branchDataReducer},
-      {}
-    ),
-    EffectsModule.forRoot([BranchDataEffects]),
+    StoreModule.forRoot({ user: userReducer ,auth: authReducer,contacts:contactsReducer,branchData:branchDataReducer,leadsData:leadsDataReducer,leadSourceData:leadSourceDataReducer}, {}),
+    EffectsModule.forRoot([UserEffects,ContactsEffects,BranchDataEffects,LeadsDataEffects,LeadSourceDataEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
   ],
   exports: [components, TwoDecimalDigitsPipe],

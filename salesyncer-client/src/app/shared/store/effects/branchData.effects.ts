@@ -34,7 +34,7 @@ export class BranchDataEffects {
 
 
 
-  retrieveContactsData$ = createEffect(() =>
+  retrieveBranchData$ = createEffect(() =>
     this.actions$.pipe(
       ofType(BranchDataActions.retrieveBranchData),
       switchMap(() => {

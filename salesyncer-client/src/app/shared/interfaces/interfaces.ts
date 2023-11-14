@@ -93,3 +93,68 @@ export interface BranchData {
   message?: string;
 }
 
+export interface Client {
+  _id: string;
+  contactId: string;
+  name: string;
+  branch: string;
+  email: string;
+  phone: string;
+  profession: string;
+  type: string;
+  address: string;
+  place: string;
+  pincode: number;
+  language: string;
+}
+
+export interface Lead {
+  _id: string;
+  branch: string;
+  client: Client;
+  leadId: string;
+  type: string;
+  source: string;
+  owner: string;
+  productCategory: string;
+  product: string;
+  quotedPrice: number;
+  status: string;
+  notes: string;
+  log: string[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface LeadsData {
+  leadsData: Lead[];
+  status?: string;
+  message?: string;
+}
+
+export interface LeadSource {
+  _id: string;
+  leadSource: string;
+}
+
+export interface LeadSourceData {
+  leadSourceData: LeadSource[];
+  status?: string;
+  message?: string;
+}
+
+export interface Product {
+  _id: string;
+  productId: string;
+  name: string;
+  category: string;
+  status: string;
+  mrp: number;
+  lsp: number;
+}
+
+export interface ProductsData {
+  productsData: Product[];
+  status?: string;
+  message?: string;
+}
