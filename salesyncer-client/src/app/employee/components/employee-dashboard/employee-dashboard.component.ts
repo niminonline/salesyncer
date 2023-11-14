@@ -7,6 +7,7 @@ import * as productCategoriesDataActions from '../../../shared/store/actions/pro
 import * as activitiesDataActions from '../../../shared/store/actions/activitiesData.actions';
 import * as activityTypesDataActions from '../../../shared/store/actions/activityTypesData.actions';
 import * as salesDataActions from '../../../shared/store/actions/salesData.actions';
+import * as employeesDataActions from '../../../shared/store/actions/employeesData.actions';
 import { selectBranchData } from '../../../shared/store/selectors/branchData.selectors';
 import { selectLeadsData } from '../../../shared/store/selectors/leadsData.selectors';
 import { selectLeadSourceData } from '../../../shared/store/selectors/leadSourceData.selectors';
@@ -15,9 +16,10 @@ import { selectProductCategoriesData } from 'src/app/shared/store/selectors/prod
 import { SharedApiService } from 'src/app/shared/services/shared-api.service';
 import { BranchData } from 'src/app/shared/interfaces/interfaces';
 import { Store } from '@ngrx/store';
-import { selectActivitiesData } from 'src/app/shared/store/selectors/ActivitiesData.selectors';
+import { selectActivitiesData } from 'src/app/shared/store/selectors/activitiesData.selectors';
 import { selectActivityTypesData } from 'src/app/shared/store/selectors/activityTypesData.selectors';
 import { selectSalesData } from 'src/app/shared/store/selectors/salesData.selectors';
+import { selectEmployeesData } from 'src/app/shared/store/selectors/employeesData.selectors';
 
 @Component({
   selector: 'app-employee-dashboard',
@@ -37,6 +39,7 @@ export class EmployeeDashboardComponent implements OnInit {
     // this.getActivitiesData();
     // this.getActivityTypesData();
     // this.getSalesData();
+    this.getEmployeesData();
   }
 
   getBranchData() {
@@ -85,6 +88,12 @@ export class EmployeeDashboardComponent implements OnInit {
   getSalesData() {
     this.store.dispatch(salesDataActions.retrieveSalesData());
     this.store.select(selectSalesData).subscribe((response) => {
+      console.log(response);
+    });
+  }
+  getEmployeesData() {
+    this.store.dispatch(employeesDataActions.retrieveEmployeesData());
+    this.store.select(selectEmployeesData).subscribe((response) => {
       console.log(response);
     });
   }

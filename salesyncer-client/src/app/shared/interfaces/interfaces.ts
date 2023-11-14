@@ -253,7 +253,7 @@ export interface Employee {
   attendance: any[];
 }
 
-interface EmployeesData {
+export interface EmployeesData {
   employeesData: Employee[];
   status?: string;
   message?: string;
