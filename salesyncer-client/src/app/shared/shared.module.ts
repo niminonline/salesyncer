@@ -43,6 +43,8 @@ import { leadsDataReducer } from './store/reducers/leadsData.reducer';
 import { LeadsDataEffects } from './store/effects/leadsData.effects';
 import { leadSourceDataReducer } from './store/reducers/leadSourceData.reducer';
 import { LeadSourceDataEffects } from './store/effects/leadSourceData.effects';
+import { ProductsDataEffects } from './store/effects/productsData.effects ';
+import { productsDataReducer } from './store/reducers/productsData.reducer';
 
 const components = [
   LoginBlockComponent,
@@ -83,8 +85,26 @@ const components = [
     CommonModule,
     MaterialModule,
     ReactiveFormsModule,
-    StoreModule.forRoot({ user: userReducer ,auth: authReducer,contacts:contactsReducer,branchData:branchDataReducer,leadsData:leadsDataReducer,leadSourceData:leadSourceDataReducer}, {}),
-    EffectsModule.forRoot([UserEffects,ContactsEffects,BranchDataEffects,LeadsDataEffects,LeadSourceDataEffects]),
+    StoreModule.forRoot(
+      {
+        user: userReducer,
+        auth: authReducer,
+        contacts: contactsReducer,
+        branchData: branchDataReducer,
+        leadsData: leadsDataReducer,
+        leadSourceData: leadSourceDataReducer,
+        productsData:productsDataReducer
+      },
+      {}
+    ),
+    EffectsModule.forRoot([
+      UserEffects,
+      ContactsEffects,
+      BranchDataEffects,
+      LeadsDataEffects,
+      LeadSourceDataEffects,
+      ProductsDataEffects
+    ]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
   ],
   exports: [components, TwoDecimalDigitsPipe],

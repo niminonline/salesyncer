@@ -84,7 +84,6 @@ export interface Branch {
   branchName: string;
   location: string;
   empCount: number;
-
 }
 
 export interface BranchData {
@@ -155,6 +154,17 @@ export interface Product {
 
 export interface ProductsData {
   productsData: Product[];
+  status?: string;
+  message?: string;
+}
+
+export interface ProductCategory {
+  _id: string;
+  productCategory: string;
+}
+
+export interface ProductCategoriesData {
+  productCategoriesData: ProductCategory[];
   status?: string;
   message?: string;
 }
