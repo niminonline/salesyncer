@@ -6,7 +6,10 @@ import * as UserActions from '../actions/user.actions';
 import { SharedApiService } from 'src/app/shared/services/shared-api.service';
 import { EmployeeType } from 'src/app/shared/interfaces/interfaces';
 import { Store } from '@ngrx/store';
-import { selectEmployeeId, selectEmployeeToken } from '../selectors/auth.selectors';
+import {
+  selectEmployeeId,
+  selectEmployeeToken,
+} from '../selectors/auth.selectors';
 
 @Injectable()
 export class UserEffects {
@@ -16,29 +19,28 @@ export class UserEffects {
     private store: Store
   ) {}
 
-  private defaultUser: EmployeeType =  {
-    "address": {
-        "addressLine1": '',
-        "addressLine2": '',
-        "place": '',
-        "pincode": 0
+  private defaultUser: EmployeeType = {
+    address: {
+      addressLine1: '',
+      addressLine2: '',
+      place: '',
+      pincode: 0,
     },
-    "_id": '',
-    "empId":'',
-    "name": '',
-    "branch": '',
-    "email": '',
-    "phone": '',
-    "role": '',
-    "designation": '',
-    "isRemoved": false,
-    "isBlocked": false,
-    "leave": [],
-    "target": [],
-    "attendance": [],
-    "__v": 0
-}
-
+    _id: '',
+    empId: '',
+    name: '',
+    branch: '',
+    email: '',
+    phone: '',
+    role: '',
+    designation: '',
+    isRemoved: false,
+    isBlocked: false,
+    leave: [],
+    target: [],
+    attendance: [],
+    __v: 0,
+  };
 
   _id!: string | null;
   token!: string | null;
@@ -46,15 +48,12 @@ export class UserEffects {
     this.actions$.pipe(
       ofType(UserActions.retrieveEmployeeData),
       switchMap(() => {
-
         this.store.select(selectEmployeeId).subscribe((_id) => {
           this._id = _id;
         });
         this.store.select(selectEmployeeToken).subscribe((token) => {
           this.token = token;
-          
         });
-       
 
         if (!this._id || !this.token) {
           return of({ type: 'error' });
