@@ -5,8 +5,8 @@ import { Router } from '@angular/router';
 import { SharedApiService } from 'src/app/shared/services/shared-api.service';
 
 import { Store } from '@ngrx/store';
-import { selectEmployeeData } from '../../../employee/store/selectors/user.selectors';
-import * as UserActions from '../../../employee/store/actions/user.actions';
+import { selectEmployeeData } from '../../store/selectors/user.selectors';
+import * as UserActions from '../../store/actions/user.actions';
 
 
 @Component({

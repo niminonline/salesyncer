@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { select } from '@ngrx/store';
-import { selectEmployeeId } from 'src/app/employee/store/selectors/auth.selectors';
+import { selectEmployeeId } from 'src/app/shared/store/selectors/auth.selectors';
 import { Store } from '@ngrx/store';
 import { SharedApiService } from 'src/app/shared/services/shared-api.service';
 import { Router } from '@angular/router';
-import { selectEmployeeData } from '../../store/selectors/user.selectors';
-import * as UserActions from '../../store/actions/user.actions';
+import { selectEmployeeData } from '../../../shared/store/selectors/user.selectors';
+import * as UserActions from '../../../shared/store/actions/user.actions';
 
 
 @Component({

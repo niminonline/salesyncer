@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import * as AuthActions from '../../store/actions/auth.actions'
+import * as AuthActions from '../../../shared/store/actions/auth.actions'
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { Store } from '@ngrx/store';
-import { selectEmployeeData } from '../../store/selectors/user.selectors'
-import * as UserActions from '../../store/actions/user.actions';
+import { selectEmployeeData } from '../../../shared/store/selectors/user.selectors'
+import * as UserActions from '../../../shared/store/actions/user.actions';
+
 
 @Component({
   selector: 'app-employee-home',
@@ -31,7 +32,8 @@ export class EmployeeHomeComponent implements OnInit{
 
   constructor(
     private route: Router,
-    private store: Store
+    private store: Store,
+    
   ) {}
 
   ngOnInit(){
@@ -39,6 +41,7 @@ export class EmployeeHomeComponent implements OnInit{
     this.getemployeeData();
     }
 
+ 
   async getemployeeData() {
 
 

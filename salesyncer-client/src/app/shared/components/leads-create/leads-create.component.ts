@@ -10,11 +10,11 @@ import { Router } from '@angular/router';
 import { SharedApiService } from 'src/app/shared/services/shared-api.service';
 
 import { Store } from '@ngrx/store';
-import { selectContactsData } from 'src/app/employee/store/selectors/contacts.selectors ';
-import { selectEmployeeData } from '../../../employee/store/selectors/user.selectors';
-import * as UserActions from '../../../employee/store/actions/user.actions';
+import { selectContactsData } from 'src/app/shared/store/selectors/contacts.selectors';
+import { selectEmployeeData } from '../../store/selectors/user.selectors';
+import * as UserActions from '../../store/actions/user.actions';
 
-import * as ContactsActions from 'src/app/employee/store/actions/contacts.actions ';
+import * as ContactsActions from 'src/app/shared/store/actions/contacts.actions';
 
 @Component({
   selector: 'app-leads-create',

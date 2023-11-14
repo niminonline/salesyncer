@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginBlockComponent } from './components/login-block/login-block.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -29,6 +29,11 @@ import { SalesCreateComponent } from './components/sales-create/sales-create.com
 import { SalesEditComponent } from './components/sales-edit/sales-edit.component';
 import { SalesViewComponent } from './components/sales-view/sales-view.component';
 import { TargetCardComponent } from './components/target-card/target-card.component';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { branchDataReducer } from './store/reducers/branchData.reducer';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { BranchDataEffects } from './store/effects/branchData.effects';
 
 const components = [
   LoginBlockComponent,
@@ -37,7 +42,6 @@ const components = [
   TableComponent,
   UpdateEmployeeComponent,
   TargetCardComponent,
-  
 ];
 
 @NgModule({
@@ -65,9 +69,18 @@ const components = [
     SalesEditComponent,
     SalesViewComponent,
     TargetCardComponent,
-    
   ],
-  imports: [CommonModule, MaterialModule, ReactiveFormsModule,],
+  imports: [
+    CommonModule,
+    MaterialModule,
+    ReactiveFormsModule,
+    StoreModule.forRoot(
+      { branchData:branchDataReducer},
+      {}
+    ),
+    EffectsModule.forRoot([BranchDataEffects]),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+  ],
   exports: [components, TwoDecimalDigitsPipe],
 })
 export class SharedModule {}

@@ -4,7 +4,7 @@ import Swal from 'sweetalert2';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SharedApiService } from 'src/app/shared/services/shared-api.service';
 
-import { selectEmployeeData } from '../../../employee/store/selectors/user.selectors';
+import { selectEmployeeData } from '../../store/selectors/user.selectors';
 
 
 @Component({

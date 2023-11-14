@@ -1,6 +1,6 @@
 import { createReducer,on } from "@ngrx/store";
-import * as ContactsActions from '../actions/contacts.actions '
-import { initialState } from "../state/contacts.state ";
+import * as ContactsActions from '../actions/contacts.actions'
+import { initialState } from "../state/contacts.state";
 
 
 

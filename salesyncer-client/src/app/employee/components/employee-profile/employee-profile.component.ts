@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
-import * as EmployeeActions from '.././../store/actions/user.actions'
+import * as EmployeeActions from '../../../shared/store/actions/user.actions'
 
-import { selectEmployeeData } from '../../store/selectors/user.selectors';
+import { selectEmployeeData } from '../../../shared/store/selectors/user.selectors';
 
 @Component({
   selector: 'app-employee-profile',

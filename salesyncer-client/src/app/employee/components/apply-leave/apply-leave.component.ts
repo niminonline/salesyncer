@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 import { SharedApiService } from 'src/app/shared/services/shared-api.service';
 import { EmployeeApiService } from '../../services/employee-api.service';
 import { LeaveCategory } from 'src/app/shared/interfaces/interfaces';
-import { selectEmployeeId } from '../../store/selectors/auth.selectors';
-import { selectEmployeeData } from '../../store/selectors/user.selectors';
+import { selectEmployeeId } from '../../../shared/store/selectors/auth.selectors';
+import { selectEmployeeData } from '../../../shared/store/selectors/user.selectors';
 import { Store } from '@ngrx/store';
 import Swal from 'sweetalert2';
 

@@ -1,7 +1,7 @@
 import {Component,OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { selectEmployeeId } from '../../store/selectors/auth.selectors';
+import { selectEmployeeId } from '../../../shared/store/selectors/auth.selectors';
 import { Store } from '@ngrx/store';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';

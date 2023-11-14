@@ -2,7 +2,7 @@
 // import { Actions, createEffect, ofType } from '@ngrx/effects';
 // import { of } from 'rxjs';
 // import { catchError, map, switchMap } from 'rxjs';
-// import * as ContactsActions from '../actions/contacts.actions ';
+// import * as ContactsActions from '../actions/contacts.actions';
 // import { SharedApiService } from 'src/app/shared/services/shared-api.service';
 // import { ContactsType } from 'src/app/shared/interfaces/interfaces';
 // import { Store } from '@ngrx/store';
@@ -56,7 +56,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators'; // Import 'tap'
-import * as ContactsActions from '../actions/contacts.actions ';
+import * as ContactsActions from '../actions/contacts.actions';
 import { SharedApiService } from 'src/app/shared/services/shared-api.service';
 import { ContactsType } from 'src/app/shared/interfaces/interfaces';
 import { Store } from '@ngrx/store';
@@ -95,7 +95,7 @@ export class ContactsEffects {
       switchMap(() => {
         return this.sharedApi.getContacts().pipe(
           tap((response) => {
-            // console.log('API Response:', response); 
+            console.log('API Response:', response); 
           }),
           map((response) =>
             ContactsActions.storecontactsData({

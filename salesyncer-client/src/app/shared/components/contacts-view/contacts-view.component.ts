@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Router,ActivatedRoute } from '@angular/router';
-import { selectContactsData } from 'src/app/employee/store/selectors/contacts.selectors ';
+import { selectContactsData } from 'src/app/shared/store/selectors/contacts.selectors';
 import { ContactType,ContactsType } from '../../interfaces/interfaces';
 
 @Component({

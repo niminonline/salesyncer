@@ -1,5 +1,5 @@
-import { selectEmployeeData } from '../../store/selectors/user.selectors';
-import * as UserActions from '../../store/actions/user.actions';
+import { selectEmployeeData } from '../../../shared/store/selectors/user.selectors';
+import * as UserActions from '../../../shared/store/actions/user.actions';
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { SharedApiService } from 'src/app/shared/services/shared-api.service';
 import { Router } from '@angular/router';
@@ -9,8 +9,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 
 import { Store } from '@ngrx/store';
-import { selectContactsData } from 'src/app/employee/store/selectors/contacts.selectors ';
-import * as ContactsActions from 'src/app/employee/store/actions/contacts.actions ';
+import { selectContactsData } from 'src/app/shared/store/selectors/contacts.selectors';
+import * as ContactsActions from 'src/app/shared/store/actions/contacts.actions';
 import Swal from 'sweetalert2';
 
 @Component({

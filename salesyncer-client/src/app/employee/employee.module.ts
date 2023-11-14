@@ -10,15 +10,17 @@ import { AppRoutingModule } from '../app-routing.module';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
-import { authReducer } from './store/reducers/auth.reducer';
-import { userReducer } from './store/reducers/user.reducer';
-import { contactsReducer } from './store/reducers/contacts.reducer';
-import { UserEffects } from './store/effects/user.effects';
-import { ContactsEffects } from './store/effects/contacts.effects ';
+import { authReducer } from '../shared/store/reducers/auth.reducer';
+import { userReducer } from '../shared/store/reducers/user.reducer';
+import { contactsReducer } from '../shared/store/reducers/contacts.reducer';
+import { UserEffects } from '../shared/store/effects/user.effects';
+import { ContactsEffects } from '../shared/store/effects/contacts.effects';
 import { UpdateProfileComponent } from './components/update-profile/update-profile.component';
 import { ApplyLeaveComponent } from './components/apply-leave/apply-leave.component';
 import { LeaveComponent } from './components/leave/leave.component';
 import { ViewTargetComponent } from './components/view-target/view-target.component';
+import { BranchDataEffects } from '../shared/store/effects/branchData.effects';
+import { branchDataReducer } from '../shared/store/reducers/branchData.reducer';
 
 
 
@@ -38,8 +40,8 @@ import { ViewTargetComponent } from './components/view-target/view-target.compon
     MaterialModule,
     SharedModule,
     AppRoutingModule,
-    StoreModule.forRoot({ user: userReducer ,auth: authReducer,contacts:contactsReducer}, {}),
-    EffectsModule.forRoot([UserEffects,ContactsEffects]),
+    StoreModule.forRoot({ user: userReducer ,auth: authReducer,contacts:contactsReducer,branchData:branchDataReducer}, {}),
+    EffectsModule.forRoot([UserEffects,ContactsEffects,BranchDataEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
     
   ]

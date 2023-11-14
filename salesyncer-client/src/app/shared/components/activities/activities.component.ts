@@ -7,7 +7,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 
 import { Store } from '@ngrx/store';
-import * as ContactsActions from 'src/app/employee/store/actions/contacts.actions ';
+import * as ContactsActions from 'src/app/shared/store/actions/contacts.actions';
 import Swal from 'sweetalert2';
 
 @Component({
