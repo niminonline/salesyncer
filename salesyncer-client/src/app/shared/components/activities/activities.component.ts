@@ -7,7 +7,12 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 
 import { Store } from '@ngrx/store';
+import * as activitiesDataActions from '../../../shared/store/actions/activitiesData.actions';
 import * as ContactsActions from 'src/app/shared/store/actions/contacts.actions';
+import * as activityTypesDataActions from '../../../shared/store/actions/activityTypesData.actions';
+import * as leadsDataActions from '../../../shared/store/actions/leadsData.actions';
+import * as employeesDataActions from '../../../shared/store/actions/employeesData.actions';
+
 import Swal from 'sweetalert2';
 
 @Component({
@@ -40,50 +45,73 @@ export class ActivitiesComponent implements OnInit {
   todaysActivities: any;
   upcomingActivities: any;
   missedActivities: any;
-  
+
   constructor(
     private sharedAPI: SharedApiService,
     private router: Router,
     private store: Store
-    ) {}
-    
-    ngOnInit() {
-      this.sharedAPI.getActivities().subscribe((response) => {
-        this.activitiesData = response.activitiesData.map((activity: any) => {
-          const scheduledTime = new Date(activity.scheduledTime);
-          return { ...activity, scheduledTime: scheduledTime };
-        });
-        this.allActivitiesCount=this.activitiesData.length;
-        // this.activitiesData.map((activity:any)=>{
-        //   console.log(activity.scheduledTime)
-        // })
-        
+  ) {}
 
-        this.dataSource = new MatTableDataSource(this.activitiesData);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
-        
-        const today = new Date().setHours(0, 0, 0, 0);
+  ngOnInit() {
+    this.store.dispatch(activitiesDataActions.retrieveActivitiesData());
+    this.store.dispatch(activityTypesDataActions.retrieveActivityTypesData());
+    this.store.dispatch(leadsDataActions.retrieveLeadsData());
+    this.store.dispatch(employeesDataActions.retrieveEmployeesData());
+
+
+
+    this.sharedAPI.getActivities().subscribe((response) => {
+      this.activitiesData = response.activitiesData.map((activity: any) => {
+        const scheduledTime = new Date(activity.scheduledTime);
+        return { ...activity, scheduledTime: scheduledTime };
+      });
+      this.allActivitiesCount = this.activitiesData.length;
+      // this.activitiesData.map((activity:any)=>{
+      //   console.log(activity.scheduledTime)
+      // })
+
+      this.dataSource = new MatTableDataSource(this.activitiesData);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+
+      const today = new Date().setHours(0, 0, 0, 0);
       this.upcomingActivities = this.activitiesData.filter((activity: any) => {
-        const currentScheduledTime = new Date(activity.scheduledTime).setHours(0, 0, 0, 0);
-        const timeDifference = (currentScheduledTime - today) / (1000 * 60 * 60 * 24); 
-        return ((timeDifference < 3 &&  today<currentScheduledTime) &&(activity.status !=="Completed"));
+        const currentScheduledTime = new Date(activity.scheduledTime).setHours(
+          0,
+          0,
+          0,
+          0
+        );
+        const timeDifference =
+          (currentScheduledTime - today) / (1000 * 60 * 60 * 24);
+        return (
+          timeDifference < 3 &&
+          today < currentScheduledTime &&
+          activity.status !== 'Completed'
+        );
       });
-      this.upcomingActivitiesCount= this.upcomingActivities.length;
+      this.upcomingActivitiesCount = this.upcomingActivities.length;
       this.todaysActivities = this.activitiesData.filter((activity: any) => {
-        const currentScheduledTime = new Date(activity.scheduledTime).setHours(0, 0, 0, 0);
-        return  (currentScheduledTime == today) &&(activity.status !=="Completed");
-       });
-       this.todaysActivitiesCount=this.todaysActivities.length;
-
-
-       this.missedActivities = this.activitiesData.filter((activity: any) => {
-        const currentScheduledTime = new Date(activity.scheduledTime).setHours(0, 0, 0, 0);
-        return  ((currentScheduledTime < today) &&(activity.status !=="Completed"));
+        const currentScheduledTime = new Date(activity.scheduledTime).setHours(
+          0,
+          0,
+          0,
+          0
+        );
+        return currentScheduledTime == today && activity.status !== 'Completed';
       });
-      this.missedActivitiesCount= this.missedActivities.length;
+      this.todaysActivitiesCount = this.todaysActivities.length;
 
-
+      this.missedActivities = this.activitiesData.filter((activity: any) => {
+        const currentScheduledTime = new Date(activity.scheduledTime).setHours(
+          0,
+          0,
+          0,
+          0
+        );
+        return currentScheduledTime < today && activity.status !== 'Completed';
+      });
+      this.missedActivitiesCount = this.missedActivities.length;
     });
   }
 
@@ -181,22 +209,17 @@ export class ActivitiesComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
   filterUpcomingActivities() {
-  
     this.dataSource = new MatTableDataSource(this.upcomingActivities);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
 
   filterTodaysActivities() {
-
-    
     this.dataSource = new MatTableDataSource(this.todaysActivities);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
   filterMissedActivities() {
-
-    
     this.dataSource = new MatTableDataSource(this.missedActivities);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;

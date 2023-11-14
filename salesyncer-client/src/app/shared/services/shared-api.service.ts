@@ -8,6 +8,15 @@ import {
   LeaveData,
   LeaveItem,
   BranchData,
+  ActivityTypesData,
+  LeadSourceData,
+  ProductCategoriesData,
+  EmployeesData,
+  EmployeeData,
+  LeadsData,
+  ActivitiesData,
+  ProductsData,
+  SalesData,
 } from 'src/app/shared/interfaces/interfaces';
 
 @Injectable({
@@ -21,26 +30,26 @@ export class SharedApiService {
   }
   //============================Activity Types===========================
 
-  getActivityTypes(): Observable<any> {
-    return this.http.get<any>(`/get-activity-types`);
+  getActivityTypes(): Observable<ActivityTypesData> {
+    return this.http.get<ActivityTypesData>(`/get-activity-types`);
   }
 
   //============================Lead Source===========================
-  getLeadSource(): Observable<any> {
-    return this.http.get<any>(`/get-lead-source`);
+  getLeadSource(): Observable<LeadSourceData> {
+    return this.http.get<LeadSourceData>(`/get-lead-source`);
   }
 
   //============================Product Catergory===========================
-  getProductCategories(): Observable<any> {
-    return this.http.get<any>(`/get-product-categories`);
+  getProductCategories(): Observable<ProductCategoriesData> {
+    return this.http.get<ProductCategoriesData>(`/get-product-categories`);
   }
 
   //============================Employee===========================
-  getEmployeesData(): Observable<any> {
-    return this.http.get('/get-employees-data');
+  getEmployeesData(): Observable<EmployeesData> {
+    return this.http.get<EmployeesData>('/get-employees-data');
   }
-  getEmployeeData(_id: string | null): Observable<any> {
-    return this.http.get<any>(`/get-employee-data?_id=${_id}`);
+  getEmployeeData(_id: string | null): Observable<EmployeeData> {
+    return this.http.get<EmployeeData>(`/get-employee-data?_id=${_id}`);
   }
 
   updateEmployee(data: object | null): Observable<any> {
@@ -80,8 +89,8 @@ export class SharedApiService {
   createLead(data: object | null): Observable<any> {
     return this.http.post<any>(`/create-lead`, data);
   }
-  getLeads(): Observable<any> {
-    return this.http.get<any>(`/get-leads`);
+  getLeads(): Observable<LeadsData> {
+    return this.http.get<LeadsData>(`/get-leads`);
   }
   getLead(_id: string | null): Observable<any> {
     return this.http.get<any>(`/get-lead?_id=${_id}`);
@@ -96,8 +105,8 @@ export class SharedApiService {
   createActivity(data: object | null): Observable<any> {
     return this.http.post<any>(`/create-activity`, data);
   }
-  getActivities(): Observable<any> {
-    return this.http.get<any>(`/get-activities`);
+  getActivities(): Observable<ActivitiesData> {
+    return this.http.get<ActivitiesData>(`/get-activities`);
   }
   getActivity(_id: string | null): Observable<any> {
     return this.http.get<any>(`/get-activity?_id=${_id}`);
@@ -113,8 +122,8 @@ export class SharedApiService {
   createProduct(data: object | null): Observable<any> {
     return this.http.post<any>(`/create-product`, data);
   }
-  getProducts(): Observable<any> {
-    return this.http.get<any>(`/get-products`);
+  getProducts(): Observable<ProductsData> {
+    return this.http.get<ProductsData>(`/get-products`);
   }
   getProduct(_id: string | null): Observable<any> {
     return this.http.get<any>(`/get-product?_id=${_id}`);
@@ -130,8 +139,8 @@ export class SharedApiService {
   createSale(data: object | null): Observable<any> {
     return this.http.post<any>(`/create-sale`, data);
   }
-  getSales(): Observable<any> {
-    return this.http.get<any>(`/get-sales`);
+  getSales(): Observable<SalesData> {
+    return this.http.get<SalesData>(`/get-sales`);
   }
   getSale(_id: string | null): Observable<any> {
     return this.http.get<any>(`/get-sale?_id=${_id}`);

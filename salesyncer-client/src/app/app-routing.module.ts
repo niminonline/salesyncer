@@ -32,7 +32,6 @@ import { LeadsCreateComponent } from './shared/components/leads-create/leads-cre
 import { LeadsViewComponent } from './shared/components/leads-view/leads-view.component';
 import { LeadsEditComponent } from './shared/components/leads-edit/leads-edit.component';
 
-import { LeadsEditResolver } from './shared/resolver/lead-edit.resolver';
 import { ActivitiesComponent } from './shared/components/activities/activities.component';
 import { ActivitiesCreateComponent } from './shared/components/activities-create/activities-create.component';
 import { ActivitiesViewComponent } from './shared/components/activities-view/activities-view.component';
@@ -66,10 +65,10 @@ const routes: Routes = [
     { path: 'contacts-create', component: ContactsCreateComponent,title:'Salesyncer'},
     { path: 'contacts-view', component: ContactsViewComponent,title:'Salesyncer'},
     { path: 'contacts-edit', component: ContactsEditComponent,title:'Salesyncer'},
-    { path: 'leads', component: LeadsComponent,resolve: { initData: LeadsEditResolver },title:'Salesyncer'},
+    { path: 'leads', component: LeadsComponent,title:'Salesyncer'},
     { path: 'leads-create', component: LeadsCreateComponent,title:'Salesyncer'},
     { path: 'leads-view', component: LeadsViewComponent,title:'Salesyncer'},
-    { path: 'leads-edit', component: LeadsEditComponent,resolve: { initData: LeadsEditResolver }, title:'Salesyncer'},
+    { path: 'leads-edit', component: LeadsEditComponent, title:'Salesyncer'},
     { path: 'activities', component: ActivitiesComponent},
     { path: 'activities-create', component: ActivitiesCreateComponent},
     { path: 'activities-view', component: ActivitiesViewComponent},
@@ -99,10 +98,10 @@ const routes: Routes = [
     { path: 'contacts-create', component: ContactsCreateComponent,title:'Salesyncer'},
     { path: 'contacts-view', component: ContactsViewComponent,title:'Salesyncer'},
     { path: 'contacts-edit', component: ContactsEditComponent,title:'Salesyncer'},
-    { path: 'leads', component: LeadsComponent,resolve: { initData: LeadsEditResolver },title:'Salesyncer'},
+    { path: 'leads', component: LeadsComponent,title:'Salesyncer'},
     { path: 'leads-create', component: LeadsCreateComponent,title:'Salesyncer'},
     { path: 'leads-view', component: LeadsViewComponent,title:'Salesyncer'},
-    { path: 'leads-edit', component: LeadsEditComponent,resolve: { initData: LeadsEditResolver }, title:'Salesyncer'},
+    { path: 'leads-edit', component: LeadsEditComponent, title:'Salesyncer'},
     { path: 'activities', component: ActivitiesComponent},
     { path: 'activities-create', component: ActivitiesCreateComponent},
     { path: 'activities-view', component: ActivitiesViewComponent},

@@ -123,7 +123,6 @@ export class ContactsEditComponent implements OnInit {
       };
 
       this.sharedAPI.editContact(body).subscribe((response) => {
-        // console.log(response);
         if (response && response.status !== 'OK') {
           this.showSpinner = false;
           Swal.fire('Error', response.message, 'error');

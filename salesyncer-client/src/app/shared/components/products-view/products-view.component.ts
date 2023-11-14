@@ -25,9 +25,8 @@ export class ProductsViewComponent implements OnInit {
    this.sharedApi.getProduct(this._id).subscribe((response) => {
       if (response) {
         this.productData = response.productData;
-        console.log("Response",this.productData)
       } else {
-        console.log('Products fetching failed');
+        console.error('Products fetching failed');
       }
     });
   }

@@ -15,6 +15,11 @@ import { selectEmployeeData } from '../../store/selectors/user.selectors';
 import * as UserActions from '../../store/actions/user.actions';
 
 import * as ContactsActions from 'src/app/shared/store/actions/contacts.actions';
+import { selectEmployeesData } from '../../store/selectors/employeesData.selectors';
+import { selectBranchData } from '../../store/selectors/branchData.selectors';
+import { selectLeadSourceData } from '../../store/selectors/leadSourceData.selectors';
+import { selectProductCategoriesData } from '../../store/selectors/productCategoriesData.selectors';
+import { selectProductsData } from '../../store/selectors/productsData.selectors';
 
 @Component({
   selector: 'app-leads-create',
@@ -49,9 +54,9 @@ export class LeadsCreateComponent implements OnInit {
     this.getContacts();
     this.getEmployeesData();
     this.getBranchData();
-    this.getLeadSource();
-    this.getProductCategories();
-    this.getProducts();
+    this.getLeadSourceData();
+    this.getProductCategoriesData();
+    this.getProductsData();
     // this.initFormgroup();
   }
 
@@ -60,16 +65,12 @@ export class LeadsCreateComponent implements OnInit {
     this.store.select(selectContactsData).subscribe((response) => {
       if (response) {
         this.contactData = response;
-        console.log('Client details loaded');
       }
     });
   }
   getEmployeesData() {
-    this.sharedAPI.getEmployeesData().subscribe((response) => {
-      if (response) {
-        this.employeesData = response.employeesData;
-        console.log('Owner list loaded');
-      }
+    this.store.select(selectEmployeesData).subscribe((response) => {
+      this.employeesData=response;
     });
     this.store.dispatch(UserActions.retrieveEmployeeData());
 
@@ -77,66 +78,32 @@ export class LeadsCreateComponent implements OnInit {
       if (response) {
         this.currentOwner = response.name;
         this.currentBranch = response.branch;
-        console.log('Current owner data loaded');
       }
       this.initFormgroup();
     });
   }
 
   getBranchData() {
-    try {
-      this.sharedAPI.getBranches().subscribe((response: any) => {
-        if (response.status == 'OK') {
-          this.branchData = response.branchData;
-          console.log('Branch data loaded');
-        } else {
-          console.error(response.message);
-        }
-      });
-    } catch (error) {
-      console.error(error);
-    }
+    this.store.select(selectBranchData).subscribe((response) => {
+     this.branchData= response;
+    });
   }
 
-  getLeadSource() {
-    try {
-      this.sharedAPI.getLeadSource().subscribe((response: any) => {
-        if (response.status == 'OK') {
-          this.leadSourceData = response.leadSourceData;
-          console.log('Lead source loaded');
-        } else {
-          console.error(response.message);
-        }
-      });
-    } catch (error) {
-      console.error(error);
-    }
+  getLeadSourceData() {
+    this.store.select(selectLeadSourceData).subscribe((response) => {
+      this.leadSourceData=response;
+    });
+
   }
-  getProductCategories() {
-    try {
-      this.sharedAPI.getProductCategories().subscribe((response: any) => {
-        if (response.status == 'OK') {
-          this.productCategoriesData = response.productCategoriesData;
-        } else {
-          console.error(response.message);
-        }
-      });
-    } catch (error) {
-      console.error(error);
-    }
+  getProductCategoriesData() {
+    this.store.select(selectProductCategoriesData).subscribe((response) => {
+     this.productCategoriesData=response;
+    });
   }
-  getProducts() {
-    try {
-      this.sharedAPI.getProducts().subscribe((response: any) => {
-        if (response.status == 'OK') {
-          this.productsData = response.productsData;
-        } else {
-          console.error(response.message);
-        }
-      });
-    } catch (error) {
-      console.error(error);
-    }
+  getProductsData() {
+    this.store.select(selectProductsData).subscribe((response) => {
+     this.productsData=response;
+    });
   }
 
   initFormgroup() {

@@ -6,6 +6,9 @@ import Swal from 'sweetalert2';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { selectActivityTypesData } from 'src/app/shared/store/selectors/activityTypesData.selectors';
+import { Store } from '@ngrx/store';
+
 
 @Component({
   selector: 'app-manage-activity-type',
@@ -25,16 +28,18 @@ export class ManageActivityTypeComponent implements OnInit {
   constructor(
     private sharedApi: SharedApiService,
     private adminAPI: AdminAPIService,
-    private router: Router
+    private router: Router,
+    private store: Store
   ) {}
 
   ngOnInit() {
-    this.sharedApi.getActivityTypes().subscribe((response: any) => {
-      this.activityTypesData = response.activityTypes;
+    this.store.select(selectActivityTypesData).subscribe((response) => {
+      this.activityTypesData=response;
+     });
       this.dataSource = new MatTableDataSource(this.activityTypesData);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-    });
+   
   }
 
   createActivityType() {

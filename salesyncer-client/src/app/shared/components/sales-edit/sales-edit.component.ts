@@ -54,7 +54,6 @@ export class SalesEditComponent implements OnInit {
     this.sharedAPI.getEmployeesData().subscribe((response) => {
       if (response) {
         this.employeesData = response.employeesData;
-        console.log('Employees list loaded');
       }
     });
 
@@ -67,7 +66,6 @@ export class SalesEditComponent implements OnInit {
       this.sharedAPI.getBranches().subscribe((response: any) => {
         if (response.status == 'OK') {
           this.branchData = response.branchData;
-          console.log('Branch data loaded');
         } else {
           console.error(response.message);
         }
@@ -82,7 +80,6 @@ export class SalesEditComponent implements OnInit {
       this.sharedAPI.getLeads().subscribe((response: any) => {
         if (response.status == 'OK') {
           this.leadsData = response.leadsData;
-          console.log('Leads data loaded');
         } else {
           console.error(response.message);
         }
@@ -111,7 +108,6 @@ export class SalesEditComponent implements OnInit {
       this.sharedAPI.getProducts().subscribe((response: any) => {
         if (response.status == 'OK') {
           this.productsData = response.productsData;
-          console.log('Products data loaded');
         } else {
           console.error(response.message);
         }

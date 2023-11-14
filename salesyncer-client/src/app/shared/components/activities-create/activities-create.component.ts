@@ -3,10 +3,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { SharedApiService } from 'src/app/shared/services/shared-api.service';
+import { selectActivityTypesData } from 'src/app/shared/store/selectors/activityTypesData.selectors';
 
 import { Store } from '@ngrx/store';
 import { selectEmployeeData } from '../../store/selectors/user.selectors';
 import * as UserActions from '../../store/actions/user.actions';
+import { ActivityType, Employee, Lead } from '../../interfaces/interfaces';
+import { selectEmployeesData } from '../../store/selectors/employeesData.selectors';
+import { selectLeadsData } from '../../store/selectors/leadsData.selectors';
 
 @Component({
   selector: 'app-activities-create',
@@ -14,12 +18,12 @@ import * as UserActions from '../../store/actions/user.actions';
   styleUrls: ['./activities-create.component.scss'],
 })
 export class ActivitiesCreateComponent implements OnInit {
-  employeesData!: any;
+  employeesData!: Employee[];
   currentOwner!: string;
   submitted: boolean = false;
   inputGroup!: FormGroup;
   showSpinner: boolean = false;
-  leadsData!: any;
+  leadsData!: Lead[];
   activityTypes!: any;
   hours: string[] = Array.from({ length: 24 }, (_, i) =>
     i.toString().padStart(2, '0')
@@ -29,7 +33,7 @@ export class ActivitiesCreateComponent implements OnInit {
   );
   scheduledTime!: any;
   _id!: string;
-
+  activityTypesData!: ActivityType[] ;
   constructor(
     private sharedAPI: SharedApiService,
     private fb: FormBuilder,
@@ -40,40 +44,38 @@ export class ActivitiesCreateComponent implements OnInit {
   ngOnInit() {
     this.getEmployeesData();
     this.getLeadsData();
-    this.getActivityTypes();
+    this.getActivityTypesData();
 
     // this.initFormgroup();
   }
 
   getEmployeesData() {
-    this.sharedAPI.getEmployeesData().subscribe((response) => {
-      if (response) {
-        this.employeesData = response.employeesData;
-        console.log('Owner list loaded');
-      }
-    });
+      this.store.select(selectEmployeesData).subscribe((response) => {
+       this.employeesData=response;
+      });
+      
     this.store.dispatch(UserActions.retrieveEmployeeData());
 
     this.store.select(selectEmployeeData).subscribe((response) => {
       if (response) {
         this.currentOwner = response.name;
-        console.log('Current owner data loaded');
       }
       this.initFormgroup();
     });
   }
 
   getLeadsData() {
-    this.sharedAPI.getLeads().subscribe((response) => {
-      this.leadsData = response.leadsData;
+    this.store.select(selectLeadsData).subscribe((response) => {
+     this.leadsData=response;
     });
   }
 
-  getActivityTypes() {
-    this.sharedAPI.getActivityTypes().subscribe((response) => {
-      this.activityTypes = response.activityTypes;
+  getActivityTypesData() {
+    this.store.select(selectActivityTypesData).subscribe((response) => {
+     this.activityTypesData=response;
     });
   }
+
 
   initFormgroup() {
     this.inputGroup = this.fb.group({

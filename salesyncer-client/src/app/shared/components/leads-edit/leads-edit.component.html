@@ -60,7 +60,7 @@
         <div class="row">
           <mat-form-field appearance="outline">
             <mat-label>Select Product category</mat-label>
-            <mat-select name="productCategory" formControlName="productCategory" [(ngModel)]="selectedCategory" (ngModelChange)="onCategoryChange()">
+            <mat-select name="productCategory" formControlName="productCategory">
               <mat-option
                 *ngFor="let productCategory of productCategoriesData"
                 [value]="productCategory.productCategory"

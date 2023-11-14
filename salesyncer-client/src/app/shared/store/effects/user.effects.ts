@@ -4,7 +4,7 @@ import { of } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs';
 import * as UserActions from '../actions/user.actions';
 import { SharedApiService } from 'src/app/shared/services/shared-api.service';
-import { EmployeeType } from 'src/app/shared/interfaces/interfaces';
+import { Employee} from 'src/app/shared/interfaces/interfaces';
 import { Store } from '@ngrx/store';
 import {
   selectEmployeeId,
@@ -19,7 +19,7 @@ export class UserEffects {
     private store: Store
   ) {}
 
-  private defaultUser: EmployeeType = {
+  private defaultUser: Employee = {
     address: {
       addressLine1: '',
       addressLine2: '',
@@ -33,6 +33,8 @@ export class UserEffects {
     email: '',
     phone: '',
     role: '',
+    casualLeaveBalance:0,
+    sickLeaveBalance:0,
     designation: '',
     isRemoved: false,
     isBlocked: false,

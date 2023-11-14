@@ -36,7 +36,7 @@ export interface EmployeeType {
   leave?: [];
   target?: [];
   attendance?: [];
-  __v: 0;
+  __v?: 0;
 }
 
 export interface LeaveData {
@@ -246,15 +246,22 @@ export interface Employee {
   email: string;
   phone: string;
   role: string;
+  leave: any[]  ;
   designation: string;
   isRemoved: boolean;
   isBlocked: boolean;
   target: Target[];
   attendance: any[];
+  __v?: 0;
 }
 
 export interface EmployeesData {
   employeesData: Employee[];
+  status?: string;
+  message?: string;
+}
+export interface EmployeeData {
+  employeeData: Employee;
   status?: string;
   message?: string;
 }

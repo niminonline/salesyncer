@@ -8,6 +8,17 @@ import { MatTableDataSource } from '@angular/material/table';
 
 import { Store } from '@ngrx/store';
 import { selectContactsData } from 'src/app/shared/store/selectors/contacts.selectors';
+import * as branchDataActions from '../../../shared/store/actions/branchData.actions';
+import * as leadsDataActions from '../../../shared/store/actions/leadsData.actions';
+import * as leadSourceDataActions from '../../../shared/store/actions/leadSourceData.actions';
+import * as productsDataActions from '../../../shared/store/actions/productsData.actions';
+import * as productCategoriesDataActions from '../../../shared/store/actions/productCategoriesData.actions';
+import * as employeesDataActions from '../../../shared/store/actions/employeesData.actions';
+console.log
+
+
+
+
 import * as ContactsActions from 'src/app/shared/store/actions/contacts.actions';
 import Swal from 'sweetalert2';
 
@@ -49,6 +60,18 @@ export class LeadsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.store.dispatch(branchDataActions.retrieveBranchData());
+    this.store.dispatch(leadsDataActions.retrieveLeadsData());
+    this.store.dispatch(leadSourceDataActions.retrieveLeadSourceData());
+    this.store.dispatch(productsDataActions.retrieveProductsData());
+    this.store.dispatch(productCategoriesDataActions.retrieveProductCategoriesData());
+    this.store.dispatch(employeesDataActions.retrieveEmployeesData());
+
+    
+
+
+
+
     this.sharedAPI.getLeads().subscribe((response) => {
       this.leadsData = response.leadsData;
       this.allLeadsCount = this.leadsData.length;
@@ -73,15 +96,15 @@ export class LeadsComponent implements OnInit {
     });
   }
 
-  getBranchData() {
-    this.sharedAPI.getBranches().subscribe((response: any) => {
-      if (response.status == 'OK') {
-        this.branchData = response.branchData;
-      } else {
-        console.error(response.message);
-      }
-    });
-  }
+  // getBranchData() {
+  //   this.sharedAPI.getBranches().subscribe((response: any) => {
+  //     if (response.status == 'OK') {
+  //       this.branchData = response.branchData;
+  //     } else {
+  //       console.error(response.message);
+  //     }
+  //   });
+  // }
 
   // ngAfterViewInit() {
   //   this.dataSource.paginator = this.paginator;

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SharedApiService } from 'src/app/shared/services/shared-api.service';
@@ -7,6 +7,21 @@ import { SharedApiService } from 'src/app/shared/services/shared-api.service';
 import { Store } from '@ngrx/store';
 import { selectEmployeeData } from '../../store/selectors/user.selectors';
 import * as UserActions from '../../store/actions/user.actions';
+import { selectEmployeesData } from '../../store/selectors/employeesData.selectors';
+import { selectBranchData } from '../../store/selectors/branchData.selectors';
+import { selectLeadSourceData } from '../../store/selectors/leadSourceData.selectors';
+import { selectProductCategoriesData } from '../../store/selectors/productCategoriesData.selectors';
+import { selectProductsData } from '../../store/selectors/productsData.selectors';
+import {
+  Employee,
+  Lead,
+  LeadSource,
+  LeadSourceData,
+  Product,
+  ProductCategoriesData,
+  ProductCategory,
+  ProductsData,
+} from '../../interfaces/interfaces';
 
 @Component({
   selector: 'app-leads-edit',
@@ -14,11 +29,11 @@ import * as UserActions from '../../store/actions/user.actions';
   styleUrls: ['./leads-edit.component.scss'],
 })
 export class LeadsEditComponent implements OnInit {
-  leadSourceData: any;
-  productCategoriesData: any;
-  productsData: any;
+  leadSourceData!: LeadSource[];
+  productCategoriesData!: ProductCategory[];
+  productsData!: Product[];
   status!: any;
-  employeesData!: any;
+  employeesData!: Employee[];
   currentOwner!: string;
   currentBranch!: string;
   submitted: boolean = false;
@@ -26,7 +41,7 @@ export class LeadsEditComponent implements OnInit {
   branchData!: any;
   showSpinner: boolean = false;
   leadData!: any;
-  leadsData!:any;
+  leadsData!: any;
   _id!: any;
   filteredProducts: any;
   selectedCategory: any;
@@ -38,24 +53,6 @@ export class LeadsEditComponent implements OnInit {
     private store: Store,
     private activatedRouter: ActivatedRoute
   ) {
-
-    this._id = this.activatedRouter.snapshot.queryParamMap.get('_id');
-
-    this.activatedRouter.data.subscribe((data) => {
-      this.leadSourceData = data['initData'].leadSourceData.leadSourceData;
-      this.productCategoriesData = data['initData'].productCategoriesData.productCategoriesData;
-      this.productsData = data['initData'].productsData.productsData;
-      this.branchData = data['initData'].branchData.branchData;
-      this.employeesData = data['initData'].employeesData.employeesData;
-      this.leadsData = data['initData'].leadsData.leadsData;
-      this.leadData=this.leadsData.find((lead:any)=>(lead._id==this._id))
-      this.initFormgroup();
-    });
-
-
-
-
-
     this.leadsGroup = this.fb.group({
       branch: [this.leadData?.branch || '', [Validators.required]],
       type: [this.leadData?.type || '', [Validators.required]],
@@ -73,17 +70,15 @@ export class LeadsEditComponent implements OnInit {
       owner: [this.leadData?.owner || '', [Validators.required]],
       notes: [this.leadData?.notes || ''],
     });
-
-
   }
 
   ngOnInit() {
-    // this.getEmployeesData();
-    // this.getBranchData();
-    // this.getLeadSource();
-    // this.getProductCategories();
-    // this.getProducts();
-    // this.getleadData();
+    this.getEmployeesData();
+    this.getBranchData();
+    this.getLeadSourceData();
+    this.getProductCategoriesData();
+    this.getProductsData();
+    this.getleadData();
   }
 
   getleadData() {
@@ -95,12 +90,10 @@ export class LeadsEditComponent implements OnInit {
   }
 
   getEmployeesData() {
-    this.sharedAPI.getEmployeesData().subscribe((response) => {
-      if (response) {
-        this.employeesData = response.employeesData;
-        console.log('Owner list loaded');
-        this.initFormgroup();
-      }
+    this.store.select(selectEmployeesData).subscribe((response) => {
+
+      this.employeesData = response;
+      // this.initFormgroup();
     });
     this.store.dispatch(UserActions.retrieveEmployeeData());
 
@@ -108,72 +101,38 @@ export class LeadsEditComponent implements OnInit {
       if (response) {
         this.currentOwner = response.name;
         this.currentBranch = response.branch;
-        console.log('Current owner data loaded');
-        this.initFormgroup();
+        // this.initFormgroup();
       }
     });
   }
 
   getBranchData() {
-    try {
-      this.sharedAPI.getBranches().subscribe((response: any) => {
-        if (response.status == 'OK') {
-          this.branchData = response.branchData;
-          console.log('Branch data loaded');
-          this.initFormgroup();
-        } else {
-          console.error(response.message);
-        }
-      });
-    } catch (error) {
-      console.error(error);
-    }
+    this.store.select(selectBranchData).subscribe((response) => {
+      this.branchData = response;
+    });
   }
 
-  getLeadSource() {
-    try {
-      this.sharedAPI.getLeadSource().subscribe((response: any) => {
-        if (response.status == 'OK') {
-          this.leadSourceData = response.leadSourceData;
-          this.initFormgroup();
-        } else {
-          console.error(response.message);
-        }
-      });
-    } catch (error) {
-      console.error(error);
-    }
+  getLeadSourceData() {
+    this.store.select(selectLeadSourceData).subscribe((response) => {
+      this.leadSourceData = response;
+    });
   }
 
-  getProductCategories() {
-    try {
-      this.sharedAPI.getProductCategories().subscribe((response: any) => {
-        if (response.status == 'OK') {
-          this.productCategoriesData = response.productCategoriesData;
-          this.initFormgroup();
-        } else {
-          console.error(response.message);
-        }
-      });
-    } catch (error) {
-      console.error(error);
-    }
+  getProductsData() {
+    this.store.select(selectProductsData).subscribe((response) => {
+      this.productsData = response;
+      this.filteredProducts=this.productsData;
+
+      this.initFormgroup();
+    });
   }
 
-  getProducts() {
-    try {
-      this.sharedAPI.getProducts().subscribe((response: any) => {
-        if (response.status == 'OK') {
-          this.productsData = response.productsData;
-          this.initFormgroup();
-        } else {
-          console.error(response.message);
-        }
-      });
-    } catch (error) {
-      console.error(error);
-    }
+  getProductCategoriesData() {
+    this.store.select(selectProductCategoriesData).subscribe((response) => {
+      this.productCategoriesData = response;
+    });
   }
+  
 
   initFormgroup() {
     if (this.leadsGroup) {
@@ -198,8 +157,14 @@ export class LeadsEditComponent implements OnInit {
       notes: [this.leadData?.notes || ''],
     });
 
-
-    
+    const categoryControl: FormControl = this.leadsGroup.get(
+      'productCategory'
+    ) as FormControl;
+    categoryControl.valueChanges.subscribe((selectedCategory) => {
+      if (selectedCategory) {
+        this.onCategoryChange(selectedCategory);
+      }
+    });
   }
 
   submitLeads(data: any): void {
@@ -219,7 +184,7 @@ export class LeadsEditComponent implements OnInit {
         notes,
       } = data.value;
       const body = {
-        _id:this._id,
+        _id: this._id,
         branch,
         type,
         status,
@@ -232,7 +197,6 @@ export class LeadsEditComponent implements OnInit {
       };
 
       this.sharedAPI.editLead(body).subscribe((response) => {
-
         if (response && response.status !== 'OK') {
           this.showSpinner = false;
           Swal.fire('Error', response.message, 'error');
@@ -246,12 +210,10 @@ export class LeadsEditComponent implements OnInit {
             timer: 1500,
           });
 
-          const currentroute= this.router.url;
-          if(currentroute.toString().includes('admin'))
-          {
-           this.router.navigate(['admin/leads']);
-          }
-          else{
+          const currentroute = this.router.url;
+          if (currentroute.toString().includes('admin')) {
+            this.router.navigate(['admin/leads']);
+          } else {
             this.router.navigate(['leads']);
           }
         }
@@ -271,8 +233,15 @@ export class LeadsEditComponent implements OnInit {
       this.router.navigate(['leads']);
     }
   }
-  onCategoryChange(){
-    this.filteredProducts= this.productsData.filter((product:any)=>product.category== this.selectedCategory)
+  // onCategoryChange() {
+    // this.filteredProducts = this.productsData.filter(
+    //   (product: any) => product.category == this.selectedCategory
+    // );
+  // }
 
+  onCategoryChange(selectedCategory: string) {
+    this.filteredProducts = this.productsData.filter(
+      (product: any) => product.category == selectedCategory
+    );
   }
 }

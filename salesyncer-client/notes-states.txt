@@ -1,0 +1,155 @@
+
+import { Store } from '@ngrx/store';
+
+private store: Store
+
+
+
+
+-----------------------------------
+import * as branchDataActions from '../../../shared/store/actions/branchData.actions';
+
+setBranchData(){
+    this.store.dispatch(branchDataActions.retrieveBranchData());
+
+}
+
+-------------------------------------
+
+import { selectBranchData } from '../../../shared/store/selectors/branchData.selectors';
+  getBranchData() {
+    this.store.select(selectBranchData).subscribe((response) => {
+     this.branchData= response;
+    });
+  }
+-------------------------------------
+
+import * as leadsDataActions from '../../../shared/store/actions/leadsData.actions';
+setLeadsData(){
+
+    this.store.dispatch(leadsDataActions.retrieveLeadsData());
+
+}
+
+-------------------------------------
+import { selectLeadsData } from '../../../shared/store/selectors/leadsData.selectors';
+
+  getLeadsData() {
+    this.store.select(selectLeadsData).subscribe((response) => {
+     this.leadsData=response;
+    });
+  }
+
+--------------------------------------
+import * as leadSourceDataActions from '../../../shared/store/actions/leadSourceData.actions';
+
+  setLeadSourceData(){
+    this.store.dispatch(leadSourceDataActions.retrieveLeadSourceData());
+
+  }
+
+----------------------------------------
+import { selectLeadSourceData } from '../../../shared/store/selectors/leadSourceData.selectors';
+
+  getLeadSourceData() {
+    this.store.select(selectLeadSourceData).subscribe((response) => {
+      this.leadSourceData=response;
+    });
+
+  }
+------------------------------------------
+import * as productsDataActions from '../../../shared/store/actions/productsData.actions';
+
+  setProductsData(){
+
+    this.store.dispatch(productsDataActions.retrieveProductsData());
+  }
+---------------------------------------------
+
+import { selectProductsData } from '../../../shared/store/selectors/productsData.selectors';
+  getProductsData() {
+    this.store.select(selectProductsData).subscribe((response) => {
+     this.productsData=response;
+    });
+  }
+  
+  ---------------------------------------------
+import * as productCategoriesDataActions from '../../../shared/store/actions/productCategoriesData.actions';
+  
+    setProductCategoriesData(){
+
+    this.store.dispatch(productCategoriesDataActions.retrieveProductCategoriesData());
+  }
+
+------------------------------------------------
+
+import { selectProductCategoriesData } from 'src/app/shared/store/selectors/productCategoriesData.selectors';
+  getProductCategoriesData() {
+    this.store.select(selectProductCategoriesData).subscribe((response) => {
+     this.productCategoriesData=response;
+    });
+  }
+
+-------------------------------------------
+import * as activitiesDataActions from '../../../shared/store/actions/activitiesData.actions';
+
+  setActivitiesData(){
+
+    this.store.dispatch(activitiesDataActions.retrieveActivitiesData());
+  }
+
+-----------------------------------------
+import { selectActivitiesData } from 'src/app/shared/store/selectors/activitiesData.selectors';
+
+  getActivitiesData() {
+    this.store.select(selectActivitiesData).subscribe((response) => {
+     this.activitiesData=response;
+    });
+  }
+
+-----------------------------------------------
+import * as activityTypesDataActions from '../../../shared/store/actions/activityTypesData.actions';
+setActivityTypesData(){
+
+    this.store.dispatch(activityTypesDataActions.retrieveActivityTypesData());
+}
+
+--------------------------------------------
+import { selectActivityTypesData } from 'src/app/shared/store/selectors/activityTypesData.selectors';
+  getActivityTypesData() {
+    this.store.select(selectActivityTypesData).subscribe((response) => {
+     this.activityTypesData=response;
+    });
+  }
+
+---------------------------------------------
+import * as salesDataActions from '../../../shared/store/actions/salesData.actions';
+setSalesData(){
+    this.store.dispatch(salesDataActions.retrieveSalesData());
+
+}
+
+---------------------------------------------
+import { selectSalesData } from 'src/app/shared/store/selectors/salesData.selectors';
+  getSalesData() {
+    this.store.select(selectSalesData).subscribe((response) => {
+      this.salesData=response;
+    });
+  }
+
+---------------------------------------------
+import * as employeesDataActions from '../../../shared/store/actions/employeesData.actions';
+setEmployeesData(){
+
+    this.store.dispatch(employeesDataActions.retrieveEmployeesData());
+}
+
+---------------------------------------------
+import { selectEmployeesData } from 'src/app/shared/store/selectors/employeesData.selectors';
+  getEmployeesData() {
+    this.store.select(selectEmployeesData).subscribe((response) => {
+       this.employeesData=response;
+    });
+  }
+
+-------------------------------------------------

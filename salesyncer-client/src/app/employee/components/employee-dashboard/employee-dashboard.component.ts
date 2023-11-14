@@ -45,56 +45,47 @@ export class EmployeeDashboardComponent implements OnInit {
   getBranchData() {
     this.store.dispatch(branchDataActions.retrieveBranchData());
     this.store.select(selectBranchData).subscribe((response) => {
-      console.log(response);
     });
   }
 
   getLeadsData() {
     this.store.dispatch(leadsDataActions.retrieveLeadsData());
     this.store.select(selectLeadsData).subscribe((response) => {
-      console.log(response);
     });
   }
   getLeadSourceData() {
     this.store.dispatch(leadSourceDataActions.retrieveLeadSourceData());
     this.store.select(selectLeadSourceData).subscribe((response) => {
-      console.log(response);
     });
   }
   getProductsData() {
     this.store.dispatch(productsDataActions.retrieveProductsData());
     this.store.select(selectProductsData).subscribe((response) => {
-      console.log(response);
     });
   }
   getProductCategoriesData() {
     this.store.dispatch(productCategoriesDataActions.retrieveProductCategoriesData());
     this.store.select(selectProductCategoriesData).subscribe((response) => {
-      console.log(response);
     });
   }
   getActivitiesData() {
     this.store.dispatch(activitiesDataActions.retrieveActivitiesData());
     this.store.select(selectActivitiesData).subscribe((response) => {
-      console.log(response);
     });
   }
   getActivityTypesData() {
     this.store.dispatch(activityTypesDataActions.retrieveActivityTypesData());
     this.store.select(selectActivityTypesData).subscribe((response) => {
-      console.log(response);
     });
   }
   getSalesData() {
     this.store.dispatch(salesDataActions.retrieveSalesData());
     this.store.select(selectSalesData).subscribe((response) => {
-      console.log(response);
     });
   }
   getEmployeesData() {
     this.store.dispatch(employeesDataActions.retrieveEmployeesData());
     this.store.select(selectEmployeesData).subscribe((response) => {
-      console.log(response);
     });
   }
 }

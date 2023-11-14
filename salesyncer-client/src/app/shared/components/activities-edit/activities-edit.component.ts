@@ -5,8 +5,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SharedApiService } from 'src/app/shared/services/shared-api.service';
 
 import { Store } from '@ngrx/store';
-import { selectEmployeeData } from '../../store/selectors/user.selectors';
-import * as UserActions from '../../store/actions/user.actions';
+import { selectActivityTypesData } from 'src/app/shared/store/selectors/activityTypesData.selectors';
+import { selectEmployeesData } from 'src/app/shared/store/selectors/employeesData.selectors';
+import { selectLeadsData } from '../../../shared/store/selectors/leadsData.selectors';
+
+
+import { ActivityType, ActivityTypesData, Employee } from '../../interfaces/interfaces';
+
 
 @Component({
   selector: 'app-activities-edit',
@@ -14,7 +19,7 @@ import * as UserActions from '../../store/actions/user.actions';
   styleUrls: ['./activities-edit.component.scss'],
 })
 export class ActivitiesEditComponent implements OnInit {
-  employeesData!: any;
+  employeesData!: Employee[];
   currentOwner!: string;
   submitted: boolean = false;
   inputGroup!: FormGroup;
@@ -41,6 +46,7 @@ export class ActivitiesEditComponent implements OnInit {
   scheduledTimeToDisplay!: string;
   activityData!: any;
   _id!: string | null;
+  activityTypesData!: ActivityType[];
 
   constructor(
     private sharedAPI: SharedApiService,
@@ -67,39 +73,29 @@ export class ActivitiesEditComponent implements OnInit {
   ngOnInit() {
     this.getEmployeesData();
     this.getLeadsData();
-    this.getActivityTypes();
+    this.getActivityTypesData();
     this.getActivityData();
 
     // this.initFormgroup();
   }
 
   getEmployeesData() {
-    this.sharedAPI.getEmployeesData().subscribe((response) => {
-      if (response) {
-        this.employeesData = response.employeesData;
-        console.log('Owner list loaded');
-      }
-    });
-    this.store.dispatch(UserActions.retrieveEmployeeData());
-
-    this.store.select(selectEmployeeData).subscribe((response) => {
-      if (response) {
-        this.currentOwner = response.name;
-        console.log('Current owner data loaded');
-      }
-      // this.initFormgroup();
+    this.store.select(selectEmployeesData).subscribe((response) => {
+     this.employeesData=response;
     });
   }
 
   getLeadsData() {
-    this.sharedAPI.getLeads().subscribe((response) => {
-      this.leadsData = response.leadsData;
+    this.store.select(selectLeadsData).subscribe((response) => {
+     this.leadsData=response;
     });
   }
 
-  getActivityTypes() {
-    this.sharedAPI.getActivityTypes().subscribe((response) => {
-      this.activityTypes = response.activityTypes;
+
+
+  getActivityTypesData() {
+    this.store.select(selectActivityTypesData).subscribe((response) => {
+     this.activityTypesData=response;
     });
   }
 
@@ -107,7 +103,6 @@ export class ActivitiesEditComponent implements OnInit {
     this.sharedAPI.getActivity(this._id).subscribe((response) => {
       this.activityData = response.activityData;
 
-      console.log('Activity data fetched', this.activityData);
       this.leadId = this.activityData.lead._id;
 
       this.owner = this.activityData.lead.owner;

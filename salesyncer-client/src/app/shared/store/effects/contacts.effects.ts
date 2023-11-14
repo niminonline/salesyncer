@@ -95,7 +95,7 @@ export class ContactsEffects {
       switchMap(() => {
         return this.sharedApi.getContacts().pipe(
           tap((response) => {
-            console.log('API Response:', response); 
+            // console.log('API Response:', response); 
           }),
           map((response) =>
             ContactsActions.storecontactsData({
