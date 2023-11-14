@@ -12,8 +12,10 @@ export class SideNavbarMenuComponent {
 
 
   constructor(private router:Router){}
-  navigateToLink(link: string) {
+
+  navigateToLink(link: string,menuItem: any) {
     this.router.navigate([link]);
+    this.selectedMenuItem = menuItem;
   }
 
 }

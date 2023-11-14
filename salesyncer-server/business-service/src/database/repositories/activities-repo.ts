@@ -147,3 +147,24 @@ export const qDeleteActivityTypeDataById = async (_id: string) => {
 };
 
 ////==============================================
+
+export const qIsTimeCollisionExists = async (
+  ownerInput: string,
+  scheduledTimeInput: Date
+) => {
+  try {
+    return await Activity.find({
+      $and: [
+        { owner: ownerInput },
+        {
+          scheduledTime: {
+            $gte:  new Date(scheduledTimeInput).getTime() - 10 * 60 * 1000,
+            $lte: new Date(scheduledTimeInput).getTime() + 10 * 60 * 1000,
+          },
+        },
+      ],
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};

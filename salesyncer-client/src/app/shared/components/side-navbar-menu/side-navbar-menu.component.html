@@ -1,10 +1,10 @@
 <div class="component-sidebar-body">
   <div class="menu-container" *ngFor="let item of menuItems">
-    <div class="menu">
-      <button mat-flat-button class="menu-button" theme="warn" (click)="navigateToLink(item.link)">
+    <div class="menu" [class.active]="item === selectedMenuItem">
+      <a  class="menu-button" theme="warn" (click)="navigateToLink(item.link,item)">
         <i class="material-icons text-sky-600 px-2">{{item.icon}}</i>
-        {{item.text}}
-      </button>
+        <h3 class="menu-text">{{item.text}} </h3>
+      </a>
     </div>
   </div>
 </div>

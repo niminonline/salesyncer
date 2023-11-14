@@ -1,8 +1,18 @@
   
-  import { qCreateActivityData,qGetActivityCount,qIncActivityCount } from "../database/repositories/activities-repo"
+  import { qCreateActivityData,qGetActivityCount,qIncActivityCount, qIsTimeCollisionExists } from "../database/repositories/activities-repo"
   
   const createActivityData = async (activityData: any) => {
     try {
+
+      const scheduledTimeInputStr =activityData.scheduledTime;
+      const ownerInput = activityData.owner;
+      const scheduledTimeInput= new Date(scheduledTimeInputStr);
+
+      const checkTimeCollision:any= await qIsTimeCollisionExists(ownerInput,scheduledTimeInput);
+      // console.log("Time collision",checkTimeCollision);
+      if(checkTimeCollision.length){
+        return { status: "FAILED", message: `This time slot is already alloted for ${ownerInput}. Please choose a time with 10 minutes gap.` };
+      }
       const activityCount = await qGetActivityCount();
       if (activityData) {
   

@@ -2,30 +2,37 @@
 
 
 .component-sidebar-body{
- min-width:10vw
+ min-width:12vw;
 }
 
-.menu {
-  margin: 10px 0px;
+// .menu {
+//   margin: 10px 0px;
+//   padding: 12px 8px;
  
 
-}
+// }
 
 .menu-button {
   width: 100%;
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  color: $primary-blue;
+  // color: rgb(0, 125, 209);
+  color: $theme-blue-dark;
+  padding: 10px 0px 10px 0px;
 }
 
 
 .menu-button:hover {
-  color: $white;
-  background-color: $primary-blue;
+  // color: $white;
+  // background-color: $primary-blue;
+  cursor: pointer;
+  scale: 1.1;
+
 }
 .material-icons {
   margin: 0px 5px 0px;
+  padding-left: 15px;
 }
 
 mat-flat-button{
@@ -35,4 +42,18 @@ mat-flat-button{
 .menu-container{
  padding-top: 10px;
   width: 100%;
+}
+
+.menu-text{
+  padding: 0px;
+  margin: 0px;
+}
+
+.menu.active {
+  background-color: $theme-blue;
+ 
+  & * {
+    color: white;
+  }
+
 }
