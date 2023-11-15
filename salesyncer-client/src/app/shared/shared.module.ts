@@ -71,6 +71,7 @@ const components = [
   TableComponent,
   UpdateEmployeeComponent,
   TargetCardComponent,
+  TargetWidgetComponent,
   ActivitiesWidgetComponent,
   LeadsWidgetComponent,
   SalesWidgetComponent,

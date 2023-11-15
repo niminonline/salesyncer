@@ -1,1 +1,17 @@
-<p>leave-request-widget works!</p>
+<div class="widgets-row-full-height">
+    <div class="leave-request widget-container-full-height">
+      <h1 class="widget-title">Pending Requests</h1>
+  
+      <div class="box-col" (click)="navToLeaveRequests()">
+        <div class="hot-box box">
+          <h1 class="bold-count">{{ leaveRequestCount }}</h1>
+          <h1>Leave Request</h1>
+        </div>
+        <div class="warm-box box">
+          <h1 class="bold-count">{{ cancelRequestCount }}</h1>
+          <h1>Cancellation Request</h1>
+        </div>
+        
+      </div>
+    </div>
+  

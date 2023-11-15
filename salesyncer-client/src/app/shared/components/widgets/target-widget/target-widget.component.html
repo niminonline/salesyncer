@@ -1,1 +1,108 @@
-<p>target-widget works!</p>
+<div class="widgets-row">
+  <div class="target-widget widget-container">
+    <h1 class="widget-title">Target View</h1>
+
+    <div class="select-employee-block w-full flex justify-center gap-7">
+      <form
+        [formGroup]="empSelectForm"
+        (ngSubmit)="onEmpSelectSubmit(empSelectForm)"
+        class="select-employee-block-elements w-full flex justify-center gap-7 items-baseline"
+      >
+        <mat-form-field appearance="outline" *ngIf="role == 'admin'">
+          <mat-label>Select Employee</mat-label>
+          <mat-select formControlName="_id">
+            <mat-option
+              *ngFor="let employee of employeesData"
+              value="{{ employee._id }}"
+              >{{ employee.name }}</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Month</mat-label>
+          <mat-select formControlName="month">
+            <mat-option *ngFor="let month of months" value="{{ month }}">{{
+              month
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Year</mat-label>
+          <mat-select formControlName="year">
+            <mat-option *ngFor="let year of years" value="{{ year }}">{{
+              year
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <button
+          class="submitButton"
+          mat-raised-button
+          color="primary"
+          type="submit"
+        >
+          View
+        </button>
+      </form>
+    </div>
+
+    <div class="target-card" *ngIf="isTargetCardVisible">
+      <table>
+        <tr>
+          <th class="text-left">
+            <h2>Assigned Target :</h2>
+          </th>
+
+          <td>
+            <h2>{{ target }}</h2>
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <h2>Achieved Target :</h2>
+          </th>
+
+          <td>
+            <h2>{{ achieved }}</h2>
+          </td>
+        </tr>
+        <tr>
+          <th class="text-left">
+            <h2>Remaining :</h2>
+          </th>
+
+          <td>
+            <h2>{{ remaining }}</h2>
+          </td>
+        </tr>
+      </table>
+
+      <mat-progress-bar
+        mode="determinate"
+        value="{{ percetangeCompleted }}"
+      ></mat-progress-bar>
+      <h3 class="my-3">
+        Achieved {{ percetangeCompleted }}% of the monthly target
+      </h3>
+    </div>
+  </div>
+
+  <div class="target-widget widget-container" *ngIf="role !== 'admin'">
+    <h1 class="widget-title">Remaining Leaves</h1>
+    
+    <div class="box-row">
+      
+    <div class="casual-balance-box box-horizontal">
+      <h1 class="bold-count">{{ casualLeaveBalance }}</h1>
+      <h1>Casual Leaves</h1>
+    </div>
+
+    <div class="sick-balance-box box-horizontal">
+      <h1 class="bold-count">{{ sickLeaveBalance }}</h1>
+      <h1>Sick Leaves</h1>
+    </div>
+    
+    </div>
+
+  </div>
+</div>

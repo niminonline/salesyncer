@@ -91,6 +91,7 @@ export class ActivitiesComponent implements OnInit {
         );
       });
       this.upcomingActivitiesCount = this.upcomingActivities.length;
+      
       this.todaysActivities = this.activitiesData.filter((activity: any) => {
         const currentScheduledTime = new Date(activity.scheduledTime).setHours(
           0,

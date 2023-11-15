@@ -1,5 +1,89 @@
-<h1 class=" widget-title">Widget</h1>
-{{role}}
-Hot->{{hotCount}}
-Warm->{{warmCount}}
-Cold->{{coldCount}}
+<div class="widgets-row">
+  <div class="leads-priority widget-container">
+    <h1 class="widget-title">Leads Priority</h1>
+
+    <div class="box-row" (click)="navigateLeads()">
+      <div class="hot-box box">
+        <h1 class="bold-count">{{ hotCount }}</h1>
+        <h1>Hot Leads</h1>
+      </div>
+      <div class="warm-box box">
+        <h1 class="bold-count">{{ warmCount }}</h1>
+        <h1>Warm Leads</h1>
+      </div>
+      <div class="cold-box box">
+        <h1 class="bold-count">{{ coldCount }}</h1>
+        <h1>Cold Leads</h1>
+      </div>
+    </div>
+  </div>
+
+  <div class="leads-pipeline widget-container">
+    <h1 class="widget-title">Leads Pipeline</h1>
+    <div class="pipeline-group" (click)="navigateLeads()">
+      <div class="pipeline-shape new-shape">
+        <div class="shape-head">
+          <h1 class="bold-count">{{ newCount }}</h1>
+          <h1 class="pipeline-text">New</h1>
+        </div>
+        <div class="arrow-right"></div>
+      </div>
+
+      <div class="pipeline-shape In-progress-shape">
+        <div class="shape-head">
+          <h1 class="bold-count">{{ inProgressCount }}</h1>
+          <h1 class="pipeline-text">In Progress</h1>
+        </div>
+        <div class="arrow-right"></div>
+      </div>
+      <div class="pipeline-shape new-negotiation">
+        <div class="shape-head">
+          <h1 class="bold-count">{{ negotiationCount }}</h1>
+          <h1 class="pipeline-text">Negotiation</h1>
+        </div>
+        <div class="arrow-right"></div>
+      </div>
+
+      <div class="pipeline-shape new-converted">
+        <div class="shape-head">
+          <h1 class="bold-count">{{ convertedCount }}</h1>
+          <h1 class="pipeline-text">Converted</h1>
+        </div>
+        <div class="arrow-right"></div>
+      </div>
+      <div class="pipeline-shape new-failed">
+        <div class="shape-head">
+          <h1 class="bold-count">{{ failedCount }}</h1>
+          <h1 class="pipeline-text">Failed</h1>
+        </div>
+        <div class="arrow-right"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="widgets-row">
+  <div class="trending-categories widget-container">
+    <h1 class="widget-title">Trending Categories</h1>
+
+    <div class="chart-container">
+      <canvas id="trendingCategoriesChart"></canvas>
+    </div>
+  </div>
+
+  <div class="trending-products widget-container">
+    <h1 class="widget-title">Trending Products</h1>
+
+    <div class="chart-container">
+      <canvas id="trendingProductsChart"></canvas>
+    </div>
+  </div>
+
+  <div class="popular-sources widget-container">
+    <h1 class="widget-title">Popular Lead Sources</h1>
+
+    <div class="chart-container">
+      <canvas id="popularSourcesChart"></canvas>
+    </div>
+  </div>
+</div>

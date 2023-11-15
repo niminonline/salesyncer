@@ -36,16 +36,18 @@ export class AdminDashboardComponent implements OnInit {
   salesData!: Sale[];
   employeesData!: Employee[];
   role!:string;
+  user!:string;
   constructor(private sharedApi: SharedApiService, private store: Store) {
   }
 
   ngOnInit() {
     this.role="admin";
-    this.getBranchData();
-    this.getProductsData();
-    this.getActivitiesData();
-    this.getSalesData();
-    this.getEmployeesData();
+    this.user="admin";
+    // this.getBranchData();
+    // this.getProductsData();
+    // this.getActivitiesData();
+    // this.getSalesData();
+    // this.getEmployeesData();
     // this.getProductCategoriesData();
     // this.getActivityTypesData();
     // this.getLeadSourceData();
@@ -80,12 +82,7 @@ export class AdminDashboardComponent implements OnInit {
       this.salesData = response;
     });
   }
-  getEmployeesData() {
-    this.store.dispatch(employeesDataActions.retrieveEmployeesData());
-    this.store.select(selectEmployeesData).subscribe((response) => {
-      this.employeesData = response;
-    });
-  }
+  
 
 
 }

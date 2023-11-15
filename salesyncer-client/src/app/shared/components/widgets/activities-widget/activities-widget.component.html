@@ -1,1 +1,21 @@
-<p>activities-widget works!</p>
+<div class="widgets-row">
+  <div class="target-widget widget-container">
+    <h1 class="widget-title">Activities</h1>
+
+    <div class="box-row">
+      
+        <div class="casual-balance-box box-horizontal" (click)="navigateActivities()">
+          <h1 class="bold-count">{{ missedActivitiesCount }}</h1>
+          <h1>Missed Activities</h1>
+        </div>
+    
+        <div class="sick-balance-box box-horizontal" (click)="navigateActivities()">
+          <h1 class="bold-count">{{ todaysActivitiesCount }}</h1>
+          <h1>Today's Activities</h1>
+        </div>
+        
+        </div>
+
+    </div>
+    </div>
+

@@ -1,4 +1,4 @@
-<div class="component-body target-card ">
+<div class="component-body target-card">
   <table>
     <tr>
       <th class="text-left">
@@ -6,7 +6,7 @@
       </th>
 
       <td>
-        <h2>{{target}}</h2>
+        <h2>{{ target }}</h2>
       </td>
     </tr>
     <tr>
@@ -15,7 +15,7 @@
       </th>
 
       <td>
-        <h2>{{achieved}}</h2>
+        <h2>{{ achieved }}</h2>
       </td>
     </tr>
     <tr>
@@ -24,12 +24,16 @@
       </th>
 
       <td>
-        <h2>{{remaining}}</h2>
+        <h2>{{ remaining }}</h2>
       </td>
     </tr>
-
   </table>
 
-  <mat-progress-bar mode="determinate" value={{percetangeCompleted}}></mat-progress-bar>
-  <h3 class="my-3">Achieved {{percetangeCompleted}}% of the monthly target</h3>
+  <mat-progress-bar
+    mode="determinate"
+    value="{{ percetangeCompleted }}"
+  ></mat-progress-bar>
+  <h3 class="my-3">
+    Achieved {{ percetangeCompleted }}% of the monthly target
+  </h3>
 </div>

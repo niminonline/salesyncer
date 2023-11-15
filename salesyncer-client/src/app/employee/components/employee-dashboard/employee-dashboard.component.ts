@@ -39,11 +39,15 @@ export class EmployeeDashboardComponent implements OnInit {
   employeesData!: Employee[];
   activityTypes!: ActivityType[];
   productCategories!: ProductCategory[];
+  role!:string;
+  user!:string;
 
 
   constructor(private sharedApi: SharedApiService, private store: Store) {}
 
   ngOnInit() {
+    this.role="user" ;
+
     // this.getBranchData();
     // this.getLeadsData();
     // this.getLeadSourceData();
@@ -52,7 +56,7 @@ export class EmployeeDashboardComponent implements OnInit {
     // this.getActivitiesData();
     // this.getActivityTypesData();
     // this.getSalesData();
-    this.getEmployeesData();
+    // this.getEmployeesData();
     this.getOwnerData()
   }
 
@@ -117,7 +121,7 @@ export class EmployeeDashboardComponent implements OnInit {
 
     this.store.select(selectEmployeeData).subscribe((employeeData) => {
       if (employeeData) {
-        this.ownerName = employeeData.name;
+        this.user = employeeData.name;
                  
   }
 });

@@ -1,50 +1,49 @@
+<div class="main-body">
+  <div class="contents">
+    <h1 class="title">Dashboard</h1>
+    <!-- <h1 class="greetings">Welcome Administrator...</h1> -->
 
-<h1 class="title">Dashboard</h1>
-<h1 class="greetings">Welcome Administrator...</h1>
-
-<div class="row1">
-    <div class="col1 widget-container">
-        <app-leads-widget [role]=role></app-leads-widget>
-
+    <div class="widget-row leads-row">
+      <div class="widget-col leads-status">
+        <app-target-widget [role]="role" [user]="user"></app-target-widget>
+      </div>
+      <div class="widget-col activities-block">
+        <app-activities-widget
+          [role]="role"
+          [user]="user"
+        ></app-activities-widget>
+      </div>
+      <div class="widget-col leave-request-block">
+        <app-leave-request-widget
+          [role]="role"
+          [user]="user"
+        ></app-leave-request-widget>
+      </div>
     </div>
-    <div class="col2">
 
+
+    <div class="widget-row-multi">
+      <div class="widget-col">
+        <app-leads-widget [role]="role" [user]="user"></app-leads-widget>
+      </div>
+      <!-- <div class="widget-col widget-container">
+                
+            </div> -->
     </div>
-</div>
 
-
-<div class="row2 leads-row">
-    <div class="col1 leads-status">
-
+    <div class="widget-row">
+      <div class="widget-col"></div>
+      <div class="widget-row"></div>
     </div>
-    <div class="col2 leads-pipeline">
 
+    <div class="widget-row">
+      <div class="widget-col"></div>
+      <div class="widget-col"></div>
     </div>
-</div>
 
-<div class="row3">
-    <div class="col1">
-
+    <div class="widget-row">
+      <div class="widget-col"></div>
+      <div class="widget-col"></div>
     </div>
-    <div class="col2">
-
-    </div>
-</div>
-
-<div class="row4">
-    <div class="col1">
-
-    </div>
-    <div class="col2">
-
-    </div>
-</div>
-
-<div class="row5">
-    <div class="col1">
-
-    </div>
-    <div class="col2">
-
-    </div>
+  </div>
 </div>

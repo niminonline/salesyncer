@@ -1,0 +1,36 @@
+@import "/src/styles.scss";
+
+.pipeline-shape {
+  display: flex;
+  flex-direction: row;
+}
+.shape-head {
+  cursor: pointer;
+  width: auto;
+  height: 120px;
+  background-color: green;
+  color: $white;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+}
+
+.arrow-right {
+  width: 0;
+  height: 0;
+  border-top: 60px solid transparent;
+  border-bottom: 60px solid transparent;
+
+  border-left: 60px solid green;
+}
+
+.pipeline-group {
+  display: flex;
+  gap: 15px;
+}
+
+.chart-container{
+  width:480px;
+  height:auto;
+}
