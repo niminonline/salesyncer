@@ -55,6 +55,14 @@ import { SalesDataEffects } from './store/effects/salesData.effects';
 import { salesDataReducer } from './store/reducers/salesData.reducer';
 import { EmployeesDataEffects } from './store/effects/employeesData.effects';
 import { employeesDataReducer } from './store/reducers/employeesData.reducer';
+import { TargetWidgetComponent } from './components/widgets/target-widget/target-widget.component';
+import { ActivitiesWidgetComponent } from './components/widgets/activities-widget/activities-widget.component';
+import { LeadsWidgetComponent } from './components/widgets/leads-widget/leads-widget.component';
+import { SalesWidgetComponent } from './components/widgets/sales-widget/sales-widget.component';
+import { ProductsWidgetComponent } from './components/widgets/products-widget/products-widget.component';
+import { LeaveRequestWidgetComponent } from './components/widgets/leave-request-widget/leave-request-widget.component';
+import { LeavesWidgetComponent } from './components/widgets/leaves-widget/leaves-widget.component';
+import { LeadsPipelineWidgetComponent } from './components/widgets/leads-pipeline-widget/leads-pipeline-widget.component';
 
 const components = [
   LoginBlockComponent,
@@ -63,6 +71,13 @@ const components = [
   TableComponent,
   UpdateEmployeeComponent,
   TargetCardComponent,
+  ActivitiesWidgetComponent,
+  LeadsWidgetComponent,
+  SalesWidgetComponent,
+  ProductsWidgetComponent,
+  LeaveRequestWidgetComponent,
+  LeavesWidgetComponent,
+  LeadsPipelineWidgetComponent,
 ];
 
 @NgModule({
@@ -90,6 +105,14 @@ const components = [
     SalesEditComponent,
     SalesViewComponent,
     TargetCardComponent,
+    TargetWidgetComponent,
+    ActivitiesWidgetComponent,
+    LeadsWidgetComponent,
+    SalesWidgetComponent,
+    ProductsWidgetComponent,
+    LeaveRequestWidgetComponent,
+    LeavesWidgetComponent,
+    LeadsPipelineWidgetComponent,
   ],
   imports: [
     CommonModule,
@@ -103,12 +126,12 @@ const components = [
         branchData: branchDataReducer,
         leadsData: leadsDataReducer,
         leadSourceData: leadSourceDataReducer,
-        productsData:productsDataReducer,
-        productCategoriesData:productCategoriesDataReducer,
-        activitiesData:activitiesDataReducer,
-        activityTypesData:activityTypesDataReducer,
-        salesData:salesDataReducer,
-        employeesData:employeesDataReducer
+        productsData: productsDataReducer,
+        productCategoriesData: productCategoriesDataReducer,
+        activitiesData: activitiesDataReducer,
+        activityTypesData: activityTypesDataReducer,
+        salesData: salesDataReducer,
+        employeesData: employeesDataReducer,
       },
       {}
     ),
@@ -123,7 +146,7 @@ const components = [
       ActivitiesDataEffects,
       ActivityTypesDataEffects,
       SalesDataEffects,
-      EmployeesDataEffects
+      EmployeesDataEffects,
     ]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
   ],
