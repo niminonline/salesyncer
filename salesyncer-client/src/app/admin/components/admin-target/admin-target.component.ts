@@ -159,7 +159,7 @@ export class AdminTargetComponent implements OnInit {
     this.selectedEmployeeData = this.employeesData.find(
       (employee: any) => employee._id == selectedEmp_id
     );
-    this.targetData = this.selectedEmployeeData.target;
+    this.targetData = this.selectedEmployeeData.target.reverse();
     this.dataSource = new MatTableDataSource(this.targetData);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;

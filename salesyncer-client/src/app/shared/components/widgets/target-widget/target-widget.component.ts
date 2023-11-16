@@ -78,7 +78,7 @@ export class TargetWidgetComponent implements OnInit {
   initEmpForm() {
     this.empSelectForm = this.formBuilder.group({
       _id: ['6535bdb8f6cbeae6217c6b88'],
-      month: ['January', [Validators.required]],
+      month: ['November', [Validators.required]],
       year: ['2023', [Validators.required]],
     });
   }

@@ -1,41 +1,28 @@
 <div class="main-body">
   <div class="contents">
     <h1 class="title">Dashboard</h1>
-
-    <div class="widget-row leads-row">
-      <div class="widget-col target-block">
-        <app-target-widget [role]="role" [user]="user"></app-target-widget>
-      </div>
-      <div class="widget-col activities-block">
-      <app-activities-widget
-        [role]="role"
-        [user]="user"
-      ></app-activities-widget>
-    </div>
-  </div>
-
-    <div class="widget-row-multi">
+    
+    <div class="widget-row-multi leads-row">
       <div class="widget-col">
         <app-leads-widget [role]="role" [user]="user"></app-leads-widget>
       </div>
       <!-- <div class="widget-col widget-container">
-              
-          </div> -->
+        
+      </div> -->
+      
+          <div class="widget-row target-row">
+            <div class="widget-col target-block">
+              <app-target-widget [role]="role" [user]="user"></app-target-widget>
+            </div>
+            <div class="widget-col activities-block">
+            <app-activities-widget
+              [role]="role"
+              [user]="user"
+            ></app-activities-widget>
+          </div>
+        </div>
     </div>
 
-    <div class="row3">
-      <div class="col1"></div>
-      <div class="col2"></div>
-    </div>
-
-    <div class="row4">
-      <div class="col1"></div>
-      <div class="col2"></div>
-    </div>
-
-    <div class="row5">
-      <div class="col1"></div>
-      <div class="col2"></div>
-    </div>
+    
   </div>
 </div>

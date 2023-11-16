@@ -20,7 +20,7 @@ export const qGetSalesData = async () => {
 export const qCreateSaleData = async (newSaleData: object) => {
   try {
     const newSale = new Sale(newSaleData);
-
+    console.log("New sale repo",newSale)
     const addSaleToDB = await newSale.save();
     return addSaleToDB;
   } catch (error) {

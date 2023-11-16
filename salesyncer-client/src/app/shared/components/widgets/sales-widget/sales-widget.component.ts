@@ -79,7 +79,7 @@ export class SalesWidgetComponent implements OnInit {
     if (branchSalesArray.length > 5) {
       branchSalesArray.splice(5);
     }
-    this.productSales = Object.fromEntries(branchSalesArray);
+    this.branchSales = Object.fromEntries(branchSalesArray);
     this.branchSalesChart();
   }
   getTopEmployees(employeeSales: any) {
@@ -89,7 +89,7 @@ export class SalesWidgetComponent implements OnInit {
     if (employeeSalessArray.length > 5) {
       employeeSalessArray.splice(5);
     }
-    this.productSales = Object.fromEntries(employeeSalessArray);
+    this.employeeSales = Object.fromEntries(employeeSalessArray);
     this.employeeSalesChart();
   }
 
@@ -172,9 +172,9 @@ export class SalesWidgetComponent implements OnInit {
           {
             label: 'Total Sales',
             data: Object.values(this.branchSales),
-            backgroundColor: 'rgba(221,160,221)',
-            borderColor:'rgba(238,130,238)',
-            pointBorderColor: 'rgba(238,130,238)' ,
+            backgroundColor: 'rgb(204,238,255)',
+            borderColor:'rgb(0,102,153)',
+            pointBorderColor: 'rgb(0,102,153)' ,
             fill: true,
             stepped: true,
             pointStyle: 'circle',

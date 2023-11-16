@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SharedApiService } from 'src/app/shared/services/shared-api.service';
@@ -31,6 +31,8 @@ export class SalesEditComponent implements OnInit {
   currentProductName!: string;
   currentSaleDate!: string;
   currentAmount!: string;
+  filteredProducts!: any;
+  filteredEmployees!:any
   
   constructor(
     private sharedAPI: SharedApiService,
@@ -54,6 +56,7 @@ export class SalesEditComponent implements OnInit {
     this.sharedAPI.getEmployeesData().subscribe((response) => {
       if (response) {
         this.employeesData = response.employeesData;
+        this.filteredEmployees=this.employeesData;
       }
     });
 
@@ -108,6 +111,7 @@ export class SalesEditComponent implements OnInit {
       this.sharedAPI.getProducts().subscribe((response: any) => {
         if (response.status == 'OK') {
           this.productsData = response.productsData;
+          this.filteredProducts= this.productsData;
         } else {
           console.error(response.message);
         }
@@ -144,6 +148,28 @@ export class SalesEditComponent implements OnInit {
       date: [this.currentSaleDate, [Validators.required]],
       amount: [this.currentAmount, [Validators.pattern(/^\d+(\.\d+)?$/)]],
     });
+
+
+    const categoryControl: FormControl = this.inputGroup.get(
+      'productCategory'
+    ) as FormControl;
+    categoryControl.valueChanges.subscribe((selectedCategory) => {
+      if (selectedCategory) {
+        this.onCategoryChange(selectedCategory);
+      }
+    });
+
+    const branchControl: FormControl = this.inputGroup.get(
+      'branchName'
+    ) as FormControl;
+    branchControl.valueChanges.subscribe((selectedBranch) => {
+      if (selectedBranch) {
+        this.onBranchChange(selectedBranch);
+      }
+    });
+
+
+    
   }
 
   submitForm(data: any): void {
@@ -212,5 +238,21 @@ export class SalesEditComponent implements OnInit {
     } else {
       this.router.navigate(['sales']);
     }
+  }
+
+
+  onCategoryChange(selectedCategory: string) {
+
+    console.log("Filtered",selectedCategory)
+    this.filteredProducts = this.productsData.filter(
+      (product: any) => product.category == selectedCategory
+    );
+  }
+
+
+  onBranchChange(selectedBranch: string) {
+    this.filteredEmployees= this.employeesData.filter(
+      (employee: any) => employee.branch == selectedBranch
+    );
   }
 }

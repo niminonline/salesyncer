@@ -3,9 +3,12 @@ import {
   qGetSaleCount,
   qIncSaleCount,
 } from "../database/repositories/sales-repo";
+
 import { publishAndResponse } from "../services/redisOps";
+
 const createSaleData = async (saleData: any) => {
   try {
+    console.log("Sale create..",createSaleData);
     const saleCount = await qGetSaleCount();
     if (saleData) {
       const newSaleData = {

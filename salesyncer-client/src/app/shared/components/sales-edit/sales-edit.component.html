@@ -1,5 +1,5 @@
 <div class="component-body">
-    <h1 class="heading">Create Sales</h1>
+    <h1 class="heading">Edit Sales</h1>
   
     <div class="spinner-container" *ngIf="showSpinner">
       <img src="assets/images/loading1.gif" alt="" />
@@ -27,7 +27,7 @@
             <mat-label>Select employee</mat-label>
             <mat-select name="employeeName" formControlName="employeeName">
               <mat-option
-                *ngFor="let employee of employeesData"
+                *ngFor="let employee of filteredEmployees"
                 [value]="employee.name"
               >
                 {{ employee.name }}
@@ -71,7 +71,7 @@
             <mat-label>Select Product</mat-label>
             <mat-select name="productName" formControlName="productName">
               <mat-option
-                *ngFor="let product of productsData"
+                *ngFor="let product of filteredProducts"
                 [value]="product.name"
               >
                 {{ product.name }}

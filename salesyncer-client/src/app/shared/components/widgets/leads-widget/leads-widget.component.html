@@ -22,41 +22,41 @@
     <h1 class="widget-title">Leads Pipeline</h1>
     <div class="pipeline-group" (click)="navigateLeads()">
       <div class="pipeline-shape new-shape">
-        <div class="shape-head">
+        <div class="shape-head new-shape-head">
           <h1 class="bold-count">{{ newCount }}</h1>
           <h1 class="pipeline-text">New</h1>
         </div>
-        <div class="arrow-right"></div>
+        <div class="arrow-right new-shape-arrow"></div>
       </div>
 
       <div class="pipeline-shape In-progress-shape">
-        <div class="shape-head">
+        <div class="shape-head in-progress-shape-head">
           <h1 class="bold-count">{{ inProgressCount }}</h1>
           <h1 class="pipeline-text">In Progress</h1>
         </div>
-        <div class="arrow-right"></div>
+        <div class="arrow-right in-progress-shape-arrow"></div>
       </div>
       <div class="pipeline-shape new-negotiation">
-        <div class="shape-head">
+        <div class="shape-head negotiation-shape-head">
           <h1 class="bold-count">{{ negotiationCount }}</h1>
           <h1 class="pipeline-text">Negotiation</h1>
         </div>
-        <div class="arrow-right"></div>
+        <div class="arrow-right negotiation-shape-arrow"></div>
       </div>
 
       <div class="pipeline-shape new-converted">
-        <div class="shape-head">
+        <div class="shape-head converted-shape-head">
           <h1 class="bold-count">{{ convertedCount }}</h1>
           <h1 class="pipeline-text">Converted</h1>
         </div>
-        <div class="arrow-right"></div>
+        <div class="arrow-right converted-shape-arrow"></div>
       </div>
       <div class="pipeline-shape new-failed">
-        <div class="shape-head">
+        <div class="shape-head failed-shape-head">
           <h1 class="bold-count">{{ failedCount }}</h1>
           <h1 class="pipeline-text">Failed</h1>
         </div>
-        <div class="arrow-right"></div>
+        <div class="arrow-right failed-shape-arrow"></div>
       </div>
     </div>
   </div>
