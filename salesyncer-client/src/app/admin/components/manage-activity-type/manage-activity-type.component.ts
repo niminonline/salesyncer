@@ -35,10 +35,10 @@ export class ManageActivityTypeComponent implements OnInit {
   ngOnInit() {
     this.store.select(selectActivityTypesData).subscribe((response) => {
       this.activityTypesData=response;
-     });
       this.dataSource = new MatTableDataSource(this.activityTypesData);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+    });
    
   }
 

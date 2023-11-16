@@ -2,11 +2,11 @@
   <div class="target-widget widget-container">
     <h1 class="widget-title">Target View</h1>
 
-    <div class="select-employee-block w-full flex justify-center gap-7">
+    <div class="select-employee-block">
       <form
         [formGroup]="empSelectForm"
         (ngSubmit)="onEmpSelectSubmit(empSelectForm)"
-        class="select-employee-block-elements w-full flex justify-center gap-7 items-baseline"
+        class="select-employee-block-elements "
       >
         <mat-form-field appearance="outline" *ngIf="role == 'admin'">
           <mat-label>Select Employee</mat-label>
@@ -105,4 +105,5 @@
     </div>
 
   </div>
+  
 </div>

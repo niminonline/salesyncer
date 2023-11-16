@@ -3,8 +3,25 @@
     <h1 class="title">Dashboard</h1>
     <!-- <h1 class="greetings">Welcome Administrator...</h1> -->
 
-    <div class="widget-row leads-row">
-      <div class="widget-col leads-status">
+    <div class="widget-row sales-row">
+      <div class="widget-col">
+        <app-sales-widget [role]="role" [user]="user"></app-sales-widget>
+      </div>
+      <div class="widget-row"></div>
+    </div>
+
+    <div class="widget-row-multi leads-row">
+      <div class="widget-col">
+        <app-leads-widget [role]="role" [user]="user"></app-leads-widget>
+      </div>
+      <!-- <div class="widget-col widget-container">
+        
+      </div> -->
+    </div>
+
+
+    <div class="widget-row ">
+      <div class="widget-col target-view">
         <app-target-widget [role]="role" [user]="user"></app-target-widget>
       </div>
       <div class="widget-col activities-block">
@@ -19,31 +36,6 @@
           [user]="user"
         ></app-leave-request-widget>
       </div>
-    </div>
-
-
-    <div class="widget-row-multi">
-      <div class="widget-col">
-        <app-leads-widget [role]="role" [user]="user"></app-leads-widget>
-      </div>
-      <!-- <div class="widget-col widget-container">
-                
-            </div> -->
-    </div>
-
-    <div class="widget-row">
-      <div class="widget-col"></div>
-      <div class="widget-row"></div>
-    </div>
-
-    <div class="widget-row">
-      <div class="widget-col"></div>
-      <div class="widget-col"></div>
-    </div>
-
-    <div class="widget-row">
-      <div class="widget-col"></div>
-      <div class="widget-col"></div>
     </div>
   </div>
 </div>
