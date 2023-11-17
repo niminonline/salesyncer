@@ -1,5 +1,6 @@
 import { generateAdminToken } from "../middlewares/jwt";
 import { qAdminData } from "../database/repositories/authRepo";
+import logger from "../services/winston";
 
 export const getAdminToken = async (
   email: string,
@@ -8,7 +9,6 @@ export const getAdminToken = async (
   try {
     if (email && password ) {
       const adminData = await qAdminData(email);
-      console.log("AdminData", adminData);
       if (adminData?.password === password) {
         const adminToken = generateAdminToken(adminData);
         return {
@@ -24,6 +24,6 @@ export const getAdminToken = async (
       return { message: "Missing credentials", status: "FAILED" };
     }
   } catch (err) {
-    console.error(err);
+    logger.error(err);
   }
 };

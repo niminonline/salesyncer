@@ -4,6 +4,7 @@ import { publishToChannel } from "../../services/redisOps";
 import tokenVerification from "../../usecases/verifyJwtToken";
 import addEmployeeToDb from "../../usecases/addEmployeeToDb";
 import updateAuthEmailID from "../../usecases/updateAuthEmailID";
+import logger from "../../services/winston";
 
 interface AdminData {
   email: string;
@@ -14,9 +15,7 @@ interface AdminData {
 
 export const adminLogin = async (data: any) => {
   try {
-    // console.log("Req body", data);
     const { email, password, requestId, action } = data;
-    // console.log("email", email);
 
     const response: any = await getAdminToken(email, password);
 
@@ -25,19 +24,16 @@ export const adminLogin = async (data: any) => {
       response.action = action;
     }
 
-    // console.log("myresponse", response);
     publishToChannel("ApiRes-adminLogin", response);
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   }
 };
 
 export const employeeLogin = async (reqData: any): Promise<void> => {
   try {
     const { email, password, requestId, action } = reqData;
-    console.log("INPut data from auth service ", reqData);
     const response: any = await verifyEmployeeLogin(email, password);
-    console.log("Output data from auth ", response);
     if (response) {
       if (response.status == "OK") {
         const resData: any = {
@@ -63,13 +59,12 @@ export const employeeLogin = async (reqData: any): Promise<void> => {
       publishToChannel("ApiRes-employeeLogin", resData);
     }
   } catch (err) {
-    console.error(err);
+    logger.error(err);
   }
 };
 
 export const verifyToken = async (data: any): Promise<void> => {
   try {
-    // console.log("Input from verfitoken Auth", data);
     const { requestId, action } = data;
     const response: any = await tokenVerification(data);
 
@@ -83,14 +78,13 @@ export const verifyToken = async (data: any): Promise<void> => {
       publishToChannel("ApiRes-verifyToken", response);
     }
   } catch (err) {
-    console.error(err);
+    logger.error(err);
   }
 };
 
 
 export const addEmployeeToAuthDb = async (data: any): Promise<void> => {
   try {
-    // console.log("Input from addEmployeeToAuthDb Auth", data);
     const { requestId, action,empId,email,password } = data;
    
     const response: any = await addEmployeeToDb(empId,email,password);
@@ -105,13 +99,12 @@ export const addEmployeeToAuthDb = async (data: any): Promise<void> => {
       publishToChannel("Res-addEmployeeToAuthDb", response);
     }
   } catch (err) {
-    console.error(err);
+    logger.error(err);
   }
 };
 
 export const updateAuthEmail = async (data: any): Promise<void> => {
   try {
-    // console.log("Input from addEmployeeToAuthDb Auth", data);
     const { requestId, action,empId,email } = data;
    
     const response: any = await updateAuthEmailID(empId,email);
@@ -126,6 +119,6 @@ export const updateAuthEmail = async (data: any): Promise<void> => {
       publishToChannel("Res-updateAuthEmail", response);
     }
   } catch (err) {
-    console.error(err);
+    logger.error(err);
   }
 };

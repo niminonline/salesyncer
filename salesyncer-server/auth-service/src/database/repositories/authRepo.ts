@@ -12,7 +12,6 @@ export const qAdminData = async (email: string) => {
 
 export const qFindEmpByEmail = async ( email: string ) => {
     const userData = await EmployeeCredentials.findOne({ email: email });
-    console.log("find email",userData)
     return userData;
   };
 export const qAddEmployeeCredentials = async (

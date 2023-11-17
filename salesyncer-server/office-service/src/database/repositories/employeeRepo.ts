@@ -1,6 +1,7 @@
 import Employee from "../entities/employee";
 import LeaveCategory from "../entities/leaveCategory";
 import Leave from "../entities/leave";
+import logger from "../../services/winston";
 
 export const qEmployeeDataByEmail = async (email: string) => {
   return await Employee.findOne({ email });
@@ -53,7 +54,6 @@ export const qfetchLeaveData = async (
     startDate: { $gte: startDate, $lte: endDate },
   });
   return response;
-
 };
 export const qGetLeaveRequests = async () => {
   const response = await Leave.find({
@@ -63,8 +63,6 @@ export const qGetLeaveRequests = async () => {
 };
 
 export const qDoleaveAction = async (_id: string, toDo: string) => {
-  console.log("Request reached repo", _id, toDo);
-
   const leaveData = await Leave.findById(_id);
   const emp_id = leaveData?.employee;
   const employeeData = await Employee.findById(emp_id);
@@ -75,12 +73,9 @@ export const qDoleaveAction = async (_id: string, toDo: string) => {
     if (leaveData.startDate !== leaveData.endDate) {
       days += 1;
     }
-    console.log("Days===", days);
     const type = leaveData?.leaveCategory;
 
     if (toDo === "approve") {
-      console.log(employeeData);
-
       if (type == "Casual") {
         if (employeeData && employeeData?.casualLeaveBalance >= days) {
           const approved = await Leave.findOneAndUpdate(
@@ -174,10 +169,10 @@ export const qGetCurrentLeaveStatus = async (_id: string) => {
   return leaveData?.status;
 };
 
-export const qSetTargetByemployeeId = async ( _id:string,data: any) => {
+export const qSetTargetByemployeeId = async (_id: string, data: any) => {
   try {
     const response = await Employee.findOneAndUpdate(
-      { _id,  target: { $elemMatch: { month: data.month, year: data.year } }},
+      { _id, target: { $elemMatch: { month: data.month, year: data.year } } },
       {
         $set: {
           "target.$.target": data.target,
@@ -185,9 +180,7 @@ export const qSetTargetByemployeeId = async ( _id:string,data: any) => {
       },
       { new: true }
     );
-    console.log("New added target", response);
     if (!response) {
-      console.log("PUSH section")
       const response = await Employee.findByIdAndUpdate(
         _id,
         { $push: { target: data } },
@@ -198,14 +191,12 @@ export const qSetTargetByemployeeId = async ( _id:string,data: any) => {
       return response;
     }
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   }
 };
 
-
-export const qEditTargetByemployeeId = async ( _id:string,data: any) => {
+export const qEditTargetByemployeeId = async (_id: string, data: any) => {
   try {
-
     const response = await Employee.findOneAndUpdate(
       { _id, "target.month": data.month, "target.year": data.year },
       {
@@ -217,7 +208,6 @@ export const qEditTargetByemployeeId = async ( _id:string,data: any) => {
       },
       { new: true }
     );
-    console.log("New added target", response);
     if (!response) {
       const response = await Employee.findByIdAndUpdate(
         data._id,
@@ -229,15 +219,17 @@ export const qEditTargetByemployeeId = async ( _id:string,data: any) => {
       return response;
     }
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   }
 };
-
 
 export const qSetTargetByBranch = async (branch: string, data: any) => {
   try {
     const response = await Employee.updateMany(
-      { branch, "target": { $elemMatch: { month: data.month, year: data.year } } },
+      {
+        branch,
+        target: { $elemMatch: { month: data.month, year: data.year } },
+      },
       {
         $set: {
           "target.$.target": data.target,
@@ -246,52 +238,46 @@ export const qSetTargetByBranch = async (branch: string, data: any) => {
         },
       }
     );
-    
-    console.log("Updated target", response);
-    
+
     if (response.modifiedCount === 0) {
-      console.log("No matching elements, adding new target");
-      
       const newResponse = await Employee.updateMany(
         { branch },
         { $push: { target: data } }
-        );
-        
-        return newResponse;
-      } else {
-        return response;
-      }
-    } catch (error) {
-      console.error("Error:", error);
+      );
+
+      return newResponse;
+    } else {
+      return response;
     }
-  };
-  
-  export const qUpdateAchievedTarget = async ( _id:string,data: any) => {
-    try {
-  
-      const response = await Employee.findOneAndUpdate(
-        // { _id, "target.month": data.month, "target.year": data.year },
-        { _id, "target": { $elemMatch: { month: data.month, year: data.year } } },
-        {
-          $inc: {
-            "target.$.achieved": data.sale,
-            "target.$.remaining": -data.sale,
-          },
+  } catch (error) {
+    logger.error("Error:", error);
+  }
+};
+
+export const qUpdateAchievedTarget = async (_id: string, data: any) => {
+  try {
+    const response = await Employee.findOneAndUpdate(
+      // { _id, "target.month": data.month, "target.year": data.year },
+      { _id, target: { $elemMatch: { month: data.month, year: data.year } } },
+      {
+        $inc: {
+          "target.$.achieved": data.sale,
+          "target.$.remaining": -data.sale,
         },
+      },
+      { new: true }
+    );
+    if (!response) {
+      const response = await Employee.findByIdAndUpdate(
+        data._id,
+        { $push: { target: data } },
         { new: true }
       );
-      console.log("New added target", response);
-      if (!response) {
-        const response = await Employee.findByIdAndUpdate(
-          data._id,
-          { $push: { target: data } },
-          { new: true }
-        );
-        return response;
-      } else {
-        return response;
-      }
-    } catch (error) {
-      console.error(error);
+      return response;
+    } else {
+      return response;
     }
-  };
+  } catch (error) {
+    logger.error(error);
+  }
+};

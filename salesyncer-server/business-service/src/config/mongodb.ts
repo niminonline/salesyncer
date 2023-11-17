@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import logger from "../services/winston";
 
 // ==============MongoDb Atlas=====================
 
@@ -10,12 +11,12 @@ const connectDB = async (): Promise<void> => {
       mongoose.set("strictQuery", true);
 
       await mongoose.connect(dbUrl);
-      console.log("Business database connected successfully");
+       logger.info(`Business database connected successfully`);
     } else {
-      console.error("Error in connecting business database");
+      logger.error("Error in connecting business database");
     }
   } catch (error) {
-    console.error("Error while connecting db", error);
+    logger.error("Error while connecting db", error);
   }
 };
 

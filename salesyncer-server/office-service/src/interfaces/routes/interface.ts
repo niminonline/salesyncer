@@ -1,4 +1,5 @@
 import { Redis } from "ioredis";
+import logger from "../../services/winston";
 import {
   getEmployeeDetails,
   addEmployeeDetails,
@@ -17,11 +18,6 @@ import {
   createTargetDetails,
   setBranchTargetDetails,
   updateAchievedTargetDetails,
-  // editTargetDetails
-
-
-  
-
 } from "../controllers/controller";
 
 const redisSubscriber = new Redis();
@@ -29,9 +25,9 @@ const redisSubscriber = new Redis();
 export const subscribeToChannel = (channelName: string) => {
   redisSubscriber.subscribe(channelName, (error, count) => {
     if (error) {
-      console.error(`Error subscribing to ${channelName}:`, error);
+      logger.error(`Error subscribing to ${channelName}:`, error);
     } else {
-      console.log(`Subscribed to ${channelName}. Count: ${count}`);
+      logger.info(`Subscribed to ${channelName}. Count: ${count}`);
     }
   });
 };
@@ -40,7 +36,6 @@ export const subscribeToChannel = (channelName: string) => {
 redisSubscriber.on("message", (channel: string, message: any) => {
   if (channel === "office-service") {
     const data = JSON.parse(message);
-    //console.log("Data from api", data);
 
     switch (data.action) {
       case "getEmployeeData":
@@ -76,7 +71,7 @@ redisSubscriber.on("message", (channel: string, message: any) => {
       case "fetchLeaveDetails":
         fetchLeaveDetails(data);
         break;
-    
+
       case "getLeaveRequests":
         getLeaveRequests(data);
         break;
@@ -98,7 +93,6 @@ redisSubscriber.on("message", (channel: string, message: any) => {
       // case "editTargetDetails":
       //   editTargetDetails(data);
       //   break;
-     
     }
   }
 });

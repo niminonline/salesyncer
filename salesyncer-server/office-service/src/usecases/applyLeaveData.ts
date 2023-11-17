@@ -1,4 +1,5 @@
 import { qAddLeaveData } from "../database/repositories/employeeRepo";
+import logger from "../services/winston";
 
 const applyLeaveData = async (leaveData: any) => {
   try {
@@ -6,25 +7,21 @@ const applyLeaveData = async (leaveData: any) => {
       const newLeave = {
         employee: leaveData._id,
         startDate: leaveData.startDate,
-        endDate:leaveData.endDate,
+        endDate: leaveData.endDate,
         leaveCategory: leaveData.category,
         reason: leaveData.reason,
       };
 
       const response = await qAddLeaveData(newLeave);
-      // console.log("Response from qaddBranchData Q", response);
 
       if (response) {
-       
-        return {status:"OK",message:"Leave data added"};
-     }
-     else{
-        return {status:"FAILED",message:"Add leave data failed"}
-     }
-}
-
+        return { status: "OK", message: "Leave data added" };
+      } else {
+        return { status: "FAILED", message: "Add leave data failed" };
+      }
+    }
   } catch (err) {
-    console.error(err);
+    logger.error(err);
   }
 };
 

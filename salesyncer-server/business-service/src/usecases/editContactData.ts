@@ -1,8 +1,7 @@
 import { qUpdateContactsDataById } from "../database/repositories/contacts-repo";
-
+import logger from "../services/winston";
 const editContactData = async (newContactData: any) => {
   try {
-
     if (newContactData) {
       const { _id } = newContactData;
       const dataToUpdate = {
@@ -28,7 +27,7 @@ const editContactData = async (newContactData: any) => {
       return { status: "FAILED", message: "No update data found" };
     }
   } catch (err) {
-    console.error(err);
+    logger.error(err);
   }
 };
 

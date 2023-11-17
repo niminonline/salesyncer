@@ -2,6 +2,7 @@ import express from "express";
 import { config } from "dotenv";
 import { subscribeToChannel } from "./interfaces/routes/interface";
 import connectDB from "./config/mongodb";
+import logger from "./services/winston";
 
 const app = express();
 config();
@@ -16,5 +17,5 @@ subscribeToChannel("auth-service");
 
 
 app.listen(port, () => {
-  console.log(`Authentication server listening at port# ${port}`);
+  logger.info(`Authentication server listening at port# ${port}`);
 });

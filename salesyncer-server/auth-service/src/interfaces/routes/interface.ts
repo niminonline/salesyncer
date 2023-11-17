@@ -1,14 +1,15 @@
 import { Redis } from "ioredis";
 import { adminLogin,employeeLogin,verifyToken,addEmployeeToAuthDb,updateAuthEmail } from "../controllers/controller";
+import logger from "../../services/winston";
 
 const redisSubscriber = new Redis();
 
 export const subscribeToChannel = (channelName: string) => {
   redisSubscriber.subscribe(channelName, (error, count) => {
     if (error) {
-      console.error(`Error subscribing to ${channelName}:`, error);
+      logger.error(`Error subscribing to ${channelName}:`, error);
     } else {
-      console.log(`Subscribed to ${channelName}. Count: ${count}`);
+      logger.info(`Subscribed to ${channelName}. Count: ${count}`);
     }
   });
 };
@@ -17,7 +18,6 @@ export const subscribeToChannel = (channelName: string) => {
 redisSubscriber.on("message", (channel: string, message: any) => {
   if (channel === "auth-service") {
     const data = JSON.parse(message);
-    //console.log("Data from api", data);
 
     switch (data.action) {
       case "adminLogin":

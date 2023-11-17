@@ -1,12 +1,10 @@
 import { qUpdateLeadSourceDataById } from "../database/repositories/leads-repo";
-
+import logger from "../services/winston";
 const editLeadSourceData = async (newLeadSourceData: any) => {
   try {
-
     if (newLeadSourceData) {
       const { _id } = newLeadSourceData;
       const dataToUpdate = {
-        
         leadSource: newLeadSourceData.leadSource,
       };
 
@@ -20,7 +18,7 @@ const editLeadSourceData = async (newLeadSourceData: any) => {
       return { status: "FAILED", message: "No update data found" };
     }
   } catch (err) {
-    console.error(err);
+    logger.error(err);
   }
 };
 

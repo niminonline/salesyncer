@@ -1,4 +1,5 @@
 import { Redis } from "ioredis";
+import logger from "./winston";
 
 export const publishAndResponse = (
   publishChannel: string,
@@ -16,29 +17,27 @@ export const publishAndResponse = (
 
     try {
       await redisPublisher.publish(publishChannel, JSON.stringify(publishData));
-      console.log("Message published to", publishChannel);
+      logger.info("Message published to", publishChannel);
 
       await redisSubscriber.subscribe(subscribeChannel);
-      console.log("Subscribed to", subscribeChannel);
+     logger.info("Subscribed to", subscribeChannel);
 
       redisSubscriber.on("message", (channel, message) => {
         const data = JSON.parse(message);
         if (channel === subscribeChannel && data.requestId === requestId) {
           const response = JSON.parse(message);
           redisSubscriber.quit();
-          console.log("Received message:", response);
 
           resolve(response);
         } else {
-          console.log("Received message on different channel:", channel);
+          logger.info("Received message on different channel:", channel);
         }
       });
     } catch (error) {
-      console.error("Error publishing message:", error);
+      logger.error("Error publishing message:", error);
       reject(error);
     } finally {
       redisPublisher.quit();
-      // redisSubscriber.quit();
     }
   });
 };

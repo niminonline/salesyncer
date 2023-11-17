@@ -1,5 +1,5 @@
 import { qGetProductCategoryData } from "../database/repositories/products-repo";
-
+import logger from "../services/winston";
 const getProductCategoryData = async (): Promise<object | undefined> => {
   try {
     const productCategoriesData = await qGetProductCategoryData();
@@ -10,10 +10,13 @@ const getProductCategoryData = async (): Promise<object | undefined> => {
         status: "OK",
       };
     } else {
-      return { message: "Product categories data fetching failed", status: "FAILED" };
+      return {
+        message: "Product categories data fetching failed",
+        status: "FAILED",
+      };
     }
   } catch (err) {
-    console.error(err);
+    logger.error(err);
   }
 };
 export default getProductCategoryData;

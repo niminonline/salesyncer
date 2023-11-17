@@ -1,5 +1,5 @@
 import { qGetProductsData } from "../database/repositories/products-repo";
-
+import logger from "../services/winston";
 const getProductsData = async (): Promise<object | undefined> => {
   try {
     const productsData = await qGetProductsData();
@@ -13,7 +13,7 @@ const getProductsData = async (): Promise<object | undefined> => {
       return { message: "Products data fetching failed", status: "FAILED" };
     }
   } catch (err) {
-    console.error(err);
+    logger.error(err);
   }
 };
 export default getProductsData;

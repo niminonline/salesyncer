@@ -1,32 +1,33 @@
-  
-  import { qCreateProductCategoryData} from "../database/repositories/products-repo"
-  
-  const createProductCategoryData = async (productCategoryData: any) => {
-    try {
-      if (productCategoryData) {
-  
-          const newProductCategoryData = {
-            productCategory: productCategoryData.productCategory,
-      
-          
+import { qCreateProductCategoryData } from "../database/repositories/products-repo";
+import logger from "../services/winston";
+const createProductCategoryData = async (productCategoryData: any) => {
+  try {
+    if (productCategoryData) {
+      const newProductCategoryData = {
+        productCategory: productCategoryData.productCategory,
+      };
+
+      const response: any = await qCreateProductCategoryData(
+        newProductCategoryData
+      );
+
+      if (response) {
+        return {
+          status: "OK",
+          message: "Product Category created successfully",
         };
-  
-        const response: any = await qCreateProductCategoryData(newProductCategoryData);
-  
-        if (response) {
-        
-  
-          return { status: "OK", message: "Product Category created successfully" };
-        } else {
-          return { status: "FAILED", message: "Product Category creation failed" };
-        }
       } else {
-        return { status: "FAILED", message: "No Product Category data found" };
+        return {
+          status: "FAILED",
+          message: "Product Category creation failed",
+        };
       }
-    } catch (err) {
-      console.error(err);
+    } else {
+      return { status: "FAILED", message: "No Product Category data found" };
     }
-  };
-  
-  export default createProductCategoryData;
-  
+  } catch (err) {
+    logger.error(err);
+  }
+};
+
+export default createProductCategoryData;

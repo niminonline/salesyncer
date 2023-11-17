@@ -1,4 +1,5 @@
 import { qfetchLeaveData } from "../database/repositories/employeeRepo";
+import logger from "../services/winston";
 
 const fetchLeaveData = async (data:any): Promise<object | undefined> => {
   try {
@@ -14,7 +15,7 @@ const fetchLeaveData = async (data:any): Promise<object | undefined> => {
       return { message: "Leave data fetching failed", status: "FAILED" };
     }
   } catch (err) {
-    console.error(err);
+    logger.error(err);
   }
 };
 

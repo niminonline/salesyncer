@@ -1,12 +1,12 @@
 import { qDeleteContactDataById } from "../database/repositories/contacts-repo";
-
+import logger from "../services/winston";
 const deleteContactData = async (_id: string): Promise<object | undefined> => {
   try {
     if (_id) {
       const deleteContactData = await qDeleteContactDataById(_id);
       if (deleteContactData) {
         return {
-            deleteContactData,
+          deleteContactData,
           message: "Contact deleted successfully",
           status: "OK",
         };
@@ -17,7 +17,7 @@ const deleteContactData = async (_id: string): Promise<object | undefined> => {
       return { message: "Missing _id", status: "FAILED" };
     }
   } catch (err) {
-    console.error(err);
+    logger.error(err);
   }
 };
 export default deleteContactData;

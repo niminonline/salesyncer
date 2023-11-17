@@ -1,5 +1,6 @@
 import { qAddEmployeeCredentials } from "../database/repositories/authRepo";
 import { securePassword } from "../services/bcrypt";
+import logger from "../services/winston";
 
 const addEmployeeToDb = async (
   empId: string,
@@ -18,7 +19,7 @@ const addEmployeeToDb = async (
       return { message: "Missing credentials", status: "FAILED" };
     }
   } catch (err) {
-    console.error(err);
+    logger.error(err);
   }
 };
 

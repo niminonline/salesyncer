@@ -1,7 +1,7 @@
-import nodemailer from 'nodemailer';
+import nodemailer from "nodemailer";
+import logger from "./winston";
 
-
- export const sendPassword= async (email:string, randomPassword:string) =>{
+export const sendPassword = async (email: string, randomPassword: string) => {
   try {
     const transporter = nodemailer.createTransport({
       service: "gmail",
@@ -23,28 +23,21 @@ import nodemailer from 'nodemailer';
         Team Salesyncer`,
     };
     const result = await transporter.sendMail(mailOptions);
-    // console.log(result);
-  } catch (error:any) {
-    console.error(error.message);
-
+  } catch (error: any) {
+    logger.error(error.message);
   }
-}
+};
 
+export const generateRandomPassword = (length: number): string => {
+  const charset: string =
+    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+";
+  let password: string = "";
 
- export const  generateRandomPassword=  (length: number): string =>{
-    const charset: string = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+";
-    let password: string = "";
-  
-    for (let i = 0; i < length; i++) {
-      const randomIndex: number = Math.floor(Math.random() * charset.length);
-      password += charset.charAt(randomIndex);
-    }
-  
-    return password;
+  for (let i = 0; i < length; i++) {
+    const randomIndex: number = Math.floor(Math.random() * charset.length);
+    password += charset.charAt(randomIndex);
   }
-  
 
+  return password;
+};
 
-//   const randomPassword: string = generateRandomPassword(8);
-//   console.log(randomPassword);
-  

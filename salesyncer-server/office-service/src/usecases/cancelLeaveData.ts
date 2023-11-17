@@ -1,14 +1,14 @@
 import {
   qCancelLeave,
   qGetCurrentLeaveStatus,
-  qSendLeaveCancelRequest
+  qSendLeaveCancelRequest,
 } from "../database/repositories/employeeRepo";
+import logger from "../services/winston";
 
 const cancelLeaveData = async (_id: any) => {
   try {
     if (_id) {
       const currentStatus = await qGetCurrentLeaveStatus(_id);
-      console.log("Status ", currentStatus)
       if (currentStatus == "Pending") {
         const response = await qCancelLeave(_id);
         if (response) {
@@ -32,7 +32,7 @@ const cancelLeaveData = async (_id: any) => {
       };
     }
   } catch (err) {
-    console.error(err);
+    logger.error(err);
   }
 };
 

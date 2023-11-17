@@ -1,4 +1,5 @@
 import { qEditTargetByemployeeId} from "../database/repositories/employeeRepo";
+import logger from "../services/winston";
 
 
 const editTargetData = async (newTargetData: any) => {
@@ -23,7 +24,7 @@ const editTargetData = async (newTargetData: any) => {
 }
 
   } catch (err) {
-    console.error(err);
+    logger.error(err);
   }
 };
 

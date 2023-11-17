@@ -1,5 +1,6 @@
   
-  import { qCreateActivityTypeData} from "../database/repositories/activities-repo"
+  import { qCreateActivityTypeData} from "../database/repositories/activities-repo";
+  import logger from "../services/winston";
   
   const createActivityTypeData = async (activityTypeData: any) => {
     try {
@@ -24,7 +25,7 @@
         return { status: "FAILED", message: "No ActivityType data found" };
       }
     } catch (err) {
-      console.error(err);
+      logger.error(err);
     }
   };
   

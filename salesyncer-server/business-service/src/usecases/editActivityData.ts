@@ -1,17 +1,28 @@
-import { qIsTimeCollisionExists, qUpdateActivityDataById } from "../database/repositories/activities-repo";
-
+import {
+  qIsTimeCollisionExists,
+  qUpdateActivityDataById,
+} from "../database/repositories/activities-repo";
+import logger from "../services/winston";
 const editActivityData = async (newActivityData: any) => {
   try {
-
     if (newActivityData) {
-
-      const scheduledTimeInputStr =newActivityData.scheduledTime;
+      const scheduledTimeInputStr = newActivityData.scheduledTime;
       const ownerInput = newActivityData.owner;
-      const scheduledTimeInput= new Date(scheduledTimeInputStr);
+      const scheduledTimeInput = new Date(scheduledTimeInputStr);
 
-      const checkTimeCollision:any= await qIsTimeCollisionExists(ownerInput,scheduledTimeInput);
-      if((checkTimeCollision.length>1)||( checkTimeCollision.length==1 && newActivityData._id !==checkTimeCollision[0]._id.toString())){
-        return { status: "FAILED", message: `This time slot is already alloted for ${ownerInput}. Please choose a time with atleast 10 minutes gap.` };
+      const checkTimeCollision: any = await qIsTimeCollisionExists(
+        ownerInput,
+        scheduledTimeInput
+      );
+      if (
+        checkTimeCollision.length > 1 ||
+        (checkTimeCollision.length == 1 &&
+          newActivityData._id !== checkTimeCollision[0]._id.toString())
+      ) {
+        return {
+          status: "FAILED",
+          message: `This time slot is already alloted for ${ownerInput}. Please choose a time with atleast 10 minutes gap.`,
+        };
       }
 
       const { _id } = newActivityData;
@@ -35,7 +46,7 @@ const editActivityData = async (newActivityData: any) => {
       return { status: "FAILED", message: "No update data found" };
     }
   } catch (err) {
-    console.error(err);
+    logger.error(err);
   }
 };
 

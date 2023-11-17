@@ -25,7 +25,6 @@ export class ActivitiesDataEffects {
       switchMap(() => {
         return this.sharedApi.getActivities().pipe(
           tap((response) => {
-            // console.log('API Response:', response);
           }),
           map((response) =>
             ActivitiesDataActions.storeActivitiesData({

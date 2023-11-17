@@ -1,4 +1,5 @@
 import { qSetTargetByemployeeId } from "../database/repositories/employeeRepo";
+import logger from "../services/winston";
 
 const addTargetData = async (targetData: any) => {
   try {
@@ -20,7 +21,7 @@ const addTargetData = async (targetData: any) => {
       return { status: "FAILED", message: "Target set failed" };
     }
   } catch (err) {
-    console.error(err);
+    logger.error(err);
   }
 };
 export default addTargetData;

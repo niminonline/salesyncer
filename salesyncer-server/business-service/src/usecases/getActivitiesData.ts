@@ -1,5 +1,5 @@
 import { qGetActivitiesData } from "../database/repositories/activities-repo";
-
+import logger from "../services/winston";
 const getActivitiesData = async (): Promise<object | undefined> => {
   try {
     const activitiesData = await qGetActivitiesData();
@@ -13,7 +13,7 @@ const getActivitiesData = async (): Promise<object | undefined> => {
       return { message: "Activites data fetching failed", status: "FAILED" };
     }
   } catch (err) {
-    console.error(err);
+    logger.error(err);
   }
 };
 export default getActivitiesData;

@@ -1,5 +1,5 @@
 import { qCreateLeadSourceData } from "../database/repositories/leads-repo";
-
+import logger from "../services/winston";
 const createLeadSourceData = async (leadSourceData: any) => {
   try {
     if (leadSourceData) {
@@ -18,7 +18,7 @@ const createLeadSourceData = async (leadSourceData: any) => {
       return { status: "FAILED", message: "No Lead Source data found" };
     }
   } catch (err) {
-    console.error(err);
+    logger.error(err);
   }
 };
 

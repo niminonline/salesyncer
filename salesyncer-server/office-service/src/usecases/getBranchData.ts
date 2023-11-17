@@ -1,5 +1,5 @@
-import { qEmployeeDataByEmail } from "../database/repositories/employeeRepo";
 import { qGetBranchData } from "../database/repositories/officeRepo";
+import logger from "../services/winston";
 
 const getBranchData = async (): Promise<object | undefined> => {
   try {
@@ -14,7 +14,7 @@ const getBranchData = async (): Promise<object | undefined> => {
       return { message: "Branch data fetching failed", status: "FAILED" };
     }
   } catch (err) {
-    console.error(err);
+    logger.error(err);
   }
 };
 

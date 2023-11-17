@@ -1,4 +1,5 @@
 import { Redis } from "ioredis";
+import logger from "../../services/winston";
 import {
   createContactDetails,
   editContactDetails,
@@ -44,9 +45,9 @@ const redisSubscriber = new Redis();
 export const subscribeToChannel = (channelName: string) => {
   redisSubscriber.subscribe(channelName, (error, count) => {
     if (error) {
-      console.error(`Error subscribing to ${channelName}:`, error);
+      logger.error(`Error subscribing to ${channelName}:`, error);
     } else {
-      console.log(`Subscribed to ${channelName}. Count: ${count}`);
+      logger.info(`Subscribed to ${channelName}. Count: ${count}`);
     }
   });
 };

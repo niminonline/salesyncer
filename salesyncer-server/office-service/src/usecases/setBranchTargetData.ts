@@ -1,8 +1,9 @@
 import { qSetTargetByBranch } from "../database/repositories/employeeRepo";
+import logger from "../services/winston";
 
 const setBranchTargetData = async (targetData: any) => {
   try {
-    const {branch}= targetData;
+    const { branch } = targetData;
     if (targetData) {
       const targetDetails = {
         // _id: targetData._id,
@@ -13,7 +14,7 @@ const setBranchTargetData = async (targetData: any) => {
         notes: targetData.notes,
       };
 
-      const response: any = await qSetTargetByBranch(branch,targetDetails);
+      const response: any = await qSetTargetByBranch(branch, targetDetails);
       if (response) {
         return { status: "OK", message: "Branch Target set successfully" };
       } else return { status: "FAILED", message: "Branch Target set failed" };
@@ -21,7 +22,7 @@ const setBranchTargetData = async (targetData: any) => {
       return { status: "FAILED", message: "Target set failed" };
     }
   } catch (err) {
-    console.error(err);
+    logger.error(err);
   }
 };
 export default setBranchTargetData;

@@ -59,10 +59,7 @@ import { TargetWidgetComponent } from './components/widgets/target-widget/target
 import { ActivitiesWidgetComponent } from './components/widgets/activities-widget/activities-widget.component';
 import { LeadsWidgetComponent } from './components/widgets/leads-widget/leads-widget.component';
 import { SalesWidgetComponent } from './components/widgets/sales-widget/sales-widget.component';
-import { ProductsWidgetComponent } from './components/widgets/products-widget/products-widget.component';
 import { LeaveRequestWidgetComponent } from './components/widgets/leave-request-widget/leave-request-widget.component';
-import { LeavesWidgetComponent } from './components/widgets/leaves-widget/leaves-widget.component';
-import { LeadsPipelineWidgetComponent } from './components/widgets/leads-pipeline-widget/leads-pipeline-widget.component';
 
 const components = [
   LoginBlockComponent,
@@ -75,10 +72,7 @@ const components = [
   ActivitiesWidgetComponent,
   LeadsWidgetComponent,
   SalesWidgetComponent,
-  ProductsWidgetComponent,
   LeaveRequestWidgetComponent,
-  LeavesWidgetComponent,
-  LeadsPipelineWidgetComponent,
 ];
 
 @NgModule({
@@ -110,10 +104,7 @@ const components = [
     ActivitiesWidgetComponent,
     LeadsWidgetComponent,
     SalesWidgetComponent,
-    ProductsWidgetComponent,
     LeaveRequestWidgetComponent,
-    LeavesWidgetComponent,
-    LeadsPipelineWidgetComponent,
   ],
   imports: [
     CommonModule,

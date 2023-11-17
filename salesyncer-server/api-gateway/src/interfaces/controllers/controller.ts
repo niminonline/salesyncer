@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import logger from "../../services/winston";
 import {
   publishAdminLogin,
   publishEmployeeLogin,
@@ -73,7 +74,7 @@ export const adminLogin = async (req: Request, res: Response) => {
     delete response.action;
     res.json(response);
   } catch (error) {
-    console.error("Error in /auth:", error);
+    logger.error("Error in /auth:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
@@ -88,7 +89,7 @@ export const employeeLogin = async (req: Request, res: Response) => {
 
     res.json(response);
   } catch (error) {
-    console.error("Error in /auth:", error);
+    logger.error("Error in /auth:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
@@ -101,8 +102,6 @@ export const getEmployeeDetails = async (req: Request, res: Response) => {
   try {
     const headers = req.headers;
     const { _id } = req.query;
-    console.log("id & Headers in api", _id, headers);
-    // const data ={headers,email}
     const response: any = await verifyToken(headers);
     if (response.status == "OK") {
       const response: any = await getEmployeeData({ _id });
@@ -114,7 +113,7 @@ export const getEmployeeDetails = async (req: Request, res: Response) => {
       res.json(response);
     }
   } catch (error) {
-    console.error("Error in /auth:", error);
+    logger.error("Error in /auth:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
@@ -123,7 +122,6 @@ export const addEmployee = async (req: Request, res: Response) => {
   try {
     const headers = req.headers;
     const employeeData = req.body;
-    // console.log("email & Headers in api", employeeData, headers);
     const response: any = await verifyToken(headers);
     if (response.status == "OK") {
       const response: any = await addEmployeeData(employeeData);
@@ -135,7 +133,7 @@ export const addEmployee = async (req: Request, res: Response) => {
       res.json(response);
     }
   } catch (error) {
-    console.error("Error in /auth:", error);
+    logger.error("Error in /auth:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
@@ -154,7 +152,7 @@ export const getEmployeesData = async (req: Request, res: Response) => {
       res.json(response);
     }
   } catch (error) {
-    console.error("Error in /auth:", error);
+    logger.error("Error in /auth:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
@@ -174,7 +172,7 @@ export const updateEmployee = async (req: Request, res: Response) => {
       res.json(response);
     }
   } catch (error) {
-    console.error("Error in /auth:", error);
+    logger.error("Error in /auth:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
@@ -197,7 +195,7 @@ export const getBranches = async (req: Request, res: Response) => {
       res.json(response);
     }
   } catch (error) {
-    console.error("Error in /auth:", error);
+    logger.error("Error in /auth:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
@@ -217,7 +215,7 @@ export const addBranch = async (req: Request, res: Response) => {
       res.json(response);
     }
   } catch (error) {
-    console.error("Error in /auth:", error);
+    logger.error("Error in /auth:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
@@ -236,7 +234,7 @@ export const editBranch = async (req: Request, res: Response) => {
       res.json(response);
     }
   } catch (error) {
-    console.error("Error in /auth:", error);
+    logger.error("Error in /auth:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
@@ -259,7 +257,7 @@ export const getLeaveCategory = async (req: Request, res: Response) => {
       res.json(response);
     }
   } catch (error) {
-    console.error("Error in /auth:", error);
+    logger.error("Error in /auth:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
@@ -268,7 +266,6 @@ export const applyLeave = async (req: Request, res: Response) => {
   try {
     const headers = req.headers;
     const leaveData = req.body;
-    // console.log("email & Headers in api", employeeData, headers);
     const response: any = await verifyToken(headers);
     if (response.status == "OK") {
       const response: any = await applyLeaveDetails(leaveData);
@@ -280,7 +277,7 @@ export const applyLeave = async (req: Request, res: Response) => {
       res.json(response);
     }
   } catch (error) {
-    console.error("Error in /auth:", error);
+    logger.error("Error in /auth:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
@@ -300,7 +297,7 @@ export const fetchLeaveData = async (req: Request, res: Response) => {
       res.json(response);
     }
   } catch (error) {
-    console.error("Error in /auth:", error);
+    logger.error("Error in /auth:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
@@ -318,7 +315,7 @@ export const leaveRequests = async (req: Request, res: Response) => {
       res.json(response);
     }
   } catch (error) {
-    console.error("Error in /auth:", error);
+    logger.error("Error in /auth:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
@@ -326,7 +323,6 @@ export const leaveAction = async (req: Request, res: Response) => {
   try {
     const headers = req.headers;
     const data = req.body;
-    console.log("email & Headers in api", data, headers);
     const response: any = await verifyToken(headers);
     if (response.status == "OK") {
       const response: any = await doLeaveAction(data);
@@ -338,7 +334,7 @@ export const leaveAction = async (req: Request, res: Response) => {
       res.json(response);
     }
   } catch (error) {
-    console.error("Error in /auth:", error);
+    logger.error("Error in /auth:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
@@ -360,7 +356,7 @@ export const cancelLeave = async (req: Request, res: Response) => {
       res.json(response);
     }
   } catch (error) {
-    console.error("Error in /auth:", error);
+    logger.error("Error in /auth:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
@@ -372,7 +368,6 @@ export const createContact = async (req: Request, res: Response) => {
   try {
     const headers = req.headers;
     const data = req.body;
-    // console.log("create Contact data,header", data, headers);
     const response: any = await verifyToken(headers);
     if (response.status == "OK") {
       const response: any = await createContactDetails(data);
@@ -384,7 +379,7 @@ export const createContact = async (req: Request, res: Response) => {
       res.json(response);
     }
   } catch (error) {
-    console.error("Error in /auth:", error);
+    logger.error("Error in /auth:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
@@ -392,7 +387,6 @@ export const editContact = async (req: Request, res: Response) => {
   try {
     const headers = req.headers;
     const data = req.body;
-    console.log("create Contact data,header", data, headers);
     const response: any = await verifyToken(headers);
     if (response.status == "OK") {
       const response: any = await editContactDetails(data);
@@ -404,7 +398,7 @@ export const editContact = async (req: Request, res: Response) => {
       res.json(response);
     }
   } catch (error) {
-    console.error("Error in /auth:", error);
+    logger.error("Error in /auth:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
@@ -424,7 +418,7 @@ export const getContact = async (req: Request, res: Response) => {
       res.json(response);
     }
   } catch (error) {
-    console.error("Error in /auth:", error);
+    logger.error("Error in /auth:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
@@ -442,7 +436,7 @@ export const getContacts = async (req: Request, res: Response) => {
       res.json(response);
     }
   } catch (error) {
-    console.error("Error in /auth:", error);
+    logger.error("Error in /auth:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
@@ -463,7 +457,7 @@ export const deleteContact = async (req: Request, res: Response) => {
       res.json(response);
     }
   } catch (error) {
-    console.error("Error in /auth:", error);
+    logger.error("Error in /auth:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
@@ -475,7 +469,6 @@ export const createLead = async (req: Request, res: Response) => {
   try {
     const headers = req.headers;
     const data = req.body;
-    console.log("create lead data,header", data, headers);
     const response: any = await verifyToken(headers);
     if (response.status == "OK") {
       const response: any = await createLeadDetails(data);
@@ -487,7 +480,7 @@ export const createLead = async (req: Request, res: Response) => {
       res.json(response);
     }
   } catch (error) {
-    console.error("Error in /auth:", error);
+    logger.error("Error in /auth:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
@@ -495,7 +488,6 @@ export const editLead = async (req: Request, res: Response) => {
   try {
     const headers = req.headers;
     const data = req.body;
-    console.log("edit Lead data,header", data, headers);
     const response: any = await verifyToken(headers);
     if (response.status == "OK") {
       const response: any = await editLeadDetails(data);
@@ -507,7 +499,7 @@ export const editLead = async (req: Request, res: Response) => {
       res.json(response);
     }
   } catch (error) {
-    console.error("Error in /auth:", error);
+    logger.error("Error in /auth:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
@@ -527,7 +519,7 @@ export const getLead = async (req: Request, res: Response) => {
       res.json(response);
     }
   } catch (error) {
-    console.error("Error in /auth:", error);
+    logger.error("Error in /auth:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
@@ -545,7 +537,7 @@ export const getLeads = async (req: Request, res: Response) => {
       res.json(response);
     }
   } catch (error) {
-    console.error("Error in /auth:", error);
+    logger.error("Error in /auth:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
@@ -566,7 +558,7 @@ export const deleteLead = async (req: Request, res: Response) => {
       res.json(response);
     }
   } catch (error) {
-    console.error("Error in /auth:", error);
+    logger.error("Error in /auth:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
@@ -578,7 +570,6 @@ export const createActivity = async (req: Request, res: Response) => {
   try {
     const headers = req.headers;
     const data = req.body;
-    console.log("create activity data,header", data, headers);
     const response: any = await verifyToken(headers);
     if (response.status == "OK") {
       const response: any = await createActivityDetails(data);
@@ -590,7 +581,7 @@ export const createActivity = async (req: Request, res: Response) => {
       res.json(response);
     }
   } catch (error) {
-    console.error("Error in /auth:", error);
+    logger.error("Error in /auth:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
@@ -609,7 +600,7 @@ export const editActivity = async (req: Request, res: Response) => {
       res.json(response);
     }
   } catch (error) {
-    console.error("Error in /auth:", error);
+    logger.error("Error in /auth:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
@@ -629,7 +620,7 @@ export const getActivity = async (req: Request, res: Response) => {
       res.json(response);
     }
   } catch (error) {
-    console.error("Error in /auth:", error);
+    logger.error("Error in /auth:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
@@ -647,7 +638,7 @@ export const getActivities = async (req: Request, res: Response) => {
       res.json(response);
     }
   } catch (error) {
-    console.error("Error in /auth:", error);
+    logger.error("Error in /auth:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
@@ -668,7 +659,7 @@ export const deleteActivity = async (req: Request, res: Response) => {
       res.json(response);
     }
   } catch (error) {
-    console.error("Error in /auth:", error);
+    logger.error("Error in /auth:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
@@ -691,7 +682,7 @@ export const createProduct = async (req: Request, res: Response) => {
       res.json(response);
     }
   } catch (error) {
-    console.error("Error in /auth:", error);
+    logger.error("Error in /auth:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
@@ -710,7 +701,7 @@ export const editProduct = async (req: Request, res: Response) => {
       res.json(response);
     }
   } catch (error) {
-    console.error("Error in /auth:", error);
+    logger.error("Error in /auth:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
@@ -730,7 +721,7 @@ export const getProduct = async (req: Request, res: Response) => {
       res.json(response);
     }
   } catch (error) {
-    console.error("Error in /auth:", error);
+    logger.error("Error in /auth:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
@@ -748,7 +739,7 @@ export const getProducts = async (req: Request, res: Response) => {
       res.json(response);
     }
   } catch (error) {
-    console.error("Error in /auth:", error);
+    logger.error("Error in /auth:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
@@ -769,7 +760,7 @@ export const deleteProduct = async (req: Request, res: Response) => {
       res.json(response);
     }
   } catch (error) {
-    console.error("Error in /auth:", error);
+    logger.error("Error in /auth:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
@@ -792,7 +783,7 @@ export const createSale = async (req: Request, res: Response) => {
       res.json(response);
     }
   } catch (error) {
-    console.error("Error in /auth:", error);
+    logger.error("Error in /auth:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
@@ -811,7 +802,7 @@ export const editSale = async (req: Request, res: Response) => {
       res.json(response);
     }
   } catch (error) {
-    console.error("Error in /auth:", error);
+    logger.error("Error in /auth:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
@@ -831,7 +822,7 @@ export const getSale = async (req: Request, res: Response) => {
       res.json(response);
     }
   } catch (error) {
-    console.error("Error in /auth:", error);
+    logger.error("Error in /auth:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
@@ -849,7 +840,7 @@ export const getSales = async (req: Request, res: Response) => {
       res.json(response);
     }
   } catch (error) {
-    console.error("Error in /auth:", error);
+    logger.error("Error in /auth:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
@@ -870,7 +861,7 @@ export const deleteSale = async (req: Request, res: Response) => {
       res.json(response);
     }
   } catch (error) {
-    console.error("Error in /auth:", error);
+    logger.error("Error in /auth:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
@@ -893,7 +884,7 @@ export const createTarget = async (req: Request, res: Response) => {
       res.json(response);
     }
   } catch (error) {
-    console.error("Error in /auth:", error);
+    logger.error("Error in /auth:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
@@ -901,7 +892,6 @@ export const setBranchTarget = async (req: Request, res: Response) => {
   try {
     const headers = req.headers;
     const data = req.body;
-    console.log("Set Target data,header", data, headers);
     const response: any = await verifyToken(headers);
     if (response.status == "OK") {
       const response: any = await setBranchTargetDetails(data);
@@ -913,7 +903,7 @@ export const setBranchTarget = async (req: Request, res: Response) => {
       res.json(response);
     }
   } catch (error) {
-    console.error("Error in /auth:", error);
+    logger.error("Error in /auth:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
@@ -932,7 +922,7 @@ export const editTarget = async (req: Request, res: Response) => {
       res.json(response);
     }
   } catch (error) {
-    console.error("Error in /auth:", error);
+    logger.error("Error in /auth:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
@@ -953,7 +943,7 @@ export const deleteTarget = async (req: Request, res: Response) => {
       res.json(response);
     }
   } catch (error) {
-    console.error("Error in /auth:", error);
+    logger.error("Error in /auth:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
@@ -965,7 +955,6 @@ export const createActivityType = async (req: Request, res: Response) => {
   try {
     const headers = req.headers;
     const data = req.body;
-    console.log("create ActivityType data,header", data, headers);
     const response: any = await verifyToken(headers);
     if (response.status == "OK") {
       const response: any = await createActivityTypeDetails(data);
@@ -977,7 +966,7 @@ export const createActivityType = async (req: Request, res: Response) => {
       res.json(response);
     }
   } catch (error) {
-    console.error("Error in /auth:", error);
+    logger.error("Error in /auth:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
@@ -985,7 +974,6 @@ export const editActivityType = async (req: Request, res: Response) => {
   try {
     const headers = req.headers;
     const data = req.body;
-    console.log("edit ActivityType data,header", data, headers);
     const response: any = await verifyToken(headers);
     if (response.status == "OK") {
       const response: any = await editActivityTypeDetails(data);
@@ -997,7 +985,7 @@ export const editActivityType = async (req: Request, res: Response) => {
       res.json(response);
     }
   } catch (error) {
-    console.error("Error in /auth:", error);
+    logger.error("Error in /auth:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
@@ -1016,7 +1004,7 @@ export const getActivityTypes = async (req: Request, res: Response) => {
       res.json(response);
     }
   } catch (error) {
-    console.error("Error in /auth:", error);
+    logger.error("Error in /auth:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
@@ -1037,7 +1025,7 @@ export const deleteActivityType = async (req: Request, res: Response) => {
       res.json(response);
     }
   } catch (error) {
-    console.error("Error in /auth:", error);
+    logger.error("Error in /auth:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
@@ -1060,7 +1048,7 @@ export const createProductCategory = async (req: Request, res: Response) => {
       res.json(response);
     }
   } catch (error) {
-    console.error("Error in /auth:", error);
+    logger.error("Error in /auth:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
@@ -1079,7 +1067,7 @@ export const editProductCategory = async (req: Request, res: Response) => {
       res.json(response);
     }
   } catch (error) {
-    console.error("Error in /auth:", error);
+    logger.error("Error in /auth:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
@@ -1098,7 +1086,7 @@ export const getProductCategory = async (req: Request, res: Response) => {
       res.json(response);
     }
   } catch (error) {
-    console.error("Error in /auth:", error);
+    logger.error("Error in /auth:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
@@ -1119,7 +1107,7 @@ export const deleteProductCategory = async (req: Request, res: Response) => {
       res.json(response);
     }
   } catch (error) {
-    console.error("Error in /auth:", error);
+    logger.error("Error in /auth:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
@@ -1142,7 +1130,7 @@ export const createLeadSource = async (req: Request, res: Response) => {
       res.json(response);
     }
   } catch (error) {
-    console.error("Error in /auth:", error);
+    logger.error("Error in /auth:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
@@ -1161,7 +1149,7 @@ export const editLeadSource = async (req: Request, res: Response) => {
       res.json(response);
     }
   } catch (error) {
-    console.error("Error in /auth:", error);
+    logger.error("Error in /auth:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
@@ -1180,7 +1168,7 @@ export const getLeadSource = async (req: Request, res: Response) => {
       res.json(response);
     }
   } catch (error) {
-    console.error("Error in /auth:", error);
+    logger.error("Error in /auth:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
@@ -1201,7 +1189,7 @@ export const deleteLeadSource = async (req: Request, res: Response) => {
       res.json(response);
     }
   } catch (error) {
-    console.error("Error in /auth:", error);
+    logger.error("Error in /auth:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };

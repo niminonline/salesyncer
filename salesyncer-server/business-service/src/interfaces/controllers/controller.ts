@@ -1,4 +1,5 @@
 import { publishToChannel } from "../../services/redisOps";
+import logger from "../../services/winston";
 import createActivityData from "../../usecases/createActivityData";
 import createActivityTypeData from "../../usecases/createActivityTypeData ";
 import createContactData from "../../usecases/createContactData";
@@ -37,36 +38,6 @@ import getProductsData from "../../usecases/getProductsData";
 import getSaleData from "../../usecases/getSaleData ";
 import getSalesData from "../../usecases/getSalesData ";
 
-//============================Product Controllers==============================================
-
-// export const getProductsDetails = async (data: any) => {
-//   try {
-//     const { requestId, action } = data;
-//     const response: any = await getProductsData();
-//     if (response.status == "OK") {
-//       const data = {
-//         productsData: response.productsData,
-//         requestId,
-//         action,
-//         status: "OK",
-//         message: "Products data fetched successfully",
-//       };
-//       publishToChannel("ApiRes-getProductsDetails", data);
-//     } else {
-//       publishToChannel("ApiRes-getProductsDetails", {
-//         requestId,
-//         action,
-//         status: "FAILED",
-//         message: response.message,
-//       });
-//     }
-//   } catch (error) {
-//     console.error(error);
-//   }
-// };
-
-//============================End Product Controllers==============================================
-
 //============================Contact Controllers==============================================
 
 export const createContactDetails = async (data: any) => {
@@ -86,7 +57,7 @@ export const createContactDetails = async (data: any) => {
       });
     }
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   }
 };
 export const editContactDetails = async (data: any) => {
@@ -106,7 +77,7 @@ export const editContactDetails = async (data: any) => {
       });
     }
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   }
 };
 
@@ -132,7 +103,7 @@ export const getContactDetails = async (data: any) => {
       });
     }
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   }
 };
 
@@ -158,7 +129,7 @@ export const getContactsDetails = async (data: any) => {
       });
     }
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   }
 };
 
@@ -183,7 +154,7 @@ export const deleteContactDetails = async (data: any) => {
       });
     }
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   }
 };
 
@@ -208,7 +179,7 @@ export const createLeadDetails = async (data: any) => {
       });
     }
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   }
 };
 export const editLeadDetails = async (data: any) => {
@@ -228,7 +199,7 @@ export const editLeadDetails = async (data: any) => {
       });
     }
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   }
 };
 
@@ -254,7 +225,7 @@ export const getLeadDetails = async (data: any) => {
       });
     }
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   }
 };
 
@@ -280,7 +251,7 @@ export const getLeadsDetails = async (data: any) => {
       });
     }
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   }
 };
 
@@ -305,7 +276,7 @@ export const deleteLeadDetails = async (data: any) => {
       });
     }
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   }
 };
 
@@ -330,7 +301,7 @@ export const createActivityDetails = async (data: any) => {
       });
     }
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   }
 };
 export const editActivityDetails = async (data: any) => {
@@ -350,7 +321,7 @@ export const editActivityDetails = async (data: any) => {
       });
     }
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   }
 };
 
@@ -376,7 +347,7 @@ export const getActivityDetails = async (data: any) => {
       });
     }
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   }
 };
 
@@ -402,7 +373,7 @@ export const getActivitiesDetails = async (data: any) => {
       });
     }
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   }
 };
 
@@ -427,7 +398,7 @@ export const deleteActivityDetails = async (data: any) => {
       });
     }
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   }
 };
 
@@ -452,7 +423,7 @@ export const createProductDetails = async (data: any) => {
       });
     }
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   }
 };
 export const editProductDetails = async (data: any) => {
@@ -472,7 +443,7 @@ export const editProductDetails = async (data: any) => {
       });
     }
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   }
 };
 
@@ -498,7 +469,7 @@ export const getProductDetails = async (data: any) => {
       });
     }
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   }
 };
 
@@ -524,7 +495,7 @@ export const getProductsDetails = async (data: any) => {
       });
     }
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   }
 };
 
@@ -549,7 +520,7 @@ export const deleteProductDetails = async (data: any) => {
       });
     }
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   }
 };
 
@@ -574,7 +545,7 @@ export const createSaleDetails = async (data: any) => {
       });
     }
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   }
 };
 export const editSaleDetails = async (data: any) => {
@@ -594,7 +565,7 @@ export const editSaleDetails = async (data: any) => {
       });
     }
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   }
 };
 
@@ -620,7 +591,7 @@ export const getSaleDetails = async (data: any) => {
       });
     }
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   }
 };
 
@@ -646,7 +617,7 @@ export const getSalesDetails = async (data: any) => {
       });
     }
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   }
 };
 
@@ -671,7 +642,7 @@ export const deleteSaleDetails = async (data: any) => {
       });
     }
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   }
 };
 
@@ -696,7 +667,7 @@ export const createActivityTypeDetails = async (data: any) => {
       });
     }
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   }
 };
 export const editActivityTypeDetails = async (data: any) => {
@@ -716,7 +687,7 @@ export const editActivityTypeDetails = async (data: any) => {
       });
     }
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   }
 };
 
@@ -742,7 +713,7 @@ export const getActivityTypesDetails = async (data: any) => {
       });
     }
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   }
 };
 
@@ -767,7 +738,7 @@ export const deleteActivityTypeDetails = async (data: any) => {
       });
     }
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   }
 };
 
@@ -792,7 +763,7 @@ export const createProductCategoryDetails = async (data: any) => {
       });
     }
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   }
 };
 export const editProductCategoryDetails = async (data: any) => {
@@ -812,7 +783,7 @@ export const editProductCategoryDetails = async (data: any) => {
       });
     }
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   }
 };
 
@@ -838,7 +809,7 @@ export const getProductCategoryDetails = async (data: any) => {
       });
     }
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   }
 };
 
@@ -863,7 +834,7 @@ export const deleteProductCategoryDetails = async (data: any) => {
       });
     }
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   }
 };
 
@@ -888,7 +859,7 @@ export const createLeadSourceDetails = async (data: any) => {
       });
     }
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   }
 };
 export const editLeadSourceDetails = async (data: any) => {
@@ -908,7 +879,7 @@ export const editLeadSourceDetails = async (data: any) => {
       });
     }
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   }
 };
 
@@ -934,7 +905,7 @@ export const getLeadSourceDetails = async (data: any) => {
       });
     }
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   }
 };
 export const deleteLeadSourceDetails = async (data: any) => {
@@ -958,7 +929,7 @@ export const deleteLeadSourceDetails = async (data: any) => {
       });
     }
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   }
 };
 

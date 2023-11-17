@@ -1,8 +1,7 @@
 import { qUpdateSaleDataById } from "../database/repositories/sales-repo";
-
+import logger from "../services/winston";
 const editSaleData = async (newSaleData: any) => {
   try {
-
     if (newSaleData) {
       const { _id } = newSaleData;
       const dataToUpdate = {
@@ -28,7 +27,7 @@ const editSaleData = async (newSaleData: any) => {
       return { status: "FAILED", message: "No Sale update data found" };
     }
   } catch (err) {
-    console.error(err);
+    logger.error(err);
   }
 };
 

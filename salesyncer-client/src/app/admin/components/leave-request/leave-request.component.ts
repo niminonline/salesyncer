@@ -147,10 +147,4 @@ export class LeaveRequestComponent implements OnInit {
       }
     });
   }
-
-  // rejectLeave(_id: string) {
-  //   this.adminApi.leaveAction({ _id, toDo: 'reject' }).subscribe((response) => {
-  //     console.log(response);
-  //   });
-  // }
 }

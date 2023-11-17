@@ -66,9 +66,6 @@ export class ActivitiesComponent implements OnInit {
         return { ...activity, scheduledTime: scheduledTime };
       });
       this.allActivitiesCount = this.activitiesData.length;
-      // this.activitiesData.map((activity:any)=>{
-      //   console.log(activity.scheduledTime)
-      // })
 
       this.dataSource = new MatTableDataSource(this.activitiesData);
       this.dataSource.paginator = this.paginator;

@@ -1,6 +1,8 @@
-import { qaddBranchData,qGetBranchData } from "../database/repositories/officeRepo";
-
-import { publishAndResponse } from "../services/redisOps";
+import {
+  qaddBranchData,
+  qGetBranchData,
+} from "../database/repositories/officeRepo";
+import logger from "../services/winston";
 
 const addBranchData = async (branchData: any) => {
   try {
@@ -12,22 +14,19 @@ const addBranchData = async (branchData: any) => {
       };
 
       const response = await qaddBranchData(newBranch);
-      // console.log("Response from qaddBranchData Q", response);
 
       if (response) {
-       const allBranchData:any= await qGetBranchData();
-       allBranchData.status="OK";
-       allBranchData.message="Branch added successfully";95
-      //  console.log("All branch data from addbranch data",allBranchData)
+        const allBranchData: any = await qGetBranchData();
+        allBranchData.status = "OK";
+        allBranchData.message = "Branch added successfully";
+        95;
         return allBranchData;
-     }
-     else{
-        return {status:"FAILED",message:"Create branch failed"}
-     }
-}
-
+      } else {
+        return { status: "FAILED", message: "Create branch failed" };
+      }
+    }
   } catch (err) {
-    console.error(err);
+    logger.error(err);
   }
 };
 

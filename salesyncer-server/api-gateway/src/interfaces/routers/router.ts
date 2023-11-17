@@ -1,6 +1,4 @@
 import { Router } from "express";
-// import { upload } from "../../middlewares/multer";
-// import { verifyToken } from "../../middlewares/auth";
 import {
   adminLogin,
   employeeLogin,
@@ -58,7 +56,6 @@ import {
   createLeadSource,
   editLeadSource,
   deleteLeadSource,
-
 } from "../controllers/controller";
 
 const router = Router();
@@ -69,7 +66,6 @@ router.get("/", (req, res) => {
 router.post("/add-branch", addBranch);
 router.get("/get-branches", getBranches);
 router.post("/edit-branch", editBranch);
-
 
 router.post("/admin-login", adminLogin);
 router.post("/employee-login", employeeLogin);
@@ -86,7 +82,6 @@ router.get("/leave-requests", leaveRequests);
 router.post("/leave-action", leaveAction);
 router.get("/cancel-leave", cancelLeave);
 
-
 router.post("/create-contact", createContact);
 router.post("/edit-contact", editContact);
 router.get("/get-contact", getContact);
@@ -99,14 +94,11 @@ router.get("/get-lead", getLead);
 router.get("/get-leads", getLeads);
 router.delete("/delete-lead", deleteLead);
 
-
-
 router.post("/create-activity", createActivity);
 router.post("/edit-activity", editActivity);
 router.get("/get-activity", getActivity);
 router.get("/get-activities", getActivities);
 router.delete("/delete-activity", deleteActivity);
-
 
 ////////////////////////////////////////////////////
 router.post("/create-product", createProduct);
@@ -126,18 +118,15 @@ router.post("/set-branch-target", setBranchTarget);
 router.post("/edit-target", editTarget);
 router.delete("/delete-target", deleteTarget);
 
-
 router.post("/create-activity-type", createActivityType);
 router.post("/edit-activity-type", editActivityType);
 router.get("/get-activity-types", getActivityTypes);
 router.delete("/delete-activity-type", deleteActivityType);
 
-
 router.post("/create-product-category", createProductCategory);
 router.post("/edit-product-category", editProductCategory);
 router.get("/get-product-categories", getProductCategory);
 router.delete("/delete-product-category", deleteProductCategory);
-
 
 router.post("/create-lead-source", createLeadSource);
 router.post("/edit-lead-source", editLeadSource);

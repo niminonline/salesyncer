@@ -1,6 +1,7 @@
 import BusinessCounter from "../entities/BusinessCounter";
 import Activity from "../entities/activity";
 import ActivityType from "../entities/activityType";
+import logger from "../../services/winston";
 
 ////==============================================
 export const qGetActivitiesData = async () => {
@@ -14,7 +15,7 @@ export const qGetActivitiesData = async () => {
       })
       .sort({ _id: -1 });
   } catch (error) {
-    console.log(error);
+     logger.error(error);
   }
 };
 
@@ -27,7 +28,7 @@ export const qCreateActivityData = async (newActivityData: object) => {
     const addActivityToDB = await newActivity.save();
     return addActivityToDB;
   } catch (error) {
-    console.log(error);
+     logger.error(error);
   }
 };
 
@@ -42,7 +43,7 @@ export const qGetActivityDataById = async (_id: string) => {
       },
     });
   } catch (error) {
-    console.log(error);
+     logger.error(error);
   }
 };
 
@@ -69,7 +70,7 @@ export const qGetActivityCount = async () => {
     const counterData: any = await BusinessCounter.findOne();
     return counterData.activityCounter;
   } catch (error) {
-    console.log(error);
+     logger.error(error);
   }
 };
 
@@ -83,7 +84,7 @@ export const qIncActivityCount = async () => {
     });
     return updateCounterData;
   } catch (error) {
-    console.log(error);
+     logger.error(error);
   }
 };
 
@@ -92,7 +93,7 @@ export const qDeleteActivityDataById = async (_id: string) => {
   try {
     return await Activity.findByIdAndRemove(_id);
   } catch (error) {
-    console.log(error);
+     logger.error(error);
   }
 };
 
@@ -103,7 +104,7 @@ export const qGetActivityTypesData = async () => {
   try {
     return await ActivityType.find({});
   } catch (error) {
-    console.log(error);
+     logger.error(error);
   }
 };
 
@@ -116,7 +117,7 @@ export const qCreateActivityTypeData = async (newActivityTypeData: object) => {
     const addActivityTypeToDB = await newActivityType.save();
     return addActivityTypeToDB;
   } catch (error) {
-    console.log(error);
+     logger.error(error);
   }
 };
 
@@ -142,7 +143,7 @@ export const qDeleteActivityTypeDataById = async (_id: string) => {
   try {
     return await ActivityType.findByIdAndRemove(_id);
   } catch (error) {
-    console.log(error);
+     logger.error(error);
   }
 };
 
@@ -165,6 +166,6 @@ export const qIsTimeCollisionExists = async (
       ],
     });
   } catch (error) {
-    console.log(error);
+     logger.error(error);
   }
 };

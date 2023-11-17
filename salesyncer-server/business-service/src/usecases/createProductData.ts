@@ -4,12 +4,11 @@ import {
   qIncProductCount,
   qGetProductsData,
 } from "../database/repositories/products-repo";
-
+import logger from "../services/winston";
 const createProductData = async (productData: any) => {
   try {
     const allProductsData: any = await qGetProductsData();
     for (const product of allProductsData) {
-
       if (
         product.name.toLowerCase().replace(/\s/g, "").trim() ===
           productData.name.toLowerCase().replace(/\s/g, "").trim() &&
@@ -43,7 +42,7 @@ const createProductData = async (productData: any) => {
       return { status: "FAILED", message: "No Product data found" };
     }
   } catch (err) {
-    console.error(err);
+    logger.error(err);
   }
 };
 

@@ -3,12 +3,11 @@ import {
   qGetSaleCount,
   qIncSaleCount,
 } from "../database/repositories/sales-repo";
-
+import logger from "../services/winston";
 import { publishAndResponse } from "../services/redisOps";
 
 const createSaleData = async (saleData: any) => {
   try {
-    // console.log("Sale create..",createSaleData);
     const saleCount = await qGetSaleCount();
     if (saleData) {
       const newSaleData = {
@@ -28,16 +27,24 @@ const createSaleData = async (saleData: any) => {
       const response: any = await qCreateSaleData(newSaleData);
 
       if (response) {
-        const {employee_id}=saleData;
-        console.log(saleData.date);
+        const { employee_id } = saleData;
 
         const saleDate: Date = new Date(saleData.date);
         const saleMonth = saleDate.toLocaleString("en-us", { month: "long" });
         const saleYear = saleDate.getFullYear();
 
-        const data={_id:employee_id,month:saleMonth,year:saleYear,sale:saleData.amount};
-        const updateAchievedTarget= await publishAndResponse('office-service',data,'updateAchievedTargetDetails','Res-updateAchievedTargetDetails');
-        console.log("Update achieved",updateAchievedTarget);
+        const data = {
+          _id: employee_id,
+          month: saleMonth,
+          year: saleYear,
+          sale: saleData.amount,
+        };
+        const updateAchievedTarget = await publishAndResponse(
+          "office-service",
+          data,
+          "updateAchievedTargetDetails",
+          "Res-updateAchievedTargetDetails"
+        );
 
         const updateSaleCount = await qIncSaleCount();
 
@@ -49,7 +56,7 @@ const createSaleData = async (saleData: any) => {
       return { status: "FAILED", message: "No Sale data found" };
     }
   } catch (err) {
-    console.error(err);
+    logger.error(err);
   }
 };
 

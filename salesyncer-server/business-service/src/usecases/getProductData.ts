@@ -1,12 +1,12 @@
 import { qGetProductDataById } from "../database/repositories/products-repo";
-
+import logger from "../services/winston";
 const getProductData = async (_id: string): Promise<object | undefined> => {
   try {
     if (_id) {
       const productData = await qGetProductDataById(_id);
       if (productData) {
         return {
-            productData,
+          productData,
           message: "Product details fetched successfully",
           status: "OK",
         };
@@ -17,7 +17,7 @@ const getProductData = async (_id: string): Promise<object | undefined> => {
       return { message: "Missing _id", status: "FAILED" };
     }
   } catch (err) {
-    console.error(err);
+    logger.error(err);
   }
 };
 export default getProductData;

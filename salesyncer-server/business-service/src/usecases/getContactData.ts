@@ -1,4 +1,5 @@
 import { qGetContactsDataById } from "../database/repositories/contacts-repo";
+import logger from "../services/winston";
 
 const getContactData = async (_id: string): Promise<object | undefined> => {
   try {
@@ -17,7 +18,7 @@ const getContactData = async (_id: string): Promise<object | undefined> => {
       return { message: "Missing _id", status: "FAILED" };
     }
   } catch (err) {
-    console.error(err);
+    logger.error(err);
   }
 };
 export default getContactData;

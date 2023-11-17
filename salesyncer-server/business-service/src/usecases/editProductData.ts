@@ -1,8 +1,7 @@
 import { qUpdateProductDataById } from "../database/repositories/products-repo";
-
+import logger from "../services/winston";
 const editProductData = async (newProductData: any) => {
   try {
-
     if (newProductData) {
       const { _id } = newProductData;
       const dataToUpdate = {
@@ -23,7 +22,7 @@ const editProductData = async (newProductData: any) => {
       return { status: "FAILED", message: "No update data found" };
     }
   } catch (err) {
-    console.error(err);
+    logger.error(err);
   }
 };
 

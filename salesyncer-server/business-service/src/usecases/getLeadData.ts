@@ -1,5 +1,5 @@
 import { qGetLeadDataById } from "../database/repositories/leads-repo";
-
+import logger from "../services/winston";
 const getLeadData = async (_id: string): Promise<object | undefined> => {
   try {
     if (_id) {
@@ -17,7 +17,7 @@ const getLeadData = async (_id: string): Promise<object | undefined> => {
       return { message: "Missing _id", status: "FAILED" };
     }
   } catch (err) {
-    console.error(err);
+    logger.error(err);
   }
 };
 export default getLeadData;

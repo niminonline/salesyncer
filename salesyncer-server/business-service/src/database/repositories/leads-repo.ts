@@ -1,9 +1,9 @@
 import Leads from "../entities/leads";
 import LeadSource from "../entities/leadSource";
-import ProductCategory from "../entities/productCategory";
 import Products from "../entities/products";
 import BusinessCounter from "../entities/BusinessCounter";
 import moment from 'moment';
+import logger from "../../services/winston";
 
 
 ////==============================================
@@ -11,7 +11,7 @@ export const qGetProductsData = async () => {
   try {
     return await Products.find({});
   } catch (error) {
-    console.log(error);
+     logger.error(error);
   }
 };
 
@@ -21,7 +21,7 @@ export const qGetLeadsData = async () => {
   try {
     return await Leads.find({}).populate('client').sort({_id:-1});
   } catch (error) {
-    console.log(error);
+     logger.error(error);
   }
 };
 
@@ -34,7 +34,7 @@ export const qCreateLeadsData = async (newLeadData: object) => {
     const addLeadToDB=  await newLead.save();
     return addLeadToDB;
   } catch (error) {
-    console.log(error);
+     logger.error(error);
   }
 };
 
@@ -44,7 +44,7 @@ export const qGetLeadDataById = async (_id: string) => {
   try {
     return await Leads.findById(_id).populate('client');
   } catch (error) {
-    console.log(error);
+     logger.error(error);
   }
 };
 
@@ -76,7 +76,7 @@ export const qUpdateLeadDataById = async (
       const counterData:any=  await BusinessCounter.findOne(); 
       return counterData.leadCounter;
     } catch (error) {
-      console.log(error);
+       logger.error(error);
     }
   };
   
@@ -87,7 +87,7 @@ export const qUpdateLeadDataById = async (
       const updateCounterData:any=  await BusinessCounter.findOneAndUpdate({$inc:{leadCounter:1}});  
       return updateCounterData;
     } catch (error) {
-      console.log(error);
+       logger.error(error);
     }
   };
   
@@ -96,7 +96,7 @@ export const qUpdateLeadDataById = async (
     try {
       return await Leads.findByIdAndRemove(_id);
     } catch (error) {
-      console.log(error);
+       logger.error(error);
     }
   };
   
@@ -111,7 +111,7 @@ export const qUpdateLeadDataById = async (
       const addLeadSourceToDB = await newLeadSource.save();
       return addLeadSourceToDB;
     } catch (error) {
-      console.log(error);
+       logger.error(error);
     }
   };
 
@@ -136,7 +136,7 @@ export const qUpdateLeadDataById = async (
     try {
       return await LeadSource.find({});
     } catch (error) {
-      console.log(error);
+       logger.error(error);
     }
   };
 
@@ -146,7 +146,7 @@ export const qUpdateLeadDataById = async (
     try {
       return await LeadSource.findByIdAndRemove(_id);
     } catch (error) {
-      console.log(error);
+       logger.error(error);
     }
   };
   

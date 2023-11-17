@@ -1,5 +1,5 @@
 import { qGetLeadsSourceData } from "../database/repositories/leads-repo";
-
+import logger from "../services/winston";
 const getLeadSourceData = async (): Promise<object | undefined> => {
   try {
     const leadSourceData = await qGetLeadsSourceData();
@@ -13,7 +13,7 @@ const getLeadSourceData = async (): Promise<object | undefined> => {
       return { message: "Lead source data fetching failed", status: "FAILED" };
     }
   } catch (err) {
-    console.error(err);
+    logger.error(err);
   }
 };
 export default getLeadSourceData;

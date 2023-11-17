@@ -1,12 +1,16 @@
 import { qDeleteProductCategoryDataById } from "../database/repositories/products-repo";
-
-const deleteProductCategoryData = async (_id: string): Promise<object | undefined> => {
+import logger from "../services/winston";
+const deleteProductCategoryData = async (
+  _id: string
+): Promise<object | undefined> => {
   try {
     if (_id) {
-      const deleteProductCategoryData = await qDeleteProductCategoryDataById(_id);
+      const deleteProductCategoryData = await qDeleteProductCategoryDataById(
+        _id
+      );
       if (deleteProductCategoryData) {
         return {
-            deleteProductCategoryData,
+          deleteProductCategoryData,
           message: "ProductCategory deleted successfully",
           status: "OK",
         };
@@ -17,7 +21,7 @@ const deleteProductCategoryData = async (_id: string): Promise<object | undefine
       return { message: "Missing _id", status: "FAILED" };
     }
   } catch (err) {
-    console.error(err);
+    logger.error(err);
   }
 };
 export default deleteProductCategoryData;

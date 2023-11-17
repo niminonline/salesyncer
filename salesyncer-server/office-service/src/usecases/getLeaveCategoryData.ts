@@ -1,4 +1,5 @@
 import { qGetLeaveCategoryData } from "../database/repositories/employeeRepo";
+import logger from "../services/winston";
 
 const getLeaveCategoryData = async (): Promise<object | undefined> => {
   try {
@@ -13,7 +14,7 @@ const getLeaveCategoryData = async (): Promise<object | undefined> => {
       return { message: "Leave category data fetching failed", status: "FAILED" };
     }
   } catch (err) {
-    console.error(err);
+    logger.error(err);
   }
 };
 

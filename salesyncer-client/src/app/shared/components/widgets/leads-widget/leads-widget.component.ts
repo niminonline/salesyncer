@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
+import {Component, Input, OnInit } from '@angular/core';
 
 import { Store } from '@ngrx/store';
 import * as leadsDataActions from '../../../../shared/store/actions/leadsData.actions';
@@ -12,7 +12,7 @@ import Chart from 'chart.js/auto';
   templateUrl: './leads-widget.component.html',
   styleUrls: ['./leads-widget.component.scss'],
 })
-export class LeadsWidgetComponent implements OnInit,AfterViewInit {
+export class LeadsWidgetComponent implements OnInit {
   @Input() role!: string;
   @Input() user!: string;
   leadsData!: Lead[];
@@ -35,9 +35,6 @@ export class LeadsWidgetComponent implements OnInit,AfterViewInit {
  
   }
 
-  ngAfterViewInit() {
-    // this.createChart();
-  }
 
   getLeadsData() {
     this.store.dispatch(leadsDataActions.retrieveLeadsData());

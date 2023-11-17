@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,AfterViewInit} from '@angular/core';
 import * as branchDataActions from '../../../shared/store/actions/branchData.actions';
 import * as leadsDataActions from '../../../shared/store/actions/leadsData.actions';
 import * as leadSourceDataActions from '../../../shared/store/actions/leadSourceData.actions';
@@ -29,7 +29,7 @@ import { selectEmployeeData } from '../../../shared/store/selectors/user.selecto
   templateUrl: './employee-dashboard.component.html',
   styleUrls: ['./employee-dashboard.component.scss'],
 })
-export class EmployeeDashboardComponent implements OnInit {
+export class EmployeeDashboardComponent implements OnInit,AfterViewInit {
   ownerName!: string;
   branchData!: Branch[];
   leadsData!: Lead[];
@@ -47,6 +47,7 @@ export class EmployeeDashboardComponent implements OnInit {
 
   ngOnInit() {
     this.role="user" ;
+    this.getOwnerData()
 
     // this.getBranchData();
     // this.getLeadsData();
@@ -57,7 +58,10 @@ export class EmployeeDashboardComponent implements OnInit {
     // this.getActivityTypesData();
     // this.getSalesData();
     // this.getEmployeesData();
-    this.getOwnerData()
+    
+  }
+
+  ngAfterViewInit() {
   }
 
   getBranchData() {

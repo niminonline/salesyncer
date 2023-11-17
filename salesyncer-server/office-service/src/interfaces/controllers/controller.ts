@@ -5,7 +5,7 @@ import getBranchData from "../../usecases/getBranchData";
 import addBranchData from "../../usecases/addBranchData";
 import getEmployeesData from "../../usecases/getEmployeesData";
 import updateEmployeeData from "../../usecases/updateEmployeeData";
-import { qEmployeeDataByEmail,qEmployeeDataById } from "../../database/repositories/employeeRepo";
+import { qEmployeeDataByEmail } from "../../database/repositories/employeeRepo";
 import getLeaveCategoryData from "../../usecases/getLeaveCategoryData";
 import applyLeaveData from "../../usecases/applyLeaveData";
 import fetchLeaveData from "../../usecases/fetchLeaveData";
@@ -14,15 +14,11 @@ import leaveAction from "../../usecases/leaveAction";
 import cancelLeaveData from "../../usecases/cancelLeaveData";
 import editBranchData from "../../usecases/editBranchData";
 import addTargetData from "../../usecases/addTargetData";
-import editTargetData from "../../usecases/editTargetData";
 import setBranchTargetData from "../../usecases/setBranchTargetData";
 import updateAchievedTargetData from "../../usecases/updateAchievedTargetData";
-interface AdminData {
-  email: string;
-  password: string;
-  requestId: string;
-  action: string;
-}
+import logger from "../../services/winston";
+
+
 
 export const getEmployeeDetails = async (data: any) => {
   try {
@@ -37,7 +33,7 @@ export const getEmployeeDetails = async (data: any) => {
 
     publishToChannel("ApiRes-getEmployeeData", response);
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   }
 };
 export const addEmployeeDetails = async (data: any) => {
@@ -61,7 +57,7 @@ export const addEmployeeDetails = async (data: any) => {
       });
     }
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   }
 };
 
@@ -87,7 +83,7 @@ export const getBranchDetails = async (data:any) => {
       });
     }
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   }
 };
 
@@ -114,7 +110,7 @@ export const addBranchDetails = async (data: any) => {
       });
     }
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   }
 };
 export const editBranchDetails = async (data: any) => {
@@ -139,7 +135,7 @@ export const editBranchDetails = async (data: any) => {
       });
     }
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   }
 };
 export const getEmployeesDetails = async (data: any) => {
@@ -164,7 +160,7 @@ export const getEmployeesDetails = async (data: any) => {
       });
     }
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   }
 };
 export const getEmployeeDataWithEmail = async (data: any) => {
@@ -189,13 +185,12 @@ export const getEmployeeDataWithEmail = async (data: any) => {
       });
     }
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   }
 };
 export const updateEmployeeDetails = async (data: any) => {
   try {
     
-    console.log("Data got from auth to update employee",data)
     const { requestId, action,newEmpData } = data;
     const _id= newEmpData._id;
     
@@ -218,7 +213,7 @@ export const updateEmployeeDetails = async (data: any) => {
       });
     }
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   }
 };
 
@@ -246,15 +241,13 @@ export const getLeaveCategoryDetails = async (data:any) => {
       });
     }
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   }
 };
 export const applyLeaveDetails = async (data: any) => {
   try {
-    console.log("Req body of addEmployeeData Controller", data);
     const { requestId, action } = data;
     const response: any = await applyLeaveData(data);
-    console.log("Request id, action from office controller",response);
     if (response.status == "OK") {
       const data = {
         requestId,
@@ -272,7 +265,7 @@ export const applyLeaveDetails = async (data: any) => {
       });
     }
   } catch (error) {
-    console.error(error);
+    logger.error(error);
   }
 };
 
@@ -298,7 +291,7 @@ export const fetchLeaveDetails = async (data:any) => {
         });
       }
     } catch (error) {
-      console.error(error);
+      logger.error(error);
     }
   };
   export const getLeaveRequests = async (data:any) => {
@@ -323,15 +316,13 @@ export const fetchLeaveDetails = async (data:any) => {
         });
       }
     } catch (error) {
-      console.error(error);
+      logger.error(error);
     }
   };
     export const doLeaveAction = async (data: any) => {
       try {
-        console.log("Req body of leave action", data);
         const { requestId, action } = data;
         const response: any = await leaveAction(data);
-        console.log("Request id, action from leave action controller",response);
         if (response.status == "OK") {
           const data = {
             requestId,
@@ -348,7 +339,7 @@ export const fetchLeaveDetails = async (data:any) => {
           });
         }
       } catch (error) {
-        console.error(error);
+        logger.error(error);
       }
     };
     export const cancelLeaveDetails = async (data: any) => {
@@ -371,7 +362,7 @@ export const fetchLeaveDetails = async (data:any) => {
           });
         }
       } catch (error) {
-        console.error(error);
+        logger.error(error);
       }
     };
 
@@ -400,7 +391,7 @@ export const fetchLeaveDetails = async (data:any) => {
         });
       }
     } catch (error) {
-      console.error(error);
+      logger.error(error);
     }
   };
   
@@ -426,7 +417,7 @@ export const fetchLeaveDetails = async (data:any) => {
         });
       }
     } catch (error) {
-      console.error(error);
+      logger.error(error);
     }
   };
   
@@ -453,34 +444,6 @@ export const fetchLeaveDetails = async (data:any) => {
         });
       }
     } catch (error) {
-      console.error(error);
+      logger.error(error);
     }
   };
-  
-  // export const editTargetDetails = async (data: any) => {
-    //   try {
-      //     const { requestId, action} = data;
-      //     const response: any = await editTargetData(data);
-      
-      //     if (response.status == "OK") {
-        //       const data = {
-          //         requestId,
-          //         action,
-          //         status: "OK",
-          //         message: "Target updated successfully",
-  //       };
-  //       publishToChannel("ApiRes-editTargetDetails", data);
-  //     } else {
-  //       publishToChannel("ApiRes-editTargetDetails", {
-  //         requestId,
-  //         action,
-  //         status: "FAILED",
-  //         message: "No response ",
-  //       });
-  //     }
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
-
-//======================================================================

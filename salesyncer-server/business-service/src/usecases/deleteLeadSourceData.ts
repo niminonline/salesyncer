@@ -1,12 +1,14 @@
 import { qDeleteLeadSourceById } from "../database/repositories/leads-repo";
-
-const deleteLeadSourceData = async (_id: string): Promise<object | undefined> => {
+import logger from "../services/winston";
+const deleteLeadSourceData = async (
+  _id: string
+): Promise<object | undefined> => {
   try {
     if (_id) {
       const deleteLeadSourceData = await qDeleteLeadSourceById(_id);
       if (deleteLeadSourceData) {
         return {
-            deleteLeadSourceData,
+          deleteLeadSourceData,
           message: "Lead Source deleted successfully",
           status: "OK",
         };
@@ -17,7 +19,7 @@ const deleteLeadSourceData = async (_id: string): Promise<object | undefined> =>
       return { message: "Missing _id", status: "FAILED" };
     }
   } catch (err) {
-    console.error(err);
+    logger.error(err);
   }
 };
 export default deleteLeadSourceData;

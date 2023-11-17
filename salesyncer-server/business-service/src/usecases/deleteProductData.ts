@@ -1,12 +1,12 @@
 import { qDeleteProductDataById } from "../database/repositories/products-repo";
-
+import logger from "../services/winston";
 const deleteProductData = async (_id: string): Promise<object | undefined> => {
   try {
     if (_id) {
       const deleteProductData = await qDeleteProductDataById(_id);
       if (deleteProductData) {
         return {
-            deleteProductData,
+          deleteProductData,
           message: "Product deleted successfully",
           status: "OK",
         };
@@ -17,7 +17,7 @@ const deleteProductData = async (_id: string): Promise<object | undefined> => {
       return { message: "Missing _id", status: "FAILED" };
     }
   } catch (err) {
-    console.error(err);
+    logger.error(err);
   }
 };
 export default deleteProductData;

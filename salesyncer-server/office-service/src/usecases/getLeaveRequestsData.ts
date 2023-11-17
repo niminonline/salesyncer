@@ -1,5 +1,5 @@
-import Leave from "../database/entities/leave";
 import { qGetLeaveRequests } from "../database/repositories/employeeRepo";
+import logger from "../services/winston";
 
 const getLeaveRequestsData = async (): Promise<object | undefined> => {
   try {
@@ -14,7 +14,7 @@ const getLeaveRequestsData = async (): Promise<object | undefined> => {
       return { message: "Leave requests fetching failed", status: "FAILED" };
     }
   } catch (err) {
-    console.error(err);
+    logger.error(err);
   }
 };
 

@@ -1,17 +1,20 @@
 import BusinessCounter from "../entities/BusinessCounter";
 import Sale from "../entities/sales";
+import logger from "../../services/winston";
 
 ////==============================================
 export const qGetSalesData = async () => {
   try {
-    return await Sale.find({}).populate({
-      path: "lead",
-      populate: {
-        path: "client",
-      },
-    }).sort({ _id: -1 });
+    return await Sale.find({})
+      .populate({
+        path: "lead",
+        populate: {
+          path: "client",
+        },
+      })
+      .sort({ _id: -1 });
   } catch (error) {
-    console.log(error);
+     logger.error(error);
   }
 };
 
@@ -20,11 +23,10 @@ export const qGetSalesData = async () => {
 export const qCreateSaleData = async (newSaleData: object) => {
   try {
     const newSale = new Sale(newSaleData);
-    // console.log("New sale repo",newSale)
     const addSaleToDB = await newSale.save();
     return addSaleToDB;
   } catch (error) {
-    console.log(error);
+     logger.error(error);
   }
 };
 
@@ -39,16 +41,13 @@ export const qGetSaleDataById = async (_id: string) => {
       },
     });
   } catch (error) {
-    console.log(error);
+     logger.error(error);
   }
 };
 
 ////==============================================
 
-export const qUpdateSaleDataById = async (
-  _id: string,
-  newSaleData: any
-) => {
+export const qUpdateSaleDataById = async (_id: string, newSaleData: any) => {
   try {
     const updateOperation = {
       $set: newSaleData,
@@ -66,7 +65,7 @@ export const qGetSaleCount = async () => {
     const counterData: any = await BusinessCounter.findOne();
     return counterData.saleCounter;
   } catch (error) {
-    console.log(error);
+     logger.error(error);
   }
 };
 
@@ -80,7 +79,7 @@ export const qIncSaleCount = async () => {
     });
     return updateSaleData;
   } catch (error) {
-    console.log(error);
+     logger.error(error);
   }
 };
 
@@ -89,7 +88,7 @@ export const qDeleteSaleDataById = async (_id: string) => {
   try {
     return await Sale.findByIdAndRemove(_id);
   } catch (error) {
-    console.log(error);
+     logger.error(error);
   }
 };
 

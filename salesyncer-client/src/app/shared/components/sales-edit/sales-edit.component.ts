@@ -243,7 +243,6 @@ export class SalesEditComponent implements OnInit {
 
   onCategoryChange(selectedCategory: string) {
 
-    console.log("Filtered",selectedCategory)
     this.filteredProducts = this.productsData.filter(
       (product: any) => product.category == selectedCategory
     );

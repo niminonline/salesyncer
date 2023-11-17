@@ -96,7 +96,6 @@ export class TargetWidgetComponent implements OnInit {
       });
 
       this.targetData = this.selectedEmployeeData.target;
-      console.log(this.selectedEmployeeData);
       this.searchedTarget = this.targetData?.find((targetArray: any) => {
         return targetArray.month == month && targetArray.year == year;
       });

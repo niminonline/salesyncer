@@ -3,6 +3,7 @@ import {
   qGetContactCount,
   qIncContactCount,
 } from "../database/repositories/contacts-repo";
+import logger from "../services/winston";
 
 const createContactData = async (contactData: any) => {
   try {
@@ -35,7 +36,7 @@ const createContactData = async (contactData: any) => {
       return { status: "FAILED", message: "No Contact data failed" };
     }
   } catch (err) {
-    console.error(err);
+    logger.error(err);
   }
 };
 

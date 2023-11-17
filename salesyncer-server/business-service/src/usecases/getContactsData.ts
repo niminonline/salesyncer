@@ -1,4 +1,5 @@
 import { qGetContactsData } from "../database/repositories/contacts-repo";
+import logger from "../services/winston";
 
 const getContactsData = async (): Promise<object | undefined> => {
   try {
@@ -13,7 +14,7 @@ const getContactsData = async (): Promise<object | undefined> => {
       return { message: "Contact data fetching failed", status: "FAILED" };
     }
   } catch (err) {
-    console.error(err);
+    logger.error(err);
   }
 };
 export default getContactsData;

@@ -1,13 +1,14 @@
 import BusinessCounter from "../entities/BusinessCounter";
 import Product from "../entities/products";
 import ProductCategory from "../entities/productCategory";
+import logger from "../../services/winston";
 
 ////==============================================
 export const qGetProductsData = async () => {
   try {
     return await Product.find({}).sort({ _id: -1 });
   } catch (error) {
-    console.log(error);
+     logger.error(error);
   }
 };
 
@@ -20,7 +21,7 @@ export const qCreateProductData = async (newProductData: object) => {
     const addProductToDB = await newProduct.save();
     return addProductToDB;
   } catch (error) {
-    console.log(error);
+     logger.error(error);
   }
 };
 
@@ -30,7 +31,7 @@ export const qGetProductDataById = async (_id: string) => {
   try {
     return await Product.findById(_id);
   } catch (error) {
-    console.log(error);
+     logger.error(error);
   }
 };
 
@@ -57,7 +58,7 @@ export const qGetProductCount = async () => {
     const counterData: any = await BusinessCounter.findOne();
     return counterData.productCounter;
   } catch (error) {
-    console.log(error);
+     logger.error(error);
   }
 };
 
@@ -71,7 +72,7 @@ export const qIncProductCount = async () => {
     });
     return updateProductData;
   } catch (error) {
-    console.log(error);
+     logger.error(error);
   }
 };
 
@@ -80,7 +81,7 @@ export const qDeleteProductDataById = async (_id: string) => {
   try {
     return await Product.findByIdAndRemove(_id);
   } catch (error) {
-    console.log(error);
+     logger.error(error);
   }
 };
 
@@ -97,7 +98,7 @@ export const qCreateProductCategoryData = async (newProductCategoryData: object)
     const addProductCategoryToDB = await newProductCategory.save();
     return addProductCategoryToDB;
   } catch (error) {
-    console.log(error);
+     logger.error(error);
   }
 };
 
@@ -124,7 +125,7 @@ export const qGetProductCategoryData = async () => {
   try {
     return await ProductCategory.find({});
   } catch (error) {
-    console.log(error);
+     logger.error(error);
   }
 };
 
@@ -135,7 +136,7 @@ export const qDeleteProductCategoryDataById = async (_id: string) => {
   try {
     return await ProductCategory.findByIdAndRemove(_id);
   } catch (error) {
-    console.log(error);
+     logger.error(error);
   }
 };
 

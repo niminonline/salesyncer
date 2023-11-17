@@ -159,7 +159,6 @@ export class SalesCreateComponent implements OnInit {
         return employee._id == data.value.employee_id;
       });
       const employeeName = currentEmployee.name;
-      console.log(employeeName);
       const {
         branchName,
         employee_id,

@@ -2,6 +2,7 @@ import express from "express";
 import { config } from "dotenv";
 import router from "./interfaces/routers/router";
 import cors from "cors"
+import logger from "./services/winston";
 
 const port = process.env.PORT || 3000;
 
@@ -33,5 +34,5 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/",router);
 
 app.listen(port, () => {
-  console.log(`API gateway listening at port# ${port}`);
+  logger.info(`API gateway listening at port# ${port}`);
 });

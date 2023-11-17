@@ -72,7 +72,7 @@ export class ContactsEditComponent implements OnInit {
       if (response) {
         this.contactsData = response;
       } else {
-        console.log('Employee fetching from state failed');
+        console.error('Employee fetching from state failed');
       }
     });
   }

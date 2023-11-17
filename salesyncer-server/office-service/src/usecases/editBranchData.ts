@@ -1,4 +1,5 @@
 import { qaddBranchData,qGetBranchData, qUpdateBranchDataById } from "../database/repositories/officeRepo";
+import logger from "../services/winston";
 
 
 const editBranchData = async (branchData: any) => {
@@ -23,7 +24,7 @@ const editBranchData = async (branchData: any) => {
 }
 
   } catch (err) {
-    console.error(err);
+    logger.error(err);
   }
 };
 
