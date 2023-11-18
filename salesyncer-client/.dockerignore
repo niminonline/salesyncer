@@ -20,13 +20,12 @@ tmp
 *.ts
 .gitignore
 
-
 # Ignore test and documentation files
 test
 docs
 
 #local files
-Dockerfile
+
 .git
 .vscode
 .idea

@@ -2,6 +2,8 @@
 node_modules
 npm-debug.log
 
+# winston files
+/logs/
 
 # Ignore build and temporary files
 build
@@ -13,7 +15,21 @@ tmp
 .idea
 *.suo
 *.ntvs*
+*.md
+*.yml
+*.ts
+.gitignore
+
 
 # Ignore test and documentation files
 test
 docs
+
+#local files
+Dockerfile
+.git
+.vscode
+.idea
+nodemon.json
+apidata.txt
+notes.txt

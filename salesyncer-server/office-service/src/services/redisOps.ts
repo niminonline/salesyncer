@@ -2,7 +2,10 @@ import { Redis } from "ioredis";
 import logger from "./winston";
 
 export const publishToChannel = (channelName: string, response: any) => {
-  const redisPublisher = new Redis();
+  const redisPublisher = new Redis({
+    host:'redis',
+    port: 6379,
+  });
 
   redisPublisher.publish(
     channelName,
@@ -25,8 +28,14 @@ export const publishAndResponse = (
   publishAction: string,
   subscribeChannel: string
 ) => {
-  const redisPublisher = new Redis();
-  const redisSubscriber = new Redis();
+  const redisPublisher = new Redis({
+    host:'redis',
+    port: 6379,
+  });
+  const redisSubscriber = new Redis({
+    host:'redis',
+    port: 6379,
+  });
 
   return new Promise(async (resolve, reject) => {
     const requestId = Math.random().toString(36).substr(2, 9);

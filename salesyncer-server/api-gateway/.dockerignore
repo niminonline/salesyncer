@@ -2,7 +2,8 @@
 node_modules
 npm-debug.log
 
-
+# winston files
+/logs/
 
 # Ignore build and temporary files
 build
@@ -17,6 +18,7 @@ tmp
 *.md
 *.yml
 *.ts
+.gitignore
 
 # Ignore test and documentation files
 test
