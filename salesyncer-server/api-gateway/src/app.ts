@@ -10,7 +10,7 @@ const app = express();
 config();
 
 
-const allowedOrigins = ['http://localhost:4200', 'localhost:4200'];
+const allowedOrigins = ['http://localhost:4200', 'localhost:4200','http://localhost:80','localhost:80','http://localhost','localhost'];
 
 
 const corsOptions = {
