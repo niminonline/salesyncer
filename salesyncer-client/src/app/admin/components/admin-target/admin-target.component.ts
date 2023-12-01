@@ -175,7 +175,8 @@ export class AdminTargetComponent implements OnInit {
         this.isTargetCardVisible = true;
         this.target = this.searchedTarget.target;
         this.achieved = this.searchedTarget.achieved;
-        this.remaining = this.searchedTarget.remaining;
+       let tempTarget= this.searchedTarget.remaining;
+        this.remaining = tempTarget>0? tempTarget: 0; 
         this.percetangeCompleted = Math.round(
           (parseFloat(this.achieved) / parseFloat(this.target)) * 100
         );
