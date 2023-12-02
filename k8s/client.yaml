@@ -29,7 +29,7 @@ spec:
     spec:
       containers:
         - name: client
-          image: niminonline/salesyncer:client-v1
+          image: niminonline/salesyncer:client
           ports:
             - containerPort: 80
           resources:

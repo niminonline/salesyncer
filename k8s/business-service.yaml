@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
         - name: business-service
-          image: niminonline/salesyncer:business-service-v1
+          image: niminonline/salesyncer:business-service
           ports:
             - containerPort: 3003
           resources:

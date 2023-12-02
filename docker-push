@@ -14,3 +14,26 @@ docker push niminonline/salesyncer:auth-service-v1
 docker push niminonline/salesyncer:office-service-v1
 docker push niminonline/salesyncer:business-service-v1
 docker push niminonline/salesyncer:redis
+
+
+
+
+
+
+
+docker tag salesyncer_client niminonline/salesyncer:client
+docker tag salesyncer_api-gateway niminonline/salesyncer:api-gateway
+docker tag salesyncer_auth-service niminonline/salesyncer:auth-service
+docker tag salesyncer_office-service niminonline/salesyncer:office-service
+docker tag salesyncer_business-service niminonline/salesyncer:business-service
+docker tag redis:latest niminonline/salesyncer:redis
+
+
+
+
+docker push niminonline/salesyncer:client
+docker push niminonline/salesyncer:api-gateway
+docker push niminonline/salesyncer:auth-service
+docker push niminonline/salesyncer:office-service
+docker push niminonline/salesyncer:business-service
+docker push niminonline/salesyncer:redis

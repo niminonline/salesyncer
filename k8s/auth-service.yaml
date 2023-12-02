@@ -29,7 +29,7 @@ spec:
     spec:
       containers:
         - name: auth-service
-          image: niminonline/salesyncer:auth-service-v1
+          image: niminonline/salesyncer:auth-service
           ports:
             - containerPort: 3001
           resources:

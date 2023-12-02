@@ -29,7 +29,7 @@ spec:
     spec:
       containers:
         - name: office-service
-          image: niminonline/salesyncer:office-service-v1
+          image: niminonline/salesyncer:office-service
           ports:
             - containerPort: 3002
           resources:
