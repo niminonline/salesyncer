@@ -7,7 +7,11 @@ import logger from "./services/winston";
 const port = process.env.PORT || 3000;
 
 const app = express();
+// app.use(cors({origin: "http://salesyncer.cloud"}));
 config();
+
+
+
 
 const allowedOrigins = [
   "http://localhost:4200",
@@ -16,11 +20,12 @@ const allowedOrigins = [
   "localhost:80",
   "http://localhost",
   "localhost",
+  "www.salesyncer.cloud",
   "salesyncer.cloud",
+  "*.salesyncer.cloud",
+  "http://www.salesyncer.cloud",
   "http://salesyncer.cloud",
-  "https://salesyncer.cloud",
-  "http://salesyncer.cloud:80",
-  "https://salesyncer.cloud:80",
+ 
 
 ];
 
