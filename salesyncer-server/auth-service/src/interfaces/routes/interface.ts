@@ -1,11 +1,12 @@
 import { Redis } from "ioredis";
-import { adminLogin,employeeLogin,verifyToken,addEmployeeToAuthDb,updateAuthEmail } from "../controllers/controller";
+import { adminLogin,employeeLogin,verifyToken,addEmployeeToAuthDb,updateAuthEmail, passwordUpdate } from "../controllers/controller";
 import logger from "../../services/winston";
 
 const redisSubscriber = new Redis({
   host:'redis',
   port: 6379,
 });
+// const redisSubscriber = new Redis();
 
 export const subscribeToChannel = (channelName: string) => {
   redisSubscriber.subscribe(channelName, (error, count) => {
@@ -37,6 +38,9 @@ redisSubscriber.on("message", (channel: string, message: any) => {
           break;
       case "updateAuthEmail":
         updateAuthEmail(data);
+          break;
+      case "passwordUpdate":
+        passwordUpdate(data);
           break;
 
        

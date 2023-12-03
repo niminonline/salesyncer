@@ -11,5 +11,9 @@ const verifyTokenChannel ={
     send: 'verifyToken' ,
     listen: 'ApiRes-verifyToken',
 } 
+const passwordUpdateChannel ={
+    send: 'passwordUpdate' ,
+    listen: 'ApiRes-passwordUpdate',
+} 
 
-export {adminLogin,employeeLogin,verifyTokenChannel}
+export {adminLogin,employeeLogin,verifyTokenChannel,passwordUpdateChannel}

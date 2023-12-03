@@ -1,57 +1,61 @@
 <div class="container-main-body">
-
-
   <h1 class="title">Profile</h1>
- 
+
   <div class="user-container">
-      <table class="user-table">
-        <tr>
-          <th>Name</th>
-          <td>{{employeeData.name}}</td>
-        </tr>
-        <tr>
-          <th>Employee ID</th>
-          <td>{{employeeData.empId}}</td>
-        </tr>
-        <tr>
-          <th>Email</th>
-          <td>{{employeeData.email}}</td>
-        </tr>
-        <tr>
-          <th>Mobile</th>
-          <td>{{employeeData.phone}}</td>
-        </tr>
-        <tr>
-          <th>Branch</th>
-          <td>{{employeeData.branch}}</td>
-        </tr>
-        <tr>
-          <th>Role</th>
-          <td>{{employeeData.role}}</td>
-        </tr>
-        <tr>
-          <th>Designation</th>
-          <td>{{employeeData.designation}}</td>
-        </tr>
-        <tr>
-          <th>Casual leave balance</th>
-          <td>{{employeeData.casualLeaveBalance}}</td>
-        </tr>
-        <tr>
-          <th>Sick leave balance</th>
-          <td>{{employeeData.sickLeaveBalance}}</td>
-        </tr>
-        <tr>
-          <th>Address</th>
-          <td>{{employeeData.address.addressLine1}}, {{employeeData.address.addressLine2}}, {{employeeData.address.place}}, {{employeeData.address.pincode}}</td>
-        </tr>  
-        
-      </table>
+    <table class="user-table">
+      <tr>
+        <th>Name</th>
+        <td>{{ employeeData.name }}</td>
+      </tr>
+      <tr>
+        <th>Employee ID</th>
+        <td>{{ employeeData.empId }}</td>
+      </tr>
+      <tr>
+        <th>Email</th>
+        <td>{{ employeeData.email }}</td>
+      </tr>
+      <tr>
+        <th>Mobile</th>
+        <td>{{ employeeData.phone }}</td>
+      </tr>
+      <tr>
+        <th>Branch</th>
+        <td>{{ employeeData.branch }}</td>
+      </tr>
+      <tr>
+        <th>Role</th>
+        <td>{{ employeeData.role }}</td>
+      </tr>
+      <tr>
+        <th>Designation</th>
+        <td>{{ employeeData.designation }}</td>
+      </tr>
+      <tr>
+        <th>Casual leave balance</th>
+        <td>{{ employeeData.casualLeaveBalance }}</td>
+      </tr>
+      <tr>
+        <th>Sick leave balance</th>
+        <td>{{ employeeData.sickLeaveBalance }}</td>
+      </tr>
+      <tr>
+        <th>Address</th>
+        <td>
+          {{ employeeData.address.addressLine1 }},
+          {{ employeeData.address.addressLine2 }},
+          {{ employeeData.address.place }}, {{ employeeData.address.pincode }}
+        </td>
+      </tr>
+    </table>
 
-
-
-      <button mat-stroked-button color="primary" (click)="navEditProfile()">Edit</button>
-
+    <div class="button-block">
+      <button mat-stroked-button color="primary" (click)="navEditProfile()">
+        Edit
+      </button>
+      <button mat-stroked-button color="primary" (click)="updatePassword()">
+        Change Password
+      </button>
+    </div>
+  </div>
 </div>
-
-

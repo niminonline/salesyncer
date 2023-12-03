@@ -56,6 +56,7 @@ import {
   createLeadSource,
   editLeadSource,
   deleteLeadSource,
+  updateAuthPassword,
 } from "../controllers/controller";
 
 const router = Router();
@@ -69,6 +70,8 @@ router.post("/edit-branch", editBranch);
 
 router.post("/admin-login", adminLogin);
 router.post("/employee-login", employeeLogin);
+
+router.post("/update-password", updateAuthPassword);
 
 router.get("/get-employee-data", getEmployeeDetails);
 router.get("/get-employees-data", getEmployeesData);
@@ -132,5 +135,7 @@ router.post("/create-lead-source", createLeadSource);
 router.post("/edit-lead-source", editLeadSource);
 router.get("/get-lead-source", getLeadSource);
 router.delete("/delete-lead-source", deleteLeadSource);
+
+
 
 export default router;

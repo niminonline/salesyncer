@@ -34,3 +34,23 @@ export const qUpdateAuthEmail = async (
 
 
 
+  export const qUpdatePassword = async (
+    email: string,
+    password: string
+    ) => {
+     
+      try {
+        const response = await EmployeeCredentials.findOneAndUpdate(
+          { email: email },
+          { $set: { password: password } },
+          { new: true } 
+        );
+      
+        return response;
+     
+      } catch (error:any) {
+        console.error('Error updating document:', error.message);
+      }
+     
+    };
+

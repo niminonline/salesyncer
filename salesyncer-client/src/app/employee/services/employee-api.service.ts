@@ -19,5 +19,9 @@ export class EmployeeApiService {
     return this.http.get<any>(`/cancel-leave?_id=${_id}`)
   }
 
+  updatePassword(data: object): Observable<any> {
+    return this.http.post<any>(`/update-password`, data);
+  }
+
 
 }

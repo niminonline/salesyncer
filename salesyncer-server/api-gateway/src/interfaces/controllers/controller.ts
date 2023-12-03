@@ -3,6 +3,7 @@ import logger from "../../services/winston";
 import {
   publishAdminLogin,
   publishEmployeeLogin,
+  publishPasswordUpdate,
   verifyToken,
 } from "../../usecases/auth";
 import {
@@ -64,6 +65,24 @@ import {
   deleteLeadSourceDetails,
 } from "../../usecases/business";
 
+
+
+
+//=============================Update Auth Password===================================
+
+export const updateAuthPassword = async (req: Request, res: Response) => {
+  try {
+    const data = req.body;
+    const response: any = await publishPasswordUpdate(data);
+
+    delete response.requestId;
+    delete response.action;
+    res.json(response);
+  } catch (error) {
+    logger.error("Error in /auth:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
 //=============================Login Controllers===================================
 export const adminLogin = async (req: Request, res: Response) => {
   try {

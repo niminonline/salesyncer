@@ -58,6 +58,7 @@ export class EmployeeDashboardComponent implements OnInit,AfterViewInit {
     // this.getActivityTypesData();
     // this.getSalesData();
     // this.getEmployeesData();
+
     
   }
 

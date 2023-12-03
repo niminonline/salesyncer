@@ -5,6 +5,7 @@ import tokenVerification from "../../usecases/verifyJwtToken";
 import addEmployeeToDb from "../../usecases/addEmployeeToDb";
 import updateAuthEmailID from "../../usecases/updateAuthEmailID";
 import logger from "../../services/winston";
+import updatePassword from "../../usecases/updatePassword";
 
 interface AdminData {
   email: string;
@@ -120,5 +121,23 @@ export const updateAuthEmail = async (data: any): Promise<void> => {
     }
   } catch (err) {
     logger.error(err);
+  }
+};
+
+
+export const passwordUpdate = async (data: any) => {
+  try {
+    const { email, currentPassword,newPassword, requestId, action } = data;
+
+    const response: any = await updatePassword(email,currentPassword, newPassword);
+
+    if (response) {
+      response.requestId = requestId;
+      response.action = action;
+    }
+
+    publishToChannel("ApiRes-passwordUpdate", response);
+  } catch (error) {
+    logger.error(error);
   }
 };
