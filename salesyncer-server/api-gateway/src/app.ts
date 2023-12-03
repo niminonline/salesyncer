@@ -20,6 +20,7 @@ const allowedOrigins = [
   "localhost:80",
   "http://localhost",
   "localhost",
+  "http://13.233.80.164",
   "www.salesyncer.cloud",
   "salesyncer.cloud",
   "*.salesyncer.cloud",
