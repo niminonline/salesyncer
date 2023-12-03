@@ -26,6 +26,7 @@ const allowedOrigins = [
   "*.salesyncer.cloud",
   "http://www.salesyncer.cloud",
   "http://salesyncer.cloud",
+  "https://salesyncer.cloud",
  
 
 ];
