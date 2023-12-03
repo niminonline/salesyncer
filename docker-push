@@ -37,3 +37,4 @@ docker push niminonline/salesyncer:auth-service
 docker push niminonline/salesyncer:office-service
 docker push niminonline/salesyncer:business-service
 docker push niminonline/salesyncer:redis
+
