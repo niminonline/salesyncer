@@ -35,28 +35,37 @@ export class SalesCreateComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.getEmployeesData();
-    this.getBranchData();
-    this.getProductCategories();
-    this.getProducts();
-    this.getLeadsData();
+    this.fetchData();
+   
+  }
+
+
+  fetchData() {
+    Promise.resolve()
+      .then(() => this.getEmployeesData())
+      .then(() => this.getBranchData())
+      .then(() => this.getProductCategories())
+      .then(() => this.getProducts())
+      .then(() => this.getLeadsData())
+      .catch(error => console.error('An error occurred:', error));
   }
 
   getEmployeesData() {
     this.sharedAPI.getEmployeesData().subscribe((response) => {
       if (response) {
         this.employeesData = response.employeesData;
+        this.initFormgroup();
       }
     });
-    this.store.dispatch(UserActions.retrieveEmployeeData());
+    // this.store.dispatch(UserActions.retrieveEmployeeData());
 
-    this.store.select(selectEmployeeData).subscribe((response) => {
-      if (response) {
-        this.currentOwner = response.name;
-        this.currentBranch = response.branch;
-      }
-      this.initFormgroup();
-    });
+    // this.store.select(selectEmployeeData).subscribe((response) => {
+    //   if (response) {
+    //     this.currentOwner = response.name;
+    //     this.currentBranch = response.branch;
+    //   }
+    //   this.initFormgroup();
+    // });
   }
 
   getBranchData() {
