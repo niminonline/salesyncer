@@ -1,0 +1,70 @@
+services:
+
+  api-gateway:
+    build:
+      context: ./salesyncer-server/api-gateway
+      dockerfile: Dockerfile.api-gateway
+    container_name: api-gateway
+    volumes:
+      - ./salesyncer-server/api-gateway/logs:/app/logs
+    ports:
+      - "3000:3000"
+    networks:
+      - servers
+    depends_on:
+      - redis
+
+  auth-service:
+    build:
+      context: ./salesyncer-server/auth-service
+      dockerfile: Dockerfile.auth-service
+    container_name: auth-service
+    volumes:
+      - ./salesyncer-server/auth-service/logs:/app/logs
+    ports:
+      - "3001:3001"
+    networks:
+      - servers
+    depends_on:
+      - redis
+
+  office-service:
+    build:
+      context: ./salesyncer-server/office-service
+      dockerfile: Dockerfile.office-service
+    container_name: office-service
+    volumes:
+      - ./salesyncer-server/office-service/logs:/app/logs
+    ports:
+      - "3002:3002"
+    networks:
+      - servers
+    depends_on:
+      - redis
+
+  business-service:
+    build:
+      context: ./salesyncer-server/business-service
+      dockerfile: Dockerfile.business-service
+    container_name: business-service
+    volumes:
+      - ./salesyncer-server/business-service/logs:/app/logs
+    ports:
+      - "3003:3003"
+    networks:
+      - servers
+    depends_on:
+      - redis
+
+
+  redis:
+    image: "redis:latest"
+    container_name: redis
+    ports:
+      - "6379:6379"
+    networks:
+      - servers
+
+networks:
+  servers:
+    driver: bridge
