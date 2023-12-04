@@ -27,7 +27,7 @@
           <mat-label>Select employee</mat-label>
           <mat-select name="employee_id" formControlName="employee_id">
             <mat-option
-              *ngFor="let employee of filteredEmployees"
+              *ngFor="let employee of employeesData"
               [value]="employee._id"
             >
               {{ employee.name }}
