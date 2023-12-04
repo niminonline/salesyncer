@@ -118,8 +118,8 @@ export class SalesCreateComponent implements OnInit {
 
   initFormgroup() {
     this.inputGroup = this.fb.group({
-      branchName: [this.currentBranch, [Validators.required]],
-      employee_id: [this.currentOwner, [Validators.required]],
+      branchName: ['', [Validators.required]],
+      employee_id: ['', [Validators.required]],
       lead: ['', [Validators.required]],
       invoiceNumber: ['', [Validators.required]],
       productCategory: ['', [Validators.required]],

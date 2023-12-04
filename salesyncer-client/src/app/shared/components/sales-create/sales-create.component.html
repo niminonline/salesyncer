@@ -71,7 +71,7 @@
           <mat-label>Select Product</mat-label>
           <mat-select name="productName" formControlName="productName">
             <mat-option
-              *ngFor="let product of  filteredProducts"
+              *ngFor="let product of  productsData"
               [value]="product.name"
             >
               {{ product.name }}
