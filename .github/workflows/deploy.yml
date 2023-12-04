@@ -22,4 +22,4 @@ jobs:
           script: |
             cd /home/ubuntu/salesyncer
             git pull
-            docker-compose up -d
+            docker-compose -f docker-compose.prod.yaml up -d
