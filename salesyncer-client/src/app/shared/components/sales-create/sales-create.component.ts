@@ -129,23 +129,23 @@ export class SalesCreateComponent implements OnInit {
     });
 
 
-    const categoryControl: FormControl = this.inputGroup.get(
-      'productCategory'
-    ) as FormControl;
-    categoryControl.valueChanges.subscribe((selectedCategory) => {
-      if (selectedCategory) {
-        this.onCategoryChange(selectedCategory);
-      }
-    });
+    // const categoryControl: FormControl = this.inputGroup.get(
+    //   'productCategory'
+    // ) as FormControl;
+    // categoryControl.valueChanges.subscribe((selectedCategory) => {
+    //   if (selectedCategory) {
+    //     this.onCategoryChange(selectedCategory);
+    //   }
+    // });
 
-    const branchControl: FormControl = this.inputGroup.get(
-      'branchName'
-    ) as FormControl;
-    branchControl.valueChanges.subscribe((selectedBranch) => {
-      if (selectedBranch) {
-        this.onBranchChange(selectedBranch);
-      }
-    });
+    // const branchControl: FormControl = this.inputGroup.get(
+    //   'branchName'
+    // ) as FormControl;
+    // branchControl.valueChanges.subscribe((selectedBranch) => {
+    //   if (selectedBranch) {
+    //     this.onBranchChange(selectedBranch);
+    //   }
+    // });
 
 
   }
