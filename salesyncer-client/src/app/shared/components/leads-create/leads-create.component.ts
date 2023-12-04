@@ -72,15 +72,15 @@ export class LeadsCreateComponent implements OnInit {
     this.store.select(selectEmployeesData).subscribe((response) => {
       this.employeesData=response;
     });
-    this.store.dispatch(UserActions.retrieveEmployeeData());
+    this.initFormgroup();
+    // this.store.dispatch(UserActions.retrieveEmployeeData());
 
-    this.store.select(selectEmployeeData).subscribe((response) => {
-      if (response) {
-        this.currentOwner = response.name;
-        this.currentBranch = response.branch;
-      }
-      this.initFormgroup();
-    });
+    // this.store.select(selectEmployeeData).subscribe((response) => {
+    //   if (response) {
+    //     this.currentOwner = response.name;
+    //     this.currentBranch = response.branch;
+    //   }
+    // });
   }
 
   getBranchData() {
@@ -108,7 +108,7 @@ export class LeadsCreateComponent implements OnInit {
 
   initFormgroup() {
     this.leadsGroup = this.fb.group({
-      branch: [this.currentBranch, [Validators.required]],
+      branch: ['', [Validators.required]],
       type: ['', [Validators.required]],
       client: ['', [Validators.required]],
       source: ['', [Validators.required]],
