@@ -21,5 +21,5 @@ jobs:
           key: ${{ secrets.EC2_PRIVATE_KEY }}
           script: |
             cd /home/ubuntu/salesyncer
-            git pull
+            git pull origin main
             docker-compose -f docker-compose.prod.yaml up -d
