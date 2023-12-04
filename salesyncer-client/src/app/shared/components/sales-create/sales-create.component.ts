@@ -40,7 +40,6 @@ export class SalesCreateComponent implements OnInit {
     this.getProductCategories();
     this.getProducts();
     this.getLeadsData();
-    // this.initFormgroup();
   }
 
   getEmployeesData() {

@@ -60,8 +60,8 @@ export class LeadsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.store.dispatch(branchDataActions.retrieveBranchData());
     this.store.dispatch(leadsDataActions.retrieveLeadsData());
+    this.store.dispatch(branchDataActions.retrieveBranchData());
     this.store.dispatch(leadSourceDataActions.retrieveLeadSourceData());
     this.store.dispatch(productsDataActions.retrieveProductsData());
     this.store.dispatch(productCategoriesDataActions.retrieveProductCategoriesData());
