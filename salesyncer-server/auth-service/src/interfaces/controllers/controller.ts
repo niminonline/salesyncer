@@ -124,7 +124,6 @@ export const updateAuthEmail = async (data: any): Promise<void> => {
   }
 };
 
-
 export const passwordUpdate = async (data: any) => {
   try {
     const { email, currentPassword,newPassword, requestId, action } = data;
