@@ -29,10 +29,15 @@ export const qGetLeadsData = async () => {
 
 export const qCreateLeadsData = async (newLeadData: object) => {
   try {
-    const newLead = new Leads(newLeadData);
-    
-    const addLeadToDB=  await newLead.save();
-    return addLeadToDB;
+    if(newLeadData){
+
+      const newLead = new Leads(newLeadData);
+      
+      const addLeadToDB=  await newLead.save();
+      return addLeadToDB;
+    } else {
+      logger.info(`Unable to write to db. Data missing`);
+    }
   } catch (error) {
      logger.error(error);
   }
@@ -42,7 +47,12 @@ export const qCreateLeadsData = async (newLeadData: object) => {
 
 export const qGetLeadDataById = async (_id: string) => {
   try {
-    return await Leads.findById(_id).populate('client');
+    if(_id){
+
+      return await Leads.findById(_id).populate('client');
+    } else {
+      logger.info(`Unable to write to db. Data missing`);
+    }
   } catch (error) {
      logger.error(error);
   }
@@ -55,16 +65,21 @@ export const qUpdateLeadDataById = async (
   newLeadData: any
   ) => {
     try {
-      const updateOperation = {
-        $set: newLeadData,
-      };
-      const response = await Leads.findByIdAndUpdate(_id, updateOperation);
-      if(response){
-        const currentDate = moment().format('DD/MM/YYYY hh:mm a');
-        
-        await Leads.findByIdAndUpdate(_id,{$push:{log:`${currentDate}: Lead updated by ${newLeadData.owner}`}})
+      if(_id && newLeadData){
+
+        const updateOperation = {
+          $set: newLeadData,
+        };
+        const response = await Leads.findByIdAndUpdate(_id, updateOperation);
+        if(response){
+          const currentDate = moment().format('DD/MM/YYYY hh:mm a');
+          
+          await Leads.findByIdAndUpdate(_id,{$push:{log:`${currentDate}: Lead updated by ${newLeadData.owner}`}})
+        }
+        return response;
+      } else {
+        logger.info(`Unable to write to db. Data missing`);
       }
-      return response;
     } catch (error) {}
   };
   
@@ -73,8 +88,10 @@ export const qUpdateLeadDataById = async (
   
   export const qGetLeadsCount = async () => {
     try {
-      const counterData:any=  await BusinessCounter.findOne(); 
+      const counterData=  await BusinessCounter.findOne(); 
+      if(counterData)
       return counterData.leadCounter;
+   
     } catch (error) {
        logger.error(error);
     }
@@ -84,7 +101,7 @@ export const qUpdateLeadDataById = async (
   
   export const qIncLeadCount = async () => {
     try {
-      const updateCounterData:any=  await BusinessCounter.findOneAndUpdate({$inc:{leadCounter:1}});  
+      const updateCounterData=  await BusinessCounter.findOneAndUpdate({$inc:{leadCounter:1}});  
       return updateCounterData;
     } catch (error) {
        logger.error(error);
@@ -94,7 +111,11 @@ export const qUpdateLeadDataById = async (
   ////==============================================
   export const qDeleteLeadDataById = async (_id: string) => {
     try {
+      if(_id){
       return await Leads.findByIdAndRemove(_id);
+    } else {
+      logger.info(`Unable to write to db. Data missing`);
+    }
     } catch (error) {
        logger.error(error);
     }
@@ -106,10 +127,14 @@ export const qUpdateLeadDataById = async (
   
   export const qCreateLeadSourceData = async (newLeadSourceData: object) => {
     try {
+      if(newLeadSourceData){
       const newLeadSource = new LeadSource(newLeadSourceData);
   
       const addLeadSourceToDB = await newLeadSource.save();
       return addLeadSourceToDB;
+    } else {
+      logger.info(`Unable to write to db. Data missing`);
+    }
     } catch (error) {
        logger.error(error);
     }
@@ -121,12 +146,16 @@ export const qUpdateLeadDataById = async (
     newLeadSourceData: any
   ) => {
     try {
+      if(_id && newLeadSourceData){
       const updateOperation = {
         $set: newLeadSourceData,
       };
       const response = await LeadSource.findByIdAndUpdate(_id, updateOperation);
   
       return response;
+    } else {
+      logger.info(`Unable to write to db. Data missing`);
+    }
     } catch (error) {}
   };
   
@@ -144,7 +173,12 @@ export const qUpdateLeadDataById = async (
 
   export const qDeleteLeadSourceById = async (_id: string) => {
     try {
-      return await LeadSource.findByIdAndRemove(_id);
+      if(_id){
+
+        return await LeadSource.findByIdAndRemove(_id);
+      } else {
+        logger.info(`Unable to write to db. Data missing`);
+      }
     } catch (error) {
        logger.error(error);
     }

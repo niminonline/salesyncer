@@ -22,9 +22,14 @@ export const qGetSalesData = async () => {
 
 export const qCreateSaleData = async (newSaleData: object) => {
   try {
-    const newSale = new Sale(newSaleData);
-    const addSaleToDB = await newSale.save();
-    return addSaleToDB;
+    if(newSaleData){
+
+      const newSale = new Sale(newSaleData);
+      const addSaleToDB = await newSale.save();
+      return addSaleToDB;
+    } else {
+      logger.info(`Unable to write to db. Data missing`);
+    }
   } catch (error) {
      logger.error(error);
   }
@@ -34,12 +39,17 @@ export const qCreateSaleData = async (newSaleData: object) => {
 
 export const qGetSaleDataById = async (_id: string) => {
   try {
-    return await Sale.findById(_id).populate({
-      path: "lead",
-      populate: {
-        path: "client",
-      },
-    });
+    if(_id){
+
+      return await Sale.findById(_id).populate({
+        path: "lead",
+        populate: {
+          path: "client",
+        },
+      });
+    } else {
+      logger.info(`Unable to write to db. Data missing`);
+    }
   } catch (error) {
      logger.error(error);
   }
@@ -49,12 +59,17 @@ export const qGetSaleDataById = async (_id: string) => {
 
 export const qUpdateSaleDataById = async (_id: string, newSaleData: any) => {
   try {
-    const updateOperation = {
-      $set: newSaleData,
-    };
-    const response = await Sale.findByIdAndUpdate(_id, updateOperation);
+    if(_id && newSaleData){
 
-    return response;
+      const updateOperation = {
+        $set: newSaleData,
+      };
+      const response = await Sale.findByIdAndUpdate(_id, updateOperation);
+      
+      return response;
+    } else {
+      logger.info(`Unable to write to db. Data missing`);
+    }
   } catch (error) {}
 };
 
@@ -62,7 +77,9 @@ export const qUpdateSaleDataById = async (_id: string, newSaleData: any) => {
 
 export const qGetSaleCount = async () => {
   try {
-    const counterData: any = await BusinessCounter.findOne();
+    
+    const counterData = await BusinessCounter.findOne();
+    if(counterData)
     return counterData.saleCounter;
   } catch (error) {
      logger.error(error);
@@ -74,7 +91,8 @@ export const qGetSaleCount = async () => {
 
 export const qIncSaleCount = async () => {
   try {
-    const updateSaleData: any = await BusinessCounter.findOneAndUpdate({
+    
+    const updateSaleData = await BusinessCounter.findOneAndUpdate({
       $inc: { saleCounter: 1 },
     });
     return updateSaleData;
@@ -86,7 +104,12 @@ export const qIncSaleCount = async () => {
 ////==============================================
 export const qDeleteSaleDataById = async (_id: string) => {
   try {
-    return await Sale.findByIdAndRemove(_id);
+    if(_id){
+
+      return await Sale.findByIdAndRemove(_id);
+    } else {
+      logger.info(`Unable to write to db. Data missing`);
+    }
   } catch (error) {
      logger.error(error);
   }

@@ -8,7 +8,7 @@ export const qGetProductsData = async () => {
   try {
     return await Product.find({}).sort({ _id: -1 });
   } catch (error) {
-     logger.error(error);
+    logger.error(error);
   }
 };
 
@@ -16,12 +16,16 @@ export const qGetProductsData = async () => {
 
 export const qCreateProductData = async (newProductData: object) => {
   try {
-    const newProduct = new Product(newProductData);
+    if (newProductData) {
+      const newProduct = new Product(newProductData);
 
-    const addProductToDB = await newProduct.save();
-    return addProductToDB;
+      const addProductToDB = await newProduct.save();
+      return addProductToDB;
+    } else {
+      logger.info(`Unable to write to db. Data missing`);
+    }
   } catch (error) {
-     logger.error(error);
+    logger.error(error);
   }
 };
 
@@ -29,9 +33,13 @@ export const qCreateProductData = async (newProductData: object) => {
 
 export const qGetProductDataById = async (_id: string) => {
   try {
-    return await Product.findById(_id);
+    if (_id) {
+      return await Product.findById(_id);
+    } else {
+      logger.info(`Unable to write to db. Data missing`);
+    }
   } catch (error) {
-     logger.error(error);
+    logger.error(error);
   }
 };
 
@@ -42,12 +50,16 @@ export const qUpdateProductDataById = async (
   newProductData: any
 ) => {
   try {
-    const updateOperation = {
-      $set: newProductData,
-    };
-    const response = await Product.findByIdAndUpdate(_id, updateOperation);
+    if (_id && newProductData) {
+      const updateOperation = {
+        $set: newProductData,
+      };
+      const response = await Product.findByIdAndUpdate(_id, updateOperation);
 
-    return response;
+      return response;
+    } else {
+      logger.info(`Unable to write to db. Data missing`);
+    }
   } catch (error) {}
 };
 
@@ -55,10 +67,10 @@ export const qUpdateProductDataById = async (
 
 export const qGetProductCount = async () => {
   try {
-    const counterData: any = await BusinessCounter.findOne();
-    return counterData.productCounter;
+    const counterData = await BusinessCounter.findOne();
+    if (counterData) return counterData.productCounter;
   } catch (error) {
-     logger.error(error);
+    logger.error(error);
   }
 };
 
@@ -72,36 +84,43 @@ export const qIncProductCount = async () => {
     });
     return updateProductData;
   } catch (error) {
-     logger.error(error);
+    logger.error(error);
   }
 };
 
 ////==============================================
 export const qDeleteProductDataById = async (_id: string) => {
   try {
-    return await Product.findByIdAndRemove(_id);
+    if (_id) {
+      return await Product.findByIdAndRemove(_id);
+    } else {
+      logger.info(`Unable to write to db. Data missing`);
+    }
   } catch (error) {
-     logger.error(error);
+    logger.error(error);
   }
 };
 
 ////==============================================
 
-
-
 ////==============================================
 
-export const qCreateProductCategoryData = async (newProductCategoryData: object) => {
+export const qCreateProductCategoryData = async (
+  newProductCategoryData: object
+) => {
   try {
-    const newProductCategory = new ProductCategory(newProductCategoryData);
+    if (newProductCategoryData) {
+      const newProductCategory = new ProductCategory(newProductCategoryData);
 
-    const addProductCategoryToDB = await newProductCategory.save();
-    return addProductCategoryToDB;
+      const addProductCategoryToDB = await newProductCategory.save();
+      return addProductCategoryToDB;
+    } else {
+      logger.info(`Unable to write to db. Data missing`);
+    }
   } catch (error) {
-     logger.error(error);
+    logger.error(error);
   }
 };
-
 
 ////==============================================
 
@@ -110,33 +129,39 @@ export const qUpdateProductCategoryDataById = async (
   newProductCategoryData: any
 ) => {
   try {
-    const updateOperation = {
-      $set: newProductCategoryData,
-    };
-    const response = await ProductCategory.findByIdAndUpdate(_id, updateOperation);
+    if (_id && newProductCategoryData) {
+      const updateOperation = {
+        $set: newProductCategoryData,
+      };
+      const response = await ProductCategory.findByIdAndUpdate(
+        _id,
+        updateOperation
+      );
 
-    return response;
+      return response;
+    } else {
+      logger.info(`Unable to write to db. Data is missing`);
+    }
   } catch (error) {}
 };
-
-
 
 export const qGetProductCategoryData = async () => {
   try {
     return await ProductCategory.find({});
   } catch (error) {
-     logger.error(error);
+    logger.error(error);
   }
 };
 
-
-
-
 export const qDeleteProductCategoryDataById = async (_id: string) => {
   try {
-    return await ProductCategory.findByIdAndRemove(_id);
+    if (_id) {
+      return await ProductCategory.findByIdAndRemove(_id);
+    } else {
+      logger.info(`Unable to write to db. Data missing`);
+    }
   } catch (error) {
-     logger.error(error);
+    logger.error(error);
   }
 };
 

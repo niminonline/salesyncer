@@ -15,10 +15,16 @@ export const qGetContactsData = async () => {
 
 export const qCreateContactData = async (newContactData: object) => {
   try {
-    const newContact = new Contacts(newContactData);
-   
-   const addContactToDB=  await newContact.save();
-   return addContactToDB;
+
+    if(newContactData){
+
+      const newContact = new Contacts(newContactData);
+     
+     const addContactToDB=  await newContact.save();
+     return addContactToDB;
+    } else {
+      logger.info(`Unable to write to db. Data missing`);
+    }
   } catch (error) {
     logger.error(error);
   }
@@ -28,7 +34,12 @@ export const qCreateContactData = async (newContactData: object) => {
 
 export const qGetContactsDataById = async (_id: string) => {
   try {
-    return await Contacts.findById(_id);
+    if(_id){
+
+      return await Contacts.findById(_id);
+    } else {
+      logger.info(`Unable to write to db. Data missing`);
+    }
   } catch (error) {
      logger.error(error);
   }
@@ -41,11 +52,16 @@ export const qUpdateContactsDataById = async (
   newContactData: object
   ) => {
     try {
-      const updateOperation = {
-        $set: newContactData,
-      };
-      const response = await Contacts.findByIdAndUpdate(_id, updateOperation);
-      return response;
+      if(_id && newContactData){
+
+        const updateOperation = {
+          $set: newContactData,
+        };
+        const response = await Contacts.findByIdAndUpdate(_id, updateOperation);
+        return response;
+      } else {
+        logger.info(`Unable to write to db. Data missing`);
+      }
     } catch (error) {}
   };
   
@@ -54,8 +70,10 @@ export const qUpdateContactsDataById = async (
   
   export const qGetContactCount = async () => {
     try {
-      const counterData:any=  await BusinessCounter.findOne(); 
+      const counterData=  await BusinessCounter.findOne(); 
+      if(counterData)
       return counterData.contactCounter;
+    
     } catch (error) {
        logger.error(error);
     }
@@ -67,7 +85,8 @@ export const qUpdateContactsDataById = async (
   
   export const qIncContactCount = async () => {
     try {
-      const updateCounterData:any=  await BusinessCounter.findOneAndUpdate({$inc:{contactCounter:1}});  
+      const updateCounterData=  await BusinessCounter.findOneAndUpdate({$inc:{contactCounter:1}});  
+      
       return updateCounterData;
     } catch (error) {
        logger.error(error);
@@ -77,7 +96,12 @@ export const qUpdateContactsDataById = async (
   ////==============================================
   export const qDeleteContactDataById = async (_id: string) => {
     try {
-      return await Contacts.findByIdAndRemove(_id);
+      if(_id){
+
+        return await Contacts.findByIdAndRemove(_id);
+      } else {
+        logger.info(`Unable to write to db. Data missing`);
+      }
     } catch (error) {
        logger.error(error);
     }
