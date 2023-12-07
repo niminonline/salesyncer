@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import {
   HttpRequest,
   HttpHandler,
@@ -6,29 +7,30 @@ import {
   HttpInterceptor,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { baseUrl } from '../config/constants';
+// import { baseUrl } from '../config/constants';
 
 @Injectable()
 export class MainInterceptor implements HttpInterceptor {
   constructor() {}
-  
+
   intercept(
     request: HttpRequest<unknown>,
     next: HttpHandler
-    ): Observable<HttpEvent<unknown>> {
-      const token = localStorage.getItem('token');
+  ): Observable<HttpEvent<unknown>> {
+    const token = localStorage.getItem('token');
+    const apiUrl = environment.apiUrl;
     if (token) {
       const newRequest = request.clone({
-        url: baseUrl + request.url,
+        url: apiUrl + request.url,
         setHeaders: {
           Authorization: `Bearer ${token}`,
         },
       });
-      
+
       return next.handle(newRequest);
     } else {
       const newRequest = request.clone({
-        url: baseUrl + request.url,
+        url: apiUrl + request.url,
       });
       return next.handle(newRequest);
     }
