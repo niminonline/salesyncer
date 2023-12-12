@@ -8,8 +8,6 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-// import { baseUrl } from '../config/constants';
-
 @Injectable()
 export class MainInterceptor implements HttpInterceptor {
   constructor() {}
