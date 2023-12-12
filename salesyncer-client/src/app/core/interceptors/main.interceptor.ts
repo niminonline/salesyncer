@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment.prod';
 import {
   HttpRequest,
   HttpHandler,
@@ -7,6 +7,7 @@ import {
   HttpInterceptor,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
+// import { baseUrl } from '../config/constants';
 
 @Injectable()
 export class MainInterceptor implements HttpInterceptor {
