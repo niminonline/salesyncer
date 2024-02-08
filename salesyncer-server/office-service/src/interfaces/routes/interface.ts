@@ -20,11 +20,11 @@ import {
   updateAchievedTargetDetails,
 } from "../controllers/controller";
 
-// const redisSubscriber = new Redis({
-//   host:'redis',
-//   port: 6379,
-// });
-const redisSubscriber = new Redis();
+const redisSubscriber = new Redis({
+  host:'redis',
+  port: 6379,
+});
+// const redisSubscriber = new Redis();
 
 
 export const subscribeToChannel = (channelName: string) => {
