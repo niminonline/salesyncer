@@ -177,9 +177,14 @@ export class AdminTargetComponent implements OnInit {
         this.achieved = this.searchedTarget.achieved;
        const tempTarget= this.searchedTarget.remaining;
         this.remaining = tempTarget>0? tempTarget: 0; 
-        this.percetangeCompleted = Math.round(
+        const tempPercentage=  Math.round(
           (parseFloat(this.achieved) / parseFloat(this.target)) * 100
-        );
+        )
+        this.percetangeCompleted = tempPercentage>100?100:tempPercentage;
+
+        // this.percetangeCompleted = Math.round(
+        //   (parseFloat(this.achieved) / parseFloat(this.target)) * 100
+        // );
       } else {
         this.isTargetCardVisible = false;
         Swal.fire('Error', 'No results found', 'error');

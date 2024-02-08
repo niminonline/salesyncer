@@ -104,10 +104,13 @@ export class TargetWidgetComponent implements OnInit {
         this.isTargetCardVisible = true;
         this.target = this.searchedTarget.target;
         this.achieved = this.searchedTarget.achieved;
-        this.remaining = this.searchedTarget.remaining;
-        this.percetangeCompleted = Math.round(
+        const tempTarget= this.searchedTarget.remaining;
+        this.remaining = tempTarget>0? tempTarget: 0; 
+        // this.remaining = this.searchedTarget.remaining;
+        const tempPercentage=  Math.round(
           (parseFloat(this.achieved) / parseFloat(this.target)) * 100
-        );
+        )
+        this.percetangeCompleted = tempPercentage>100?100:tempPercentage;
       } else {
         Swal.fire('Error', 'No results found', 'error');
       }

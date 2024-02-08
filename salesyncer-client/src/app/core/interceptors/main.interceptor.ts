@@ -7,7 +7,7 @@ import {
   HttpInterceptor,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-// import { baseUrl } from '../config/constants';
+import { baseUrl } from '../config/constants';
 
 @Injectable()
 export class MainInterceptor implements HttpInterceptor {
@@ -18,7 +18,8 @@ export class MainInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
     const token = localStorage.getItem('token');
-    const apiUrl = environment.apiUrl;
+    // const apiUrl = environment.apiUrl;
+    const apiUrl= baseUrl;
     if (token) {
       const newRequest = request.clone({
         url: apiUrl + request.url,

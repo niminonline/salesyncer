@@ -44,7 +44,7 @@ const redisSubscriber = new Redis({
   host: 'redis',
   port: 6379,
 });
-
+// const redisSubscriber = new Redis();
 export const subscribeToChannel = (channelName: string) => {
   redisSubscriber.subscribe(channelName, (error, count) => {
     if (error) {
