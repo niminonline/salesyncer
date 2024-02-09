@@ -20,7 +20,8 @@ jobs:
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_PRIVATE_KEY }}
           script: |
-            cd /home/ubuntu/salesyncer
+            sudo su
+            cd /var/www/html/salesyncer
             docker-compose down
             git pull origin main
             docker-compose -f docker-compose.prod.yaml up -d
