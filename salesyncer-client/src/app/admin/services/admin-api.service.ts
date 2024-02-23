@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { AdminLoginResponse } from '../../shared/interfaces/interfaces';
+import { AdminLoginResponse, postResponse } from '../../shared/interfaces/interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -12,60 +12,60 @@ export class AdminAPIService {
   login(data: object): Observable<AdminLoginResponse> {
     return this.http.post<AdminLoginResponse>(`/admin-login`, data);
   }
-  addBranch(data: object): Observable<AdminLoginResponse> {
-    return this.http.post<AdminLoginResponse>(`/add-branch`, data);
+  addBranch(data: object): Observable<postResponse> {
+    return this.http.post<postResponse>(`/add-branch`, data);
   }
-  editBranch(data: object): Observable<AdminLoginResponse> {
-    return this.http.post<AdminLoginResponse>(`/edit-branch`, data);
+  editBranch(data: object): Observable<postResponse> {
+    return this.http.post<postResponse>(`/edit-branch`, data);
   }
-  createActivityType(data: object | null): Observable<any> {
-    return this.http.post<any>(`/create-activity-type`, data);
-  }
-
-  editActivityType(data: object | null): Observable<any> {
-    return this.http.post<any>(`/edit-activity-type`, data);
-  }
-  deleteActivityType(_id: string | null): Observable<any> {
-    return this.http.delete<any>(`/delete-activity-type?_id=${_id}`);
+  createActivityType(data: object | null): Observable<postResponse> {
+    return this.http.post<postResponse>(`/create-activity-type`, data);
   }
 
-  createProductCategory(data: object | null): Observable<any> {
-    return this.http.post<any>(`/create-product-category`, data);
+  editActivityType(data: object | null): Observable<postResponse> {
+    return this.http.post<postResponse>(`/edit-activity-type`, data);
+  }
+  deleteActivityType(_id: string | null): Observable<postResponse> {
+    return this.http.delete<postResponse>(`/delete-activity-type?_id=${_id}`);
   }
 
-  editProductCategory(data: object | null): Observable<any> {
-    return this.http.post<any>(`/edit-product-category`, data);
+  createProductCategory(data: object | null): Observable<postResponse> {
+    return this.http.post<postResponse>(`/create-product-category`, data);
   }
-  deleteProductCategory(_id: string | null): Observable<any> {
-    return this.http.delete<any>(`/delete-product-category?_id=${_id}`);
+
+  editProductCategory(data: object | null): Observable<postResponse> {
+    return this.http.post<postResponse>(`/edit-product-category`, data);
   }
-  
-  addEmployee(data: object): Observable<any> {
-    return this.http.post<any>(`/add-employee`, data);
-  }
-  
-  leaveAction(data: object | null): Observable<any> {
-    return this.http.post<any>(`/leave-action`, data);
+  deleteProductCategory(_id: string | null): Observable<postResponse> {
+    return this.http.delete<postResponse>(`/delete-product-category?_id=${_id}`);
   }
   
-  setTargetByEmpId(data: object | null): Observable<any> {
-    return this.http.post<any>(`/create-target`, data);
+  addEmployee(data: object): Observable<postResponse> {
+    return this.http.post<postResponse>(`/add-employee`, data);
   }
   
-  setBranchTarget(data: object | null): Observable<any> {
-    return this.http.post<any>(`/set-branch-target`, data);
+  leaveAction(data: object | null): Observable<postResponse> {
+    return this.http.post<postResponse>(`/leave-action`, data);
+  }
+  
+  setTargetByEmpId(data: object | null): Observable<postResponse> {
+    return this.http.post<postResponse>(`/create-target`, data);
+  }
+  
+  setBranchTarget(data: object | null): Observable<postResponse> {
+    return this.http.post<postResponse>(`/set-branch-target`, data);
   }
 
   //==================Lead Source=================================
 
-  createLeadSource(data: object | null): Observable<any> {
-    return this.http.post<any>(`/create-lead-source`, data);
+  createLeadSource(data: object | null): Observable<postResponse> {
+    return this.http.post<postResponse>(`/create-lead-source`, data);
   }
   
-  editLeadSource(data: object | null): Observable<any> {
-    return this.http.post<any>(`/edit-lead-source`, data);
+  editLeadSource(data: object | null): Observable<postResponse> {
+    return this.http.post<postResponse>(`/edit-lead-source`, data);
   }
-  deleteLeadSource(_id: string | null): Observable<any> {
-    return this.http.delete<any>(`/delete-lead-source?_id=${_id}`);
+  deleteLeadSource(_id: string | null): Observable<postResponse> {
+    return this.http.delete<postResponse>(`/delete-lead-source?_id=${_id}`);
   }
 }

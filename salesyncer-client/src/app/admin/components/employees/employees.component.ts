@@ -7,6 +7,7 @@ import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { TooltipPosition } from '@angular/material/tooltip';
 import { FormControl } from '@angular/forms';
+import { Branch, BranchData, Employee, EmployeesData } from 'src/app/shared/interfaces/interfaces';
 
 
 
@@ -18,10 +19,9 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./employees.component.scss']
 })
 export class EmployeesComponent implements OnInit  {
-branchData!:any;
+  branchData!: Branch[];
 tableData!:any;
-// displayedColumns!:any;
-employeesData:any;
+employeesData!:Employee[];
 dataSource!: MatTableDataSource<any>;
 selectedEmployeeData!:any;
 
@@ -39,7 +39,7 @@ constructor(private sharedAPI:SharedApiService, private router:Router,private ad
 
 ngOnInit(){
 
-  this.sharedAPI.getBranches().subscribe((response:any)=>{
+  this.sharedAPI.getBranches().subscribe((response:BranchData)=>{
     if(response.status=='OK'){
 
       this.branchData=response.branchData;
@@ -49,7 +49,7 @@ ngOnInit(){
     }
   })
 
-  this.sharedAPI.getEmployeesData().subscribe((response:any)=>{
+  this.sharedAPI.getEmployeesData().subscribe((response:EmployeesData)=>{
     if(response.status=='OK'){
 
       this.employeesData=response.employeesData;
@@ -67,54 +67,10 @@ ngOnInit(){
     }
   })
 
-    // this.displayedColumns = [
-    //   {
-    //     name: 'Employee Id',
-    //     property: 'empId',
-    //     sortable: 'empIdSortable',
-    //   },
-    //   {
-    //     name: ' Name',
-    //     property: 'name',
-    //     sortable: 'nameSortable',
-    //   },
-    //   {
-    //     name: 'Email',
-    //     property: 'email',
-    //     sortable: 'emailSortable',
-    //   },
-    //   {
-    //     name: 'Phone',
-    //     property: 'phone',
-    //     sortable: 'phoneSortable',
-    //   },
-    //   {
-    //     name: 'Role',
-    //     property: 'role',
-    //     sortable: 'roleSortable',
-    //   },
-    //   {
-    //     name: 'Designation',
-    //     property: 'designation',
-    //     sortable: 'designationSortable',
-    //   },
-    //   {
-    //     name: 'Branch',
-    //     property: 'branch',
-    //     sortable: 'branchSortable',
-    //   }]
-
-
-    
- 
 
 }
 
 
-// ngAfterViewInit() {
-//   this.dataSource.paginator = this.paginator;
-//   this.dataSource.sort = this.sort;
-// }
 
 applyFilter(event: Event) {
   const filterValue = (event.target as HTMLInputElement).value;
@@ -133,7 +89,7 @@ this.router.navigate(['admin/add-user'])
 
 navViewEmployee(_id:string){
 
-  this.selectedEmployeeData= this.employeesData.find((employee:any)=>{
+  this.selectedEmployeeData= this.employeesData.find((employee:Employee)=>{
     return employee._id==_id; 
     
   })
@@ -146,7 +102,7 @@ navViewEmployee(_id:string){
 
 navUpdateEmployee(_id:string){
 
-  this.selectedEmployeeData= this.employeesData.find((employee:any)=>{
+  this.selectedEmployeeData= this.employeesData.find((employee:Employee)=>{
     return employee._id==_id; 
   })
 

@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SharedApiService } from 'src/app/shared/services/shared-api.service';
 
 import { selectEmployeeData } from '../../store/selectors/user.selectors';
+import { Branch, BranchData, Employee, Lead, LeadsData, Product, ProductCategoriesData, ProductCategory, ProductsData, Sale } from '../../interfaces/interfaces';
 
 
 @Component({
@@ -13,15 +14,15 @@ import { selectEmployeeData } from '../../store/selectors/user.selectors';
   styleUrls: ['./sales-edit.component.scss']
 })
 export class SalesEditComponent implements OnInit {
-  productCategoriesData: any;
-  productsData: any;
-  employeesData!: any;
+  productCategoriesData!: ProductCategory[];
+  productsData!: Product[];
+  employeesData!: Employee[];
   submitted: boolean = false;
   inputGroup!: FormGroup;
-  branchData!: any;
+  branchData!: Branch[];
   showSpinner: boolean = false;
-  leadsData!: any;
-  saleData!:any;
+  leadsData!: Lead[];
+  saleData!:Sale;
   _id: string | null;
   currentBranch!: string;
   currentEmployee!: string;
@@ -30,7 +31,7 @@ export class SalesEditComponent implements OnInit {
   currentProductCategory!: string;
   currentProductName!: string;
   currentSaleDate!: string;
-  currentAmount!: string;
+  currentAmount!: number;
   filteredProducts!: any;
   filteredEmployees!:any
   
@@ -66,7 +67,7 @@ export class SalesEditComponent implements OnInit {
 
   getBranchData() {
     try {
-      this.sharedAPI.getBranches().subscribe((response: any) => {
+      this.sharedAPI.getBranches().subscribe((response: BranchData) => {
         if (response.status == 'OK') {
           this.branchData = response.branchData;
         } else {
@@ -80,7 +81,7 @@ export class SalesEditComponent implements OnInit {
 
   getLeadsData() {
     try {
-      this.sharedAPI.getLeads().subscribe((response: any) => {
+      this.sharedAPI.getLeads().subscribe((response: LeadsData) => {
         if (response.status == 'OK') {
           this.leadsData = response.leadsData;
         } else {
@@ -95,7 +96,7 @@ export class SalesEditComponent implements OnInit {
   }
   getProductCategories() {
     try {
-      this.sharedAPI.getProductCategories().subscribe((response: any) => {
+      this.sharedAPI.getProductCategories().subscribe((response: ProductCategoriesData) => {
         if (response.status == 'OK') {
           this.productCategoriesData = response.productCategoriesData;
         } else {
@@ -108,7 +109,7 @@ export class SalesEditComponent implements OnInit {
   }
   getProducts() {
     try {
-      this.sharedAPI.getProducts().subscribe((response: any) => {
+      this.sharedAPI.getProducts().subscribe((response: ProductsData) => {
         if (response.status == 'OK') {
           this.productsData = response.productsData;
           this.filteredProducts= this.productsData;
@@ -172,7 +173,7 @@ export class SalesEditComponent implements OnInit {
     
   }
 
-  submitForm(data: any): void {
+  submitForm(data: FormGroup): void {
     this.submitted = true;
     if (!data.invalid) {
       this.showSpinner = true;
@@ -244,14 +245,14 @@ export class SalesEditComponent implements OnInit {
   onCategoryChange(selectedCategory: string) {
 
     this.filteredProducts = this.productsData.filter(
-      (product: any) => product.category == selectedCategory
+      (product: Product) => product.category == selectedCategory
     );
   }
 
 
   onBranchChange(selectedBranch: string) {
     this.filteredEmployees= this.employeesData.filter(
-      (employee: any) => employee.branch == selectedBranch
+      (employee: Employee) => employee.branch == selectedBranch
     );
   }
 }

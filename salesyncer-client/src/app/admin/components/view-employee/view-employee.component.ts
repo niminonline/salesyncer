@@ -1,6 +1,7 @@
 import { Component,OnInit} from '@angular/core';
 import { AdminDataRepoService } from '../../services/admin-data-repo.service';
 import { Router } from '@angular/router';
+import { Employee, EmployeeData } from 'src/app/shared/interfaces/interfaces';
 @Component({
   selector: 'app-view-employee',
   templateUrl: './view-employee.component.html',
@@ -8,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class ViewEmployeeComponent implements OnInit{
 
-  selectedEmpData!:any;
+  selectedEmpData!:EmployeeData;
   token!: string | null;
   empId!: string | null;
   name!: string | undefined;
@@ -39,11 +40,11 @@ export class ViewEmployeeComponent implements OnInit{
     this.addressLine1 = this.selectedEmpData.address.addressLine1;
     this.addressLine2 = this.selectedEmpData.address.addressLine2;
     this.place = this.selectedEmpData.address.place;
-    this.pincode = this.selectedEmpData.address.pincode;
+    this.pincode = this.selectedEmpData.address.pincode.toString();
     this.role = this.selectedEmpData.role;
     this.designation = this.selectedEmpData.designation;
-    this.casualLeaveBalance = this.selectedEmpData.casualLeaveBalance;
-    this.sickLeaveBalance = this.selectedEmpData.sickLeaveBalance;
+    this.casualLeaveBalance = this.selectedEmpData.casualLeaveBalance.toString();
+    this.sickLeaveBalance = this.selectedEmpData.sickLeaveBalance.toString();
 
   }
 

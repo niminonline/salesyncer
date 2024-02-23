@@ -16,7 +16,7 @@ export class EmployeeHomeComponent implements OnInit{
 
 
   userName!: string;
-  userMenu:any = [
+  userMenu:Array<Object> = [
     { icon: 'dashboard', text: 'Dashboard', link: '/' },
     { icon: 'person', text: 'Profile', link: '/profile' },
     { icon: 'event', text: 'Leave', link: '/leave' },

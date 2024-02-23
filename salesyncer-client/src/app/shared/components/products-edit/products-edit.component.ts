@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SharedApiService } from '../../services/shared-api.service';
+import { Product, ProductData } from '../../interfaces/interfaces';
 @Component({
   selector: 'app-products-edit',
   templateUrl: './products-edit.component.html',
@@ -13,7 +14,7 @@ export class ProductsEditComponent implements OnInit {
   inputGroup!: FormGroup;
   showSpinner: boolean = false;
   productCategoriesData: any;
-  productData!: any;
+  productData!: Product;
   _id!: string | null;
   name!:string|null;
   productCategory!:string|null;
@@ -59,7 +60,7 @@ export class ProductsEditComponent implements OnInit {
   }
 
   getProductData() {
-    this.sharedAPI.getProduct(this._id).subscribe((response)=>{
+    this.sharedAPI.getProduct(this._id).subscribe((response:ProductData)=>{
       this.productData=response.productData;
       this.name=this.productData.name;
        this.productCategory=this.productData.category;

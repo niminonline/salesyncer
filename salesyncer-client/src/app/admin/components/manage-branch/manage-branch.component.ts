@@ -7,6 +7,7 @@ import { FormBuilder } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
+import { Branch, BranchData } from 'src/app/shared/interfaces/interfaces';
 
 @Component({
   selector: 'app-manage-branch',
@@ -14,7 +15,7 @@ import {MatSort} from '@angular/material/sort';
   styleUrls: ['./manage-branch.component.scss'],
 })
 export class ManageBranchComponent implements OnInit {
-   branchData!: any;
+   branchData!: Branch[];
   displayedColumns = ['branchCode', 'branchName', 'location','actions'];
   dataSource: any;
   _id!: string | null;
@@ -29,7 +30,7 @@ export class ManageBranchComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.sharedApi.getBranches().subscribe((response:any) => {
+    this.sharedApi.getBranches().subscribe((response:BranchData) => {
       this.branchData = response.branchData;
       this.dataSource= new MatTableDataSource(this.branchData);
       this.dataSource.paginator=this.paginator;
@@ -110,14 +111,14 @@ export class ManageBranchComponent implements OnInit {
   }
 
   editBranch(_id:string){
-    const selectedBranch=this.branchData.find((branch:any)=>{
+    const selectedBranch=this.branchData.find((branch:Branch)=>{
      return  branch._id ==_id;
     }
 ) 
 // const currentBranch= ...selectedBranch;
-const currentBranchName= selectedBranch.branchName;
-const currentBranchCode= selectedBranch.branchCode;
-const currentBranchLocation=selectedBranch.location;
+const currentBranchName= selectedBranch?.branchName;
+const currentBranchCode= selectedBranch?.branchCode;
+const currentBranchLocation=selectedBranch?.location;
 if(selectedBranch){
   Swal.fire({
     title: 'Update branch details',

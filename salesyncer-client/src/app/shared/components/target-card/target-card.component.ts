@@ -9,9 +9,9 @@ import { Component, Input, } from '@angular/core';
 export class TargetCardComponent {
 
 
-  @Input() target:any;
-  @Input() achieved:any;
-  @Input() remaining:any;
-  @Input() percetangeCompleted:any;
+  @Input() target!:string;
+  @Input() achieved!:string;
+  @Input() remaining!:string;
+  @Input() percetangeCompleted!:number;
 
 }

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { EmpLoginResponse, postResponse } from 'src/app/shared/interfaces/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -9,18 +10,18 @@ export class EmployeeApiService {
 
   constructor(private http: HttpClient) {}
 
-  login(data: object): Observable<any> {
-    return this.http.post<any>(`/employee-login`, data);
+  login(data: object): Observable<EmpLoginResponse> {
+    return this.http.post<EmpLoginResponse>(`/employee-login`, data);
   }
-  applyLeave(data: object): Observable<any> {
-    return this.http.post<any>(`/apply-leave`, data);
+  applyLeave(data: object): Observable<postResponse> {
+    return this.http.post<postResponse>(`/apply-leave`, data);
   }
-  cancelLeave(_id:string):Observable<any>{
-    return this.http.get<any>(`/cancel-leave?_id=${_id}`)
+  cancelLeave(_id:string):Observable<postResponse>{
+    return this.http.get<postResponse>(`/cancel-leave?_id=${_id}`)
   }
 
-  updatePassword(data: object): Observable<any> {
-    return this.http.post<any>(`/update-password`, data);
+  updatePassword(data: object): Observable<postResponse> {
+    return this.http.post<postResponse>(`/update-password`, data);
   }
 
 

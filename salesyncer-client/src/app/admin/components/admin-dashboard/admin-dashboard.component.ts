@@ -12,7 +12,6 @@ import { SharedApiService } from 'src/app/shared/services/shared-api.service';
 import {
   Activity,
   Branch,
-  BranchData,
   Employee,
   Lead,
   Product,

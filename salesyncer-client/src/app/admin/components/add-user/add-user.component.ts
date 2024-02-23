@@ -9,6 +9,7 @@ import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { SharedApiService } from 'src/app/shared/services/shared-api.service';
 import { AdminAPIService } from '../../services/admin-api.service';
+import { Branch, BranchData } from 'src/app/shared/interfaces/interfaces';
 @Component({
   selector: 'app-add-user',
   templateUrl: './add-user.component.html',
@@ -25,11 +26,11 @@ export class AddUserComponent {
   submitted: boolean = false;
 
   signupGroup!: FormGroup;
-  branchData!: any;
+  branchData!: Branch[];
   showSpinner: boolean = false;
 
   getBranchData() {
-    this.sharedAPI.getBranches().subscribe((response: any) => {
+    this.sharedAPI.getBranches().subscribe((response: BranchData) => {
       if (response.status == 'OK') {
         this.branchData = response.branchData;
       } else {
@@ -65,7 +66,7 @@ export class AddUserComponent {
     });
   }
 
-  signupSubmit(data: any): void {
+  signupSubmit(data:FormGroup): void {
     this.submitted = true;
     if (!data.invalid) {
       this.showSpinner = true;

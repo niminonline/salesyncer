@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { EmployeeData } from 'src/app/shared/interfaces/interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -6,9 +7,9 @@ import { Injectable } from '@angular/core';
 export class AdminDataRepoService {
   constructor() {}
 
-  selectedEmpData!: any;
+  selectedEmpData!: EmployeeData;
 
-  setSelectedEmpData(data: any) {
+  setSelectedEmpData(data: EmployeeData) {
     this.selectedEmpData = data;
   }
 

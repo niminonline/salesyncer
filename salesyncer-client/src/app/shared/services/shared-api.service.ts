@@ -2,11 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {
-  Branch,
   LeaveCategoryResponse,
-  LeaveCategory,
   LeaveData,
-  LeaveItem,
   BranchData,
   ActivityTypesData,
   LeadSourceData,
@@ -17,6 +14,14 @@ import {
   ActivitiesData,
   ProductsData,
   SalesData,
+  leaveRequestRes,
+  postResponse,
+  ContactsResponse,
+  ContactResponse,
+  LeadResponse,
+  ActivityResponse,
+  ProductData,
+  SaleData,
 } from 'src/app/shared/interfaces/interfaces';
 
 @Injectable({
@@ -52,8 +57,8 @@ export class SharedApiService {
     return this.http.get<EmployeeData>(`/get-employee-data?_id=${_id}`);
   }
 
-  updateEmployee(data: object | null): Observable<any> {
-    return this.http.post<any>(`/update-employee`, data);
+  updateEmployee(data: object | null): Observable<postResponse> {
+    return this.http.post<postResponse>(`/update-employee`, data);
   }
 
   //============================Leave===========================
@@ -63,92 +68,92 @@ export class SharedApiService {
   fetchLeaveData(data: object | null): Observable<LeaveData> {
     return this.http.post<LeaveData>(`/fetch-leave-data`, data);
   }
-  leaveRequests(): Observable<any> {
-    return this.http.get<any>(`/leave-requests`);
+  leaveRequests(): Observable<leaveRequestRes> {
+    return this.http.get<leaveRequestRes>(`/leave-requests`);
   }
 
   //============================Contact===========================
 
-  createContact(data: object | null): Observable<any> {
-    return this.http.post<any>(`/create-contact`, data);
+  createContact(data: object | null): Observable<postResponse> {
+    return this.http.post<postResponse>(`/create-contact`, data);
   }
-  getContacts(): Observable<any> {
-    return this.http.get<any>(`/get-contacts`);
+  getContacts(): Observable<ContactsResponse> {
+    return this.http.get<ContactsResponse>(`/get-contacts`);
   }
-  getContact(_id: string): Observable<any> {
-    return this.http.get<any>(`/get-contact-data?_id=${_id}`);
+  getContact(_id: string): Observable<ContactResponse> {
+    return this.http.get<ContactResponse>(`/get-contact-data?_id=${_id}`);
   }
-  editContact(data: object | null): Observable<any> {
-    return this.http.post<any>(`/edit-contact`, data);
+  editContact(data: object | null): Observable<postResponse> {
+    return this.http.post<postResponse>(`/edit-contact`, data);
   }
-  deleteContact(_id: string | null): Observable<any> {
-    return this.http.delete<any>(`/delete-contact?_id=${_id}`);
+  deleteContact(_id: string | null): Observable<postResponse> {
+    return this.http.delete<postResponse>(`/delete-contact?_id=${_id}`);
   }
 
   //============================Lead===========================
-  createLead(data: object | null): Observable<any> {
-    return this.http.post<any>(`/create-lead`, data);
+  createLead(data: object | null): Observable<postResponse> {
+    return this.http.post<postResponse>(`/create-lead`, data);
   }
   getLeads(): Observable<LeadsData> {
     return this.http.get<LeadsData>(`/get-leads`);
   }
-  getLead(_id: string | null): Observable<any> {
-    return this.http.get<any>(`/get-lead?_id=${_id}`);
+  getLead(_id: string | null): Observable<LeadResponse> {
+    return this.http.get<LeadResponse>(`/get-lead?_id=${_id}`);
   }
-  editLead(data: object | null): Observable<any> {
-    return this.http.post<any>(`/edit-lead`, data);
+  editLead(data: object | null): Observable<postResponse> {
+    return this.http.post<postResponse>(`/edit-lead`, data);
   }
-  deleteLead(_id: string | null): Observable<any> {
-    return this.http.delete<any>(`/delete-lead?_id=${_id}`);
+  deleteLead(_id: string | null): Observable<postResponse> {
+    return this.http.delete<postResponse>(`/delete-lead?_id=${_id}`);
   }
   //============================Activity===========================
-  createActivity(data: object | null): Observable<any> {
-    return this.http.post<any>(`/create-activity`, data);
+  createActivity(data: object | null): Observable<postResponse> {
+    return this.http.post<postResponse>(`/create-activity`, data);
   }
   getActivities(): Observable<ActivitiesData> {
     return this.http.get<ActivitiesData>(`/get-activities`);
   }
-  getActivity(_id: string | null): Observable<any> {
-    return this.http.get<any>(`/get-activity?_id=${_id}`);
+  getActivity(_id: string | null): Observable<ActivityResponse> {
+    return this.http.get<ActivityResponse>(`/get-activity?_id=${_id}`);
   }
-  editActivity(data: object | null): Observable<any> {
-    return this.http.post<any>(`/edit-activity`, data);
+  editActivity(data: object | null): Observable<postResponse> {
+    return this.http.post<postResponse>(`/edit-activity`, data);
   }
-  deleteActivity(_id: string | null): Observable<any> {
-    return this.http.delete<any>(`/delete-activity?_id=${_id}`);
+  deleteActivity(_id: string | null): Observable<postResponse> {
+    return this.http.delete<postResponse>(`/delete-activity?_id=${_id}`);
   }
 
   //============================Product===========================
-  createProduct(data: object | null): Observable<any> {
-    return this.http.post<any>(`/create-product`, data);
+  createProduct(data: object | null): Observable<postResponse> {
+    return this.http.post<postResponse>(`/create-product`, data);
   }
   getProducts(): Observable<ProductsData> {
     return this.http.get<ProductsData>(`/get-products`);
   }
-  getProduct(_id: string | null): Observable<any> {
-    return this.http.get<any>(`/get-product?_id=${_id}`);
+  getProduct(_id: string | null): Observable<ProductData> {
+    return this.http.get<ProductData>(`/get-product?_id=${_id}`);
   }
-  editProduct(data: object | null): Observable<any> {
-    return this.http.post<any>(`/edit-product`, data);
+  editProduct(data: object | null): Observable<postResponse> {
+    return this.http.post<postResponse>(`/edit-product`, data);
   }
-  deleteProduct(_id: string | null): Observable<any> {
-    return this.http.delete<any>(`/delete-product?_id=${_id}`);
+  deleteProduct(_id: string | null): Observable<postResponse> {
+    return this.http.delete<postResponse>(`/delete-product?_id=${_id}`);
   }
 
   //====================Sale===================================
-  createSale(data: object | null): Observable<any> {
-    return this.http.post<any>(`/create-sale`, data);
+  createSale(data: object | null): Observable<postResponse> {
+    return this.http.post<postResponse>(`/create-sale`, data);
   }
   getSales(): Observable<SalesData> {
     return this.http.get<SalesData>(`/get-sales`);
   }
-  getSale(_id: string | null): Observable<any> {
-    return this.http.get<any>(`/get-sale?_id=${_id}`);
+  getSale(_id: string | null): Observable<SaleData> {
+    return this.http.get<SaleData>(`/get-sale?_id=${_id}`);
   }
-  editSale(data: object | null): Observable<any> {
-    return this.http.post<any>(`/edit-sale`, data);
+  editSale(data: object | null): Observable<postResponse> {
+    return this.http.post<postResponse>(`/edit-sale`, data);
   }
-  deleteSale(_id: string | null): Observable<any> {
-    return this.http.delete<any>(`/delete-sale?_id=${_id}`);
+  deleteSale(_id: string | null): Observable<postResponse> {
+    return this.http.delete<postResponse>(`/delete-sale?_id=${_id}`);
   }
 }

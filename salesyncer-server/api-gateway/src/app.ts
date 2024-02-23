@@ -50,6 +50,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/", router);
 
+
+
+
 app.listen(port, () => {
   logger.info(`API gateway listening at port# ${port}`);
 });

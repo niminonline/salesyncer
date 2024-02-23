@@ -13,7 +13,7 @@ export class AdminLoginComponent {
 
   constructor(private route: Router, private api: AdminAPIService) {}
 
-  handleCredentials(credentials: any) {
+  handleCredentials(credentials: Event) {
     this.api.login(credentials).subscribe((response) => {
       try{
 

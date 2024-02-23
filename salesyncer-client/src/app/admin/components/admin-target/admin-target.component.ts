@@ -12,6 +12,8 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { Target } from '@angular/compiler';
+import { Branch, BranchData, Employee, EmployeeData } from 'src/app/shared/interfaces/interfaces';
 
 @Component({
   selector: 'app-admin-target',
@@ -19,14 +21,14 @@ import {
   styleUrls: ['./admin-target.component.scss'],
 })
 export class AdminTargetComponent implements OnInit {
-  targetData: any = [];
+  targetData: Target[]|undefined = [];
   target!: string;
   achieved!: string;
   remaining!: string;
-  employeesData!: any;
+  employeesData!: Employee[];
   dataSource!: MatTableDataSource<any>;
-  empSelectForm: any;
-  selectedEmployeeData: any;
+  empSelectForm!: FormGroup;
+  selectedEmployeeData!: Employee|undefined;
   setTargetForm!: FormGroup;
   submitted: boolean = false;
   showSpinner: boolean = false;
@@ -61,7 +63,7 @@ export class AdminTargetComponent implements OnInit {
   ];
   today = Date.now();
   years = [this.currentYear - 1, this.currentYear, this.currentYear + 1];
-  branchData: any;
+  branchData!: Branch[];
 
   constructor(
     private sharedApi: SharedApiService,
@@ -143,7 +145,7 @@ export class AdminTargetComponent implements OnInit {
 
   getBranchData() {
     try {
-      this.sharedApi.getBranches().subscribe((response: any) => {
+      this.sharedApi.getBranches().subscribe((response: BranchData) => {
         if (response.status == 'OK') {
           this.branchData = response.branchData;
         } else {
@@ -157,15 +159,15 @@ export class AdminTargetComponent implements OnInit {
 
   onEmployeeChange(selectedEmp_id: string) {
     this.selectedEmployeeData = this.employeesData.find(
-      (employee: any) => employee._id == selectedEmp_id
+      (employee: Employee) => employee._id == selectedEmp_id
     );
-    this.targetData = this.selectedEmployeeData.target.reverse();
+    this.targetData = this.selectedEmployeeData?.target.reverse() as Target[];
     this.dataSource = new MatTableDataSource(this.targetData);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
 
-  onEmpSelectSubmit(data: any) {
+  onEmpSelectSubmit(data: FormGroup) {
     if (!data.invalid) {
       const { month, year } = data.value;
       this.searchedTarget = this.targetData?.find((targetArray: any) => {
@@ -182,9 +184,7 @@ export class AdminTargetComponent implements OnInit {
         )
         this.percetangeCompleted = tempPercentage>100?100:tempPercentage;
 
-        // this.percetangeCompleted = Math.round(
-        //   (parseFloat(this.achieved) / parseFloat(this.target)) * 100
-        // );
+        
       } else {
         this.isTargetCardVisible = false;
         Swal.fire('Error', 'No results found', 'error');
@@ -192,7 +192,7 @@ export class AdminTargetComponent implements OnInit {
     }
   }
 
-  onSetTargetSubmit(data: any): void {
+  onSetTargetSubmit(data: FormGroup): void {
     this.submitted = true;
     if (!data.invalid) {
       this.showSpinner = true;
@@ -223,7 +223,7 @@ export class AdminTargetComponent implements OnInit {
     }
   }
 
-  onSetBranchTargetSubmit(data: any): void {
+  onSetBranchTargetSubmit(data: FormGroup): void {
     this.submitted = true;
     if (!data.invalid) {
       this.showSpinner = true;

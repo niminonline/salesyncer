@@ -12,7 +12,7 @@ export class AdminHomeComponent {
 
 
   userName: string = 'Admin';
-  adminMenu:any = [
+  adminMenu:Object[] = [
     { icon: 'dashboard', text: 'Dashboard', link: '/admin' },
     { icon: 'person', text: 'Employees', link: '/admin/employees' },
     { icon: 'event', text: 'Leave request', link: '/admin/leave-request' },
