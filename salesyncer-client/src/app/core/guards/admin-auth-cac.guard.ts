@@ -20,5 +20,5 @@ export const adminAuthCACGuard: CanActivateFn = (route, state) => {
 
 function navigateToLogin() {
   const router = new Router();
-  router.navigate(['/admin/login']);
+  router.navigate(['/admin-login']);
 }
