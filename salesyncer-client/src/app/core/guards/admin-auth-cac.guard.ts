@@ -1,5 +1,6 @@
 import { CanActivateFn, Router } from '@angular/router';
 import { jwtDecode } from "jwt-decode";
+import Swal from 'sweetalert2';
 
 export const adminAuthCACGuard: CanActivateFn = (route, state) => {
   const token = localStorage.getItem('token');
@@ -20,5 +21,6 @@ export const adminAuthCACGuard: CanActivateFn = (route, state) => {
 
 function navigateToLogin() {
   const router = new Router();
+  Swal.fire('Error', "Unauthorized access", 'error');
   router.navigate(['/admin-login']);
 }
