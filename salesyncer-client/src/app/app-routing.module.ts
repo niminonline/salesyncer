@@ -3,13 +3,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdminLoginComponent } from './admin/components/admin-login/admin-login.component';
 import { AdminDashboardComponent } from './admin/components/admin-dashboard/admin-dashboard.component';
 import { AdminHomeComponent } from './admin/components/admin-home/admin-home.component';
-import { childAuthCACEmpGuard } from './core/guards/child-auth-cac-emp.guard';
 import { ManageComponent } from './admin/components/manage/manage.component';
 import { AddUserComponent } from './admin/components/add-user/add-user.component';
 
+import {adminAuthCACGuard} from './core/guards/admin-auth-cac.guard'
+import {employeeAuthCACGuard} from './core/guards/employee-auth-cac.guard'
+
 
 import { EmployeesComponent } from './admin/components/employees/employees.component';
-import { childAuthCACGuard } from './core/guards/child-auth-cac.guard';
 
 import { EmployeeLoginComponent } from './employee/components/employee-login/employee-login.component';
 import { EmployeeDashboardComponent } from './employee/components/employee-dashboard/employee-dashboard.component';
@@ -17,7 +18,6 @@ import { EmployeeHomeComponent } from './employee/components/employee-home/emplo
 import { EmployeeProfileComponent } from './employee/components/employee-profile/employee-profile.component';
 
 import { UpdateEmployeeComponent } from './admin/components/update-employee/update-employee.component';
-import { HeaderComponent } from './shared/components/header/header.component';
 import { UpdateProfileComponent } from './employee/components/update-profile/update-profile.component';
 import { ViewEmployeeComponent } from './admin/components/view-employee/view-employee.component';
 import { LeaveComponent } from './employee/components/leave/leave.component';
@@ -52,7 +52,7 @@ const routes: Routes = [
 
   {path:'admin-login',component:AdminLoginComponent,title:"Salesyncer Admin"},
   {path:'admin',component:AdminHomeComponent, title:"Salesyncer Admin",
-  canActivateChild:[childAuthCACGuard] ,
+  canActivateChild:[adminAuthCACGuard] ,
    children: [
     { path: '', component: AdminDashboardComponent,title:'Salesyncer' },
     { path: 'employees', component: EmployeesComponent,title:'Salesyncer'},
@@ -87,7 +87,7 @@ const routes: Routes = [
 
 {path:'login',component:EmployeeLoginComponent,title:"Salesyncer Login"},
   {path:'',component:EmployeeHomeComponent, title:"Salesyncer",
-  canActivateChild:[childAuthCACEmpGuard],
+  canActivateChild:[employeeAuthCACGuard],
    children: [
     { path: '', component: EmployeeDashboardComponent,title:'Salesyncer' },
     { path: 'profile', component: EmployeeProfileComponent,title:'Salesyncer'},
@@ -118,10 +118,6 @@ const routes: Routes = [
 
   ]
 },
-  
-
-
-
 
 ];
 

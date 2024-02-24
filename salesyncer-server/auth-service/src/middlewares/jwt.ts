@@ -4,14 +4,14 @@ import logger from "../services/winston";
 
 export const generateEmployeeToken = (existingUser:any): string | null => {
   try {
-    const {email } = existingUser;
+    const {email,empId } = existingUser;
     
     const jwtSecretKey = process.env.jwtSecretKey;
     if (!jwtSecretKey) {
       logger.error("jwtSecretKey is missing");
       process.exit(1);
     }
-    const token = Jwt.sign({ email}, jwtSecretKey);
+    const token = Jwt.sign({ email,empId,role:"employee"}, jwtSecretKey);
     return token;
   } catch (err) {
     logger.error(err);
@@ -27,7 +27,7 @@ export const generateAdminToken = (adminData:any): string | null => {
       logger.error("jwtSecretKey is missing");
       process.exit(1);
     }
-    const token = Jwt.sign({ email }, jwtSecretKey);
+    const token = Jwt.sign({ email,role:"admin" }, jwtSecretKey);
     return token;
   } catch (err) {
     logger.error(err);

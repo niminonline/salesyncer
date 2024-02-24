@@ -7,11 +7,7 @@ import logger from "./services/winston";
 const port = process.env.PORT || 3000;
 
 const app = express();
-// app.use(cors({origin: "http://salesyncer.cloud"}));
 config();
-
-
-
 
 const allowedOrigins = [
   "http://localhost:4200",
@@ -27,9 +23,7 @@ const allowedOrigins = [
   "http://www.salesyncer.cloud",
   "http://salesyncer.cloud",
   "https://salesyncer.cloud",
-   "https://www.salesyncer.cloud"
- 
-
+  "https://www.salesyncer.cloud",
 ];
 
 const corsOptions = {
@@ -49,9 +43,6 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/", router);
-
-
-
 
 app.listen(port, () => {
   logger.info(`API gateway listening at port# ${port}`);

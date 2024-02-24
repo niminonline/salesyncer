@@ -1,0 +1,24 @@
+import { CanActivateFn, Router } from '@angular/router';
+import { jwtDecode } from "jwt-decode";
+
+export const employeeAuthCACGuard: CanActivateFn = (route, state) => {
+  const token = localStorage.getItem('token');
+  
+  if (!token) {
+    navigateToLogin();
+    return false;
+  }
+
+  const decodedToken:any = jwtDecode(token);
+  if (!decodedToken || decodedToken.role !== 'employee') {
+    navigateToLogin();
+    return false;
+  }
+
+  return true;
+};
+
+function navigateToLogin() {
+  const router = new Router();
+  router.navigate(['/login']);
+}
