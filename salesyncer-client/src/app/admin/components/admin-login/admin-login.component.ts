@@ -22,7 +22,7 @@ export class AdminLoginComponent {
         } else {
           if (response.token ) {
             localStorage.setItem('token', response.token);
-            localStorage.setItem('id', "admin");
+            localStorage.setItem('_id', "admin");
           }
           const Toast = Swal.mixin({
             toast: true,

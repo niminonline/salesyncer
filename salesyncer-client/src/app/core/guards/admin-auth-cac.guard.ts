@@ -11,7 +11,7 @@ export const adminAuthCACGuard: CanActivateFn = (route, state) => {
 
   const decodedToken:any = jwtDecode(token);
   if (!decodedToken || decodedToken.role !== 'admin') {
-    localStorage.removeItem('id');
+    localStorage.removeItem('_id');
     localStorage.removeItem('token');
     navigateToLogin();
     return false;

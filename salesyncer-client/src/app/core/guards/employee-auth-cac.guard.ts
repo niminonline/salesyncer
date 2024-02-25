@@ -7,7 +7,7 @@ export const employeeAuthCACGuard: CanActivateFn = (route, state) => {
   const token = localStorage.getItem('token');
   
   if (!token) {
-    navigate('/login');
+    navigateToLogin();
     return false;
   }
 
@@ -16,14 +16,15 @@ export const employeeAuthCACGuard: CanActivateFn = (route, state) => {
     Swal.fire('Error', "Unauthorized access", 'error');
     localStorage.removeItem('_id');
     localStorage.removeItem('token');
-    navigate('/');
+    
     return false;
   }
 
   return true;
 };
 
-function navigate(location:string) {
+function navigateToLogin() {
   const router = new Router();
-  router.navigate([location]);
+  router.navigate(['/login']);
 }
+
