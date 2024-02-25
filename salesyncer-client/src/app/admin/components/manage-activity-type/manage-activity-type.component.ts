@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { SharedApiService } from 'src/app/shared/services/shared-api.service';
 import { AdminAPIService } from '../../services/admin-api.service';
 import { Router } from '@angular/router';
@@ -8,6 +8,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { selectActivityTypesData } from 'src/app/shared/store/selectors/activityTypesData.selectors';
 import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -15,7 +16,7 @@ import { Store } from '@ngrx/store';
   templateUrl: './manage-activity-type.component.html',
   styleUrls: ['./manage-activity-type.component.scss'],
 })
-export class ManageActivityTypeComponent implements OnInit {
+export class ManageActivityTypeComponent implements OnInit, OnDestroy  {
   activityTypesData!: any;
   displayedColumns = ['activityType', 'actions'];
   dataSource: any;
@@ -32,8 +33,10 @@ export class ManageActivityTypeComponent implements OnInit {
     private store: Store
   ) {}
 
+  private activityTypesSubscription: Subscription | undefined;
+
   ngOnInit() {
-    this.store.select(selectActivityTypesData).subscribe((response) => {
+    this.activityTypesSubscription =  this.store.select(selectActivityTypesData).subscribe((response) => {
       this.activityTypesData=response;
       this.dataSource = new MatTableDataSource(this.activityTypesData);
       this.dataSource.paginator = this.paginator;
@@ -202,5 +205,9 @@ export class ManageActivityTypeComponent implements OnInit {
   }
 
 
-
+  ngOnDestroy() {
+    if (this.activityTypesSubscription) {
+      this.activityTypesSubscription.unsubscribe();
+    }
+  }
 }

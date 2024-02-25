@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { SharedApiService } from 'src/app/shared/services/shared-api.service';
 import { Router } from '@angular/router';
 import { AdminAPIService } from '../../services/admin-api.service';
@@ -7,13 +7,14 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import Swal from 'sweetalert2';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-leave-request',
   templateUrl: './leave-request.component.html',
   styleUrls: ['./leave-request.component.scss'],
 })
-export class LeaveRequestComponent implements OnInit {
+export class LeaveRequestComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = [
     'name',
     'designation',
@@ -39,6 +40,8 @@ export class LeaveRequestComponent implements OnInit {
   dataSource!: MatTableDataSource<any>;
   showSpinner: boolean = false;
 
+  private leaveRequestSubscription: Subscription | undefined;
+
   constructor(
     private sharedAPI: SharedApiService,
     private router: Router,
@@ -46,11 +49,7 @@ export class LeaveRequestComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.getLeaveRequests();
-  }
-
-  getLeaveRequests() {
-    this.sharedAPI.leaveRequests().subscribe((response) => {
+    this.leaveRequestSubscription = this.sharedAPI.leaveRequests().subscribe((response) => {
       this.leavesData = response.leaveRequests;
       this.allRequestCount = this.leavesData.length;
       this.leavesData.map((leaveData: any) => {
@@ -74,6 +73,12 @@ export class LeaveRequestComponent implements OnInit {
     });
   }
 
+  ngOnDestroy() {
+    if (this.leaveRequestSubscription) {
+      this.leaveRequestSubscription.unsubscribe();
+    }
+  }
+
   filterAllRequest() {
     this.dataSource = new MatTableDataSource(this.leavesData);
     this.dataSource.paginator = this.paginator;
@@ -95,11 +100,6 @@ export class LeaveRequestComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
-
-  // ngAfterViewInit() {
-  //   this.dataSource.paginator = this.paginator;
-  //   this.dataSource.sort = this.sort;
-  // }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

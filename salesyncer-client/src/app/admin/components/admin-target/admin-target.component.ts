@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit,OnDestroy, ViewChild } from '@angular/core';
 import { SharedApiService } from 'src/app/shared/services/shared-api.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -14,13 +14,14 @@ import {
 } from '@angular/forms';
 import { Target } from '@angular/compiler';
 import { Branch, BranchData, Employee, EmployeeData } from 'src/app/shared/interfaces/interfaces';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-admin-target',
   templateUrl: './admin-target.component.html',
   styleUrls: ['./admin-target.component.scss'],
 })
-export class AdminTargetComponent implements OnInit {
+export class AdminTargetComponent implements OnInit,OnDestroy {
   targetData: Target[]|undefined = [];
   target!: string;
   achieved!: string;
@@ -37,6 +38,12 @@ export class AdminTargetComponent implements OnInit {
   isTargetCardVisible = false;
   percetangeCompleted!: number;
   setBranchTargetForm!: FormGroup;
+
+  private getEmployeesSubscription: Subscription | undefined;
+  private getBranchSubscription: Subscription | undefined;
+  private setTargetByEmpIdSubscription: Subscription | undefined;
+  private setBranchTargetSubscription: Subscription | undefined;
+
 
   displayedColumns: string[] = [
     'month',
@@ -134,7 +141,7 @@ export class AdminTargetComponent implements OnInit {
   }
 
   getEmployeesData() {
-    this.sharedApi.getEmployeesData().subscribe((response) => {
+    this.getEmployeesSubscription= this.sharedApi.getEmployeesData().subscribe((response) => {
       if (response) {
         this.employeesData = response.employeesData;
       }
@@ -145,7 +152,7 @@ export class AdminTargetComponent implements OnInit {
 
   getBranchData() {
     try {
-      this.sharedApi.getBranches().subscribe((response: BranchData) => {
+      this.getBranchSubscription=this.sharedApi.getBranches().subscribe((response: BranchData) => {
         if (response.status == 'OK') {
           this.branchData = response.branchData;
         } else {
@@ -196,7 +203,7 @@ export class AdminTargetComponent implements OnInit {
     this.submitted = true;
     if (!data.invalid) {
       this.showSpinner = true;
-      this.adminApi.setTargetByEmpId(data.value).subscribe((response) => {
+      this.setTargetByEmpIdSubscription= this.adminApi.setTargetByEmpId(data.value).subscribe((response) => {
         if (response && response.status !== 'OK') {
           this.showSpinner = false;
           Swal.fire('Error', response.message, 'error');
@@ -228,7 +235,7 @@ export class AdminTargetComponent implements OnInit {
     if (!data.invalid) {
       this.showSpinner = true;
 
-      this.adminApi.setBranchTarget(data.value).subscribe((response) => {
+      this.setBranchTargetSubscription= this.adminApi.setBranchTarget(data.value).subscribe((response) => {
         if (response && response.status !== 'OK') {
           this.showSpinner = false;
           Swal.fire('Error', response.message, 'error');
@@ -263,4 +270,25 @@ export class AdminTargetComponent implements OnInit {
     return employee._id; 
   }
   
+
+  ngOnDestroy() {
+    this.unsubscribeFromSubscriptions();
+  }
+
+  private unsubscribeFromSubscriptions() {
+    if (this.getEmployeesSubscription) {
+      this.getEmployeesSubscription.unsubscribe();
+    }
+    if (this.getBranchSubscription) {
+      this.getBranchSubscription.unsubscribe();
+    }
+    if (this.setTargetByEmpIdSubscription) {
+      this.setTargetByEmpIdSubscription.unsubscribe();
+    }
+    if (this.setBranchTargetSubscription) {
+      this.setBranchTargetSubscription.unsubscribe();
+    }
+  }
+
+
 }
