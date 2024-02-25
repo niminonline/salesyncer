@@ -22,7 +22,6 @@ export const employeeAuthCACGuard: CanActivateFn = (route, state) => {
 };
 
 function navigate(location:string) {
-  Swal.fire('Error', "Unauthorized access", 'error');
   const router = new Router();
   router.navigate([location]);
 }
