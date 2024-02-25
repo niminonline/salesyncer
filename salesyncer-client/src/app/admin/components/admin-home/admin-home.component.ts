@@ -32,7 +32,7 @@ constructor(
   ) {}
 
   logout() {
-    localStorage.removeItem('_id');
+    localStorage.removeItem('id');
     localStorage.removeItem('token');
    
     this.route.navigate(['/admin-login']);

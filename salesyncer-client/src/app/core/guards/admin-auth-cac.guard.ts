@@ -1,50 +1,26 @@
 import { CanActivateFn, Router } from '@angular/router';
-import { jwtDecode } from 'jwt-decode';
-import { DecodedJwtToken } from 'src/app/shared/interfaces/interfaces';
-import Swal from 'sweetalert2';
+import { jwtDecode } from "jwt-decode";
 
 export const adminAuthCACGuard: CanActivateFn = (route, state) => {
-//   const token = localStorage.getItem('token');
-
-//   if (!token) {
-//     navigateToLogin();
-//     return false;
-//   }
-
-//   const decodedToken: any = jwtDecode(token);
-//   if (!decodedToken || decodedToken.role !== 'admin') {
-//     navigateToLogin();
-//     return false;
-//   }
-
-//   return true;
-// };
-
-// function navigateToLogin() {
-//   const router = new Router();
-//   Swal.fire('Error', 'Unauthorized access', 'error');
-//   router.navigate(['/admin-login']);
-// }
-
-
-const token = localStorage.getItem('token');
+  const token = localStorage.getItem('token');
   
   if (!token) {
-    navigate('/admin-login');
+    navigateToLogin();
     return false;
   }
 
-  const decodedToken:DecodedJwtToken = jwtDecode(token);
+  const decodedToken:any = jwtDecode(token);
   if (!decodedToken || decodedToken.role !== 'admin') {
-    Swal.fire('Error', "Unauthorized access", 'error');
-    navigate('/admin');
+    localStorage.removeItem('id');
+    localStorage.removeItem('token');
+    navigateToLogin();
     return false;
   }
 
   return true;
 };
 
-function navigate(location:string) {
+function navigateToLogin() {
   const router = new Router();
-  router.navigate([location]);
+  router.navigate(['/admin-login']);
 }

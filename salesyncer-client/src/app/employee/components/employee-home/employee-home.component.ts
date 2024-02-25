@@ -67,7 +67,7 @@ export class EmployeeHomeComponent implements OnInit{
 
 
   logout() {
-    localStorage.removeItem('id');
+    localStorage.removeItem('_id');
     localStorage.removeItem('token');
     this.store.dispatch(UserActions.clearEmployeeData());
     this.store.dispatch(AuthActions.clearAuthState());

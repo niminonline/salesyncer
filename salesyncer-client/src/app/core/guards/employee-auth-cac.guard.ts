@@ -14,6 +14,8 @@ export const employeeAuthCACGuard: CanActivateFn = (route, state) => {
   const decodedToken:DecodedJwtToken = jwtDecode(token);
   if (!decodedToken || decodedToken.role !== 'employee') {
     Swal.fire('Error', "Unauthorized access", 'error');
+    localStorage.removeItem('_id');
+    localStorage.removeItem('token');
     navigate('/');
     return false;
   }
