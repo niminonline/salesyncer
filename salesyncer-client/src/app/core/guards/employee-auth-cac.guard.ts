@@ -16,7 +16,7 @@ export const employeeAuthCACGuard: CanActivateFn = (route, state) => {
     Swal.fire('Error', "Unauthorized access", 'error');
     localStorage.removeItem('_id');
     localStorage.removeItem('token');
-    
+    navigateToLogin();
     return false;
   }
 
