@@ -389,16 +389,13 @@ export interface updateEmpData {
   _id: string;
 }
 
-
-export interface EmpLoginResponse{
-  email?:string;
-  _id?:string;
-  token?:string;
-  status:string;
-  message:string
-
+export interface EmpLoginResponse {
+  email?: string;
+  _id?: string;
+  token?: string;
+  status: string;
+  message: string;
 }
-
 
 export interface Address {
   addressLine1: string;
@@ -430,7 +427,7 @@ export interface EmployeeData {
   isRemoved: boolean;
   isBlocked: boolean;
   target: Target[];
-  attendance: any[]; 
+  attendance: any[];
   __v: number;
   casualLeaveBalance: number;
   sickLeaveBalance: number;
@@ -440,4 +437,10 @@ export interface EmployeeDataResponse {
   employeeData: EmployeeData;
   message: string;
   status: string;
+}
+
+export interface DecodedJwtToken {
+  email: string;
+  role: string;
+  iat: number;
 }
