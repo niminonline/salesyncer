@@ -5,7 +5,7 @@ import { SharedApiService } from 'src/app/shared/services/shared-api.service';
 import { Store } from '@ngrx/store';
 import { Router, ActivatedRoute } from '@angular/router';
 import { selectContactsData } from 'src/app/shared/store/selectors/contacts.selectors';
-import { ContactType, ContactsType } from '../../interfaces/interfaces';
+import { Branch, ContactType, ContactsType } from '../../interfaces/interfaces';
 
 @Component({
   selector: 'app-contacts-edit',
@@ -203,4 +203,9 @@ export class ContactsEditComponent implements OnInit {
       }
     });
   }
+
+  trackByBranch(index: number, branch: Branch): string {
+    return branch._id; 
+  }
+  
 }

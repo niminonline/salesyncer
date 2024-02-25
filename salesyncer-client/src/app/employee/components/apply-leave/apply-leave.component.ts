@@ -102,4 +102,8 @@ export class ApplyLeaveComponent implements OnInit {
   navLeave() {
     this.router.navigate(['leave']);
   }
+
+  trackByLeaveCategory(index: number, leaveCategory: LeaveCategory): string {
+    return leaveCategory._id; 
+  }
 }

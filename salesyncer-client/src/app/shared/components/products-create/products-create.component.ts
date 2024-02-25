@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { SharedApiService } from 'src/app/shared/services/shared-api.service';
+import { ProductCategory } from '../../interfaces/interfaces';
 
 @Component({
   selector: 'app-products-create',
@@ -109,6 +110,9 @@ export class ProductsCreateComponent implements OnInit {
       this.router.navigate(['products']);
     }
   }
+
+  trackByProductCategory(index: number, productCategory: ProductCategory): string {
+    return productCategory._id; 
+  }
 }
-{
-}
+

@@ -15,7 +15,7 @@
           <mat-label>Select branch</mat-label>
           <mat-select name="branch" formControlName="branch">
             <mat-option
-              *ngFor="let branch of branchData"
+              *ngFor="let branch of branchData ; trackBy: trackByBranch"
               [value]="branch.branchName"
             >
               {{ branch.branchName }}
@@ -38,7 +38,7 @@
           <mat-label>Select Client</mat-label>
           <mat-select name="client" formControlName="client">
             <mat-option
-              *ngFor="let contact of contactData"
+              *ngFor="let contact of contactData ; trackBy: trackByContact"
               [value]="contact._id"
             >
               {{ contact.name }}
@@ -50,7 +50,7 @@
           <mat-label>Select Source</mat-label>
           <mat-select name="source" formControlName="source">
             <mat-option
-              *ngFor="let leadSource of leadSourceData"
+              *ngFor="let leadSource of leadSourceData   ; trackBy: trackByLeadSource"
               [value]="leadSource.leadSource"
             >
               {{ leadSource.leadSource }}
@@ -64,7 +64,7 @@
           <mat-label>Select Product category</mat-label>
           <mat-select name="productCategory" formControlName="productCategory" >
             <mat-option
-              *ngFor="let productCategory of productCategoriesData"
+              *ngFor="let productCategory of productCategoriesData  ; trackBy: trackByProductCategory"
               [value]="productCategory.productCategory"
             >
               {{ productCategory.productCategory }}
@@ -100,7 +100,7 @@
           <mat-label>Select lead owner</mat-label>
           <mat-select name="owner" formControlName="owner">
             <mat-option
-              *ngFor="let employee of employeesData"
+              *ngFor="let employee of employeesData   ; trackBy: trackByEmployees"
               [value]="employee.name"
             >
               {{ employee.name }}

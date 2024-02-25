@@ -27,7 +27,7 @@
             <mat-label>Select Employee</mat-label>
             <mat-select formControlName="_id">
               <mat-option
-                *ngFor="let employee of employeesData"
+                *ngFor="let employee of employeesData   ; trackBy: trackByEmployees"
                 value="{{ employee._id }}"
                 >{{ employee.name }}</mat-option
               >
@@ -151,7 +151,7 @@
             <mat-label>Select Employee</mat-label>
             <mat-select formControlName="_id">
               <mat-option
-                *ngFor="let employee of employeesData"
+                *ngFor="let employee of employeesData   ; trackBy: trackByEmployees"
                 value="{{ employee._id }}"
                 >{{ employee.name }}</mat-option
               >
@@ -219,7 +219,7 @@
             <mat-label>Select branch</mat-label>
             <mat-select name="branch" formControlName="branch">
               <mat-option
-                *ngFor="let branch of branchData"
+                *ngFor="let branch of branchData ; trackBy: trackByBranch"
                 [value]="branch.branchName"
               >
                 {{ branch.branchName }}

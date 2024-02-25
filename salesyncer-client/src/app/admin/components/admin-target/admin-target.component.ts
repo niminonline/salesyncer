@@ -254,4 +254,13 @@ export class AdminTargetComponent implements OnInit {
       Swal.fire('Error', 'Please fill the fields without errors', 'error');
     }
   }
+
+  trackByBranch(index: number, branch: Branch): string {
+    return branch._id; 
+  }
+
+  trackByEmployees(index: number, employee: Employee): string {
+    return employee._id; 
+  }
+  
 }

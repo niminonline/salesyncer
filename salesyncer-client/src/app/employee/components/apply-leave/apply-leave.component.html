@@ -23,7 +23,7 @@
       <mat-form-field appearance="outline">
         <mat-label>Leave Category</mat-label>
         <mat-select formControlName="category">
-          <mat-option  *ngFor="let item of leaveCategory" value={{item.category}}>{{item.category}}</mat-option>
+          <mat-option  *ngFor="let item of leaveCategory   ; trackBy: trackByLeaveCategory" value={{item.category}}>{{item.category}}</mat-option>
           
         </mat-select>
       </mat-form-field>

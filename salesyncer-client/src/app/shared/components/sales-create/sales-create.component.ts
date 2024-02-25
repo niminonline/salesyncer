@@ -7,6 +7,7 @@ import { SharedApiService } from 'src/app/shared/services/shared-api.service';
 import { Store } from '@ngrx/store';
 import { selectEmployeeData } from '../../store/selectors/user.selectors';
 import * as UserActions from '../../store/actions/user.actions';
+import { Branch, Employee, Lead, Product, ProductCategory } from '../../interfaces/interfaces';
 
 @Component({
   selector: 'app-sales-create',
@@ -231,4 +232,22 @@ export class SalesCreateComponent implements OnInit {
     );
   }
 
+  trackByBranch(index: number, branch: Branch): string {
+    return branch._id; 
+  }
+  trackByEmployees(index: number, employee: Employee): string {
+    return employee._id; 
+  }
+
+  trackByProductCategory(index: number, productCategory: ProductCategory): string {
+    return productCategory._id; 
+  }
+
+  trackByLeadsData(index: number, lead: Lead): string {
+    return lead._id; 
+  }
+
+  trackByProduct(index: number, product: Product): string {
+    return product._id; 
+  }
 }

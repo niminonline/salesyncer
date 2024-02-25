@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Employee } from 'src/app/shared/interfaces/interfaces';
+import { Branch, Employee } from 'src/app/shared/interfaces/interfaces';
 import * as employeesDataActions from '../../../../shared/store/actions/employeesData.actions';
 import { selectEmployeesData } from 'src/app/shared/store/selectors/employeesData.selectors';
 import { Store } from '@ngrx/store';
@@ -115,5 +115,9 @@ export class TargetWidgetComponent implements OnInit {
         Swal.fire('Error', 'No results found', 'error');
       }
     }
+  }
+
+  trackByEmployees(index: number, employee: Employee): string {
+    return employee._id; 
   }
 }

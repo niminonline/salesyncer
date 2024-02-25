@@ -13,6 +13,7 @@ import { selectLeadSourceData } from '../../store/selectors/leadSourceData.selec
 import { selectProductCategoriesData } from '../../store/selectors/productCategoriesData.selectors';
 import { selectProductsData } from '../../store/selectors/productsData.selectors';
 import {
+  Branch,
   Employee,
   Lead,
   LeadSource,
@@ -243,5 +244,21 @@ export class LeadsEditComponent implements OnInit {
     this.filteredProducts = this.productsData.filter(
       (product: any) => product.category == selectedCategory
     );
+  }
+
+  trackByBranch(index: number, branch: Branch): string {
+    return branch._id; 
+  }
+
+  trackByEmployees(index: number, employee: Employee): string {
+    return employee._id; 
+  }
+  
+  trackByLeadSource(index: number, leadSource: LeadSource): string {
+    return leadSource._id; 
+  }
+
+  trackByProductCategory(index: number, productCategory: ProductCategory): string {
+    return productCategory._id; 
   }
 }

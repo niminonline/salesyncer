@@ -26,7 +26,7 @@
           <mat-label>Select branch</mat-label>
           <mat-select name="branch" formControlName="branch">
             <mat-option
-              *ngFor="let branch of branchData"
+              *ngFor="let branch of branchData ; trackBy: trackByBranch"
               [value]="branch.branchName"
             >
               {{ branch.branchName }}

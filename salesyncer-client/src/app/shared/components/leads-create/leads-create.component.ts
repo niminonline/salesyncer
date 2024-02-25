@@ -20,6 +20,7 @@ import { selectBranchData } from '../../store/selectors/branchData.selectors';
 import { selectLeadSourceData } from '../../store/selectors/leadSourceData.selectors';
 import { selectProductCategoriesData } from '../../store/selectors/productCategoriesData.selectors';
 import { selectProductsData } from '../../store/selectors/productsData.selectors';
+import { Branch, Contact, Employee, LeadSource, ProductCategory } from '../../interfaces/interfaces';
 
 @Component({
   selector: 'app-leads-create',
@@ -200,5 +201,25 @@ export class LeadsCreateComponent implements OnInit {
     this.filteredProducts = this.productsData.filter(
       (product: any) => product.category == selectedCategory
     );
+  }
+
+  trackByEmployees(index: number, employee: Employee): string {
+    return employee._id; 
+  }
+
+  trackByContact(index: number, contact: Contact): string {
+    return contact._id; 
+  }
+
+  trackByBranch(index: number, branch: Branch): string {
+    return branch._id; 
+  }
+
+  trackByLeadSource(index: number, leadSource: LeadSource): string {
+    return leadSource._id; 
+  }
+
+  trackByProductCategory(index: number, productCategory: ProductCategory): string {
+    return productCategory._id; 
   }
 }

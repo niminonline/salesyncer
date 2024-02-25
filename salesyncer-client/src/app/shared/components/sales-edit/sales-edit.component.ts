@@ -255,4 +255,19 @@ export class SalesEditComponent implements OnInit {
       (employee: Employee) => employee.branch == selectedBranch
     );
   }
+
+  trackByBranch(index: number, branch: Branch): string {
+    return branch._id; 
+  }
+  
+
+  trackByProductCategory(index: number, productCategory: ProductCategory): string {
+    return productCategory._id; 
+  }
+
+  trackByLeadsData(index: number, lead: Lead): string {
+    return lead._id; 
+  }
+
+  
 }

@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 import { SharedApiService } from 'src/app/shared/services/shared-api.service';
 import { AdminDataRepoService } from '../../services/admin-data-repo.service';
 import { Router } from '@angular/router';
+import { Branch } from 'src/app/shared/interfaces/interfaces';
 
 @Component({
   selector: 'app-update-employee',
@@ -132,4 +133,9 @@ export class UpdateEmployeeComponent {
     this.router.navigate(['admin/employees']);
   }
 
+
+  trackByBranch(index: number, branch: Branch): string {
+    return branch._id; 
+  }
+  
 }

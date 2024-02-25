@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { SharedApiService } from 'src/app/shared/services/shared-api.service';
+import { Branch } from '../../interfaces/interfaces';
 
 @Component({
   selector: 'app-contacts-create',
@@ -125,4 +126,9 @@ export class ContactsCreateComponent implements OnInit {
       this.router.navigate(['contacts']);
     }
   }
+
+  trackByBranch(index: number, branch: Branch): string {
+    return branch._id; 
+  }
+  
 }

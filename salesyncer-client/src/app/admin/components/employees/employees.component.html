@@ -1,125 +1,113 @@
 <div class="component-body">
+  <h1 class="title">Employees</h1>
 
-  <h1 class="title" >Employees</h1>
-
-<div class="header-block">
-
-    <!-- <mat-form-field>
-        <mat-label>Select branch</mat-label>
-        <mat-select name="selectedBranch"> 
-          <mat-option *ngFor="let branch of branchData" [value]="branch.branchCode">
-            {{ branch.branchName }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field> -->
-
-      <button mat-raised-button color="primary" class="add-user-btn" (click)="addUser()">Add user</button>
-
-</div>
-
-<div class="body-block">
-
-
-
-  <mat-form-field class="search-field">
-    <mat-label>Search</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Search anything" #input  >
-  </mat-form-field>
-  
-  <div class="mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource" matSort>
-  
-      <!-- Name-->
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-        <td mat-cell *matCellDef="let row"> {{row.name}} </td>
-      </ng-container>
-  
-      <!-- Employee ID -->
-      <ng-container matColumnDef="empId">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Employee ID </th>
-        <td mat-cell *matCellDef="let row"> {{row.empId}} </td>
-      </ng-container>
-  
-      <!-- Branch-->
-      <ng-container matColumnDef="branch">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Branch </th>
-        <td mat-cell *matCellDef="let row"> {{row.branch}} </td>
-      </ng-container>
-  
-      <!--Email -->
-      <ng-container matColumnDef="email">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
-        <td mat-cell *matCellDef="let row"> {{row.email}} </td>
-      </ng-container>
-
-      <!--Phone -->
-      <ng-container matColumnDef="phone">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Phone </th>
-        <td mat-cell *matCellDef="let row"> {{row.phone}} </td>
-      </ng-container>
-
-      <!--Role -->
-      <ng-container matColumnDef="role">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Role </th>
-        <td mat-cell *matCellDef="let row"> {{row.role}} </td>
-      </ng-container>
-
-      <!--Designation -->
-      <ng-container matColumnDef="designation">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Designation </th>
-        <td mat-cell *matCellDef="let row"> {{row.designation}} </td>
-      </ng-container>
-
-
-      <!--Actions -->
-      <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef  > Actions </th>
-        <td mat-cell *matCellDef="let row">
-          
-          <div class="action-button-block">
-            <button mat-icon-button color="primary" aria-label="view" (click)="navViewEmployee(row._id)">
-              <mat-icon>visibility</mat-icon>
-            </button>
-            <button mat-icon-button color="primary" aria-label="edit" (click)="navUpdateEmployee(row._id)">
-              <mat-icon>edit</mat-icon>
-            </button>
-            
-           
-          </div>
-
-
-
-        </td>
-      </ng-container>
-
-
-
-
-
-  
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  
-      <!-- Row shown when there is no matching data. -->
-      <tr class="mat-row" *matNoDataRow>
-        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
-      </tr>
-    </table>
-  
-    <!-- <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator> -->
-    <mat-paginator #paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  <div class="header-block">
+    <button
+      mat-raised-button
+      color="primary"
+      class="add-user-btn"
+      (click)="addUser()"
+    >
+      Add user
+    </button>
   </div>
-  
 
-  
+  <div class="body-block">
+    <mat-form-field class="search-field">
+      <mat-label>Search</mat-label>
+      <input
+        matInput
+        (keyup)="applyFilter($event)"
+        placeholder="Search anything"
+        #input
+      />
+    </mat-form-field>
 
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource" matSort>
+        <!-- Name-->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+          <td mat-cell *matCellDef="let row">{{ row.name }}</td>
+        </ng-container>
 
+        <!-- Employee ID -->
+        <ng-container matColumnDef="empId">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Employee ID</th>
+          <td mat-cell *matCellDef="let row">{{ row.empId }}</td>
+        </ng-container>
 
+        <!-- Branch-->
+        <ng-container matColumnDef="branch">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Branch</th>
+          <td mat-cell *matCellDef="let row">{{ row.branch }}</td>
+        </ng-container>
 
+        <!--Email -->
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+          <td mat-cell *matCellDef="let row">{{ row.email }}</td>
+        </ng-container>
 
+        <!--Phone -->
+        <ng-container matColumnDef="phone">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Phone</th>
+          <td mat-cell *matCellDef="let row">{{ row.phone }}</td>
+        </ng-container>
 
-</div>
+        <!--Role -->
+        <ng-container matColumnDef="role">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Role</th>
+          <td mat-cell *matCellDef="let row">{{ row.role }}</td>
+        </ng-container>
 
+        <!--Designation -->
+        <ng-container matColumnDef="designation">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Designation</th>
+          <td mat-cell *matCellDef="let row">{{ row.designation }}</td>
+        </ng-container>
 
+        <!--Actions -->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef>Actions</th>
+          <td mat-cell *matCellDef="let row">
+            <div class="action-button-block">
+              <button
+                mat-icon-button
+                color="primary"
+                aria-label="view"
+                (click)="navViewEmployee(row._id)"
+              >
+                <mat-icon>visibility</mat-icon>
+              </button>
+              <button
+                mat-icon-button
+                color="primary"
+                aria-label="edit"
+                (click)="navUpdateEmployee(row._id)"
+              >
+                <mat-icon>edit</mat-icon>
+              </button>
+            </div>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+        <!-- Row shown when there is no matching data. -->
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">
+            No data matching the filter "{{ input.value }}"
+          </td>
+        </tr>
+      </table>
+
+      <!-- <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator> -->
+      <mat-paginator
+        #paginator
+        [pageSizeOptions]="[5, 10, 25, 100]"
+      ></mat-paginator>
+    </div>
+  </div>
 </div>

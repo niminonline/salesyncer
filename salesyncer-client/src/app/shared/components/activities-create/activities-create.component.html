@@ -14,7 +14,7 @@
         <mat-form-field appearance="outline">
           <mat-label>Select Lead</mat-label>
           <mat-select name="lead" formControlName="lead">
-            <mat-option *ngFor="let lead of leadsData" [value]="lead._id">
+            <mat-option *ngFor="let lead of leadsData   ; trackBy: trackByLeadsData" [value]="lead._id">
               {{ lead.leadId }}({{ lead.client.name }})
             </mat-option>
           </mat-select>
@@ -24,7 +24,7 @@
           <mat-label>Select Activity Type</mat-label>
           <mat-select name="type" formControlName="type">
             <mat-option
-              *ngFor="let activityType of activityTypesData"
+              *ngFor="let activityType of activityTypesData   ; trackBy: trackByActivityTypes"
               [value]="activityType.activityType"
             >
               {{ activityType.activityType }}
@@ -47,7 +47,7 @@
           <mat-label>Select Owner</mat-label>
           <mat-select name="owner" formControlName="owner">
             <mat-option
-              *ngFor="let employee of employeesData"
+              *ngFor="let employee of employeesData   ; trackBy: trackByEmployees"
               [value]="employee.name"
             >
               {{ employee.name }}
@@ -65,7 +65,7 @@
           >
             <mat-option value=""> None </mat-option>
             <mat-option
-              *ngFor="let activityType of activityTypesData"
+              *ngFor="let activityType of activityTypesData   ; trackBy: trackByActivityTypes"
               [value]="activityType.activityType"
             >
               {{ activityType.activityType }}

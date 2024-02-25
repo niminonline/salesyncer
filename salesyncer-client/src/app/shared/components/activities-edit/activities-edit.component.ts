@@ -10,7 +10,7 @@ import { selectEmployeesData } from 'src/app/shared/store/selectors/employeesDat
 import { selectLeadsData } from '../../../shared/store/selectors/leadsData.selectors';
 
 
-import { ActivityType, ActivityTypesData, Employee } from '../../interfaces/interfaces';
+import { ActivityType, ActivityTypesData, Employee, Lead } from '../../interfaces/interfaces';
 
 
 @Component({
@@ -201,5 +201,17 @@ export class ActivitiesEditComponent implements OnInit {
     } else {
       this.router.navigate(['activities']);
     }
+  }
+
+  trackByEmployees(index: number, employee: Employee): string {
+    return employee._id; 
+  }
+
+  trackByLeadsData(index: number, lead: Lead): string {
+    return lead._id; 
+  }
+
+  trackByActivityTypes(index: number, activityType: ActivityType): string {
+    return activityType._id; 
   }
 }

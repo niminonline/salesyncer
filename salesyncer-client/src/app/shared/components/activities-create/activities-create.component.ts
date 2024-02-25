@@ -8,7 +8,7 @@ import { selectActivityTypesData } from 'src/app/shared/store/selectors/activity
 import { Store } from '@ngrx/store';
 import { selectEmployeeData } from '../../store/selectors/user.selectors';
 import * as UserActions from '../../store/actions/user.actions';
-import { ActivityType, Employee, Lead } from '../../interfaces/interfaces';
+import { ActivityType, Employee, Lead, LeadsData } from '../../interfaces/interfaces';
 import { selectEmployeesData } from '../../store/selectors/employeesData.selectors';
 import { selectLeadsData } from '../../store/selectors/leadsData.selectors';
 
@@ -153,5 +153,17 @@ export class ActivitiesCreateComponent implements OnInit {
     } else {
       this.router.navigate(['activities']);
     }
+  }
+
+  trackByEmployees(index: number, employee: Employee): string {
+    return employee._id; 
+  }
+
+  trackByLeadsData(index: number, lead: Lead): string {
+    return lead._id; 
+  }
+
+  trackByActivityTypes(index: number, activityType: ActivityType): string {
+    return activityType._id; 
   }
 }

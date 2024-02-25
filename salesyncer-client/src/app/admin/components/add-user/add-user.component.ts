@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,OnDestroy } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
@@ -10,12 +10,13 @@ import { Router } from '@angular/router';
 import { SharedApiService } from 'src/app/shared/services/shared-api.service';
 import { AdminAPIService } from '../../services/admin-api.service';
 import { Branch, BranchData } from 'src/app/shared/interfaces/interfaces';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-add-user',
   templateUrl: './add-user.component.html',
   styleUrls: ['./add-user.component.scss'],
 })
-export class AddUserComponent {
+export class AddUserComponent implements OnDestroy {
   constructor(
     private sharedAPI: SharedApiService,
     private fb: FormBuilder,
@@ -24,6 +25,7 @@ export class AddUserComponent {
   ) {}
 
   submitted: boolean = false;
+  private addEmployeeSubscription: Subscription | undefined;
 
   signupGroup!: FormGroup;
   branchData!: Branch[];
@@ -96,7 +98,10 @@ export class AddUserComponent {
         designation,
       };
 
-      this.adminAPI.addEmployee(body).subscribe((response) => {
+     
+
+
+      this.addEmployeeSubscription = this.adminAPI.addEmployee(body).subscribe((response) => {
         if (response && response.status !== 'OK') {
           this.showSpinner = false;
 
@@ -120,4 +125,17 @@ export class AddUserComponent {
       Swal.fire('Error', 'Please fill the fields without errors', 'error');
     }
   }
+
+  trackByBranch(index: number, branch: Branch): string {
+    return branch._id; 
+  }
+
+
+
+  ngOnDestroy(): void {
+    if (this.addEmployeeSubscription) {
+      this.addEmployeeSubscription.unsubscribe();
+    }
+  }
+
 }
