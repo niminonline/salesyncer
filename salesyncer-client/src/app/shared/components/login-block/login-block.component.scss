@@ -36,8 +36,8 @@ input{
     gap: 20px;
 }
 .guest-login{
-    text-align: center;
     border: 2px solid #0092CB;
+    text-align: center;
     border-radius: 5px;
     margin-top:10px;
     padding: 5px;
@@ -45,4 +45,8 @@ input{
 .normalPB{
     padding: 0px;
     margin: 0px;
+}
+.redirection-block{
+    text-align: center;
+    margin: 5px;
 }

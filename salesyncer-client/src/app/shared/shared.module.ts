@@ -60,7 +60,7 @@ import { ActivitiesWidgetComponent } from './components/widgets/activities-widge
 import { LeadsWidgetComponent } from './components/widgets/leads-widget/leads-widget.component';
 import { SalesWidgetComponent } from './components/widgets/sales-widget/sales-widget.component';
 import { LeaveRequestWidgetComponent } from './components/widgets/leave-request-widget/leave-request-widget.component';
-
+import { RouterModule } from '@angular/router'
 const components = [
   LoginBlockComponent,
   HeaderComponent,
@@ -110,6 +110,7 @@ const components = [
     CommonModule,
     MaterialModule,
     ReactiveFormsModule,
+    RouterModule,
     StoreModule.forRoot(
       {
         user: userReducer,

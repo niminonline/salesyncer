@@ -42,16 +42,33 @@
         </mat-form-field>
         <div class="button-block">
           <button mat-raised-button color="primary" type="submit">Login</button>
-         
         </div>
       </form>
 
-      <div class="guest-login" *ngIf="title==='Employee Login'">
-        <h3 class="normalPB">Login as guest</h3>
-        <p class="normalPB">Email: salesyncer.guest@gmail.com</p>
-        <p class="normalPB">Password: Demo@123456</p>
+      <div class="admin-block" *ngIf="title==='Admin Login'">
+        <div class="redirection-block">
+          <a [routerLink]="['/login']" ng>Employee Login</a>
+        </div>
+        <div class="guest-login" >
+          <h3 class="normalPB">Admin Demo</h3>
+          <p class="normalPB">Email: admin@email.com</p>
+          <p class="normalPB">Password: Admin@123456</p>
+        </div>
       </div>
 
+      <div class="guest-block" *ngIf="title==='Employee Login'">
+        <div class="redirection-block">
+          <a [routerLink]="['/admin-login']" ng>Admin Login</a>
+        </div>
+        <div class="guest-login" >
+          <h3 class="normalPB">Login as guest</h3>
+          <p class="normalPB">Email: salesyncer.guest@gmail.com</p>
+          <p class="normalPB">Password: Demo@123456</p>
+        </div>
+      </div>
+     
+   
+    
     </div>
   </mat-card>
 </div>

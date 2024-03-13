@@ -7,7 +7,7 @@ import { AdminModule } from './admin/admin.module';
 import { EmployeeModule } from './employee/employee.module';
 import { SharedModule } from './shared/shared.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-
+import { RouterModule } from '@angular/router'
 
 
 import { AppComponent } from './app.component';
@@ -23,7 +23,8 @@ import { MainInterceptor } from './core/interceptors/main.interceptor';
     AdminModule,
     EmployeeModule,
     SharedModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule
   ],
   exports: [],
 
