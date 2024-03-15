@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, DoCheck } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { SharedApiService } from 'src/app/shared/services/shared-api.service';
 import { Router } from '@angular/router';
 
@@ -27,7 +27,7 @@ import Swal from 'sweetalert2';
   templateUrl: './leads.component.html',
   styleUrls: ['./leads.component.scss'],
 })
-export class LeadsComponent implements DoCheck {
+export class LeadsComponent implements OnInit {
   leadsData!: any;
   selectedContactData!: any;
   branchData!: any;
@@ -59,39 +59,17 @@ export class LeadsComponent implements DoCheck {
     private store: Store
   ) {}
 
-  ngDoCheck() {
+  ngOnInit() {
+    this.store.dispatch(branchDataActions.retrieveBranchData());
+    this.store.dispatch(leadsDataActions.retrieveLeadsData());
+    this.store.dispatch(leadSourceDataActions.retrieveLeadSourceData());
+    this.store.dispatch(productsDataActions.retrieveProductsData());
+    this.store.dispatch(productCategoriesDataActions.retrieveProductCategoriesData());
+    this.store.dispatch(employeesDataActions.retrieveEmployeesData());
+
     
 
-      this.store.dispatch(leadsDataActions.retrieveLeadsData());
 
-
-
-    setInterval(()=>{
-
-      this.store.dispatch(branchDataActions.retrieveBranchData());
-
-    },500);
-    setInterval(()=>{
-
-      this.store.dispatch(leadSourceDataActions.retrieveLeadSourceData());
-
-    },1500);
-    setInterval(()=>{
-
-      this.store.dispatch(productsDataActions.retrieveProductsData());
-
-    },2000);
-    setInterval(()=>{
-
-      this.store.dispatch(productCategoriesDataActions.retrieveProductCategoriesData());
-
-    },2500);
-    setInterval(()=>{
-
-      this.store.dispatch(employeesDataActions.retrieveEmployeesData());
-
-    },3000);
-    
 
 
     this.sharedAPI.getLeads().subscribe((response) => {
@@ -118,6 +96,20 @@ export class LeadsComponent implements DoCheck {
     });
   }
 
+  // getBranchData() {
+  //   this.sharedAPI.getBranches().subscribe((response: any) => {
+  //     if (response.status == 'OK') {
+  //       this.branchData = response.branchData;
+  //     } else {
+  //       console.error(response.message);
+  //     }
+  //   });
+  // }
+
+  // ngAfterViewInit() {
+  //   this.dataSource.paginator = this.paginator;
+  //   this.dataSource.sort = this.sort;
+  // }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy ,DoCheck} from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import * as branchDataActions from '../../../shared/store/actions/branchData.actions';
@@ -21,7 +21,7 @@ import { selectEmployeesData } from 'src/app/shared/store/selectors/employeesDat
   templateUrl: './admin-dashboard.component.html',
   styleUrls: ['./admin-dashboard.component.scss'],
 })
-export class AdminDashboardComponent implements  OnDestroy,DoCheck {
+export class AdminDashboardComponent implements OnInit, OnDestroy {
   branchData!: Branch[];
   leadsData!: Lead[];
   productsData!: Product[];
@@ -38,26 +38,13 @@ export class AdminDashboardComponent implements  OnDestroy,DoCheck {
 
   constructor(private sharedApi: SharedApiService, private store: Store) {}
 
-  ngDoCheck() {
-    
+  ngOnInit() {
     this.role = "admin";
     this.user = "admin";
-
     this.getBranchData();
-    setTimeout(()=>{
-
-      this.getProductsData();
-    },1000);
-    this.getBranchData();
-    setTimeout(()=>{
-     this.getActivitiesData();
-
-    },2000);
-    this.getBranchData();
-    setTimeout(()=>{
-      this.getSalesData();
-
-    },3000)
+    this.getProductsData();
+    this.getActivitiesData();
+    this.getSalesData();
   }
 
   ngOnDestroy() {
