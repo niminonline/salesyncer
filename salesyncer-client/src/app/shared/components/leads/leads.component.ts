@@ -60,16 +60,38 @@ export class LeadsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.store.dispatch(branchDataActions.retrieveBranchData());
-    this.store.dispatch(leadsDataActions.retrieveLeadsData());
-    this.store.dispatch(leadSourceDataActions.retrieveLeadSourceData());
-    this.store.dispatch(productsDataActions.retrieveProductsData());
-    this.store.dispatch(productCategoriesDataActions.retrieveProductCategoriesData());
-    this.store.dispatch(employeesDataActions.retrieveEmployeesData());
-
     
 
+      this.store.dispatch(leadsDataActions.retrieveLeadsData());
 
+
+
+    setInterval(()=>{
+
+      this.store.dispatch(branchDataActions.retrieveBranchData());
+
+    },500);
+    setInterval(()=>{
+
+      this.store.dispatch(leadSourceDataActions.retrieveLeadSourceData());
+
+    },1500);
+    setInterval(()=>{
+
+      this.store.dispatch(productsDataActions.retrieveProductsData());
+
+    },2000);
+    setInterval(()=>{
+
+      this.store.dispatch(productCategoriesDataActions.retrieveProductCategoriesData());
+
+    },2500);
+    setInterval(()=>{
+
+      this.store.dispatch(employeesDataActions.retrieveEmployeesData());
+
+    },3000);
+    
 
 
     this.sharedAPI.getLeads().subscribe((response) => {
@@ -96,20 +118,6 @@ export class LeadsComponent implements OnInit {
     });
   }
 
-  // getBranchData() {
-  //   this.sharedAPI.getBranches().subscribe((response: any) => {
-  //     if (response.status == 'OK') {
-  //       this.branchData = response.branchData;
-  //     } else {
-  //       console.error(response.message);
-  //     }
-  //   });
-  // }
-
-  // ngAfterViewInit() {
-  //   this.dataSource.paginator = this.paginator;
-  //   this.dataSource.sort = this.sort;
-  // }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
