@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy ,ngDoCheck} from '@angular/core';
+import { Component, OnInit, OnDestroy ,DoCheck} from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import * as branchDataActions from '../../../shared/store/actions/branchData.actions';
@@ -21,7 +21,7 @@ import { selectEmployeesData } from 'src/app/shared/store/selectors/employeesDat
   templateUrl: './admin-dashboard.component.html',
   styleUrls: ['./admin-dashboard.component.scss'],
 })
-export class AdminDashboardComponent implements  OnDestroy,ngDoCheck {
+export class AdminDashboardComponent implements  OnDestroy,DoCheck {
   branchData!: Branch[];
   leadsData!: Lead[];
   productsData!: Product[];
