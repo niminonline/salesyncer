@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, DoCheck } from '@angular/core';
 import { SharedApiService } from 'src/app/shared/services/shared-api.service';
 import { Router } from '@angular/router';
 
@@ -27,7 +27,7 @@ import Swal from 'sweetalert2';
   templateUrl: './leads.component.html',
   styleUrls: ['./leads.component.scss'],
 })
-export class LeadsComponent implements OnInit {
+export class LeadsComponent implements DoCheck {
   leadsData!: any;
   selectedContactData!: any;
   branchData!: any;
@@ -59,7 +59,7 @@ export class LeadsComponent implements OnInit {
     private store: Store
   ) {}
 
-  ngOnInit() {
+  ngDoCheck() {
     
 
       this.store.dispatch(leadsDataActions.retrieveLeadsData());
