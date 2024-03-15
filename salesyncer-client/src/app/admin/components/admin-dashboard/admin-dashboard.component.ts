@@ -39,12 +39,25 @@ export class AdminDashboardComponent implements OnInit, OnDestroy {
   constructor(private sharedApi: SharedApiService, private store: Store) {}
 
   ngOnInit() {
+    
     this.role = "admin";
     this.user = "admin";
+
     this.getBranchData();
-    this.getProductsData();
-    this.getActivitiesData();
-    this.getSalesData();
+    setTimeout(()=>{
+
+      this.getProductsData();
+    },1000);
+    this.getBranchData();
+    setTimeout(()=>{
+     this.getActivitiesData();
+
+    },2000);
+    this.getBranchData();
+    setTimeout(()=>{
+      this.getSalesData();
+
+    },3000)
   }
 
   ngOnDestroy() {
